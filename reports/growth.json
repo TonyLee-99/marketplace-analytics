@@ -1,0 +1,1228 @@
+{
+  "identity": "GMV = active_customers x orders_per_customer x AOV",
+  "monthly_tree": [
+    {
+      "period": "2017-01",
+      "gmv": 120098.27,
+      "orders": 787.0,
+      "active_customers": 753.0,
+      "aov": 152.60263,
+      "orders_per_customer": 1.045153
+    },
+    {
+      "period": "2017-02",
+      "gmv": 244959.35,
+      "orders": 1718.0,
+      "active_customers": 1693.0,
+      "aov": 142.584022,
+      "orders_per_customer": 1.014767
+    },
+    {
+      "period": "2017-03",
+      "gmv": 368341.32,
+      "orders": 2617.0,
+      "active_customers": 2577.0,
+      "aov": 140.749454,
+      "orders_per_customer": 1.015522
+    },
+    {
+      "period": "2017-04",
+      "gmv": 353842.98,
+      "orders": 2377.0,
+      "active_customers": 2345.0,
+      "aov": 148.861161,
+      "orders_per_customer": 1.013646
+    },
+    {
+      "period": "2017-05",
+      "gmv": 503159.19,
+      "orders": 3640.0,
+      "active_customers": 3569.0,
+      "aov": 138.230547,
+      "orders_per_customer": 1.019894
+    },
+    {
+      "period": "2017-06",
+      "gmv": 429916.61,
+      "orders": 3205.0,
+      "active_customers": 3142.0,
+      "aov": 134.139348,
+      "orders_per_customer": 1.020051
+    },
+    {
+      "period": "2017-07",
+      "gmv": 492287.3,
+      "orders": 3946.0,
+      "active_customers": 3872.0,
+      "aov": 124.756031,
+      "orders_per_customer": 1.019112
+    },
+    {
+      "period": "2017-08",
+      "gmv": 568245.79,
+      "orders": 4272.0,
+      "active_customers": 4191.0,
+      "aov": 133.016337,
+      "orders_per_customer": 1.019327
+    },
+    {
+      "period": "2017-09",
+      "gmv": 621415.91,
+      "orders": 4227.0,
+      "active_customers": 4154.0,
+      "aov": 147.011098,
+      "orders_per_customer": 1.017573
+    },
+    {
+      "period": "2017-10",
+      "gmv": 660179.62,
+      "orders": 4547.0,
+      "active_customers": 4481.0,
+      "aov": 145.190152,
+      "orders_per_customer": 1.014729
+    },
+    {
+      "period": "2017-11",
+      "gmv": 1003862.14,
+      "orders": 7421.0,
+      "active_customers": 7313.0,
+      "aov": 135.273163,
+      "orders_per_customer": 1.014768
+    },
+    {
+      "period": "2017-12",
+      "gmv": 742183.79,
+      "orders": 5618.0,
+      "active_customers": 5551.0,
+      "aov": 132.108186,
+      "orders_per_customer": 1.01207
+    },
+    {
+      "period": "2018-01",
+      "gmv": 945456.29,
+      "orders": 7187.0,
+      "active_customers": 7088.0,
+      "aov": 131.550896,
+      "orders_per_customer": 1.013967
+    },
+    {
+      "period": "2018-02",
+      "gmv": 837895.43,
+      "orders": 6624.0,
+      "active_customers": 6468.0,
+      "aov": 126.493875,
+      "orders_per_customer": 1.024119
+    },
+    {
+      "period": "2018-03",
+      "gmv": 981051.06,
+      "orders": 7168.0,
+      "active_customers": 7077.0,
+      "aov": 136.865382,
+      "orders_per_customer": 1.012859
+    },
+    {
+      "period": "2018-04",
+      "gmv": 993592.98,
+      "orders": 6919.0,
+      "active_customers": 6863.0,
+      "aov": 143.603553,
+      "orders_per_customer": 1.00816
+    },
+    {
+      "period": "2018-05",
+      "gmv": 992871.75,
+      "orders": 6833.0,
+      "active_customers": 6775.0,
+      "aov": 145.305393,
+      "orders_per_customer": 1.008561
+    },
+    {
+      "period": "2018-06",
+      "gmv": 863265.53,
+      "orders": 6145.0,
+      "active_customers": 6106.0,
+      "aov": 140.482592,
+      "orders_per_customer": 1.006387
+    },
+    {
+      "period": "2018-07",
+      "gmv": 878044.27,
+      "orders": 6233.0,
+      "active_customers": 6172.0,
+      "aov": 140.87025,
+      "orders_per_customer": 1.009883
+    },
+    {
+      "period": "2018-08",
+      "gmv": 848860.1,
+      "orders": 6421.0,
+      "active_customers": 6380.0,
+      "aov": 132.200607,
+      "orders_per_customer": 1.006426
+    }
+  ],
+  "mom": [
+    {
+      "gmv_from": 120098.27,
+      "gmv_to": 244959.35,
+      "delta_gmv": 124861.08,
+      "pct_change": 1.039658,
+      "drivers": {
+        "active_customers": {
+          "from": 753.0,
+          "to": 1693.0,
+          "pct_change": 1.24834,
+          "log_change": 0.810192,
+          "contribution_brl": 141924.843659
+        },
+        "orders_per_customer": {
+          "from": 1.045153,
+          "to": 1.014767,
+          "pct_change": -0.029073,
+          "log_change": -0.029504,
+          "contribution_brl": -5168.395141
+        },
+        "aov": {
+          "from": 152.60263,
+          "to": 142.584022,
+          "pct_change": -0.065652,
+          "log_change": -0.067906,
+          "contribution_brl": -11895.368518
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2017-02"
+    },
+    {
+      "gmv_from": 244959.35,
+      "gmv_to": 368341.32,
+      "delta_gmv": 123381.97,
+      "pct_change": 0.503683,
+      "drivers": {
+        "active_customers": {
+          "from": 1693.0,
+          "to": 2577.0,
+          "pct_change": 0.52215,
+          "log_change": 0.420124,
+          "contribution_brl": 127073.921548
+        },
+        "orders_per_customer": {
+          "from": 1.014767,
+          "to": 1.015522,
+          "pct_change": 0.000744,
+          "log_change": 0.000744,
+          "contribution_brl": 225.027398
+        },
+        "aov": {
+          "from": 142.584022,
+          "to": 140.749454,
+          "pct_change": -0.012867,
+          "log_change": -0.01295,
+          "contribution_brl": -3916.978945
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2017-03"
+    },
+    {
+      "gmv_from": 368341.32,
+      "gmv_to": 353842.98,
+      "delta_gmv": -14498.34,
+      "pct_change": -0.039361,
+      "drivers": {
+        "active_customers": {
+          "from": 2577.0,
+          "to": 2345.0,
+          "pct_change": -0.090027,
+          "log_change": -0.094341,
+          "contribution_brl": -34061.047713
+        },
+        "orders_per_customer": {
+          "from": 1.015522,
+          "to": 1.013646,
+          "pct_change": -0.001847,
+          "log_change": -0.001849,
+          "contribution_brl": -667.535524
+        },
+        "aov": {
+          "from": 140.749454,
+          "to": 148.861161,
+          "pct_change": 0.057632,
+          "log_change": 0.056033,
+          "contribution_brl": 20230.243237
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2017-04"
+    },
+    {
+      "gmv_from": 353842.98,
+      "gmv_to": 503159.19,
+      "delta_gmv": 149316.21,
+      "pct_change": 0.421984,
+      "drivers": {
+        "active_customers": {
+          "from": 2345.0,
+          "to": 3569.0,
+          "pct_change": 0.521962,
+          "log_change": 0.42,
+          "contribution_brl": 178134.40867
+        },
+        "orders_per_customer": {
+          "from": 1.013646,
+          "to": 1.019894,
+          "pct_change": 0.006163,
+          "log_change": 0.006144,
+          "contribution_brl": 2606.042795
+        },
+        "aov": {
+          "from": 148.861161,
+          "to": 138.230547,
+          "pct_change": -0.071413,
+          "log_change": -0.074091,
+          "contribution_brl": -31424.241465
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2017-05"
+    },
+    {
+      "gmv_from": 503159.19,
+      "gmv_to": 429916.61,
+      "delta_gmv": -73242.58,
+      "pct_change": -0.145565,
+      "drivers": {
+        "active_customers": {
+          "from": 3569.0,
+          "to": 3142.0,
+          "pct_change": -0.119641,
+          "log_change": -0.127426,
+          "contribution_brl": -59326.712376
+        },
+        "orders_per_customer": {
+          "from": 1.019894,
+          "to": 1.020051,
+          "pct_change": 0.000154,
+          "log_change": 0.000154,
+          "contribution_brl": 71.844941
+        },
+        "aov": {
+          "from": 138.230547,
+          "to": 134.139348,
+          "pct_change": -0.029597,
+          "log_change": -0.030044,
+          "contribution_brl": -13987.712565
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2017-06"
+    },
+    {
+      "gmv_from": 429916.61,
+      "gmv_to": 492287.3,
+      "delta_gmv": 62370.69,
+      "pct_change": 0.145076,
+      "drivers": {
+        "active_customers": {
+          "from": 3142.0,
+          "to": 3872.0,
+          "pct_change": 0.232336,
+          "log_change": 0.208912,
+          "contribution_brl": 96182.507043
+        },
+        "orders_per_customer": {
+          "from": 1.020051,
+          "to": 1.019112,
+          "pct_change": -0.000921,
+          "log_change": -0.000921,
+          "contribution_brl": -424.170412
+        },
+        "aov": {
+          "from": 134.139348,
+          "to": 124.756031,
+          "pct_change": -0.069952,
+          "log_change": -0.072519,
+          "contribution_brl": -33387.646631
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2017-07"
+    },
+    {
+      "gmv_from": 492287.3,
+      "gmv_to": 568245.79,
+      "delta_gmv": 75958.49,
+      "pct_change": 0.154297,
+      "drivers": {
+        "active_customers": {
+          "from": 3872.0,
+          "to": 4191.0,
+          "pct_change": 0.082386,
+          "log_change": 0.079168,
+          "contribution_brl": 41908.365128
+        },
+        "orders_per_customer": {
+          "from": 1.019112,
+          "to": 1.019327,
+          "pct_change": 0.000212,
+          "log_change": 0.000211,
+          "contribution_brl": 111.956442
+        },
+        "aov": {
+          "from": 124.756031,
+          "to": 133.016337,
+          "pct_change": 0.066212,
+          "log_change": 0.064112,
+          "contribution_brl": 33938.16843
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2017-08"
+    },
+    {
+      "gmv_from": 568245.79,
+      "gmv_to": 621415.91,
+      "delta_gmv": 53170.12,
+      "pct_change": 0.093569,
+      "drivers": {
+        "active_customers": {
+          "from": 4191.0,
+          "to": 4154.0,
+          "pct_change": -0.008828,
+          "log_change": -0.008868,
+          "contribution_brl": -5271.233926
+        },
+        "orders_per_customer": {
+          "from": 1.019327,
+          "to": 1.017573,
+          "pct_change": -0.00172,
+          "log_change": -0.001722,
+          "contribution_brl": -1023.578649
+        },
+        "aov": {
+          "from": 133.016337,
+          "to": 147.011098,
+          "pct_change": 0.105211,
+          "log_change": 0.100036,
+          "contribution_brl": 59464.932575
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "aov",
+      "month": "2017-09"
+    },
+    {
+      "gmv_from": 621415.91,
+      "gmv_to": 660179.62,
+      "delta_gmv": 38763.71,
+      "pct_change": 0.06238,
+      "drivers": {
+        "active_customers": {
+          "from": 4154.0,
+          "to": 4481.0,
+          "pct_change": 0.078719,
+          "log_change": 0.075775,
+          "contribution_brl": 48541.326109
+        },
+        "orders_per_customer": {
+          "from": 1.017573,
+          "to": 1.014729,
+          "pct_change": -0.002795,
+          "log_change": -0.002799,
+          "contribution_brl": -1793.27461
+        },
+        "aov": {
+          "from": 147.011098,
+          "to": 145.190152,
+          "pct_change": -0.012386,
+          "log_change": -0.012464,
+          "contribution_brl": -7984.341499
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2017-10"
+    },
+    {
+      "gmv_from": 660179.62,
+      "gmv_to": 1003862.14,
+      "delta_gmv": 343682.52,
+      "pct_change": 0.520589,
+      "drivers": {
+        "active_customers": {
+          "from": 4481.0,
+          "to": 7313.0,
+          "pct_change": 0.632002,
+          "log_change": 0.489807,
+          "contribution_brl": 401667.8969
+        },
+        "orders_per_customer": {
+          "from": 1.014729,
+          "to": 1.014768,
+          "pct_change": 3.9e-05,
+          "log_change": 3.9e-05,
+          "contribution_brl": 31.81285
+        },
+        "aov": {
+          "from": 145.190152,
+          "to": 135.273163,
+          "pct_change": -0.068303,
+          "log_change": -0.070748,
+          "contribution_brl": -58017.189751
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2017-11"
+    },
+    {
+      "gmv_from": 1003862.14,
+      "gmv_to": 742183.79,
+      "delta_gmv": -261678.35,
+      "pct_change": -0.260672,
+      "drivers": {
+        "active_customers": {
+          "from": 7313.0,
+          "to": 5551.0,
+          "pct_change": -0.240941,
+          "log_change": -0.275675,
+          "contribution_brl": -238858.232338
+        },
+        "orders_per_customer": {
+          "from": 1.014768,
+          "to": 1.01207,
+          "pct_change": -0.002659,
+          "log_change": -0.002663,
+          "contribution_brl": -2306.99834
+        },
+        "aov": {
+          "from": 135.273163,
+          "to": 132.108186,
+          "pct_change": -0.023397,
+          "log_change": -0.023675,
+          "contribution_brl": -20513.119322
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2017-12"
+    },
+    {
+      "gmv_from": 742183.79,
+      "gmv_to": 945456.29,
+      "delta_gmv": 203272.5,
+      "pct_change": 0.273884,
+      "drivers": {
+        "active_customers": {
+          "from": 5551.0,
+          "to": 7088.0,
+          "pct_change": 0.276887,
+          "log_change": 0.244425,
+          "contribution_brl": 205249.521513
+        },
+        "orders_per_customer": {
+          "from": 1.01207,
+          "to": 1.013967,
+          "pct_change": 0.001875,
+          "log_change": 0.001873,
+          "contribution_brl": 1572.792237
+        },
+        "aov": {
+          "from": 132.108186,
+          "to": 131.550896,
+          "pct_change": -0.004218,
+          "log_change": -0.004227,
+          "contribution_brl": -3549.81375
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-01"
+    },
+    {
+      "gmv_from": 945456.29,
+      "gmv_to": 837895.43,
+      "delta_gmv": -107560.86,
+      "pct_change": -0.113766,
+      "drivers": {
+        "active_customers": {
+          "from": 7088.0,
+          "to": 6468.0,
+          "pct_change": -0.087472,
+          "log_change": -0.091536,
+          "contribution_brl": -81521.615234
+        },
+        "orders_per_customer": {
+          "from": 1.013967,
+          "to": 1.024119,
+          "pct_change": 0.010012,
+          "log_change": 0.009962,
+          "contribution_brl": 8871.959756
+        },
+        "aov": {
+          "from": 131.550896,
+          "to": 126.493875,
+          "pct_change": -0.038442,
+          "log_change": -0.0392,
+          "contribution_brl": -34911.204522
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-02"
+    },
+    {
+      "gmv_from": 837895.43,
+      "gmv_to": 981051.06,
+      "delta_gmv": 143155.63,
+      "pct_change": 0.170851,
+      "drivers": {
+        "active_customers": {
+          "from": 6468.0,
+          "to": 7077.0,
+          "pct_change": 0.094156,
+          "log_change": 0.089983,
+          "contribution_brl": 81668.016101
+        },
+        "orders_per_customer": {
+          "from": 1.024119,
+          "to": 1.012859,
+          "pct_change": -0.010995,
+          "log_change": -0.011056,
+          "contribution_brl": -10034.240076
+        },
+        "aov": {
+          "from": 126.493875,
+          "to": 136.865382,
+          "pct_change": 0.081992,
+          "log_change": 0.078804,
+          "contribution_brl": 71521.853976
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-03"
+    },
+    {
+      "gmv_from": 981051.06,
+      "gmv_to": 993592.98,
+      "delta_gmv": 12541.92,
+      "pct_change": 0.012784,
+      "drivers": {
+        "active_customers": {
+          "from": 7077.0,
+          "to": 6863.0,
+          "pct_change": -0.030239,
+          "log_change": -0.030705,
+          "contribution_brl": -30315.734732
+        },
+        "orders_per_customer": {
+          "from": 1.012859,
+          "to": 1.00816,
+          "pct_change": -0.004639,
+          "log_change": -0.00465,
+          "contribution_brl": -4590.985645
+        },
+        "aov": {
+          "from": 136.865382,
+          "to": 143.603553,
+          "pct_change": 0.049232,
+          "log_change": 0.048059,
+          "contribution_brl": 47448.640377
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "aov",
+      "month": "2018-04"
+    },
+    {
+      "gmv_from": 993592.98,
+      "gmv_to": 992871.75,
+      "delta_gmv": -721.23,
+      "pct_change": -0.000726,
+      "drivers": {
+        "active_customers": {
+          "from": 6863.0,
+          "to": 6775.0,
+          "pct_change": -0.012822,
+          "log_change": -0.012905,
+          "contribution_brl": -12817.958257
+        },
+        "orders_per_customer": {
+          "from": 1.00816,
+          "to": 1.008561,
+          "pct_change": 0.000398,
+          "log_change": 0.000398,
+          "contribution_brl": 395.169838
+        },
+        "aov": {
+          "from": 143.603553,
+          "to": 145.305393,
+          "pct_change": 0.011851,
+          "log_change": 0.011781,
+          "contribution_brl": 11701.558419
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-05"
+    },
+    {
+      "gmv_from": 992871.75,
+      "gmv_to": 863265.53,
+      "delta_gmv": -129606.22,
+      "pct_change": -0.130537,
+      "drivers": {
+        "active_customers": {
+          "from": 6775.0,
+          "to": 6106.0,
+          "pct_change": -0.098745,
+          "log_change": -0.103967,
+          "contribution_brl": -96331.931273
+        },
+        "orders_per_customer": {
+          "from": 1.008561,
+          "to": 1.006387,
+          "pct_change": -0.002155,
+          "log_change": -0.002158,
+          "contribution_brl": -1999.142631
+        },
+        "aov": {
+          "from": 145.305393,
+          "to": 140.482592,
+          "pct_change": -0.033191,
+          "log_change": -0.033754,
+          "contribution_brl": -31275.146096
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-06"
+    },
+    {
+      "gmv_from": 863265.53,
+      "gmv_to": 878044.27,
+      "delta_gmv": 14778.74,
+      "pct_change": 0.01712,
+      "drivers": {
+        "active_customers": {
+          "from": 6106.0,
+          "to": 6172.0,
+          "pct_change": 0.010809,
+          "log_change": 0.010751,
+          "contribution_brl": 9360.221067
+        },
+        "orders_per_customer": {
+          "from": 1.006387,
+          "to": 1.009883,
+          "pct_change": 0.003474,
+          "log_change": 0.003468,
+          "contribution_brl": 3019.336597
+        },
+        "aov": {
+          "from": 140.482592,
+          "to": 140.87025,
+          "pct_change": 0.002759,
+          "log_change": 0.002756,
+          "contribution_brl": 2399.182336
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-07"
+    },
+    {
+      "gmv_from": 878044.27,
+      "gmv_to": 848860.1,
+      "delta_gmv": -29184.17,
+      "pct_change": -0.033238,
+      "drivers": {
+        "active_customers": {
+          "from": 6172.0,
+          "to": 6380.0,
+          "pct_change": 0.033701,
+          "log_change": 0.033145,
+          "contribution_brl": 28616.538529
+        },
+        "orders_per_customer": {
+          "from": 1.009883,
+          "to": 1.006426,
+          "pct_change": -0.003423,
+          "log_change": -0.003429,
+          "contribution_brl": -2960.540438
+        },
+        "aov": {
+          "from": 140.87025,
+          "to": 132.200607,
+          "pct_change": -0.061543,
+          "log_change": -0.063519,
+          "contribution_brl": -54840.168091
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "aov",
+      "month": "2018-08"
+    }
+  ],
+  "yoy": [
+    {
+      "gmv_from": 120098.27,
+      "gmv_to": 945456.29,
+      "delta_gmv": 825358.02,
+      "pct_change": 6.872356,
+      "drivers": {
+        "active_customers": {
+          "from": 753.0,
+          "to": 7088.0,
+          "pct_change": 8.413015,
+          "log_change": 2.242093,
+          "contribution_brl": 896853.699383
+        },
+        "orders_per_customer": {
+          "from": 1.045153,
+          "to": 1.013967,
+          "pct_change": -0.029838,
+          "log_change": -0.030292,
+          "contribution_brl": -12117.179664
+        },
+        "aov": {
+          "from": 152.60263,
+          "to": 131.550896,
+          "pct_change": -0.137951,
+          "log_change": -0.148444,
+          "contribution_brl": -59378.499719
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-01"
+    },
+    {
+      "gmv_from": 244959.35,
+      "gmv_to": 837895.43,
+      "delta_gmv": 592936.08,
+      "pct_change": 2.420549,
+      "drivers": {
+        "active_customers": {
+          "from": 1693.0,
+          "to": 6468.0,
+          "pct_change": 2.820437,
+          "log_change": 1.340365,
+          "contribution_brl": 646243.298187
+        },
+        "orders_per_customer": {
+          "from": 1.014767,
+          "to": 1.024119,
+          "pct_change": 0.009216,
+          "log_change": 0.009174,
+          "contribution_brl": 4423.032811
+        },
+        "aov": {
+          "from": 142.584022,
+          "to": 126.493875,
+          "pct_change": -0.112847,
+          "log_change": -0.119738,
+          "contribution_brl": -57730.250999
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-02"
+    },
+    {
+      "gmv_from": 368341.32,
+      "gmv_to": 981051.06,
+      "delta_gmv": 612709.74,
+      "pct_change": 1.663429,
+      "drivers": {
+        "active_customers": {
+          "from": 2577.0,
+          "to": 7077.0,
+          "pct_change": 1.746217,
+          "log_change": 1.010224,
+          "contribution_brl": 631854.858797
+        },
+        "orders_per_customer": {
+          "from": 1.015522,
+          "to": 1.012859,
+          "pct_change": -0.002623,
+          "log_change": -0.002626,
+          "contribution_brl": -1642.523969
+        },
+        "aov": {
+          "from": 140.749454,
+          "to": 136.865382,
+          "pct_change": -0.027596,
+          "log_change": -0.027984,
+          "contribution_brl": -17502.594828
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-03"
+    },
+    {
+      "gmv_from": 353842.98,
+      "gmv_to": 993592.98,
+      "delta_gmv": 639750.0,
+      "pct_change": 1.808005,
+      "drivers": {
+        "active_customers": {
+          "from": 2345.0,
+          "to": 6863.0,
+          "pct_change": 1.926652,
+          "log_change": 1.073859,
+          "contribution_brl": 665393.223489
+        },
+        "orders_per_customer": {
+          "from": 1.013646,
+          "to": 1.00816,
+          "pct_change": -0.005412,
+          "log_change": -0.005427,
+          "contribution_brl": -3362.844794
+        },
+        "aov": {
+          "from": 148.861161,
+          "to": 143.603553,
+          "pct_change": -0.035319,
+          "log_change": -0.035958,
+          "contribution_brl": -22280.378695
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-04"
+    },
+    {
+      "gmv_from": 503159.19,
+      "gmv_to": 992871.75,
+      "delta_gmv": 489712.56,
+      "pct_change": 0.973276,
+      "drivers": {
+        "active_customers": {
+          "from": 3569.0,
+          "to": 6775.0,
+          "pct_change": 0.898291,
+          "log_change": 0.640954,
+          "contribution_brl": 461800.119272
+        },
+        "orders_per_customer": {
+          "from": 1.019894,
+          "to": 1.008561,
+          "pct_change": -0.011112,
+          "log_change": -0.011174,
+          "contribution_brl": -8050.589132
+        },
+        "aov": {
+          "from": 138.230547,
+          "to": 145.305393,
+          "pct_change": 0.051181,
+          "log_change": 0.049915,
+          "contribution_brl": 35963.029861
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-05"
+    },
+    {
+      "gmv_from": 429916.61,
+      "gmv_to": 863265.53,
+      "delta_gmv": 433348.92,
+      "pct_change": 1.007984,
+      "drivers": {
+        "active_customers": {
+          "from": 3142.0,
+          "to": 6106.0,
+          "pct_change": 0.943348,
+          "log_change": 0.664412,
+          "contribution_brl": 413010.393651
+        },
+        "orders_per_customer": {
+          "from": 1.020051,
+          "to": 1.006387,
+          "pct_change": -0.013395,
+          "log_change": -0.013486,
+          "contribution_brl": -8382.949211
+        },
+        "aov": {
+          "from": 134.139348,
+          "to": 140.482592,
+          "pct_change": 0.047288,
+          "log_change": 0.046204,
+          "contribution_brl": 28721.475561
+        }
+      },
+      "log_residual": 0.0,
+      "main_driver": "active_customers",
+      "month": "2018-06"
+    },
+    {
+      "gmv_from": 492287.3,
+      "gmv_to": 878044.27,
+      "delta_gmv": 385756.97,
+      "pct_change": 0.783601,
+      "drivers": {
+        "active_customers": {
+          "from": 3872.0,
+          "to": 6172.0,
+          "pct_change": 0.594008,
+          "log_change": 0.466252,
+          "contribution_brl": 310835.009843
+        },
+        "orders_per_customer": {
+          "from": 1.019112,
+          "to": 1.009883,
+          "pct_change": -0.009055,
+          "log_change": -0.009096,
+          "contribution_brl": -6064.286324
+        },
+        "aov": {
+          "from": 124.756031,
+          "to": 140.87025,
+          "pct_change": 0.129166,
+          "log_change": 0.121479,
+          "contribution_brl": 80986.246481
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-07"
+    },
+    {
+      "gmv_from": 568245.79,
+      "gmv_to": 848860.1,
+      "delta_gmv": 280614.31,
+      "pct_change": 0.493826,
+      "drivers": {
+        "active_customers": {
+          "from": 4191.0,
+          "to": 6380.0,
+          "pct_change": 0.52231,
+          "log_change": 0.420229,
+          "contribution_brl": 293820.939237
+        },
+        "orders_per_customer": {
+          "from": 1.019327,
+          "to": 1.006426,
+          "pct_change": -0.012656,
+          "log_change": -0.012737,
+          "contribution_brl": -8905.592758
+        },
+        "aov": {
+          "from": 133.016337,
+          "to": 132.200607,
+          "pct_change": -0.006133,
+          "log_change": -0.006151,
+          "contribution_brl": -4301.036479
+        }
+      },
+      "log_residual": -0.0,
+      "main_driver": "active_customers",
+      "month": "2018-08"
+    }
+  ],
+  "ytd_jan_aug_2018_vs_2017": {
+    "gmv_from": 3080850.81,
+    "gmv_to": 7341037.41,
+    "delta_gmv": 4260186.6,
+    "pct_change": 1.382795,
+    "drivers": {
+      "active_customers": {
+        "from": 21936.0,
+        "to": 52336.0,
+        "pct_change": 1.38585,
+        "log_change": 0.869555,
+        "contribution_brl": 4266471.699871
+      },
+      "orders_per_customer": {
+        "from": 1.028538,
+        "to": 1.022814,
+        "pct_change": -0.005565,
+        "log_change": -0.00558,
+        "contribution_brl": -27379.13669
+      },
+      "aov": {
+        "from": 136.55043,
+        "to": 137.138752,
+        "pct_change": 0.004308,
+        "log_change": 0.004299,
+        "contribution_brl": 21094.036819
+      }
+    },
+    "log_residual": 0.0,
+    "main_driver": "active_customers"
+  },
+  "ytd_category_contribution": [
+    {
+      "segment": "health_beauty",
+      "g0": 247457.95,
+      "g1": 770002.81,
+      "delta": 522544.86,
+      "share_of_growth": 0.122658,
+      "share_of_gmv_from": 0.080321,
+      "share_of_gmv_to": 0.10489,
+      "growth_pct": 2.111651
+    },
+    {
+      "segment": "watches_gifts",
+      "g0": 206284.44,
+      "g1": 708305.95,
+      "delta": 502021.51,
+      "share_of_growth": 0.11784,
+      "share_of_gmv_from": 0.066957,
+      "share_of_gmv_to": 0.096486,
+      "growth_pct": 2.433637
+    },
+    {
+      "segment": "sports_leisure",
+      "g0": 224596.75,
+      "g1": 530182.18,
+      "delta": 305585.43,
+      "share_of_growth": 0.071731,
+      "share_of_gmv_from": 0.072901,
+      "share_of_gmv_to": 0.072222,
+      "growth_pct": 1.360596
+    },
+    {
+      "segment": "computers_accessories",
+      "g0": 219638.68,
+      "g1": 502432.09,
+      "delta": 282793.41,
+      "share_of_growth": 0.066381,
+      "share_of_gmv_from": 0.071292,
+      "share_of_gmv_to": 0.068442,
+      "growth_pct": 1.287539
+    },
+    {
+      "segment": "bed_bath_table",
+      "g0": 259621.24,
+      "g1": 537514.13,
+      "delta": 277892.89,
+      "share_of_growth": 0.06523,
+      "share_of_gmv_from": 0.084269,
+      "share_of_gmv_to": 0.07322,
+      "growth_pct": 1.070378
+    },
+    {
+      "segment": "housewares",
+      "g0": 131132.61,
+      "g1": 397688.06,
+      "delta": 266555.45,
+      "share_of_growth": 0.062569,
+      "share_of_gmv_from": 0.042564,
+      "share_of_gmv_to": 0.054173,
+      "growth_pct": 2.032717
+    },
+    {
+      "segment": "auto",
+      "g0": 128278.06,
+      "g1": 346632.44,
+      "delta": 218354.38,
+      "share_of_growth": 0.051255,
+      "share_of_gmv_from": 0.041637,
+      "share_of_gmv_to": 0.047218,
+      "growth_pct": 1.702196
+    },
+    {
+      "segment": "furniture_decor",
+      "g0": 180301.14,
+      "g1": 385312.01,
+      "delta": 205010.87,
+      "share_of_growth": 0.048123,
+      "share_of_gmv_from": 0.058523,
+      "share_of_gmv_to": 0.052487,
+      "growth_pct": 1.137047
+    }
+  ],
+  "ytd_state_contribution": [
+    {
+      "segment": "SP",
+      "g0": 1111718.45,
+      "g1": 2960326.25,
+      "delta": 1848607.8,
+      "share_of_growth": 0.433926,
+      "share_of_gmv_from": 0.360848,
+      "share_of_gmv_to": 0.403257,
+      "growth_pct": 1.662838
+    },
+    {
+      "segment": "MG",
+      "g0": 337167.1,
+      "g1": 851003.48,
+      "delta": 513836.38,
+      "share_of_growth": 0.120614,
+      "share_of_gmv_from": 0.10944,
+      "share_of_gmv_to": 0.115924,
+      "growth_pct": 1.523981
+    },
+    {
+      "segment": "RJ",
+      "g0": 442351.03,
+      "g1": 901277.72,
+      "delta": 458926.69,
+      "share_of_growth": 0.107725,
+      "share_of_gmv_from": 0.143581,
+      "share_of_gmv_to": 0.122773,
+      "growth_pct": 1.037472
+    },
+    {
+      "segment": "PR",
+      "g0": 161448.68,
+      "g1": 380766.31,
+      "delta": 219317.63,
+      "share_of_growth": 0.051481,
+      "share_of_gmv_from": 0.052404,
+      "share_of_gmv_to": 0.051868,
+      "growth_pct": 1.358436
+    },
+    {
+      "segment": "RS",
+      "g0": 181061.83,
+      "g1": 382652.74,
+      "delta": 201590.91,
+      "share_of_growth": 0.04732,
+      "share_of_gmv_from": 0.05877,
+      "share_of_gmv_to": 0.052125,
+      "growth_pct": 1.113382
+    },
+    {
+      "segment": "SC",
+      "g0": 121177.14,
+      "g1": 284036.71,
+      "delta": 162859.57,
+      "share_of_growth": 0.038228,
+      "share_of_gmv_from": 0.039332,
+      "share_of_gmv_to": 0.038692,
+      "growth_pct": 1.343979
+    },
+    {
+      "segment": "BA",
+      "g0": 127864.79,
+      "g1": 272158.01,
+      "delta": 144293.22,
+      "share_of_growth": 0.03387,
+      "share_of_gmv_from": 0.041503,
+      "share_of_gmv_to": 0.037074,
+      "growth_pct": 1.128483
+    },
+    {
+      "segment": "DF",
+      "g0": 63341.95,
+      "g1": 166262.04,
+      "delta": 102920.09,
+      "share_of_growth": 0.024159,
+      "share_of_gmv_from": 0.02056,
+      "share_of_gmv_to": 0.022648,
+      "growth_pct": 1.624833
+    }
+  ]
+}

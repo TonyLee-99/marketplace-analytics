@@ -1,0 +1,303 @@
+# Governed metrics layer — the single source of truth for KPI definitions.
+#
+# Every consumer (dashboard, memo, analyses, the read-only SQL consumer) asks the
+# compiler in src/marketplace/metrics.py for a metric by NAME; nobody re-implements a
+# formula. Modelled on Airbnb Minerva / dbt Semantic Layer concepts:
+#   models    -> which mart table a measure comes from, its time dimension, sliceable dims
+#   measures  -> {agg, expr, filter}
+#   metrics   -> simple | ratio | derived | concentration
+#
+# Targets are ILLUSTRATIVE planning targets chosen by the analyst (Olist's internal targets
+# are not public). They exist so the dashboard can show variance-to-plan; see `target.basis`.
+
+version: 1
+
+models:
+  orders:
+    table: marts.fct_orders
+    grain: order_id
+    time_dimension: purchase_date
+    dimensions:
+      customer_state: customer_state
+      category: primary_category
+      seller_state: primary_seller_state
+  order_items:
+    table: marts.fct_order_items
+    grain: order_item_key
+    time_dimension: purchase_date
+    dimensions:
+      customer_state: customer_state
+      category: category
+      seller_state: seller_state
+
+metrics:
+  - name: gmv
+    label: GMV (BRL)
+    type: simple
+    model: orders
+    measure: {agg: sum, expr: items_price_brl, filter: is_revenue_order}
+    unit: BRL
+    owner: Marketplace Finance
+    grain: order; bucketed by purchase_date
+    definition: >
+      Sum of item prices (excluding freight) on revenue orders, i.e. orders whose status
+      is not canceled/unavailable and that have at least one item, dated by purchase.
+    caveats:
+      - Excludes freight (pass-through to carriers). GMV incl. freight is ~16% higher.
+      - Orders still in shipped/invoiced/processing status count (not yet delivered).
+      - Not net of returns; Olist does not publish refunds.
+    target: {basis: "trailing 3-month average x 1.03 (momentum plan)", kind: momentum, uplift: 0.03}
+    rejected_alternatives: [gmv_incl_freight, gmv_incl_canceled, gmv_payment_based]
+
+  - name: orders
+    label: Orders
+    type: simple
+    model: orders
+    measure: {agg: count, expr: "*", filter: is_revenue_order}
+    unit: count
+    owner: Marketplace Finance
+    grain: order; bucketed by purchase_date
+    definition: Count of revenue orders (same filter as GMV).
+    caveats:
+      - 775 orders have no items in the source (mostly unavailable/canceled) and are excluded.
+    target: {basis: "trailing 3-month average x 1.03", kind: momentum, uplift: 0.03}
+
+  - name: aov
+    label: Average order value (BRL)
+    type: derived
+    formula: gmv / orders
+    unit: BRL
+    owner: Marketplace Finance
+    grain: order; bucketed by purchase_date
+    definition: GMV divided by revenue orders (item price only, excl. freight).
+    caveats:
+      - Mean is skewed by a long right tail (max single order > 13,000 BRL); median is ~86 BRL.
+
+  - name: active_customers
+    label: Active customers
+    type: simple
+    model: orders
+    measure: {agg: count_distinct, expr: customer_unique_id, filter: is_revenue_order}
+    unit: count
+    owner: Growth
+    grain: person (customer_unique_id); bucketed by purchase_date
+    definition: Distinct people (customer_unique_id) with >=1 revenue order in the period.
+    caveats:
+      - Must use customer_unique_id. customer_id is issued per order and over-counts people.
+      - Not additive across periods (a person active in two months counts once per month).
+    rejected_alternatives: [active_customers_by_customer_id]
+
+  - name: repeat_purchase_rate
+    label: Returning-customer share
+    type: ratio
+    model: orders
+    numerator: {agg: count_distinct, expr: customer_unique_id, filter: "is_revenue_order and customer_order_number >= 2"}
+    denominator: {agg: count_distinct, expr: customer_unique_id, filter: is_revenue_order}
+    unit: ratio
+    owner: Growth
+    grain: person; bucketed by purchase_date
+    definition: >
+      Share of the period's active customers whose order in the period was their 2nd or later
+      revenue order ever (lifetime order number computed on customer_unique_id).
+    caveats:
+      - Early months are mechanically low (nobody has history yet).
+      - For the cohort view (share of new customers who ever return) see reports/cohorts.json.
+    target: {basis: "illustrative: 5% returning share", kind: fixed, value: 0.05}
+    rejected_alternatives: [repeat_rate_by_customer_id]
+
+  - name: on_time_delivery_rate
+    label: On-time delivery rate
+    type: ratio
+    model: orders
+    numerator: {agg: count, expr: "*", filter: "is_delivered and days_late <= 0"}
+    denominator: {agg: count, expr: "*", filter: is_delivered}
+    unit: ratio
+    owner: Logistics Ops
+    grain: delivered order; bucketed by PURCHASE date (promise cohort)
+    definition: >
+      Delivered orders whose delivery DATE is on or before the promised (estimated) date,
+      over all delivered orders, attributed to the month the order was placed.
+    caveats:
+      - Comparing the delivery timestamp to the promised date at midnight would wrongly count
+        same-day deliveries as late (see metric_conflicts report).
+      - Undelivered orders (shipped but never delivered) are excluded, which flatters the rate.
+      - The latest purchase months are right-censored (slow deliveries not in yet).
+    target: {basis: "illustrative: 93%", kind: fixed, value: 0.93}
+    rejected_alternatives: [on_time_rate_timestamp_compare, on_time_rate_by_delivery_month]
+
+  - name: avg_delivery_days
+    label: Avg delivery days (purchase -> customer)
+    type: simple
+    model: orders
+    measure: {agg: avg, expr: delivery_days, filter: is_delivered}
+    unit: days
+    owner: Logistics Ops
+    grain: delivered order; bucketed by purchase date
+    definition: Mean fractional days from purchase timestamp to delivery timestamp.
+    caveats:
+      - Right-skewed (p99 ~ 46 days); report alongside the median in ops reviews.
+
+  - name: avg_promised_days
+    label: Avg promised days
+    type: simple
+    model: orders
+    measure: {agg: avg, expr: promised_days, filter: is_delivered}
+    unit: days
+    owner: Logistics Ops
+    grain: delivered order; bucketed by purchase date
+    definition: Mean whole days from purchase date to the estimated delivery date shown to the customer.
+    caveats: []
+
+  - name: avg_days_vs_promise
+    label: Avg delivery vs promise (days, + = late)
+    type: simple
+    model: orders
+    measure: {agg: avg, expr: days_late, filter: is_delivered}
+    unit: days
+    owner: Logistics Ops
+    grain: delivered order; bucketed by purchase date
+    definition: Mean of (delivered date - promised date). Negative = arrived early (padding).
+    caveats:
+      - A very negative value is not "good": it means the promise is padded, which may cost conversion.
+
+  - name: avg_review_score
+    label: Avg review score (1-5)
+    type: simple
+    model: orders
+    measure: {agg: avg, expr: review_score, filter: "is_revenue_order and review_score is not null"}
+    unit: score
+    owner: Customer Experience
+    grain: reviewed order (latest review per order); bucketed by purchase date
+    definition: Mean review score of revenue orders, using the latest review when an order has several.
+    caveats:
+      - 547 orders have more than one review row; the latest answered one is used.
+      - Survey is sent after delivery (or after the estimated date), so non-response is not random.
+    target: {basis: "illustrative: 4.2", kind: fixed, value: 4.2}
+
+  - name: pct_5_star
+    label: Share of 5-star reviews
+    type: ratio
+    model: orders
+    numerator: {agg: count, expr: "*", filter: "is_revenue_order and review_score = 5"}
+    denominator: {agg: count, expr: "*", filter: "is_revenue_order and review_score is not null"}
+    unit: ratio
+    owner: Customer Experience
+    grain: reviewed order
+    definition: Share of reviewed revenue orders scoring 5.
+    caveats: []
+
+  - name: pct_1_2_star
+    label: Share of 1-2 star reviews
+    type: ratio
+    model: orders
+    numerator: {agg: count, expr: "*", filter: "is_revenue_order and review_score <= 2"}
+    denominator: {agg: count, expr: "*", filter: "is_revenue_order and review_score is not null"}
+    unit: ratio
+    owner: Customer Experience
+    grain: reviewed order
+    definition: Share of reviewed revenue orders scoring 1 or 2.
+    caveats: []
+
+  - name: nps_style_score
+    label: NPS-style score
+    type: derived
+    formula: (pct_5_star - pct_1_2_star) * 100
+    unit: points
+    owner: Customer Experience
+    grain: reviewed order
+    definition: >
+      Percent 5-star minus percent 1-2-star, x100 (range -100..100). A proxy only: real NPS
+      asks a 0-10 likelihood-to-recommend question, which Olist does not collect.
+    caveats:
+      - Not comparable to published NPS benchmarks.
+    target: {basis: "illustrative: 45", kind: fixed, value: 45}
+
+  - name: freight_to_price_ratio
+    label: Freight / item price
+    type: ratio
+    model: orders
+    numerator: {agg: sum, expr: freight_brl, filter: is_revenue_order}
+    denominator: {agg: sum, expr: items_price_brl, filter: is_revenue_order}
+    unit: ratio
+    owner: Logistics Ops
+    grain: order
+    definition: Total freight charged divided by total item price on revenue orders (value-weighted).
+    caveats:
+      - The unweighted mean of per-order ratios is much higher (cheap items carry heavy freight).
+
+  - name: cancellation_rate
+    label: Cancellation rate
+    type: ratio
+    model: orders
+    numerator: {agg: count, expr: "*", filter: "order_status in ('canceled', 'unavailable')"}
+    denominator: {agg: count, expr: "*", filter: "true"}
+    unit: ratio
+    owner: Marketplace Ops
+    grain: order (all statuses)
+    definition: Orders ending canceled or unavailable over all orders placed.
+    caveats:
+      - '"unavailable" = seller could not fulfil; grouped with canceled because neither became revenue.'
+    target: {basis: "illustrative: <= 1.0%", kind: fixed, value: 0.01, direction: lower_is_better}
+
+  - name: seller_top10pct_gmv_share
+    label: Top-10% sellers' share of GMV
+    type: concentration
+    model: order_items
+    entity: seller_id
+    measure: {agg: sum, expr: price_brl, filter: is_revenue_order}
+    method: top_share
+    top_fraction: 0.10
+    unit: ratio
+    owner: Marketplace Strategy
+    grain: seller within period
+    definition: >
+      Rank the period's active sellers by GMV; share of GMV earned by the top 10% of them
+      (ceil(0.1 x active sellers)).
+    caveats:
+      - Depends on the number of active sellers in the period; compare like-for-like windows.
+
+  - name: seller_hhi
+    label: Seller HHI (0-10,000)
+    type: concentration
+    model: order_items
+    entity: seller_id
+    measure: {agg: sum, expr: price_brl, filter: is_revenue_order}
+    method: hhi
+    unit: index
+    owner: Marketplace Strategy
+    grain: seller within period
+    definition: Herfindahl-Hirschman index of seller GMV shares (sum of squared % shares).
+    caveats:
+      - "< 1,500 = unconcentrated under US DoJ guidelines."
+
+# Plausible-but-rejected definitions, kept on purpose: the metric_conflicts job computes
+# each next to the governed metric so the disagreement is visible (why semantic layers exist).
+rejected_alternatives:
+  gmv_incl_freight:
+    sql: "sum(items_total_brl) filter (where is_revenue_order)"
+    model: orders
+    why_rejected: Freight is passed through to carriers; including it inflates GMV and mixes logistics cost changes into growth.
+  gmv_incl_canceled:
+    sql: "sum(items_price_brl)"
+    model: orders
+    why_rejected: Canceled/unavailable orders never became revenue.
+  gmv_payment_based:
+    sql: "sum(payment_total_brl) filter (where is_revenue_order)"
+    model: orders
+    why_rejected: Payments include instalment interest and voucher top-ups; finance's ledger basis, not merchandise value.
+  active_customers_by_customer_id:
+    sql: "count(distinct customer_id) filter (where is_revenue_order)"
+    model: orders
+    why_rejected: customer_id is generated per order, so one person can appear as many customers.
+  repeat_rate_by_customer_id:
+    sql: "count(distinct customer_id) filter (where is_revenue_order and n_orders_for_customer_id >= 2) * 1.0 / count(distinct customer_id) filter (where is_revenue_order)"
+    model: orders
+    why_rejected: Every customer_id has exactly one order, so the repeat rate is mechanically 0%.
+  on_time_rate_timestamp_compare:
+    sql: "avg(case when delivered_to_customer_at <= cast(estimated_delivery_date as timestamp) then 1.0 else 0 end) filter (where is_delivered)"
+    model: orders
+    why_rejected: The promise is a date (stored as 00:00:00); any delivery during the promised day would be counted late.
+  on_time_rate_by_delivery_month:
+    sql: "same numerator/denominator, bucketed by month of delivered_to_customer_at"
+    model: orders
+    why_rejected: Attributes a late order to the month it finally arrived, mixing several promise cohorts; ops accountability is by the month the promise was made.

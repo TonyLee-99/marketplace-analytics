@@ -1,0 +1,1034 @@
+{
+  "padding": {
+    "definition": "padding = promised days - actual delivered day number (whole days; positive = arrived early)",
+    "n_orders": 96203,
+    "overall_quantiles": {
+      "p5": -3.0,
+      "p10": 2.0,
+      "p25": 7.0,
+      "p50": 12.0,
+      "p75": 17.0,
+      "p90": 22.0,
+      "p95": 26.0
+    },
+    "mean_padding": 11.807969,
+    "share_padded_over_7_days": 0.738501,
+    "share_padded_over_14_days": 0.360623,
+    "median_promised_days": 24.0,
+    "median_actual_days": 10.0,
+    "lanes_most_padded": [
+      {
+        "lane": "RS>SP",
+        "n": 663,
+        "median_padding": 19.0,
+        "p10_padding": 9.2,
+        "median_promised": 28.0,
+        "median_actual": 8.0,
+        "late_rate": 0.012066
+      },
+      {
+        "lane": "SC>MG",
+        "n": 425,
+        "median_padding": 16.0,
+        "p10_padding": 7.0,
+        "median_promised": 30.0,
+        "median_actual": 13.0,
+        "late_rate": 0.035294
+      },
+      {
+        "lane": "MG>RS",
+        "n": 276,
+        "median_padding": 16.0,
+        "p10_padding": 6.0,
+        "median_promised": 33.0,
+        "median_actual": 15.5,
+        "late_rate": 0.043478
+      },
+      {
+        "lane": "PR>MG",
+        "n": 819,
+        "median_padding": 16.0,
+        "p10_padding": 6.0,
+        "median_promised": 29.0,
+        "median_actual": 12.0,
+        "late_rate": 0.039072
+      },
+      {
+        "lane": "SP>PA",
+        "n": 680,
+        "median_padding": 16.0,
+        "p10_padding": -4.0,
+        "median_promised": 36.0,
+        "median_actual": 21.0,
+        "late_rate": 0.120588
+      },
+      {
+        "lane": "RJ>PR",
+        "n": 201,
+        "median_padding": 15.0,
+        "p10_padding": 2.0,
+        "median_promised": 26.0,
+        "median_actual": 11.0,
+        "late_rate": 0.084577
+      },
+      {
+        "lane": "SP>RS",
+        "n": 3584,
+        "median_padding": 15.0,
+        "p10_padding": 3.0,
+        "median_promised": 29.0,
+        "median_actual": 14.0,
+        "late_rate": 0.066406
+      },
+      {
+        "lane": "MG>PR",
+        "n": 362,
+        "median_padding": 15.0,
+        "p10_padding": 7.0,
+        "median_promised": 27.0,
+        "median_actual": 12.0,
+        "late_rate": 0.01105
+      },
+      {
+        "lane": "SC>SP",
+        "n": 1312,
+        "median_padding": 15.0,
+        "p10_padding": 5.0,
+        "median_promised": 26.0,
+        "median_actual": 10.0,
+        "late_rate": 0.036585
+      },
+      {
+        "lane": "RS>RJ",
+        "n": 240,
+        "median_padding": 15.0,
+        "p10_padding": 1.9,
+        "median_promised": 29.0,
+        "median_actual": 11.0,
+        "late_rate": 0.070833
+      }
+    ],
+    "lanes_least_padded": [
+      {
+        "lane": "PR>PR",
+        "n": 707,
+        "median_padding": 12.0,
+        "p10_padding": 4.0,
+        "median_promised": 20.0,
+        "median_actual": 7.0,
+        "late_rate": 0.026874
+      },
+      {
+        "lane": "SP>BA",
+        "n": 2305,
+        "median_padding": 12.0,
+        "p10_padding": -3.0,
+        "median_promised": 30.0,
+        "median_actual": 18.0,
+        "late_rate": 0.12885
+      },
+      {
+        "lane": "SP>DF",
+        "n": 1379,
+        "median_padding": 12.0,
+        "p10_padding": 2.0,
+        "median_promised": 24.0,
+        "median_actual": 12.0,
+        "late_rate": 0.06454
+      },
+      {
+        "lane": "SP>MS",
+        "n": 476,
+        "median_padding": 12.0,
+        "p10_padding": -2.0,
+        "median_promised": 26.0,
+        "median_actual": 14.0,
+        "late_rate": 0.12395
+      },
+      {
+        "lane": "SC>SC",
+        "n": 256,
+        "median_padding": 12.0,
+        "p10_padding": 2.0,
+        "median_promised": 20.0,
+        "median_actual": 7.0,
+        "late_rate": 0.042969
+      },
+      {
+        "lane": "RS>RS",
+        "n": 287,
+        "median_padding": 11.0,
+        "p10_padding": 3.0,
+        "median_promised": 19.0,
+        "median_actual": 6.0,
+        "late_rate": 0.027875
+      },
+      {
+        "lane": "SP>ES",
+        "n": 1458,
+        "median_padding": 11.0,
+        "p10_padding": -2.0,
+        "median_promised": 25.0,
+        "median_actual": 14.0,
+        "late_rate": 0.123457
+      },
+      {
+        "lane": "SP>MA",
+        "n": 489,
+        "median_padding": 10.0,
+        "p10_padding": -8.0,
+        "median_promised": 31.0,
+        "median_actual": 20.0,
+        "late_rate": 0.190184
+      },
+      {
+        "lane": "SP>SP",
+        "n": 30667,
+        "median_padding": 10.0,
+        "p10_padding": 2.0,
+        "median_promised": 18.0,
+        "median_actual": 7.0,
+        "late_rate": 0.046532
+      },
+      {
+        "lane": "SP>AL",
+        "n": 255,
+        "median_padding": 9.0,
+        "p10_padding": -9.0,
+        "median_promised": 32.0,
+        "median_actual": 23.0,
+        "late_rate": 0.239216
+      }
+    ],
+    "n_lanes_with_200plus": 48,
+    "categories_most_padded": [
+      {
+        "category": "small_appliances",
+        "n": 607,
+        "median_padding": 14.0,
+        "p10_padding": 4.0,
+        "median_promised": 24.0,
+        "median_actual": 9.0,
+        "late_rate": 0.047776
+      },
+      {
+        "category": "watches_gifts",
+        "n": 5471,
+        "median_padding": 13.0,
+        "p10_padding": 1.0,
+        "median_promised": 24.0,
+        "median_actual": 10.0,
+        "late_rate": 0.074209
+      },
+      {
+        "category": "fashion_bags_accessories",
+        "n": 1803,
+        "median_padding": 13.0,
+        "p10_padding": 3.0,
+        "median_promised": 24.0,
+        "median_actual": 9.0,
+        "late_rate": 0.056018
+      },
+      {
+        "category": "musical_instruments",
+        "n": 607,
+        "median_padding": 13.0,
+        "p10_padding": 1.0,
+        "median_promised": 24.0,
+        "median_actual": 10.0,
+        "late_rate": 0.075783
+      },
+      {
+        "category": "office_furniture",
+        "n": 1245,
+        "median_padding": 13.0,
+        "p10_padding": 1.0,
+        "median_promised": 31.0,
+        "median_actual": 19.0,
+        "late_rate": 0.081124
+      },
+      {
+        "category": "health_beauty",
+        "n": 8577,
+        "median_padding": 13.0,
+        "p10_padding": 1.0,
+        "median_promised": 24.0,
+        "median_actual": 10.0,
+        "late_rate": 0.075434
+      },
+      {
+        "category": "garden_tools",
+        "n": 3402,
+        "median_padding": 13.0,
+        "p10_padding": 2.0,
+        "median_promised": 25.0,
+        "median_actual": 12.0,
+        "late_rate": 0.066138
+      },
+      {
+        "category": "perfumery",
+        "n": 3044,
+        "median_padding": 13.0,
+        "p10_padding": 3.0,
+        "median_promised": 24.0,
+        "median_actual": 9.0,
+        "late_rate": 0.06636
+      }
+    ],
+    "categories_least_padded": [
+      {
+        "category": "consoles_games",
+        "n": 1006,
+        "median_padding": 12.0,
+        "p10_padding": 2.0,
+        "median_promised": 24.0,
+        "median_actual": 11.0,
+        "late_rate": 0.06163
+      },
+      {
+        "category": "bed_bath_table",
+        "n": 9202,
+        "median_padding": 12.0,
+        "p10_padding": 1.0,
+        "median_promised": 24.0,
+        "median_actual": 11.0,
+        "late_rate": 0.074658
+      },
+      {
+        "category": "baby",
+        "n": 2748,
+        "median_padding": 12.0,
+        "p10_padding": 1.0,
+        "median_promised": 24.0,
+        "median_actual": 10.0,
+        "late_rate": 0.081514
+      },
+      {
+        "category": "home_confort",
+        "n": 354,
+        "median_padding": 11.0,
+        "p10_padding": 0.0,
+        "median_promised": 23.0,
+        "median_actual": 11.0,
+        "late_rate": 0.09887
+      },
+      {
+        "category": "furniture_living_room",
+        "n": 408,
+        "median_padding": 11.0,
+        "p10_padding": 2.0,
+        "median_promised": 24.0,
+        "median_actual": 12.0,
+        "late_rate": 0.07598
+      },
+      {
+        "category": "construction_tools_construction",
+        "n": 727,
+        "median_padding": 11.0,
+        "p10_padding": 1.0,
+        "median_promised": 22.0,
+        "median_actual": 9.0,
+        "late_rate": 0.074278
+      },
+      {
+        "category": "audio",
+        "n": 342,
+        "median_padding": 11.0,
+        "p10_padding": -3.0,
+        "median_promised": 23.0,
+        "median_actual": 11.0,
+        "late_rate": 0.119883
+      },
+      {
+        "category": "food",
+        "n": 434,
+        "median_padding": 10.0,
+        "p10_padding": 0.3,
+        "median_promised": 19.0,
+        "median_actual": 7.0,
+        "late_rate": 0.071429
+      }
+    ],
+    "padding_histogram": "padding\n-20.0    883\n-19.0     77\n-18.0     76\n-17.0     89\n-16.0     98\n        ... \n 41.0     69\n 42.0     67\n 43.0     43\n 44.0     28\n 45.0    199\nName: count, Length: 66, dtype: int64"
+  },
+  "split": {
+    "design": "rolling monthly retrain on months M-w-1..M-2, labels known before M starts; w chosen by lowest mean pinball loss on the backtest",
+    "backtest_period": [
+      "2017-10-01",
+      "2018-03-31"
+    ],
+    "window_candidates": {
+      "3": {
+        "mean_abs_coverage_error": 0.09945,
+        "mean_pinball": 2.924835
+      },
+      "6": {
+        "mean_abs_coverage_error": 0.10542,
+        "mean_pinball": 2.948135
+      },
+      "9": {
+        "mean_abs_coverage_error": 0.104523,
+        "mean_pinball": 2.956102
+      }
+    },
+    "chosen_window_months": 3,
+    "test": {
+      "purchases": [
+        "2018-04-01",
+        "2018-08-31"
+      ],
+      "n": 32150
+    },
+    "features": [
+      "seller_state",
+      "customer_state",
+      "category_top",
+      "purchase_dow",
+      "log_km",
+      "items_price_brl",
+      "freight_brl",
+      "n_items",
+      "n_sellers",
+      "weight_kg",
+      "volume_l",
+      "purchase_hour",
+      "olist_promised_days",
+      "seller_hist_median_days",
+      "seller_hist_n",
+      "lane_hist_median_days"
+    ],
+    "forbidden_post_purchase_fields": [
+      "approved_at",
+      "days_late",
+      "delivered_to_carrier_at",
+      "delivered_to_customer_at",
+      "delivery_days",
+      "is_late",
+      "order_status",
+      "review_score"
+    ]
+  },
+  "model_eval": {
+    "p50": {
+      "target_coverage": 0.5,
+      "model_coverage": 0.778134,
+      "model_pinball": 2.218253,
+      "lane_baseline_coverage": 0.753095,
+      "lane_baseline_pinball": 2.367667,
+      "olist_estimate_pinball": 6.703764
+    },
+    "p80": {
+      "target_coverage": 0.8,
+      "model_coverage": 0.909611,
+      "model_pinball": 1.921758,
+      "lane_baseline_coverage": 0.930295,
+      "lane_baseline_pinball": 2.173091,
+      "olist_estimate_pinball": 2.882407
+    },
+    "p90": {
+      "target_coverage": 0.9,
+      "model_coverage": 0.95297,
+      "model_pinball": 1.376591,
+      "lane_baseline_coverage": 0.96874,
+      "lane_baseline_pinball": 1.568809,
+      "olist_estimate_pinball": 1.608622
+    }
+  },
+  "model_eval_by_month": [
+    {
+      "month": "2018-04",
+      "n": 6798,
+      "train_window": "2017-12..2018-02",
+      "train_n": 18788,
+      "p80_coverage": 0.894969,
+      "p90_coverage": 0.940718,
+      "median_actual": 9.0,
+      "mean_olist_promise": 24.314504,
+      "mean_model_p90": 21.560753
+    },
+    {
+      "month": "2018-05",
+      "n": 6749,
+      "train_window": "2018-01..2018-03",
+      "train_n": 20403,
+      "p80_coverage": 0.886354,
+      "p90_coverage": 0.949178,
+      "median_actual": 9.0,
+      "mean_olist_promise": 23.527486,
+      "mean_model_p90": 23.070677
+    },
+    {
+      "month": "2018-06",
+      "n": 6096,
+      "train_window": "2018-02..2018-04",
+      "train_n": 20262,
+      "p80_coverage": 0.946194,
+      "p90_coverage": 0.973261,
+      "median_actual": 8.0,
+      "mean_olist_promise": 28.408629,
+      "mean_model_p90": 21.551673
+    },
+    {
+      "month": "2018-07",
+      "n": 6156,
+      "train_window": "2018-03..2018-05",
+      "train_n": 20522,
+      "p80_coverage": 0.927225,
+      "p90_coverage": 0.959064,
+      "median_actual": 7.0,
+      "mean_olist_promise": 20.329272,
+      "mean_model_p90": 20.255523
+    },
+    {
+      "month": "2018-08",
+      "n": 6351,
+      "train_window": "2018-04..2018-06",
+      "train_n": 19614,
+      "p80_coverage": 0.897811,
+      "p90_coverage": 0.944733,
+      "median_actual": 7.0,
+      "mean_olist_promise": 15.820343,
+      "mean_model_p90": 15.261376
+    }
+  ],
+  "static_split_diagnostic": {
+    "train": {
+      "purchases": [
+        "2017-01-01",
+        "2018-01-31"
+      ],
+      "delivered_by": "2018-02-28",
+      "n": 50297
+    },
+    "calibration": {
+      "purchases": [
+        "2018-02-01",
+        "2018-02-28"
+      ],
+      "delivered_by": "2018-03-31",
+      "n": 6231
+    },
+    "test_n": 32150,
+    "eval": {
+      "p50": {
+        "raw_coverage": 0.755739,
+        "conformal_adjustment_days": 2.190654,
+        "conformal_coverage": 0.846687
+      },
+      "p80": {
+        "raw_coverage": 0.887185,
+        "conformal_adjustment_days": 3.804929,
+        "conformal_coverage": 0.945008
+      },
+      "p90": {
+        "raw_coverage": 0.9293,
+        "conformal_adjustment_days": 4.904865,
+        "conformal_coverage": 0.971011
+      }
+    },
+    "lesson": "Delivery got much faster from Apr-2018 (median 13 -> 7-9 days). A model fit on 2017 and conformalised on Feb-2018 (a slow month) over-covers in the test period, so the promise must be retrained monthly."
+  },
+  "policies": {
+    "current_olist_estimate": {
+      "mean_promise_days": 22.484541,
+      "median_promise_days": 22.0,
+      "mean_days_saved_vs_current": 0.0,
+      "late_rate": 0.044199,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": 0.0,
+      "expected_delta_avg_review": 0.0,
+      "expected_delta_1_2_star_share_pp": 0.0,
+      "extra_late_first_orders_test": 0,
+      "repurchase_gmv_at_risk_brl_per_year": 0.0,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        -0.0,
+        0.0
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 0.0,
+        "0.50%_per_day": 0.0,
+        "1.00%_per_day": 0.0
+      },
+      "breakeven_conversion_lift_per_day": null
+    },
+    "uniform_minus_5_days": {
+      "mean_promise_days": 17.521306,
+      "median_promise_days": 17.0,
+      "mean_days_saved_vs_current": 4.963235,
+      "late_rate": 0.149456,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": 10.525661,
+      "expected_delta_avg_review": -0.127335,
+      "expected_delta_1_2_star_share_pp": 3.389345,
+      "extra_late_first_orders_test": 3267,
+      "repurchase_gmv_at_risk_brl_per_year": 3199.367673,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        -1886.383279,
+        8285.118625
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 134386.547416,
+        "0.50%_per_day": 268773.094833,
+        "1.00%_per_day": 537546.189665
+      },
+      "breakeven_conversion_lift_per_day": 6e-05
+    },
+    "lane_p80": {
+      "mean_promise_days": 18.258756,
+      "median_promise_days": 17.0,
+      "mean_days_saved_vs_current": 4.225785,
+      "late_rate": 0.069705,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": 2.550544,
+      "expected_delta_avg_review": -0.032521,
+      "expected_delta_1_2_star_share_pp": 0.782271,
+      "extra_late_first_orders_test": 787,
+      "repurchase_gmv_at_risk_brl_per_year": 770.707793,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        -454.418011,
+        1995.833596
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 114419.068644,
+        "0.50%_per_day": 228838.137289,
+        "1.00%_per_day": 457676.274577
+      },
+      "breakeven_conversion_lift_per_day": 1.7e-05
+    },
+    "lane_p90": {
+      "mean_promise_days": 22.908616,
+      "median_promise_days": 21.0,
+      "mean_days_saved_vs_current": -0.424075,
+      "late_rate": 0.03126,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": -1.293935,
+      "expected_delta_avg_review": 0.021621,
+      "expected_delta_1_2_star_share_pp": -0.534247,
+      "extra_late_first_orders_test": -408,
+      "repurchase_gmv_at_risk_brl_per_year": -399.553722,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        235.581383,
+        -1034.688827
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": -11482.416195,
+        "0.50%_per_day": -22964.832391,
+        "1.00%_per_day": -45929.664782
+      },
+      "breakeven_conversion_lift_per_day": null
+    },
+    "model_p80": {
+      "mean_promise_days": 16.771291,
+      "median_promise_days": 16.0,
+      "mean_days_saved_vs_current": 5.71325,
+      "late_rate": 0.090389,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": 4.618974,
+      "expected_delta_avg_review": -0.059248,
+      "expected_delta_1_2_star_share_pp": 1.418396,
+      "extra_late_first_orders_test": 1435,
+      "repurchase_gmv_at_risk_brl_per_year": 1405.293116,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        -828.576677,
+        3639.16291
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 154694.270881,
+        "0.50%_per_day": 309388.541762,
+        "1.00%_per_day": 618777.083525
+      },
+      "breakeven_conversion_lift_per_day": 2.3e-05
+    },
+    "model_p90": {
+      "mean_promise_days": 20.38168,
+      "median_promise_days": 20.0,
+      "mean_days_saved_vs_current": 2.102862,
+      "late_rate": 0.04703,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": 0.283048,
+      "expected_delta_avg_review": -0.00076,
+      "expected_delta_1_2_star_share_pp": -0.041214,
+      "extra_late_first_orders_test": 87,
+      "repurchase_gmv_at_risk_brl_per_year": 85.198955,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        -50.234265,
+        220.632176
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 56937.928101,
+        "0.50%_per_day": 113875.856201,
+        "1.00%_per_day": 227751.712403
+      },
+      "breakeven_conversion_lift_per_day": 4e-06
+    },
+    "model_p90_plus_2_days": {
+      "mean_promise_days": 22.38168,
+      "median_promise_days": 22.0,
+      "mean_days_saved_vs_current": 0.102862,
+      "late_rate": 0.030762,
+      "late_rate_current": 0.044199,
+      "delta_late_pp": -1.343701,
+      "expected_delta_avg_review": 0.022258,
+      "expected_delta_1_2_star_share_pp": -0.586894,
+      "extra_late_first_orders_test": -420,
+      "repurchase_gmv_at_risk_brl_per_year": -411.305302,
+      "repurchase_gmv_at_risk_brl_per_year_ci95": [
+        242.510247,
+        -1065.120852
+      ],
+      "conversion_benefit_brl_per_year_sensitivity": {
+        "0.25%_per_day": 2785.121781,
+        "0.50%_per_day": 5570.243561,
+        "1.00%_per_day": 11140.487123
+      },
+      "breakeven_conversion_lift_per_day": -0.000369
+    }
+  },
+  "recommendation_rule": "shortest mean promise with late rate <= 7% and expected avg review change >= -0.05",
+  "recommended_policy": "lane_p80",
+  "conversion_assumption_source": "Fisher, Gallino & Xu (2019), The Value of Rapid Delivery in Omnichannel Retailing, J. Marketing Research 56(5): +1.45% online sales per business day faster delivery. Used only as a sensitivity range; Olist does not publish sessions/conversion, so the benefit is NOT measured here.",
+  "test_lanes_for_dashboard": [
+    {
+      "lane": "MA>SP",
+      "n": 102,
+      "current": 26.627451,
+      "model_p80": 23.313725,
+      "model_p90": 28.95098,
+      "actual_median": 12.5,
+      "late_current": 0.0
+    },
+    {
+      "lane": "MG>BA",
+      "n": 117,
+      "current": 27.247863,
+      "model_p80": 23.051282,
+      "model_p90": 28.307692,
+      "actual_median": 12.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "MG>MG",
+      "n": 530,
+      "current": 18.639623,
+      "model_p80": 12.398113,
+      "model_p90": 15.324528,
+      "actual_median": 6.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "MG>PR",
+      "n": 106,
+      "current": 26.396226,
+      "model_p80": 16.528302,
+      "model_p90": 19.660377,
+      "actual_median": 10.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "MG>RJ",
+      "n": 301,
+      "current": 28.827243,
+      "model_p80": 20.58804,
+      "model_p90": 26.564784,
+      "actual_median": 9.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "MG>SP",
+      "n": 747,
+      "current": 21.828648,
+      "model_p80": 14.556894,
+      "model_p90": 17.503347,
+      "actual_median": 7.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>MG",
+      "n": 245,
+      "current": 27.604082,
+      "model_p80": 17.673469,
+      "model_p90": 21.489796,
+      "actual_median": 9.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>PR",
+      "n": 260,
+      "current": 16.476923,
+      "model_p80": 12.030769,
+      "model_p90": 14.3,
+      "actual_median": 6.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>RJ",
+      "n": 298,
+      "current": 34.010067,
+      "model_p80": 23.409396,
+      "model_p90": 30.110738,
+      "actual_median": 10.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>RS",
+      "n": 197,
+      "current": 26.451777,
+      "model_p80": 18.385787,
+      "model_p90": 22.482234,
+      "actual_median": 11.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>SC",
+      "n": 111,
+      "current": 24.387387,
+      "model_p80": 17.954955,
+      "model_p90": 21.963964,
+      "actual_median": 8.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "PR>SP",
+      "n": 974,
+      "current": 25.099589,
+      "model_p80": 15.021561,
+      "model_p90": 18.019507,
+      "actual_median": 7.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "RJ>MG",
+      "n": 201,
+      "current": 24.412935,
+      "model_p80": 16.741294,
+      "model_p90": 20.641791,
+      "actual_median": 8.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "RJ>RJ",
+      "n": 378,
+      "current": 20.084656,
+      "model_p80": 10.867725,
+      "model_p90": 13.161376,
+      "actual_median": 5.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "RJ>SP",
+      "n": 538,
+      "current": 21.923792,
+      "model_p80": 16.949814,
+      "model_p90": 20.776952,
+      "actual_median": 7.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "RS>RS",
+      "n": 118,
+      "current": 17.474576,
+      "model_p80": 10.881356,
+      "model_p90": 12.838983,
+      "actual_median": 6.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "RS>SP",
+      "n": 259,
+      "current": 26.926641,
+      "model_p80": 12.749035,
+      "model_p90": 14.683398,
+      "actual_median": 8.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SC>MG",
+      "n": 136,
+      "current": 29.044118,
+      "model_p80": 19.323529,
+      "model_p90": 22.830882,
+      "actual_median": 10.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SC>RJ",
+      "n": 128,
+      "current": 32.835938,
+      "model_p80": 21.703125,
+      "model_p90": 28.710938,
+      "actual_median": 11.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SC>SP",
+      "n": 417,
+      "current": 25.357314,
+      "model_p80": 16.064748,
+      "model_p90": 19.568345,
+      "actual_median": 8.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>BA",
+      "n": 762,
+      "current": 29.129921,
+      "model_p80": 26.635171,
+      "model_p90": 30.874016,
+      "actual_median": 15.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>CE",
+      "n": 285,
+      "current": 30.985965,
+      "model_p80": 28.842105,
+      "model_p90": 33.824561,
+      "actual_median": 16.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>DF",
+      "n": 488,
+      "current": 22.344262,
+      "model_p80": 18.920082,
+      "model_p90": 22.516393,
+      "actual_median": 9.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>ES",
+      "n": 463,
+      "current": 23.719222,
+      "model_p80": 22.064795,
+      "model_p90": 26.231102,
+      "actual_median": 12.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>GO",
+      "n": 428,
+      "current": 25.266355,
+      "model_p80": 20.719626,
+      "model_p90": 24.315421,
+      "actual_median": 12.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>MA",
+      "n": 121,
+      "current": 28.165289,
+      "model_p80": 26.719008,
+      "model_p90": 31.46281,
+      "actual_median": 18.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>MG",
+      "n": 2269,
+      "current": 23.323491,
+      "model_p80": 17.968268,
+      "model_p90": 21.913618,
+      "actual_median": 8.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>MS",
+      "n": 160,
+      "current": 24.225,
+      "model_p80": 21.7625,
+      "model_p90": 26.0875,
+      "actual_median": 13.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>MT",
+      "n": 207,
+      "current": 30.956522,
+      "model_p80": 22.801932,
+      "model_p90": 27.26087,
+      "actual_median": 13.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>PA",
+      "n": 184,
+      "current": 35.293478,
+      "model_p80": 33.521739,
+      "model_p90": 38.994565,
+      "actual_median": 18.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>PB",
+      "n": 111,
+      "current": 31.342342,
+      "model_p80": 25.756757,
+      "model_p90": 29.927928,
+      "actual_median": 15.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>PE",
+      "n": 361,
+      "current": 29.939058,
+      "model_p80": 23.850416,
+      "model_p90": 29.357341,
+      "actual_median": 14.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>PR",
+      "n": 1015,
+      "current": 24.360591,
+      "model_p80": 17.832512,
+      "model_p90": 21.744828,
+      "actual_median": 9.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>RJ",
+      "n": 2405,
+      "current": 29.520582,
+      "model_p80": 24.839085,
+      "model_p90": 31.117672,
+      "actual_median": 10.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>RN",
+      "n": 100,
+      "current": 30.75,
+      "model_p80": 26.54,
+      "model_p90": 30.83,
+      "actual_median": 14.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>RS",
+      "n": 1062,
+      "current": 29.672316,
+      "model_p80": 22.667608,
+      "model_p90": 27.320151,
+      "actual_median": 11.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>SC",
+      "n": 688,
+      "current": 25.838663,
+      "model_p80": 22.168605,
+      "model_p90": 26.511628,
+      "actual_median": 10.0,
+      "late_current": 0.0
+    },
+    {
+      "lane": "SP>SP",
+      "n": 11434,
+      "current": 15.663985,
+      "model_p80": 10.847735,
+      "model_p90": 13.336977,
+      "actual_median": 5.0,
+      "late_current": 0.0
+    }
+  ]
+}
