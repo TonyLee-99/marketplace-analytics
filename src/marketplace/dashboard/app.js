@@ -87,15 +87,23 @@
     if (!t) return null;
     if (t.kind === "fixed") return t.value;
     if (t.kind === "momentum") {        // trailing 3-month average x (1 + uplift), summed over range
-      let s = 0;
-      for (let i = fromIdx; i <= toIdx; i++) {
-        const prev = [i - 1, i - 2, i - 3].map((j) => monthly[j] && monthly[j][name]).filter((v) => v != null);
-        if (prev.length < 3) return null;
-        s += (prev.reduce((a, b) => a + b, 0) / 3) * (1 + t.uplift);
-      }
-      return s;
+      const r = momentum(name, monthly, fromIdx, toIdx);
+      return r ? r.target : null;
     }
     return null;
+  }
+
+  // Momentum plan, summed over the months in range that have 3 prior months of history.
+  // Returns the plan and the actual over exactly those months (like-for-like variance).
+  function momentum(name, monthly, fromIdx, toIdx) {
+    const t = (D.meta[name] || {}).target;
+    let tg = 0, act = 0, n = 0;
+    for (let i = fromIdx; i <= toIdx; i++) {
+      const prev = [i - 1, i - 2, i - 3].map((j) => monthly[j] && monthly[j][name]).filter((v) => v != null);
+      if (prev.length < 3 || !monthly[i] || monthly[i][name] == null) continue;
+      tg += (prev.reduce((a, b) => a + b, 0) / 3) * (1 + t.uplift); act += monthly[i][name]; n++;
+    }
+    return n ? { target: tg, actual: act, months: n } : null;
   }
 
   // ---------- pages
@@ -135,14 +143,19 @@
     const lowerBetter = { cancellation_rate: true };
     document.getElementById("kpis").innerHTML = KPI_LIST.map((k) => {
       const v = sel[k], m = D.meta[k];
-      const tg = target(k, monthly, st.from, st.to);
+      let tg = target(k, monthly, st.from, st.to), vt = v, planNote = "";
+      if (m.target && m.target.kind === "momentum") {
+        const mo = momentum(k, monthly, st.from, st.to);
+        if (mo) { vt = mo.actual; planNote = mo.months < len ? ` (${mo.months} mo with plan)` : ""; }
+      }
       let tgt = "";
-      if (tg != null && v != null) {
+      if (tg != null && vt != null) {
+        const v = vt;
         const diff = m.unit === "ratio" ? v - tg : (v / tg - 1);
         const good = lowerBetter[k] ? diff <= 0 : diff >= 0;
         const txt = m.unit === "ratio" ? fmtPP(diff) : (m.unit === "points" || m.unit === "score")
           ? fmtSigned(v - tg, m.unit === "points" ? 1 : 2) : (diff >= 0 ? "+" : "") + (100 * diff).toFixed(1) + "%";
-        tgt = `<span class="pill ${good ? "good" : "bad"}">${good ? "▲" : "▼"} ${txt} vs target ${fmt(k, tg)}</span>`;
+        tgt = `<span class="pill ${good ? "good" : "bad"}">${good ? "▲" : "▼"} ${txt} vs ${m.target.kind === "momentum" ? "plan" + planNote : "target " + fmt(k, tg)}</span>`;
       }
       let pr = "";
       if (prior && prior[k] != null && v != null) {
@@ -366,8 +379,8 @@
     `<div class="grid g2">${card("c-pareto", "", "Cumulative GMV share by seller rank, Sep-2017…Aug-2018.")}
      <div class="card"><h2 id="t-tiers"></h2><p class="cap">Tier = scale (top-10% GMV) × quality bar (on-time ≥ network − 3 pp and review ≥ network − 0.2). Sellers with &lt;20 orders = long tail.</p><div id="tiers"></div></div></div>
      <div style="height:14px"></div>
-     <div class="grid g2">${card("c-voc", "", "Zero-shot labels from local qwen2.5:7b on a stratified sample of real Portuguese reviews, weighted back to the population of 1–2★ reviews with text.", "chart tall")}
-     <div class="card"><h2 id="t-voclanes"></h2><p class="cap">Weighted 1–2★ reviews by complaint reason for the busiest lanes. The text says what the timestamps cannot: incomplete orders and wrong items.</p><div id="voclanes"></div></div></div>`;
+     <div class="grid g2">${card("c-voc", "", "Transparent Portuguese keyword rules applied to every 1–2★ review with text (validated on 400 hand-labelled reviews; local qwen2.5:7b used as a cross-check on a subset).", "chart tall")}
+     <div class="card"><h2 id="t-voclanes"></h2><p class="cap">1–2★ reviews with text by complaint reason, busiest lanes. The text says what the timestamps cannot: incomplete orders and wrong items.</p><div id="voclanes"></div></div></div>`;
   function renderSellers() {
     const S = R.sellers, P = S.pareto;
     document.getElementById("t-c-pareto").textContent = `Top 10% of sellers earn ${fmtPct(P.top_10pct_sellers_share, 0)} of GMV; 80% of GMV comes from ${fmtPct(P.share_of_sellers_for_80pct_gmv, 0)} of sellers (HHI ${S.hhi_window.toFixed(0)}: unconcentrated)`;
@@ -384,18 +397,18 @@
     if (!V || !V.negative_review_reason_share_weighted) { document.getElementById("c-voc").innerHTML = "<p class='muted'>VoC report not available.</p>"; return; }
     const a = V.negative_review_reason_share_weighted, b = V.negative_on_time_review_reason_share;
     const labs = Object.keys(a).sort((x, y) => a[x] - a[y]);
-    const topNonLogistics = labs.filter((l) => !["late_delivery", "not_received", "positive", "other"].includes(l)).slice(-1)[0];
     const logi = (a.late_delivery || 0) + (a.not_received || 0);
-    document.getElementById("t-c-voc").textContent = `${fmtPct(logi, 0)} of 1–2★ reviews are about delivery (late or not received); ${topNonLogistics.replace(/_/g, " ")} is the top non-logistics reason`;
+    document.getElementById("t-c-voc").textContent = `${fmtPct(logi, 0)} of 1–2★ reviews are about delivery; on orders delivered ON TIME the #1 complaint is "${Object.keys(b).sort((x, y) => b[y] - b[x])[0].replace(/_/g, " ")}" (${fmtPct(b[Object.keys(b).sort((x, y) => b[y] - b[x])[0]], 0)})`;
     plot("c-voc", [
       { type: "bar", orientation: "h", name: "All 1–2★", y: labs, x: labs.map((l) => a[l]), marker: { color: COL.s1 }, hovertemplate: "%{y}: %{x:.1%}<extra>all 1–2★</extra>" },
       { type: "bar", orientation: "h", name: "1–2★ on orders delivered on time", y: labs, x: labs.map((l) => b[l] || 0), marker: { color: COL.s2 }, hovertemplate: "%{y}: %{x:.1%}<extra>on-time orders</extra>" },
     ], { barmode: "group", bargap: 0.25, showlegend: true, margin: { l: 140, r: 16, t: 8, b: 36 }, xaxis: { gridcolor: COL.grid, tickformat: ".0%" },
-         annotations: [{ xref: "paper", yref: "paper", x: 1, y: 0.02, xanchor: "right", showarrow: false, text: `accuracy vs ${V.gold.n} hand-checked: ${fmtPct(V.gold.accuracy, 0)} (macro-F1 ${V.gold.macro_f1.toFixed(2)})`, font: { size: 11, color: COL.text2 } }] });
+         annotations: [{ xref: "paper", yref: "paper", x: 1, y: 0.02, xanchor: "right", showarrow: false, text: `accuracy on fresh hand-labelled holdout (n=${V.evaluation.rules_gold_B_160_fresh_holdout.n}): ${fmtPct(V.evaluation.rules_gold_B_160_fresh_holdout.accuracy, 0)}, macro-F1 ${V.evaluation.rules_gold_B_160_fresh_holdout.macro_f1.toFixed(2)}`, font: { size: 11, color: COL.text2 } }] });
     const lanes = V.lanes_negative_reason_mix.slice(0, 8);
     const cols = ["late_delivery", "not_received", "incomplete_order", "damaged_defective", "wrong_item", "poor_quality"];
-    document.getElementById("t-voclanes").textContent = "Complaint mix differs by lane: far-away lanes complain about delivery, SP→SP about the product";
-    document.getElementById("voclanes").innerHTML = `<table><tr><th>Lane</th><th class="n">1–2★ (wtd)</th>${cols.map((c) => `<th class="n">${c.replace(/_/g, " ")}</th>`).join("")}</tr>` +
+    const lx = V.sp_sp_vs_other_lanes_delivery_share;
+    document.getElementById("t-voclanes").textContent = `Delivery complaints are ${fmtPct(lx.sp_sp, 0)} of 1–2★ text on SP→SP vs ${fmtPct(lx.other_lanes, 0)} on other lanes; ${fmtPct(V.incomplete_order_reviews_on_multi_item_orders, 0)} of "incomplete order" complaints are multi-item orders (${fmtPct(V.all_text_reviews_on_multi_item_orders, 0)} of reviews)`;
+    document.getElementById("voclanes").innerHTML = `<table><tr><th>Lane</th><th class="n">1–2★ reviews</th>${cols.map((c) => `<th class="n">${c.replace(/_/g, " ")}</th>`).join("")}</tr>` +
       lanes.map((r) => `<tr><td>${r.lane}</td><td class="n">${fmtN(r.total)}</td>${cols.map((c) => `<td class="n">${fmtPct((r[c] || 0) / r.total, 0)}</td>`).join("")}</tr>`).join("") + "</table>";
   }
 

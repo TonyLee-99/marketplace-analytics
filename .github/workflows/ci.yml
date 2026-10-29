@@ -1,0 +1,39 @@
+# Written for GitHub Actions; not run remotely (repo is local-only for now).
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PLAYWRIGHT_CHANNEL: ""   # use Playwright's bundled Chromium on CI
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Python 3.12 env with pinned deps
+        run: |
+          uv venv --python 3.12 .venv
+          uv pip install --python .venv/bin/python -r requirements.lock
+          .venv/bin/playwright install --with-deps chromium
+      - name: Lint
+        run: make lint
+      - name: Unit tests that need no data
+        run: make test
+      - name: Download + verify raw data (sha256 pinned)
+        run: make ingest
+      - name: dbt build (all tests must pass)
+        run: make dbt freshness docs
+      - name: Metrics, analyses, VoC report from cached labels, dashboard, screenshots
+        run: make metrics analyses voc dashboard screenshots
+      - name: Full test suite on built artifacts
+        run: make test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dashboard
+          path: |
+            dashboard/index.html
+            docs/img/*.png
+            reports/*.json

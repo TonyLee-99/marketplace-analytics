@@ -1,0 +1,1417 @@
+{
+  "primary_labeller": "keyword rules (src/marketplace/analysis/voc_rules.py) on ALL reviews with text",
+  "secondary_labeller": "qwen2.5:7b zero-shot via Ollama on part of a stratified sample (stopped: the shared laptop ran out of memory and requests took 75-120 s)",
+  "taxonomy": {
+    "late_delivery": "arrived, but later than promised / took too long (atraso, demorou)",
+    "not_received": "customer says the product has NOT arrived / never received (nao recebi, nao chegou)",
+    "incomplete_order": "only part of the order arrived / missing units or items (veio so 1, faltou)",
+    "wrong_item": "received a different product, model, colour or size than ordered",
+    "damaged_defective": "arrived broken, damaged, defective or not working",
+    "poor_quality": "arrived and works but quality is poor / not as described / fake",
+    "seller_communication": "seller or support did not answer, bad service, no information",
+    "refund_cancellation": "problem with cancellation, refund (estorno), charge or invoice",
+    "positive": "praise or satisfied; no complaint",
+    "other": "anything else, or too vague to tell"
+  },
+  "population": {
+    "reviews_with_text": 40514,
+    "negative_1_2_star_with_text": 10737,
+    "by_stratum": {
+      "4-5": 26258,
+      "1": 8613,
+      "3": 3519,
+      "2": 2124
+    }
+  },
+  "gold": {
+    "n": 400,
+    "accuracy": 0.7125,
+    "accuracy_ci95": [
+      0.6675,
+      0.755
+    ],
+    "macro_f1": 0.646258,
+    "per_class": {
+      "damaged_defective": {
+        "precision": 0.939394,
+        "recall": 0.775,
+        "f1": 0.849315,
+        "support": 40
+      },
+      "incomplete_order": {
+        "precision": 0.863636,
+        "recall": 0.863636,
+        "f1": 0.863636,
+        "support": 44
+      },
+      "late_delivery": {
+        "precision": 0.666667,
+        "recall": 0.631579,
+        "f1": 0.648649,
+        "support": 19
+      },
+      "not_received": {
+        "precision": 0.902439,
+        "recall": 0.660714,
+        "f1": 0.762887,
+        "support": 56
+      },
+      "other": {
+        "precision": 0.279412,
+        "recall": 0.487179,
+        "f1": 0.35514,
+        "support": 39
+      },
+      "poor_quality": {
+        "precision": 0.709677,
+        "recall": 0.536585,
+        "f1": 0.611111,
+        "support": 41
+      },
+      "positive": {
+        "precision": 0.806202,
+        "recall": 0.912281,
+        "f1": 0.855967,
+        "support": 114
+      },
+      "refund_cancellation": {
+        "precision": 0.470588,
+        "recall": 0.533333,
+        "f1": 0.5,
+        "support": 15
+      },
+      "seller_communication": {
+        "precision": 0.5,
+        "recall": 0.4,
+        "f1": 0.444444,
+        "support": 5
+      },
+      "wrong_item": {
+        "precision": 0.8,
+        "recall": 0.444444,
+        "f1": 0.571429,
+        "support": 27
+      }
+    },
+    "majority_class_baseline_accuracy": 0.285,
+    "confusion": [
+      {
+        "gold_label": "damaged_defective",
+        "damaged_defective": 31,
+        "incomplete_order": 2,
+        "late_delivery": 0,
+        "not_received": 0,
+        "other": 3,
+        "poor_quality": 2,
+        "positive": 1,
+        "refund_cancellation": 0,
+        "seller_communication": 0,
+        "wrong_item": 1
+      },
+      {
+        "gold_label": "incomplete_order",
+        "damaged_defective": 0,
+        "incomplete_order": 38,
+        "late_delivery": 0,
+        "not_received": 0,
+        "other": 4,
+        "poor_quality": 1,
+        "positive": 1,
+        "refund_cancellation": 0,
+        "seller_communication": 0,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "late_delivery",
+        "damaged_defective": 0,
+        "incomplete_order": 1,
+        "late_delivery": 12,
+        "not_received": 1,
+        "other": 3,
+        "poor_quality": 1,
+        "positive": 1,
+        "refund_cancellation": 0,
+        "seller_communication": 0,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "not_received",
+        "damaged_defective": 0,
+        "incomplete_order": 1,
+        "late_delivery": 3,
+        "not_received": 37,
+        "other": 12,
+        "poor_quality": 0,
+        "positive": 1,
+        "refund_cancellation": 2,
+        "seller_communication": 0,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "other",
+        "damaged_defective": 0,
+        "incomplete_order": 0,
+        "late_delivery": 1,
+        "not_received": 1,
+        "other": 19,
+        "poor_quality": 3,
+        "positive": 14,
+        "refund_cancellation": 1,
+        "seller_communication": 0,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "poor_quality",
+        "damaged_defective": 2,
+        "incomplete_order": 0,
+        "late_delivery": 0,
+        "not_received": 0,
+        "other": 10,
+        "poor_quality": 22,
+        "positive": 4,
+        "refund_cancellation": 2,
+        "seller_communication": 0,
+        "wrong_item": 1
+      },
+      {
+        "gold_label": "positive",
+        "damaged_defective": 0,
+        "incomplete_order": 0,
+        "late_delivery": 1,
+        "not_received": 0,
+        "other": 3,
+        "poor_quality": 2,
+        "positive": 104,
+        "refund_cancellation": 1,
+        "seller_communication": 2,
+        "wrong_item": 1
+      },
+      {
+        "gold_label": "refund_cancellation",
+        "damaged_defective": 0,
+        "incomplete_order": 1,
+        "late_delivery": 1,
+        "not_received": 2,
+        "other": 3,
+        "poor_quality": 0,
+        "positive": 0,
+        "refund_cancellation": 8,
+        "seller_communication": 0,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "seller_communication",
+        "damaged_defective": 0,
+        "incomplete_order": 0,
+        "late_delivery": 0,
+        "not_received": 0,
+        "other": 2,
+        "poor_quality": 0,
+        "positive": 1,
+        "refund_cancellation": 0,
+        "seller_communication": 2,
+        "wrong_item": 0
+      },
+      {
+        "gold_label": "wrong_item",
+        "damaged_defective": 0,
+        "incomplete_order": 1,
+        "late_delivery": 0,
+        "not_received": 0,
+        "other": 9,
+        "poor_quality": 0,
+        "positive": 2,
+        "refund_cancellation": 3,
+        "seller_communication": 0,
+        "wrong_item": 12
+      }
+    ],
+    "labeller": "hand-labelled blind by the project author. Gold A (240) was read before the rules were written; gold B (160) was drawn and labelled before any rule existed; rules were developed on a disjoint dev sample. Spot-check recommended."
+  },
+  "evaluation": {
+    "rules_gold_A_240_seen_before_rules": {
+      "n": 240,
+      "accuracy": 0.716667,
+      "accuracy_ci95": [
+        0.6625,
+        0.770833
+      ],
+      "macro_f1": 0.650952,
+      "per_class": {
+        "damaged_defective": {
+          "precision": 0.909091,
+          "recall": 0.8,
+          "f1": 0.851064,
+          "support": 25
+        },
+        "incomplete_order": {
+          "precision": 0.851852,
+          "recall": 0.92,
+          "f1": 0.884615,
+          "support": 25
+        },
+        "late_delivery": {
+          "precision": 0.666667,
+          "recall": 0.6,
+          "f1": 0.631579,
+          "support": 10
+        },
+        "not_received": {
+          "precision": 0.892857,
+          "recall": 0.735294,
+          "f1": 0.806452,
+          "support": 34
+        },
+        "other": {
+          "precision": 0.333333,
+          "recall": 0.5,
+          "f1": 0.4,
+          "support": 26
+        },
+        "poor_quality": {
+          "precision": 0.631579,
+          "recall": 0.5,
+          "f1": 0.55814,
+          "support": 24
+        },
+        "positive": {
+          "precision": 0.78481,
+          "recall": 0.885714,
+          "f1": 0.832215,
+          "support": 70
+        },
+        "refund_cancellation": {
+          "precision": 0.6,
+          "recall": 0.333333,
+          "f1": 0.428571,
+          "support": 9
+        },
+        "seller_communication": {
+          "precision": 0.666667,
+          "recall": 0.5,
+          "f1": 0.571429,
+          "support": 4
+        },
+        "wrong_item": {
+          "precision": 0.666667,
+          "recall": 0.461538,
+          "f1": 0.545455,
+          "support": 13
+        }
+      },
+      "majority_class_baseline_accuracy": 0.291667,
+      "confusion": [
+        {
+          "gold_label": "damaged_defective",
+          "damaged_defective": 20,
+          "incomplete_order": 1,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 1,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "incomplete_order",
+          "damaged_defective": 0,
+          "incomplete_order": 23,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 1,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "late_delivery",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 6,
+          "not_received": 0,
+          "other": 2,
+          "poor_quality": 1,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "not_received",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 25,
+          "other": 7,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "other",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 1,
+          "other": 13,
+          "poor_quality": 2,
+          "positive": 10,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "poor_quality",
+          "damaged_defective": 2,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 6,
+          "poor_quality": 12,
+          "positive": 3,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "positive",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 0,
+          "other": 3,
+          "poor_quality": 2,
+          "positive": 62,
+          "refund_cancellation": 0,
+          "seller_communication": 1,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "refund_cancellation",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 1,
+          "not_received": 2,
+          "other": 2,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 3,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "seller_communication",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 2,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "wrong_item",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 3,
+          "poor_quality": 0,
+          "positive": 2,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 6
+        }
+      ]
+    },
+    "rules_gold_B_160_fresh_holdout": {
+      "n": 160,
+      "accuracy": 0.70625,
+      "accuracy_ci95": [
+        0.63125,
+        0.775
+      ],
+      "macro_f1": 0.605641,
+      "per_class": {
+        "damaged_defective": {
+          "precision": 1.0,
+          "recall": 0.733333,
+          "f1": 0.846154,
+          "support": 15
+        },
+        "incomplete_order": {
+          "precision": 0.882353,
+          "recall": 0.789474,
+          "f1": 0.833333,
+          "support": 19
+        },
+        "late_delivery": {
+          "precision": 0.666667,
+          "recall": 0.666667,
+          "f1": 0.666667,
+          "support": 9
+        },
+        "not_received": {
+          "precision": 0.923077,
+          "recall": 0.545455,
+          "f1": 0.685714,
+          "support": 22
+        },
+        "other": {
+          "precision": 0.206897,
+          "recall": 0.461538,
+          "f1": 0.285714,
+          "support": 13
+        },
+        "poor_quality": {
+          "precision": 0.833333,
+          "recall": 0.588235,
+          "f1": 0.689655,
+          "support": 17
+        },
+        "positive": {
+          "precision": 0.84,
+          "recall": 0.954545,
+          "f1": 0.893617,
+          "support": 44
+        },
+        "refund_cancellation": {
+          "precision": 0.416667,
+          "recall": 0.833333,
+          "f1": 0.555556,
+          "support": 6
+        },
+        "seller_communication": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "wrong_item": {
+          "precision": 1.0,
+          "recall": 0.428571,
+          "f1": 0.6,
+          "support": 14
+        }
+      },
+      "majority_class_baseline_accuracy": 0.275,
+      "confusion": [
+        {
+          "gold_label": "damaged_defective",
+          "damaged_defective": 11,
+          "incomplete_order": 1,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 2,
+          "poor_quality": 1,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "incomplete_order",
+          "damaged_defective": 0,
+          "incomplete_order": 15,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 3,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "late_delivery",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 6,
+          "not_received": 1,
+          "other": 1,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "not_received",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 2,
+          "not_received": 12,
+          "other": 5,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "other",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 0,
+          "other": 6,
+          "poor_quality": 1,
+          "positive": 4,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "poor_quality",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 4,
+          "poor_quality": 10,
+          "positive": 1,
+          "refund_cancellation": 2,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "positive",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 42,
+          "refund_cancellation": 1,
+          "seller_communication": 1,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "refund_cancellation",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 5,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "seller_communication",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "wrong_item",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 6,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 2,
+          "seller_communication": 0,
+          "wrong_item": 6
+        }
+      ]
+    },
+    "rules_gold_A_plus_B": {
+      "n": 400,
+      "accuracy": 0.7125,
+      "accuracy_ci95": [
+        0.6675,
+        0.755
+      ],
+      "macro_f1": 0.646258,
+      "per_class": {
+        "damaged_defective": {
+          "precision": 0.939394,
+          "recall": 0.775,
+          "f1": 0.849315,
+          "support": 40
+        },
+        "incomplete_order": {
+          "precision": 0.863636,
+          "recall": 0.863636,
+          "f1": 0.863636,
+          "support": 44
+        },
+        "late_delivery": {
+          "precision": 0.666667,
+          "recall": 0.631579,
+          "f1": 0.648649,
+          "support": 19
+        },
+        "not_received": {
+          "precision": 0.902439,
+          "recall": 0.660714,
+          "f1": 0.762887,
+          "support": 56
+        },
+        "other": {
+          "precision": 0.279412,
+          "recall": 0.487179,
+          "f1": 0.35514,
+          "support": 39
+        },
+        "poor_quality": {
+          "precision": 0.709677,
+          "recall": 0.536585,
+          "f1": 0.611111,
+          "support": 41
+        },
+        "positive": {
+          "precision": 0.806202,
+          "recall": 0.912281,
+          "f1": 0.855967,
+          "support": 114
+        },
+        "refund_cancellation": {
+          "precision": 0.470588,
+          "recall": 0.533333,
+          "f1": 0.5,
+          "support": 15
+        },
+        "seller_communication": {
+          "precision": 0.5,
+          "recall": 0.4,
+          "f1": 0.444444,
+          "support": 5
+        },
+        "wrong_item": {
+          "precision": 0.8,
+          "recall": 0.444444,
+          "f1": 0.571429,
+          "support": 27
+        }
+      },
+      "majority_class_baseline_accuracy": 0.285,
+      "confusion": [
+        {
+          "gold_label": "damaged_defective",
+          "damaged_defective": 31,
+          "incomplete_order": 2,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 3,
+          "poor_quality": 2,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "incomplete_order",
+          "damaged_defective": 0,
+          "incomplete_order": 38,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 4,
+          "poor_quality": 1,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "late_delivery",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 12,
+          "not_received": 1,
+          "other": 3,
+          "poor_quality": 1,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "not_received",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 3,
+          "not_received": 37,
+          "other": 12,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 2,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "other",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 1,
+          "other": 19,
+          "poor_quality": 3,
+          "positive": 14,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "poor_quality",
+          "damaged_defective": 2,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 10,
+          "poor_quality": 22,
+          "positive": 4,
+          "refund_cancellation": 2,
+          "seller_communication": 0,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "positive",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 0,
+          "other": 3,
+          "poor_quality": 2,
+          "positive": 104,
+          "refund_cancellation": 1,
+          "seller_communication": 2,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "refund_cancellation",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 1,
+          "not_received": 2,
+          "other": 3,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 8,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "seller_communication",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 2,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 0,
+          "seller_communication": 2,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "wrong_item",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 9,
+          "poor_quality": 0,
+          "positive": 2,
+          "refund_cancellation": 3,
+          "seller_communication": 0,
+          "wrong_item": 12
+        }
+      ]
+    },
+    "llm_on_gold_items_it_labelled": {
+      "n": 31,
+      "accuracy": 0.774194,
+      "accuracy_ci95": [
+        0.612903,
+        0.903226
+      ],
+      "macro_f1": 0.687557,
+      "per_class": {
+        "damaged_defective": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "incomplete_order": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.666667,
+          "support": 1
+        },
+        "late_delivery": {
+          "precision": 0.333333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "support": 1
+        },
+        "not_received": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8,
+          "support": 5
+        },
+        "other": {
+          "precision": 1.0,
+          "recall": 0.166667,
+          "f1": 0.285714,
+          "support": 6
+        },
+        "poor_quality": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "positive": {
+          "precision": 0.916667,
+          "recall": 1.0,
+          "f1": 0.956522,
+          "support": 11
+        },
+        "refund_cancellation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "seller_communication": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "wrong_item": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.666667,
+          "support": 1
+        }
+      },
+      "majority_class_baseline_accuracy": 0.354839,
+      "confusion": [
+        {
+          "gold_label": "damaged_defective",
+          "damaged_defective": 3,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "incomplete_order",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "late_delivery",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "not_received",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 1,
+          "not_received": 4,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "other",
+          "damaged_defective": 0,
+          "incomplete_order": 1,
+          "late_delivery": 1,
+          "not_received": 0,
+          "other": 1,
+          "poor_quality": 0,
+          "positive": 1,
+          "refund_cancellation": 1,
+          "seller_communication": 0,
+          "wrong_item": 1
+        },
+        {
+          "gold_label": "poor_quality",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 1,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "positive",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 11,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "refund_cancellation",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 1,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "seller_communication",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 1,
+          "wrong_item": 0
+        },
+        {
+          "gold_label": "wrong_item",
+          "damaged_defective": 0,
+          "incomplete_order": 0,
+          "late_delivery": 0,
+          "not_received": 0,
+          "other": 0,
+          "poor_quality": 0,
+          "positive": 0,
+          "refund_cancellation": 0,
+          "seller_communication": 0,
+          "wrong_item": 1
+        }
+      ]
+    }
+  },
+  "rule_vs_llm": {
+    "n_reviews_with_both_labels": 400,
+    "rule_llm_agreement": 0.6475
+  },
+  "external_validity": {
+    "late_or_not_received_label_rate_when_order_late": 0.516498,
+    "late_or_not_received_label_rate_when_on_time": 0.037687,
+    "not_received_label_rate_when_order_undelivered": 0.413812,
+    "n_undelivered_with_text": 1810
+  },
+  "negative_review_reason_share_weighted": {
+    "not_received": 0.262364,
+    "other": 0.211605,
+    "incomplete_order": 0.151066,
+    "poor_quality": 0.092577,
+    "refund_cancellation": 0.078048,
+    "damaged_defective": 0.066778,
+    "wrong_item": 0.051132,
+    "late_delivery": 0.042284,
+    "positive": 0.032784,
+    "seller_communication": 0.011363
+  },
+  "negative_on_time_review_reason_share": {
+    "incomplete_order": 0.224221,
+    "other": 0.205768,
+    "poor_quality": 0.13661,
+    "damaged_defective": 0.105288,
+    "not_received": 0.101876,
+    "wrong_item": 0.078927,
+    "refund_cancellation": 0.070554,
+    "positive": 0.043418,
+    "late_delivery": 0.026361,
+    "seller_communication": 0.006978
+  },
+  "incomplete_order_reviews_on_multi_item_orders": 0.650044,
+  "incomplete_order_1_2_star_reviews": 1622,
+  "incomplete_order_1_2_star_gmv_brl": 366790.8,
+  "months_covered": 20,
+  "incomplete_order_reviews_on_multi_seller_orders": 0.171668,
+  "all_text_reviews_on_multi_item_orders": 0.120946,
+  "all_text_reviews_on_multi_seller_orders": 0.02024,
+  "sellers_most_negative_reviews": [
+    {
+      "primary_seller_id": "4a3ca9315b744ce9f8e9374361493884",
+      "damaged_defective": 2,
+      "incomplete_order": 26,
+      "late_delivery": 9,
+      "not_received": 69,
+      "other": 54,
+      "poor_quality": 49,
+      "positive": 11,
+      "refund_cancellation": 16,
+      "seller_communication": 2,
+      "wrong_item": 13,
+      "total": 251,
+      "top_reason": "not_received"
+    },
+    {
+      "primary_seller_id": "6560211a19b47992c3666cc44a7e94c0",
+      "damaged_defective": 36,
+      "incomplete_order": 26,
+      "late_delivery": 2,
+      "not_received": 41,
+      "other": 44,
+      "poor_quality": 49,
+      "positive": 14,
+      "refund_cancellation": 16,
+      "seller_communication": 5,
+      "wrong_item": 5,
+      "total": 238,
+      "top_reason": "poor_quality"
+    },
+    {
+      "primary_seller_id": "7c67e1448b00f6e969d365cea6b010ab",
+      "damaged_defective": 20,
+      "incomplete_order": 51,
+      "late_delivery": 5,
+      "not_received": 36,
+      "other": 47,
+      "poor_quality": 9,
+      "positive": 5,
+      "refund_cancellation": 14,
+      "seller_communication": 2,
+      "wrong_item": 8,
+      "total": 197,
+      "top_reason": "incomplete_order"
+    },
+    {
+      "primary_seller_id": "cc419e0650a3c5ba77189a1882b7556a",
+      "damaged_defective": 14,
+      "incomplete_order": 18,
+      "late_delivery": 8,
+      "not_received": 46,
+      "other": 49,
+      "poor_quality": 14,
+      "positive": 4,
+      "refund_cancellation": 12,
+      "seller_communication": 2,
+      "wrong_item": 11,
+      "total": 178,
+      "top_reason": "other"
+    },
+    {
+      "primary_seller_id": "1f50f920176fa81dab994f9023523100",
+      "damaged_defective": 3,
+      "incomplete_order": 52,
+      "late_delivery": 6,
+      "not_received": 39,
+      "other": 24,
+      "poor_quality": 3,
+      "positive": 5,
+      "refund_cancellation": 7,
+      "seller_communication": 3,
+      "wrong_item": 2,
+      "total": 144,
+      "top_reason": "incomplete_order"
+    },
+    {
+      "primary_seller_id": "ea8482cd71df3c1969d7b9473ff13abc",
+      "damaged_defective": 11,
+      "incomplete_order": 12,
+      "late_delivery": 8,
+      "not_received": 27,
+      "other": 31,
+      "poor_quality": 13,
+      "positive": 2,
+      "refund_cancellation": 8,
+      "seller_communication": 2,
+      "wrong_item": 16,
+      "total": 130,
+      "top_reason": "other"
+    },
+    {
+      "primary_seller_id": "1025f0e2d44d7041d6cf58b6550e0bfa",
+      "damaged_defective": 8,
+      "incomplete_order": 52,
+      "late_delivery": 3,
+      "not_received": 23,
+      "other": 13,
+      "poor_quality": 6,
+      "positive": 2,
+      "refund_cancellation": 2,
+      "seller_communication": 2,
+      "wrong_item": 7,
+      "total": 118,
+      "top_reason": "incomplete_order"
+    },
+    {
+      "primary_seller_id": "955fee9216a65b617aa5c0531780ce60",
+      "damaged_defective": 9,
+      "incomplete_order": 29,
+      "late_delivery": 5,
+      "not_received": 19,
+      "other": 16,
+      "poor_quality": 13,
+      "positive": 5,
+      "refund_cancellation": 3,
+      "seller_communication": 5,
+      "wrong_item": 4,
+      "total": 108,
+      "top_reason": "incomplete_order"
+    },
+    {
+      "primary_seller_id": "da8622b14eb17ae2831f4ac5b9dab84a",
+      "damaged_defective": 4,
+      "incomplete_order": 29,
+      "late_delivery": 4,
+      "not_received": 28,
+      "other": 19,
+      "poor_quality": 14,
+      "positive": 0,
+      "refund_cancellation": 4,
+      "seller_communication": 2,
+      "wrong_item": 1,
+      "total": 105,
+      "top_reason": "incomplete_order"
+    },
+    {
+      "primary_seller_id": "8b321bb669392f5163d04c59e235e066",
+      "damaged_defective": 19,
+      "incomplete_order": 15,
+      "late_delivery": 4,
+      "not_received": 37,
+      "other": 15,
+      "poor_quality": 3,
+      "positive": 2,
+      "refund_cancellation": 4,
+      "seller_communication": 0,
+      "wrong_item": 3,
+      "total": 102,
+      "top_reason": "not_received"
+    }
+  ],
+  "lanes_negative_reason_mix": [
+    {
+      "lane": "SP>SP",
+      "damaged_defective": 250,
+      "incomplete_order": 404,
+      "late_delivery": 77,
+      "not_received": 624,
+      "other": 590,
+      "poor_quality": 355,
+      "positive": 99,
+      "refund_cancellation": 243,
+      "seller_communication": 28,
+      "wrong_item": 180,
+      "total": 2850
+    },
+    {
+      "lane": "SP>RJ",
+      "damaged_defective": 54,
+      "incomplete_order": 212,
+      "late_delivery": 58,
+      "not_received": 470,
+      "other": 288,
+      "poor_quality": 88,
+      "positive": 32,
+      "refund_cancellation": 79,
+      "seller_communication": 24,
+      "wrong_item": 38,
+      "total": 1343
+    },
+    {
+      "lane": "SP>MG",
+      "damaged_defective": 61,
+      "incomplete_order": 139,
+      "late_delivery": 37,
+      "not_received": 157,
+      "other": 151,
+      "poor_quality": 82,
+      "positive": 23,
+      "refund_cancellation": 48,
+      "seller_communication": 5,
+      "wrong_item": 43,
+      "total": 746
+    },
+    {
+      "lane": "SP>RS",
+      "damaged_defective": 17,
+      "incomplete_order": 74,
+      "late_delivery": 13,
+      "not_received": 83,
+      "other": 84,
+      "poor_quality": 33,
+      "positive": 6,
+      "refund_cancellation": 26,
+      "seller_communication": 4,
+      "wrong_item": 17,
+      "total": 357
+    },
+    {
+      "lane": "SP>BA",
+      "damaged_defective": 23,
+      "incomplete_order": 51,
+      "late_delivery": 21,
+      "not_received": 91,
+      "other": 72,
+      "poor_quality": 31,
+      "positive": 12,
+      "refund_cancellation": 22,
+      "seller_communication": 4,
+      "wrong_item": 14,
+      "total": 341
+    },
+    {
+      "lane": "SP>PR",
+      "damaged_defective": 21,
+      "incomplete_order": 68,
+      "late_delivery": 6,
+      "not_received": 55,
+      "other": 65,
+      "poor_quality": 33,
+      "positive": 8,
+      "refund_cancellation": 21,
+      "seller_communication": 1,
+      "wrong_item": 23,
+      "total": 301
+    },
+    {
+      "lane": "SP>SC",
+      "damaged_defective": 19,
+      "incomplete_order": 45,
+      "late_delivery": 17,
+      "not_received": 74,
+      "other": 53,
+      "poor_quality": 21,
+      "positive": 13,
+      "refund_cancellation": 12,
+      "seller_communication": 1,
+      "wrong_item": 10,
+      "total": 265
+    },
+    {
+      "lane": "PR>SP",
+      "damaged_defective": 17,
+      "incomplete_order": 36,
+      "late_delivery": 14,
+      "not_received": 50,
+      "other": 52,
+      "poor_quality": 19,
+      "positive": 9,
+      "refund_cancellation": 24,
+      "seller_communication": 2,
+      "wrong_item": 18,
+      "total": 241
+    },
+    {
+      "lane": "MG>SP",
+      "damaged_defective": 17,
+      "incomplete_order": 34,
+      "late_delivery": 10,
+      "not_received": 48,
+      "other": 37,
+      "poor_quality": 28,
+      "positive": 7,
+      "refund_cancellation": 15,
+      "seller_communication": 3,
+      "wrong_item": 13,
+      "total": 212
+    },
+    {
+      "lane": "SP>PE",
+      "damaged_defective": 9,
+      "incomplete_order": 23,
+      "late_delivery": 10,
+      "not_received": 53,
+      "other": 32,
+      "poor_quality": 20,
+      "positive": 7,
+      "refund_cancellation": 9,
+      "seller_communication": 2,
+      "wrong_item": 4,
+      "total": 169
+    },
+    {
+      "lane": "SP>GO",
+      "damaged_defective": 10,
+      "incomplete_order": 25,
+      "late_delivery": 8,
+      "not_received": 48,
+      "other": 30,
+      "poor_quality": 15,
+      "positive": 9,
+      "refund_cancellation": 5,
+      "seller_communication": 1,
+      "wrong_item": 11,
+      "total": 162
+    },
+    {
+      "lane": "PR>RJ",
+      "damaged_defective": 5,
+      "incomplete_order": 21,
+      "late_delivery": 11,
+      "not_received": 56,
+      "other": 28,
+      "poor_quality": 13,
+      "positive": 7,
+      "refund_cancellation": 6,
+      "seller_communication": 6,
+      "wrong_item": 8,
+      "total": 161
+    }
+  ],
+  "sp_sp_vs_other_lanes_delivery_share": {
+    "sp_sp": 0.245965,
+    "other_lanes": 0.326338
+  },
+  "review_keys_with_labels_file": "artifacts/voc_rule_labels.csv"
+}

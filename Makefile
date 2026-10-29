@@ -5,10 +5,10 @@ PY    := PYTHONPATH=src .venv/bin/python -W ignore
 DBT   := cd dbt && ../.venv/bin/dbt
 export DBT_PROFILES_DIR := $(CURDIR)/dbt
 
-.PHONY: all setup download ingest dbt freshness docs dq metrics analyses voc voc-relabel \
+.PHONY: all setup download ingest dbt freshness docs dq metrics analyses results voc voc-relabel \
         dashboard screenshots test lint clean
 
-all: ingest dbt freshness docs metrics analyses voc dashboard screenshots test lint
+all: ingest dbt freshness docs metrics analyses voc results dashboard screenshots test lint
 	@echo "make all: OK"
 
 setup:            ## create the venv with pinned dependencies
@@ -44,6 +44,9 @@ analyses: dq
 	$(PY) -m marketplace.analysis.anomalies
 	$(PY) -m marketplace.analysis.root_cause
 	$(PY) -m marketplace.analysis.promise_policy
+
+results:          ## docs/RESULTS.md: every headline number with its source
+	$(PY) -m marketplace.results
 
 voc:              ## report from cached LLM labels (artifacts/), no LLM needed
 	$(PY) -m marketplace.analysis.voc report
