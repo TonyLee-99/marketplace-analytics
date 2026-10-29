@@ -76,7 +76,7 @@ CI: `.github/workflows/ci.yml` (written; not run remotely).
 | Retention | 3.0% of people ever order twice; 1.9% on a later day within 180 d (Kaplan–Meier); repeat orders = 2.9% of GMV; 30% of "next orders" are same-day split baskets |
 | Lateness → review | naive −2.02; FE −1.92; **same seller × month −1.89** [−1.95, −1.84]; same delivery time, broken promise −1.26; RD at the promise −0.24 (±5 d; density check fails → supporting only) |
 | Lateness → repurchase | base 1.84% (180 d after delivery); effect −0.29 pp [−0.75, +0.17], so not significant; ≈ R$2.2k/yr of repeat GMV |
-| Promise | median padding **12 days**, 74% of orders > 7 days early. Rolling quantile GBM beats lane quantiles on pinball loss (P90 1.38 vs 1.57; Olist 1.61). Coverage is P80 91% / P90 95% (target 80/90: **over-covers**). Recommended lane-P80: **−4.2 days** promise, late 4.4% → 7.0%, review −0.03 |
+| Promise | median padding **12 days**, 74% of orders > 7 days early. Rolling quantile GBM beats lane quantiles on pinball loss (P90 1.38 vs 1.57; Olist 1.61). Coverage is P80 91% / P90 95% (target 80/90: **over-covers**; ±0.4 pp run-to-run from multithreaded GBM). Recommended lane-P80: **−4.2 days** promise, late 4.4% → 7.0%, review −0.03 |
 | Sellers | top-10% sellers = 66% of GMV; 19% of sellers = 80% of GMV; HHI 38 (unconcentrated); 82 "fix-first" sellers hold 22% of GMV at 87% on-time |
 | Lanes | SP→RJ: 6,175 orders, 17.6% late vs 7.8% network, 608 excess late orders; 10 worst lanes = 1,143 excess late orders ≈ 586 avoidable 1–2★ reviews |
 | Monitoring | online STL monitor: 16 alerts in 20 months, 10 needing a human. Black Friday 2017 = 1,166 orders (4.8× expected), classified as an expected event. Catches the Aug-2018 data-feed cut-off |
@@ -143,7 +143,8 @@ Screenshots: `docs/img/dashboard_*.png`.
 - **Promise model coverage over-shoots** (P80 91%, P90 95%) because delivery kept speeding up in
   2018. A production model would add drift-aware recalibration on a shorter feedback window.
 - **RD design is supporting evidence only:** orders bunch just before the promised date (density
-  ratio 0.64 vs 0.88), which violates the no-manipulation assumption.
+  ratio 0.64 vs 0.88), which violates the no-manipulation assumption, and one of three placebo
+  cutoffs (−4.5 d) is significant at p = 0.04 (−0.08 stars).
 - **VoC gold labels** were made by the author, with gold A seen
   before the rules were written. The fresh holdout B (70.6%) is the honest number. The LLM run was
   cut short by memory pressure on a shared laptop (400 of 3,000 sampled reviews).
