@@ -92,13 +92,20 @@ def main() -> int:
         ("", "On-time Apr-2018: purchase-month vs delivery-month cohorting", f"{pct(mc['on_time_delivery']['largest_monthly_gaps_purchase_vs_delivery_month'][0]['purchase_cohort_on_time'])} vs {pct(mc['on_time_delivery']['largest_monthly_gaps_purchase_vs_delivery_month'][0]['delivery_month_on_time'])}", "metric_conflicts.json"),
         ("", "GMV: item price vs incl. freight (all time)", f"{brl(mc['gmv']['variants']['governed: item price, revenue orders']['total_brl'])} vs {brl(mc['gmv']['variants']['incl. freight']['total_brl'])}", "metric_conflicts.json"),
     ]
-    if voc and voc.get("gold"):
+    if voc and voc.get("evaluation"):
         sh = voc["negative_review_reason_share_weighted"]
         top = sorted(sh.items(), key=lambda kv: -kv[1])[:4]
+        ev = voc["evaluation"]
+        b = ev["rules_gold_B_160_fresh_holdout"]
+        llm = ev["llm_on_gold_items_it_labelled"]
         rows += [
-            ("Voice of customer (H5)", "Reviews labelled / gold set", f"{voc['sample_design']['labelled']:,} / {voc['gold']['n']}", "voc.json"),
-            ("", "Accuracy vs gold (95% CI) / macro-F1", f"{pct(voc['gold']['accuracy'])} ({pct(voc['gold']['accuracy_ci95'][0])}-{pct(voc['gold']['accuracy_ci95'][1])}) / {voc['gold']['macro_f1']:.2f}", "voc.json gold"),
-            ("", "Top reasons in 1-2 star reviews (weighted)", "; ".join(f"{k} {pct(v)}" for k, v in top), "voc.json"),
+            ("Voice of customer (H5)", "Reviews labelled by rules / gold A + B", f"{voc['population']['reviews_with_text']:,} / {ev['rules_gold_A_240_seen_before_rules']['n']} + {b['n']}", "voc.json"),
+            ("", "Rules accuracy on fresh holdout B (95% CI) / macro-F1", f"{pct(b['accuracy'])} ({pct(b['accuracy_ci95'][0])}-{pct(b['accuracy_ci95'][1])}) / {b['macro_f1']:.2f}; majority baseline {pct(b['majority_class_baseline_accuracy'])}", "voc.json evaluation"),
+            ("", "Rules accuracy on gold A (seen before rules)", pct(ev["rules_gold_A_240_seen_before_rules"]["accuracy"]), "voc.json evaluation"),
+            ("", "LLM (qwen2.5:7b) accuracy on gold items reached", f"{pct(llm['accuracy'])} (n={llm['n']}); rule-LLM agreement {pct(voc['rule_vs_llm']['rule_llm_agreement'])} on {voc['rule_vs_llm']['n_reviews_with_both_labels']}", "voc.json"),
+            ("", "Top reasons in 1-2 star reviews", "; ".join(f"{k} {pct(v)}" for k, v in top), "voc.json"),
+            ("", "#1 reason on 1-2 star reviews of ON-TIME orders", "; ".join(f"{k} {pct(v)}" for k, v in sorted(voc["negative_on_time_review_reason_share"].items(), key=lambda kv: -kv[1])[:2]), "voc.json"),
+            ("", "Incomplete-order complaints on multi-item orders vs base", f"{pct(voc['incomplete_order_reviews_on_multi_item_orders'])} vs {pct(voc['all_text_reviews_on_multi_item_orders'])}", "voc.json"),
             ("", "'late/not received' label rate: late vs on-time orders", f"{pct(voc['external_validity']['late_or_not_received_label_rate_when_order_late'])} vs {pct(voc['external_validity']['late_or_not_received_label_rate_when_on_time'])}", "voc.json external_validity"),
         ]
     lines = ["# Results (generated)", "",

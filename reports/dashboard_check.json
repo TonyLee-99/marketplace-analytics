@@ -22,9 +22,7 @@
     },
     "sellers": {
       "charts": 2,
-      "empty": [
-        "c-voc"
-      ],
+      "empty": [],
       "screenshot": "dashboard_sellers.png"
     },
     "rca": {
@@ -39,7 +37,5 @@
     "gmv_card_all": "R$13.45M",
     "gmv_card_RJ": "R$1.80M"
   },
-  "errors": [
-    "sellers: empty charts ['c-voc']"
-  ]
+  "errors": []
 }

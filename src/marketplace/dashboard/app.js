@@ -224,7 +224,7 @@
     const names = { active_customers: "Customers", orders_per_customer: "Orders / customer", aov: "AOV" };
     const cols = { active_customers: COL.s1, orders_per_customer: COL.s2, aov: COL.s3 };
     const share = ytd.drivers.active_customers.contribution_brl / ytd.delta_gmv;
-    document.getElementById("t-c-yoy").textContent = `${(100 * share).toFixed(0)}% of 2018 GMV growth came from more customers; frequency and AOV were flat`;
+    document.getElementById("t-c-yoy").textContent = `More customers explain ${(100 * share).toFixed(0)}% of 2018 GMV growth; frequency and AOV were flat`;
     plot("c-yoy", Object.keys(names).map((k) => ({
       type: "bar", name: names[k], x: y.map((r) => r.month), y: y.map((r) => r.drivers[k].contribution_brl),
       marker: { color: cols[k], line: { color: "#fcfcfb", width: 1 } },
@@ -245,7 +245,7 @@
         hovertemplate: "%{y}: %{x:.1%} of growth<extra></extra>" }], { margin: { l: 150, r: 40, t: 8, b: 30 }, xaxis: { gridcolor: COL.grid, tickformat: ".0%" } });
     };
     bars("c-cat", G.ytd_category_contribution, (r) => `Growth was broad-based: the top category (${r.segment}) added only ${fmtPct(r.share_of_growth, 0)} of it`);
-    bars("c-state", G.ytd_state_contribution, (r) => `${r.segment} delivered ${fmtPct(r.share_of_growth, 0)} of growth, roughly its share of GMV`);
+    bars("c-state", G.ytd_state_contribution, (r) => `${r.segment} delivered ${fmtPct(r.share_of_growth, 0)} of growth vs ${fmtPct(r.share_of_gmv_from, 0)} of 2017 GMV: ${r.share_of_growth < r.share_of_gmv_from ? "other states grew faster" : "it outgrew the rest"}`);
   }
 
   // ===== CUSTOMERS
@@ -327,7 +327,7 @@
       document.getElementById("sim-out").innerHTML = out.map(([n, v, s]) => `<div class="card kpi"><div class="name">${n}</div><div class="val">${v}</div><div class="row muted">${s}</div></div>`).join("");
       const ks = Object.keys(pol);
       plot("c-frontier", [{ type: "scatter", mode: "markers+text", x: ks.map((k) => pol[k].mean_days_saved_vs_current), y: ks.map((k) => pol[k].delta_late_pp),
-        text: ks.map((k) => k.replace(/_/g, " ")), textposition: ks.map((k) => ({ lane_p90: "bottom left", model_p90_plus_2_days: "bottom right", current_olist_estimate: "top right" }[k] || "top center")), textfont: { size: 11, color: COL.text2 },
+        text: ks.map((k) => k.replace(/_/g, " ")), textposition: ks.map((k) => ({ lane_p90: "bottom right", model_p90_plus_2_days: "top right", current_olist_estimate: "top right" }[k] || "top center")), textfont: { size: 11, color: COL.text2 },
         marker: { size: ks.map((k) => (k === sel.value ? 16 : 10)), color: ks.map((k) => (k === sel.value ? COL.s2 : COL.s1)), line: { color: "#fff", width: 2 } },
         hovertemplate: "%{text}<br>days saved %{x:.1f}<br>late Δ %{y:.1f} pp<extra></extra>" }],
         { xaxis: { gridcolor: COL.grid, title: "promise days saved vs current (mean)" }, yaxis: { gridcolor: COL.grid, title: "late-rate change (pp)" }, margin: { l: 60, r: 16, t: 24, b: 44 },
