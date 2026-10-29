@@ -4,10 +4,13 @@
 Olist sends its satisfaction survey about 2 days after the *promised* date, delivered or not, so
 70% of late orders are rated before the parcel arrives. Comparing the same seller in the same month,
 a late order records **−1.89★**. On reviews written *after* the parcel arrived it is **−0.51★**.
-Lateness that comes only from the carrier leg gives −0.54★, and the May-2018 truckers' strike, used
-as a natural experiment, gives −0.49★ (wide CI). The cheapest fix is product, not logistics:
-**send the survey on confirmed delivery**, which is worth up to 2,215 fewer 1–2★ reviews a year
-(upper bound).
+Lateness that comes only from the carrier leg gives −0.54★. The May-2018 truckers' strike, used as
+an instrument for lateness, confirms that the *recorded* penalty is not just seller confounding:
+−1.49★, or −1.22★ with seller FE (first-stage F 42; Anderson–Rubin set −2.05 to −0.90). The
+cheapest fix is product, not logistics: **split the survey**. Keep a delivery-issue contact at
+promise + 2 days, and ask for the star rating only on confirmed delivery. That removes up to 2,215
+pre-delivery 1–2★ ratings a year (about 1,866 with exact-day matching). Its value is rating
+accuracy; no BRL is claimed.
 
 ![Executive page](docs/img/dashboard_exec.png)
 
@@ -40,7 +43,8 @@ flowchart LR
   - Growth from the seller side.
   - Survey-timing-aware delivery effects with carrier-leg and strike designs.
   - A promise-policy backtest over a full year, including the peak.
-  - Process-stage root cause.
+  - Process-stage root cause (distributional Shapley: carrier-transit tail +8.1 pp, promise cut +6.0 pp,
+    sellers −1.4 pp for the spring-2018 slump).
   - An in-flight lateness monitor.
   - Complaint reasons from Portuguese review text, corrected for misclassification.
 - **Deliverables.**
@@ -50,8 +54,8 @@ flowchart LR
 ## Three results (all numbers: [docs/RESULTS.md](docs/RESULTS.md), each with its source field)
 | Question | Answer (window stated) |
 |---|---|
-| Is growth healthy? | No. GMV has been flat since Nov-2017, and Jun–Aug 2018 is 12.7% below Mar–May. Active sellers rose 1,072 → 1,226 while GMV per seller fell R$923 → R$704/month, so demand is the constraint. "+138% YoY" (Jan–Aug) is a ramp-up base effect. |
-| Should promises be shorter? | Not network-wide. Olist pads by a median of 12 days, but over Oct-2017–Aug-2018 (never-delivered orders counted as late) a lane-P80 promise saves 6.4 days and raises the late rate from 9.3% to 20.6%. The pre-set rule, applied on the Oct–Mar selection period, picks a drift-aware recalibration that lengthens peak promises. The recommendation is a capped A/B test. |
+| Is growth healthy? | No. GMV has been flat since Nov-2017, and the full months Jun–Jul 2018 ran 12.0% below Mar–May (days 1–20 of Jun–Aug: −11.0%). August capture decays after Aug 21, and the World Cup overlaps Jun–Jul. Active sellers rose 1,072 → 1,206 while GMV per seller fell R$923 → R$722/month, so demand is the constraint. "+138% YoY" (Jan–Aug) is a ramp-up base effect. |
+| Should promises be shorter? | Not network-wide. Olist pads by a median of 12 days, but over Oct-2017–Aug-2018 (never-delivered orders counted as late) a lane-P80 promise saves 6.4 days and raises the late rate from 9.3% to 20.6%. The pre-set rule, applied on the Oct–Mar selection period, picks a drift-aware recalibration. It uses the 99th percentile in 7 of 11 months and lengthens promises by 7.5 days on average. The recommendation overrides that rule: run an A/B of lane-P80 capped at 3 days shorter, after the peak and after the survey change. The guardrail is relative to control, and the kill metric is the in-flight past-promise share. In the Oct-2017 analog a 5-day cap was +4.2 pp late vs control, and the 3-day cap was +2.3 pp. |
 | What hurts customers on orders that arrive on time? | Incomplete orders (23.4%, CI 19.4–27.1) and poor quality (20.4%, CI 13.3–28.7) lead the 1–2★ reviews of on-time orders after misclassification correction. 65% of incomplete-order complaints are on multi-item orders, which are 12% of reviews. |
 
 ## How to run
@@ -85,7 +89,12 @@ item grain.
 - **Repurchase is underpowered.** The effect is −0.29 pp, but the MDE is 0.66 pp (36% of the base),
   so this is not evidence of "no effect".
 - **No BRL attaches to reviews.** A seller-week panel finds no detectable link from bad reviews to
-  the seller's next-4-week GMV (−R$13 per review, CI −62 to +36).
+  the seller's next-4-week GMV (−R$13 per review, CI −62 to +36). Per the dataset description,
+  Olist sells through the "Olist Store" on partner marketplaces, so buyers may see the store's
+  reputation rather than a seller's. The panel may be the wrong unit, which makes this null
+  uninformative.
+- **The strike IV on post-delivery reviews is invalid** (the strike shifts who answers after
+  delivery) and is not used.
 - **Promise coverage is miscalibrated in both directions.** Model P90 covers about 80% in the
   Oct–Mar peak and about 95% in Apr–Aug (exact values in RESULTS.md).
 - **The conversion benefit of shorter promises is not measurable here.** There are no sessions in

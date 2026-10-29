@@ -53,3 +53,18 @@ def test_synthetic_simpson_is_detected():
     delta = r["total1"] - r["total0"]
     assert delta > 0 and r["rate"].sum() < 0 and r["mix"].sum() > 0
     assert abs(r["mix"].sum() + r["rate"].sum() + r["inter"].sum() - delta) < 1e-12
+
+
+def test_stage_shapley_explains_jan_mar_2018_slump():
+    """Distributional stage split must leave < 1 pp unexplained on the Jan->Mar 2018 move."""
+    import pytest
+
+    from marketplace.paths import WAREHOUSE
+
+    if not WAREHOUSE.exists():
+        pytest.skip("warehouse not built")
+    from marketplace.analysis.root_cause import stage_shapley
+
+    r = stage_shapley("2018-01-01", "2018-03-01")
+    assert abs(r["residual_pp_dependence"]) < 1.0
+    assert r["shapley_pp"]["transit"] > r["shapley_pp"]["promise"] > 0 > r["shapley_pp"]["seller_days"]

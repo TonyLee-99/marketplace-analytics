@@ -36,13 +36,13 @@ exposures:
       name: Marketplace Analytics (portfolio owner)
       email: analytics@example.com
 
-  - name: analytics_agent_readonly
-    label: Analytics agent (read-only consumer)
+  - name: readonly_sql_consumers
+    label: Read-only SQL consumers
     type: application
     maturity: low
     description: >
-      Downstream text-to-SQL agent that attaches
-      data/warehouse.duckdb read-only and reads metrics/metrics.yml.
+      Any read-only client (notebooks, a text-to-SQL tool) that attaches data/warehouse.duckdb
+      read-only and reads metrics/metrics.yml for governed definitions.
     depends_on:
       - ref('fct_orders')
       - ref('fct_order_items')

@@ -1,6 +1,6 @@
 # Governed metrics layer — the single source of truth for KPI definitions.
 #
-# Every consumer (dashboard, memo, analyses, the read-only SQL consumer) asks the
+# Every consumer (dashboard, memo, analyses, any read-only SQL client) asks the
 # compiler in src/marketplace/metrics.py for a metric by NAME; nobody re-implements a
 # formula. Modelled on Airbnb Minerva / dbt Semantic Layer concepts:
 #   models    -> which mart table a measure comes from, its time dimension, sliceable dims

@@ -1,7 +1,7 @@
 {
   "simpson_scan": {
-    "n_cases": 228,
-    "n_simpson": 13,
+    "n_cases": 190,
+    "n_simpson": 9,
     "cases": [
       {
         "kpi": "on_time_delivery_rate",
@@ -49,33 +49,6 @@
         "simpson_paradox": true
       },
       {
-        "kpi": "on_time_delivery_rate",
-        "month": "2017-06",
-        "dimension": "fulfilment_leg",
-        "delta": -0.000402,
-        "rate_effect": 0.000395,
-        "mix_effect": -0.000675,
-        "simpson_paradox": true
-      },
-      {
-        "kpi": "avg_review_score",
-        "month": "2017-02",
-        "dimension": "fulfilment_leg",
-        "delta": 0.009795,
-        "rate_effect": -0.012385,
-        "mix_effect": 0.007527,
-        "simpson_paradox": true
-      },
-      {
-        "kpi": "avg_review_score",
-        "month": "2017-03",
-        "dimension": "fulfilment_leg",
-        "delta": 0.029181,
-        "rate_effect": -0.062196,
-        "mix_effect": 0.089261,
-        "simpson_paradox": true
-      },
-      {
         "kpi": "avg_review_score",
         "month": "2017-06",
         "dimension": "category",
@@ -110,19 +83,10 @@
         "rate_effect": -0.004819,
         "mix_effect": 0.001671,
         "simpson_paradox": true
-      },
-      {
-        "kpi": "avg_review_score",
-        "month": "2018-08",
-        "dimension": "fulfilment_leg",
-        "delta": -0.001807,
-        "rate_effect": 0.002963,
-        "mix_effect": -0.004638,
-        "simpson_paradox": true
       }
     ],
-    "n_material_simpson": 1,
-    "max_abs_delta_among_simpson_cases": 0.029181
+    "n_material_simpson": 0,
+    "max_abs_delta_among_simpson_cases": 0.001962
   },
   "method": "mix/rate/interaction decomposition over the governed metric components",
   "dimensions": [
@@ -130,8 +94,7 @@
     "category",
     "seller_tier",
     "seller_state",
-    "lane_top",
-    "fulfilment_leg"
+    "lane_top"
   ],
   "moves": [
     {
@@ -152,7 +115,6 @@
         "seller_state",
         "seller_tier",
         "customer_state",
-        "fulfilment_leg",
         "lane_top"
       ],
       "by_dimension": {
@@ -472,40 +434,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.664817
-        },
-        "fulfilment_leg": {
-          "kpi_from": 660179.62,
-          "kpi_to": 1003862.14,
-          "delta": 343682.52,
-          "mix_effect": null,
-          "rate_effect": null,
-          "interaction": null,
-          "surprise_js": 0.008543,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "value_from": 603686.14,
-              "value_to": 850799.34,
-              "contribution": 247113.2,
-              "share_of_abs_movement": 0.719016
-            },
-            {
-              "segment": "seller_late_handover",
-              "value_from": 50236.85,
-              "value_to": 144229.5,
-              "contribution": 93992.65,
-              "share_of_abs_movement": 0.273487
-            },
-            {
-              "segment": "not_handed_over",
-              "value_from": 6256.63,
-              "value_to": 8833.3,
-              "contribution": 2576.67,
-              "share_of_abs_movement": 0.007497
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -527,8 +455,7 @@
         "customer_state",
         "seller_state",
         "lane_top",
-        "seller_tier",
-        "fulfilment_leg"
+        "seller_tier"
       ],
       "by_dimension": {
         "customer_state": {
@@ -847,40 +774,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.70304
-        },
-        "fulfilment_leg": {
-          "kpi_from": 1003862.14,
-          "kpi_to": 742183.79,
-          "delta": -261678.35,
-          "mix_effect": null,
-          "rate_effect": null,
-          "interaction": null,
-          "surprise_js": 0.000309,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "value_from": 850799.34,
-              "value_to": 625051.42,
-              "contribution": -225747.92,
-              "share_of_abs_movement": 0.857072
-            },
-            {
-              "segment": "seller_late_handover",
-              "value_from": 144229.5,
-              "value_to": 107441.1,
-              "contribution": -36788.4,
-              "share_of_abs_movement": 0.13967
-            },
-            {
-              "segment": "not_handed_over",
-              "value_from": 8833.3,
-              "value_to": 9691.27,
-              "contribution": 857.97,
-              "share_of_abs_movement": 0.003257
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -896,29 +789,53 @@
         "text": "network-wide: no single segment driver (the move happened inside segments holding >= 95% of volume in every dimension)"
       },
       "stages": {
-        "medians_from_to": {
-          "promise": [
-            26.0,
-            25.0
-          ],
-          "seller_days": [
-            2.449896,
-            2.522083
-          ],
-          "transit": [
-            8.035972,
-            11.023576
-          ]
+        "method": "distributional Shapley (rank-preserving quantile mapping of each stage)",
+        "tails": {
+          "promise": {
+            "from_p50_p90_p99": [
+              26.0,
+              36.0,
+              54.0
+            ],
+            "to_p50_p90_p99": [
+              25.0,
+              33.0,
+              45.0
+            ]
+          },
+          "seller_days": {
+            "from_p50_p90_p99": [
+              2.449896,
+              6.555657,
+              21.445953
+            ],
+            "to_p50_p90_p99": [
+              2.522083,
+              6.990185,
+              16.927091
+            ]
+          },
+          "transit": {
+            "from_p50_p90_p99": [
+              8.035972,
+              20.85913,
+              42.721701
+            ],
+            "to_p50_p90_p99": [
+              11.023576,
+              26.809752,
+              53.849643
+            ]
+          }
         },
         "late_rate_from": 0.057009,
         "late_rate_to": 0.141266,
         "shapley_pp": {
-          "promise": 1.057717,
-          "seller_days": 0.485634,
-          "transit": 2.575642
+          "promise": 1.556064,
+          "seller_days": -0.472921,
+          "transit": 5.171625
         },
-        "explained_pp": 4.118993,
-        "unexplained_pp_distribution_shape": 4.30668,
+        "residual_pp_dependence": 2.170906,
         "reading": "Positive = this stage's change raised the late rate."
       },
       "dimension_ranking_by_surprise": [
@@ -926,8 +843,7 @@
         "seller_tier",
         "seller_state",
         "lane_top",
-        "customer_state",
-        "fulfilment_leg"
+        "customer_state"
       ],
       "by_dimension": {
         "customer_state": {
@@ -1513,64 +1429,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.630252
-        },
-        "fulfilment_leg": {
-          "kpi_from": 0.942991,
-          "kpi_to": 0.858734,
-          "delta": -0.084257,
-          "mix_effect": -0.002829,
-          "rate_effect": -0.082185,
-          "interaction": 0.000757,
-          "surprise_js": 0.00174,
-          "residual": -0.0,
-          "simpson_paradox": false,
-          "share_of_segments_improving": 0.0,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "share_from": 0.898571,
-              "share_to": 0.877651,
-              "rate_from": 0.956707,
-              "rate_to": 0.87085,
-              "n_from": 6352.0,
-              "n_to": 5753.0,
-              "mix": -0.000287,
-              "rate": -0.077148,
-              "interaction": 0.001796,
-              "contribution": -0.075639,
-              "share_of_abs_movement": 0.897721
-            },
-            {
-              "segment": "seller_late_handover",
-              "share_from": 0.101429,
-              "share_to": 0.122349,
-              "rate_from": 0.821478,
-              "rate_to": 0.77182,
-              "n_from": 717.0,
-              "n_to": 802.0,
-              "mix": -0.002542,
-              "rate": -0.005037,
-              "interaction": -0.001039,
-              "contribution": -0.008618,
-              "share_of_abs_movement": 0.102279
-            },
-            {
-              "segment": "not_handed_over",
-              "share_from": 0.0,
-              "share_to": 0.0,
-              "rate_from": null,
-              "rate_to": null,
-              "n_from": 0.0,
-              "n_to": 0.0,
-              "mix": -0.0,
-              "rate": 0.0,
-              "interaction": 0.0,
-              "contribution": 0.0,
-              "share_of_abs_movement": 0.0
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -1586,29 +1444,53 @@
         "text": "network-wide: no single segment driver (the move happened inside segments holding >= 98% of volume in every dimension)"
       },
       "stages": {
-        "medians_from_to": {
-          "promise": [
-            22.0,
-            24.0
-          ],
-          "seller_days": [
-            2.365312,
-            2.061343
-          ],
-          "transit": [
-            9.880127,
-            6.910862
-          ]
+        "method": "distributional Shapley (rank-preserving quantile mapping of each stage)",
+        "tails": {
+          "promise": {
+            "from_p50_p90_p99": [
+              22.0,
+              33.0,
+              47.0
+            ],
+            "to_p50_p90_p99": [
+              24.0,
+              34.0,
+              44.0
+            ]
+          },
+          "seller_days": {
+            "from_p50_p90_p99": [
+              2.365312,
+              6.204345,
+              17.90033
+            ],
+            "to_p50_p90_p99": [
+              2.061343,
+              5.60791,
+              14.378639
+            ]
+          },
+          "transit": {
+            "from_p50_p90_p99": [
+              9.880127,
+              28.218125,
+              49.200251
+            ],
+            "to_p50_p90_p99": [
+              6.910862,
+              18.125132,
+              39.986754
+            ]
+          }
         },
         "late_rate_from": 0.189633,
         "late_rate_to": 0.045013,
         "shapley_pp": {
-          "promise": -2.174659,
-          "seller_days": -1.100814,
-          "transit": -3.064627
+          "promise": -2.13298,
+          "seller_days": -1.272433,
+          "transit": -10.583995
         },
-        "explained_pp": -6.3401,
-        "unexplained_pp_distribution_shape": -8.121877,
+        "residual_pp_dependence": -0.472569,
         "reading": "Positive = this stage's change raised the late rate."
       },
       "dimension_ranking_by_surprise": [
@@ -1616,8 +1498,7 @@
         "category",
         "lane_top",
         "seller_state",
-        "customer_state",
-        "fulfilment_leg"
+        "customer_state"
       ],
       "by_dimension": {
         "customer_state": {
@@ -2203,64 +2084,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.617627
-        },
-        "fulfilment_leg": {
-          "kpi_from": 0.810367,
-          "kpi_to": 0.954987,
-          "delta": 0.14462,
-          "mix_effect": 0.004303,
-          "rate_effect": 0.141937,
-          "interaction": -0.00162,
-          "surprise_js": 0.002436,
-          "residual": -0.0,
-          "simpson_paradox": false,
-          "share_of_segments_improving": 1.0,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "share_from": 0.914894,
-              "share_to": 0.940129,
-              "rate_from": 0.824879,
-              "rate_to": 0.961352,
-              "n_from": 6407.0,
-              "n_to": 6391.0,
-              "mix": 0.000366,
-              "rate": 0.124858,
-              "interaction": 0.003444,
-              "contribution": 0.128668,
-              "share_of_abs_movement": 0.889701
-            },
-            {
-              "segment": "seller_late_handover",
-              "share_from": 0.085106,
-              "share_to": 0.059871,
-              "rate_from": 0.654362,
-              "rate_to": 0.855037,
-              "n_from": 596.0,
-              "n_to": 407.0,
-              "mix": 0.003937,
-              "rate": 0.017079,
-              "interaction": -0.005064,
-              "contribution": 0.015951,
-              "share_of_abs_movement": 0.110299
-            },
-            {
-              "segment": "not_handed_over",
-              "share_from": 0.0,
-              "share_to": 0.0,
-              "rate_from": null,
-              "rate_to": null,
-              "n_from": 0.0,
-              "n_to": 0.0,
-              "mix": -0.0,
-              "rate": 0.0,
-              "interaction": 0.0,
-              "contribution": 0.0,
-              "share_of_abs_movement": 0.0
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -2276,29 +2099,53 @@
         "text": "network-wide: no single segment driver (the move happened inside segments holding >= 97% of volume in every dimension)"
       },
       "stages": {
-        "medians_from_to": {
-          "promise": [
-            26.0,
-            22.0
-          ],
-          "seller_days": [
-            2.449896,
-            2.365312
-          ],
-          "transit": [
-            8.035972,
-            9.880127
-          ]
+        "method": "distributional Shapley (rank-preserving quantile mapping of each stage)",
+        "tails": {
+          "promise": {
+            "from_p50_p90_p99": [
+              26.0,
+              36.0,
+              54.0
+            ],
+            "to_p50_p90_p99": [
+              22.0,
+              33.0,
+              47.0
+            ]
+          },
+          "seller_days": {
+            "from_p50_p90_p99": [
+              2.449896,
+              6.555657,
+              21.445953
+            ],
+            "to_p50_p90_p99": [
+              2.365312,
+              6.204345,
+              17.90033
+            ]
+          },
+          "transit": {
+            "from_p50_p90_p99": [
+              8.035972,
+              20.85913,
+              42.721701
+            ],
+            "to_p50_p90_p99": [
+              9.880127,
+              28.218125,
+              49.200251
+            ]
+          }
         },
         "late_rate_from": 0.057009,
         "late_rate_to": 0.189633,
         "shapley_pp": {
-          "promise": 5.62854,
-          "seller_days": -0.997192,
-          "transit": 2.522728
+          "promise": 5.966491,
+          "seller_days": -1.351802,
+          "transit": 8.079871
         },
-        "explained_pp": 7.154077,
-        "unexplained_pp_distribution_shape": 6.108277,
+        "residual_pp_dependence": 0.567794,
         "reading": "Positive = this stage's change raised the late rate."
       },
       "dimension_ranking_by_surprise": [
@@ -2306,8 +2153,7 @@
         "category",
         "customer_state",
         "seller_state",
-        "lane_top",
-        "fulfilment_leg"
+        "lane_top"
       ],
       "by_dimension": {
         "customer_state": {
@@ -2893,64 +2739,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.587212
-        },
-        "fulfilment_leg": {
-          "kpi_from": 0.942991,
-          "kpi_to": 0.810367,
-          "delta": -0.132624,
-          "mix_effect": 0.002207,
-          "rate_effect": -0.135407,
-          "interaction": 0.000576,
-          "surprise_js": 0.001532,
-          "residual": -0.0,
-          "simpson_paradox": false,
-          "share_of_segments_improving": 0.0,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "share_from": 0.898571,
-              "share_to": 0.914894,
-              "rate_from": 0.956707,
-              "rate_to": 0.824879,
-              "n_from": 6352.0,
-              "n_to": 6407.0,
-              "mix": 0.000224,
-              "rate": -0.118456,
-              "interaction": -0.002152,
-              "contribution": -0.120384,
-              "share_of_abs_movement": 0.907714
-            },
-            {
-              "segment": "seller_late_handover",
-              "share_from": 0.101429,
-              "share_to": 0.085106,
-              "rate_from": 0.821478,
-              "rate_to": 0.654362,
-              "n_from": 717.0,
-              "n_to": 596.0,
-              "mix": 0.001983,
-              "rate": -0.01695,
-              "interaction": 0.002728,
-              "contribution": -0.012239,
-              "share_of_abs_movement": 0.092286
-            },
-            {
-              "segment": "not_handed_over",
-              "share_from": 0.0,
-              "share_to": 0.0,
-              "rate_from": null,
-              "rate_to": null,
-              "n_from": 0.0,
-              "n_to": 0.0,
-              "mix": -0.0,
-              "rate": 0.0,
-              "interaction": 0.0,
-              "contribution": 0.0,
-              "share_of_abs_movement": 0.0
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -2969,7 +2757,6 @@
       "dimension_ranking_by_surprise": [
         "category",
         "seller_tier",
-        "fulfilment_leg",
         "seller_state",
         "customer_state",
         "lane_top"
@@ -3558,64 +3345,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.619849
-        },
-        "fulfilment_leg": {
-          "kpi_from": 4.173614,
-          "kpi_to": 3.949321,
-          "delta": -0.224294,
-          "mix_effect": -0.02933,
-          "rate_effect": -0.192808,
-          "interaction": -0.002156,
-          "surprise_js": 0.00932,
-          "residual": 0.0,
-          "simpson_paradox": false,
-          "share_of_segments_improving": 0.0,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "share_from": 0.915743,
-              "share_to": 0.864674,
-              "rate_from": 4.233898,
-              "rate_to": 4.045883,
-              "n_from": 4130.0,
-              "n_to": 6364.0,
-              "mix": -0.003079,
-              "rate": -0.172174,
-              "interaction": 0.009602,
-              "contribution": -0.16565,
-              "share_of_abs_movement": 0.738543
-            },
-            {
-              "segment": "seller_late_handover",
-              "share_from": 0.07694,
-              "share_to": 0.127446,
-              "rate_from": 3.680115,
-              "rate_to": 3.452026,
-              "n_from": 347.0,
-              "n_to": 938.0,
-              "mix": -0.024924,
-              "rate": -0.017549,
-              "interaction": -0.01152,
-              "contribution": -0.053993,
-              "share_of_abs_movement": 0.240727
-            },
-            {
-              "segment": "not_handed_over",
-              "share_from": 0.007317,
-              "share_to": 0.00788,
-              "rate_from": 1.818182,
-              "rate_to": 1.396552,
-              "n_from": 33.0,
-              "n_to": 58.0,
-              "mix": -0.001327,
-              "rate": -0.003085,
-              "interaction": -0.000238,
-              "contribution": -0.00465,
-              "share_of_abs_movement": 0.02073
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -3634,7 +3363,6 @@
       "dimension_ranking_by_surprise": [
         "seller_tier",
         "category",
-        "fulfilment_leg",
         "lane_top",
         "seller_state",
         "customer_state"
@@ -4223,64 +3951,6 @@
           ],
           "n_segments": 16,
           "top3_share_of_abs_movement": 0.595825
-        },
-        "fulfilment_leg": {
-          "kpi_from": 3.76358,
-          "kpi_to": 4.169897,
-          "delta": 0.406316,
-          "mix_effect": 0.016545,
-          "rate_effect": 0.39176,
-          "interaction": -0.001989,
-          "surprise_js": 0.002935,
-          "residual": -0.0,
-          "simpson_paradox": false,
-          "share_of_segments_improving": 1.0,
-          "top_segments": [
-            {
-              "segment": "seller_on_time_handover",
-              "share_from": 0.911343,
-              "share_to": 0.937199,
-              "rate_from": 3.820414,
-              "rate_to": 4.205379,
-              "n_from": 6476.0,
-              "n_to": 6432.0,
-              "mix": 0.00147,
-              "rate": 0.350835,
-              "interaction": 0.009954,
-              "contribution": 0.362259,
-              "share_of_abs_movement": 0.891569
-            },
-            {
-              "segment": "seller_late_handover",
-              "share_from": 0.084154,
-              "share_to": 0.059595,
-              "rate_from": 3.279264,
-              "rate_to": 3.762836,
-              "n_from": 598.0,
-              "n_to": 409.0,
-              "mix": 0.011894,
-              "rate": 0.040695,
-              "interaction": -0.011876,
-              "contribution": 0.040713,
-              "share_of_abs_movement": 0.1002
-            },
-            {
-              "segment": "not_handed_over",
-              "share_from": 0.004503,
-              "share_to": 0.003206,
-              "rate_from": 1.3125,
-              "rate_to": 1.363636,
-              "n_from": 32.0,
-              "n_to": 22.0,
-              "mix": 0.003181,
-              "rate": 0.00023,
-              "interaction": -6.6e-05,
-              "contribution": 0.003345,
-              "share_of_abs_movement": 0.008231
-            }
-          ],
-          "n_segments": 3,
-          "top3_share_of_abs_movement": 1.0
         }
       }
     }

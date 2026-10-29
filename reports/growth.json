@@ -1392,26 +1392,96 @@
       "avg_monthly_gmv_nov17_feb18": 882349.4125,
       "avg_monthly_gmv_mar_may_2018": 989171.93,
       "avg_monthly_gmv_jun_aug_2018": 863389.966667,
-      "jun_aug_vs_mar_may": -0.127159
+      "jun_aug_vs_mar_may_incl_truncated_august": -0.127159,
+      "jun_jul_vs_mar_may_full_months": -0.119814,
+      "days_1_20_jun_aug_vs_mar_may": -0.11,
+      "aug_1_20_vs_may_1_20": -0.021372,
+      "aug_daily_orders_14_31": [
+        {
+          "d": "2018-08-14",
+          "n": 312
+        },
+        {
+          "d": "2018-08-15",
+          "n": 283
+        },
+        {
+          "d": "2018-08-16",
+          "n": 316
+        },
+        {
+          "d": "2018-08-17",
+          "n": 254
+        },
+        {
+          "d": "2018-08-18",
+          "n": 196
+        },
+        {
+          "d": "2018-08-19",
+          "n": 204
+        },
+        {
+          "d": "2018-08-20",
+          "n": 252
+        },
+        {
+          "d": "2018-08-21",
+          "n": 239
+        },
+        {
+          "d": "2018-08-22",
+          "n": 186
+        },
+        {
+          "d": "2018-08-23",
+          "n": 142
+        },
+        {
+          "d": "2018-08-24",
+          "n": 97
+        },
+        {
+          "d": "2018-08-25",
+          "n": 69
+        },
+        {
+          "d": "2018-08-26",
+          "n": 73
+        },
+        {
+          "d": "2018-08-27",
+          "n": 66
+        },
+        {
+          "d": "2018-08-28",
+          "n": 39
+        },
+        {
+          "d": "2018-08-29",
+          "n": 11
+        }
+      ],
+      "caveats": "Daily capture decays from 2018-08-21 (extract artefact), so August is excluded or day-matched. The FIFA World Cup (14 Jun - 15 Jul 2018, Brazil playing) overlaps the weak Jun-Jul window; not tested."
     },
-    "jun_aug_vs_mar_may_seller_tree": {
+    "jun_jul_vs_mar_may_seller_tree": {
       "gmv_from": 989171.93,
-      "gmv_to": 863389.966667,
-      "pct_change": -0.127159,
+      "gmv_to": 870654.9,
+      "pct_change": -0.119814,
       "drivers": {
         "active_sellers": {
-          "log_change": 0.134503,
-          "contribution_brl": 124395.538168
+          "log_change": 0.118198,
+          "contribution_brl": 109764.539235
         },
         "gmv_per_seller": {
-          "log_change": -0.270504,
-          "contribution_brl": -250177.501501
+          "log_change": -0.24582,
+          "contribution_brl": -228281.569235
         }
       },
       "sellers_from": 1072.0,
-      "sellers_to": 1226.333333,
+      "sellers_to": 1206.5,
       "gmv_per_seller_from": 922.735009,
-      "gmv_per_seller_to": 704.041832
+      "gmv_per_seller_to": 721.636884
     },
     "new_seller_gmv_share_2018": 0.070032,
     "funnel": {

@@ -109,6 +109,20 @@ def supply_side(ml: MetricsLayer) -> dict:
                 "sellers_from": sa, "sellers_to": sb, "gmv_per_seller_from": ga / sa, "gmv_per_seller_to": gb / sb}
 
     mam, jja = ["2018-03", "2018-04", "2018-05"], ["2018-06", "2018-07", "2018-08"]
+    jj = ["2018-06", "2018-07"]  # full months only: daily capture decays from Aug 21 (extract artefact)
+    d20 = df(
+        """
+        select strftime(purchase_date, '%Y-%m') m, sum(items_price_brl)::double gmv
+        from marts.fct_orders where is_revenue_order and day(purchase_date) <= 20
+          and purchase_date between '2018-03-01' and '2018-08-20' group by 1
+        """
+    ).set_index("m")["gmv"]
+    tail = df(
+        """
+        select purchase_date d, count(*) n from marts.fct_orders
+        where is_revenue_order and purchase_date between '2018-08-14' and '2018-08-31' group by 1 order by 1
+        """
+    )
     funnel = df(
         """
         select count(*) mqls, count(*) filter (where is_won) won, count(*) filter (where has_sold) sold,
@@ -123,9 +137,16 @@ def supply_side(ml: MetricsLayer) -> dict:
             "avg_monthly_gmv_nov17_feb18": float(g.loc["2017-11":"2018-02", "gmv"].mean()),
             "avg_monthly_gmv_mar_may_2018": float(g.loc[mam, "gmv"].mean()),
             "avg_monthly_gmv_jun_aug_2018": float(g.loc[jja, "gmv"].mean()),
-            "jun_aug_vs_mar_may": float(g.loc[jja, "gmv"].mean() / g.loc[mam, "gmv"].mean() - 1),
+            "jun_aug_vs_mar_may_incl_truncated_august": float(g.loc[jja, "gmv"].mean() / g.loc[mam, "gmv"].mean() - 1),
+            "jun_jul_vs_mar_may_full_months": float(g.loc[jj, "gmv"].mean() / g.loc[mam, "gmv"].mean() - 1),
+            "days_1_20_jun_aug_vs_mar_may": float(d20.loc[jja].mean() / d20.loc[mam].mean() - 1),
+            "aug_1_20_vs_may_1_20": float(d20.loc["2018-08"] / d20.loc["2018-05"] - 1),
+            "aug_daily_orders_14_31": tail.assign(d=lambda x: x.d.astype(str)).to_dict(orient="records"),
+            "caveats": "Daily capture decays from 2018-08-21 (extract artefact), so August is excluded or "
+            "day-matched. The FIFA World Cup (14 Jun - 15 Jul 2018, Brazil playing) overlaps the weak Jun-Jul "
+            "window; not tested.",
         },
-        "jun_aug_vs_mar_may_seller_tree": lmdi(mam, jja),
+        "jun_jul_vs_mar_may_seller_tree": lmdi(mam, jj),
         "new_seller_gmv_share_2018": float(g.loc["2018-01":"2018-08", "gmv_new_sellers"].sum()
                                            / g.loc["2018-01":"2018-08", "gmv"].sum()),
         "funnel": {**{k: float(v) for k, v in funnel.items()},

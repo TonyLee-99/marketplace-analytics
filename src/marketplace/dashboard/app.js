@@ -97,11 +97,11 @@
   const KPI4 = ["gmv", "orders", "on_time_delivery_rate", "avg_review_score"];
   document.getElementById("page-exec").innerHTML =
     `<div class="grid g4" id="kpis"></div><div style="height:14px"></div>
-     <div class="grid g2">${card("c-gmv", "Governed GMV: item price, non-canceled orders, by purchase month.", "chart", true)}
+     <div class="grid g2">${card("c-gmv", "Governed GMV: item price, non-canceled orders, by purchase month. August 2018 is incomplete (capture decays after Aug 21).", "chart", true)}
      ${card("c-hero", "Mean review score of delivered orders, Jan-2017–Aug-2018, by whether the review was answered before or after the parcel arrived. The survey is sent ~2 days after the promised date.")}</div>
      <div style="height:14px"></div><div class="grid g2">
      <div class="card"><h2>Three decisions: one survey change, one test, one fix</h2><p class="cap">Same source as docs/exec_memo.md (reports/recommendations.json). Sizes are upper bounds; the recommendations interact.</p><div id="exec-recs"></div></div>
-     ${card("c-stage", "Change in late rate Jan → Mar 2018 by process stage (Shapley split of median shifts); the remainder is distribution shape.")}</div>`;
+     ${card("c-stage", "Change in late rate Jan → Mar 2018 by process stage: each stage's whole March distribution is swapped for January's (rank-preserving quantile mapping), Shapley over orderings.")}</div>`;
 
   function renderExec() {
     const sel = aggregate(st.from, st.to, false);
@@ -123,7 +123,7 @@
     const months = M.slice(st.from, st.to + 1), g = months.map((_, i) => (monthly[st.from + i] || {}).gmv);
     const pl = R.growth.supply_side.plateau;
     setT("c-gmv", st.state === "ALL" && st.cat === "ALL"
-      ? `GMV has been flat since Nov-2017; Jun–Aug 2018 is ${fmtPct(-pl.jun_aug_vs_mar_may)} below Mar–May`
+      ? `GMV has been flat since Nov-2017; Jun–Jul 2018 (full months) ran ${fmtPct(-pl.jun_jul_vs_mar_may_full_months)} below Mar–May`
       : `GMV by month for the selected slice (${win})`);
     plot("c-gmv", [{ type: "bar", x: months, y: g, marker: { color: COL.s1 }, hovertemplate: "%{x}<br>GMV R$%{y:,.0f}<extra></extra>" }],
       { yaxis: ax("GMV per month (BRL)", { tickprefix: "R$", tickformat: "~s" }), xaxis: ax("purchase month") });
@@ -142,11 +142,11 @@
     document.getElementById("exec-recs").innerHTML = "<ol style='margin:0;padding-left:18px;line-height:1.45'>" +
       rec.map((r) => `<li><b>${r.title}.</b> ${r.impact}. <span class="muted">Confidence: ${r.confidence}. ${r.owner}, ${r.date}.</span></li>`).join("") + "</ol>";
     const sh = R.recommendations.state.stages_jan_mar_2018;
-    const labs = { promise: "Promise cut (4 days)", transit: "Carrier transit slower", seller_days: "Seller handling" };
+    const labs = { promise: "Promise shortened", transit: "Carrier transit (slower tail)", seller_days: "Seller handling" };
     const ks = Object.keys(sh.shapley_pp);
-    setT("c-stage", `Spring-2018 slump: shorter promises (${sgn(sh.shapley_pp.promise, 1)} pp) and slower carriers (${sgn(sh.shapley_pp.transit, 1)} pp), not sellers`);
-    plot("c-stage", [{ type: "bar", orientation: "h", y: ks.map((k) => labs[k]).concat(["Distribution shape (unexplained)"]),
-      x: ks.map((k) => sh.shapley_pp[k]).concat([sh.unexplained_pp_distribution_shape]),
+    setT("c-stage", `Spring-2018 slump: a slower carrier-transit tail (${sgn(sh.shapley_pp.transit, 1)} pp) plus shorter promises (${sgn(sh.shapley_pp.promise, 1)} pp), not sellers`);
+    plot("c-stage", [{ type: "bar", orientation: "h", y: ks.map((k) => labs[k]).concat(["Residual (stage dependence)"]),
+      x: ks.map((k) => sh.shapley_pp[k]).concat([sh.residual_pp_dependence]),
       marker: { color: ks.map((k) => (sh.shapley_pp[k] >= 0 ? COL.s2 : COL.s1)).concat([COL.neutral]) },
       hovertemplate: "%{y}: %{x:+.1f} pp<extra></extra>" }],
       { margin: { l: 200, r: 16, t: 8, b: 44 }, xaxis: ax(`pp of late rate (${fmtPct(sh.late_rate_from)} → ${fmtPct(sh.late_rate_to)})`) });
@@ -155,12 +155,12 @@
   // ===== GROWTH (seller side)
   document.getElementById("page-growth").innerHTML =
     `<div class="grid g2">${card("c-sup", "Monthly GMV split by sellers in their first selling month vs existing sellers.", "chart tall")}
-     ${card("c-tree", "GMV = active sellers × GMV per active seller; average month of Jun–Aug 2018 vs Mar–May 2018 (log decomposition).", "chart tall")}</div>
+     ${card("c-tree", "GMV = active sellers × GMV per active seller; average full month of Jun–Jul 2018 vs Mar–May 2018 (log decomposition). The World Cup overlaps Jun–Jul.", "chart tall")}</div>
      <div style="height:14px"></div><div class="grid g2">
      ${card("c-funnel", "Olist Marketing Funnel: qualified leads → closed deals → sellers with at least one sale in the order data.")}
      ${card("c-cat", "Share of the Jan–Aug 2018 vs Jan–Aug 2017 GMV increase by category (item-level). Note: 2017 is the ramp-up base.")}</div>`;
   function renderGrowth() {
-    const sup = R.growth.supply_side, mm = sup.monthly, t = sup.jun_aug_vs_mar_may_seller_tree;
+    const sup = R.growth.supply_side, mm = sup.monthly, t = sup.jun_jul_vs_mar_may_seller_tree;
     setT("c-sup", `New sellers bring only ${fmtPct(sup.new_seller_gmv_share_2018, 0)} of 2018 GMV; the plateau is in existing sellers' sales`);
     plot("c-sup", [
       { type: "bar", name: "existing sellers", x: mm.map((r) => r.m), y: mm.map((r) => r.gmv - r.gmv_new_sellers), marker: { color: COL.s1 }, hovertemplate: "%{x}: R$%{y:,.0f}<extra>existing</extra>" },
@@ -168,7 +168,7 @@
     ], { barmode: "stack", showlegend: true, yaxis: ax("GMV per month (BRL)", { tickprefix: "R$", tickformat: "~s" }), xaxis: ax("purchase month") });
     setT("c-tree", `Active sellers +${fmtPct(t.sellers_to / t.sellers_from - 1, 0)}, GMV per seller ${fmtPct(t.gmv_per_seller_to / t.gmv_per_seller_from - 1, 0)}: supply grew, demand did not`);
     const vals = [t.gmv_from, t.drivers.active_sellers.contribution_brl, t.drivers.gmv_per_seller.contribution_brl, t.gmv_to];
-    plot("c-tree", [{ type: "waterfall", x: ["Mar–May avg", "More active sellers", "Less GMV per seller", "Jun–Aug avg"], y: vals,
+    plot("c-tree", [{ type: "waterfall", x: ["Mar–May avg", "More active sellers", "Less GMV per seller", "Jun–Jul avg"], y: vals,
       measure: ["absolute", "relative", "relative", "total"], connector: { line: { color: COL.grid } },
       increasing: { marker: { color: COL.s3 } }, decreasing: { marker: { color: COL.s2 } }, totals: { marker: { color: COL.neutral } },
       text: vals.map(fmtBRL), textposition: "outside", hovertemplate: "%{x}: %{y:,.0f} BRL<extra></extra>" }],
@@ -242,7 +242,7 @@
         ["Extra late orders / yr", fmtN(p.extra_late_orders_per_year), "annualised"],
         ["Expected avg review", sgn(r.expected_delta_avg_review, 3) + "★", reg.value === "survey_today" ? "under today's survey" : "if survey sent on delivery"],
         ["Extra 1–2★ reviews / yr", fmtN(r.extra_1_2_star_reviews_per_year), "annualised"],
-        ["Cost / yr (measured)", fmtBRL(r.cost_brl_per_year), "repeat GMV + review panel (null)"],
+        ["Cost / yr (illustrative)", fmtBRL(r.cost_brl_per_year), "at null point estimates (CIs include 0)"],
         ["Break-even conversion lift", be == null ? "n/a (longer promise)" : (100 * be).toFixed(3) + "% / day", "needed to pay for the cost"],
       ];
       document.getElementById("sim-out").innerHTML = out.map(([n, v, s]) => `<div class="card kpi"><div class="name">${n}</div><div class="val">${v}</div><div class="row muted">${s}</div></div>`).join("");
@@ -271,7 +271,8 @@
     plot("c-inflight", [
       { type: "scatter", mode: "lines", x: s2.map((r) => r.day), y: s2.map((r) => r.share_past_promise), line: { color: COL.s1, width: 1.5 }, name: "share past promise", hovertemplate: "%{x|%Y-%m-%d}: %{y:.1%}<extra></extra>" },
       { type: "scatter", mode: "markers", x: al.map((r) => r.day), y: al.map((r) => r.share_past_promise), marker: { size: 8, color: COL.bad, symbol: "x" }, name: "alert", hovertemplate: "alert %{x|%Y-%m-%d}<extra></extra>" },
-    ], { showlegend: true, yaxis: ax("open orders past promise", { tickformat: ".0%" }), xaxis: ax("day") });
+    ], { showlegend: true, yaxis: ax("open orders past promise", { tickformat: ".0%" }), xaxis: ax("day"),
+         annotations: [{ x: s2[s2.length - 1].day, y: s2[s2.length - 1].share_past_promise, text: "capture ends: open-order denominator truncated", showarrow: true, arrowhead: 0, ax: -150, ay: 20, font: { size: 10 } }] });
     const L = R.lanes, wl = L.worst_lanes.slice(0, 8);
     setT("lanes", `Against a lane-adjusted baseline only ${fmtN(L.summary.top10_excess_late_orders)} late orders/yr are excess in the 10 worst lanes (vs ${fmtN(L.summary.excess_vs_network_top10_old_method)} vs network average)`);
     document.getElementById("lanes").innerHTML = `<table><tr><th>Lane</th><th class="n">Orders</th><th class="n">Late</th><th class="n">Expected</th><th class="n">Excess late</th><th class="n">Seller handed over late</th><th class="n">1–2★ avoidable (rec./post)</th></tr>` +
@@ -307,7 +308,7 @@
 
   // ===== ROOT CAUSE
   document.getElementById("page-rca").innerHTML =
-    `<div class="card"><h2>Automated root cause: pick a KPI move</h2><p class="cap">Moves are found automatically (largest month-over-month changes). Each is split into mix (volume moved between segments) and rate (segments themselves changed) for six dimensions, including process stage (fulfilment leg) and lane. A driver is named only when the move is concentrated.</p>
+    `<div class="card"><h2>Automated root cause: pick a KPI move</h2><p class="cap">Moves are found automatically (largest month-over-month changes). Each is split into mix (volume moved between segments) and rate (segments themselves changed) for five dimensions incl. lane; process stages come from the distributional stage split. A driver is named only when the move is concentrated.</p>
      <div class="sim-controls"><label>Move <select id="rca-move"></select></label></div><div id="rca-summary" class="callout"></div></div>
      <div style="height:14px"></div><div class="grid g3">${card("c-rca-0", "")}${card("c-rca-1", "")}${card("c-rca-2", "")}</div>`;
   function renderRCA() {
@@ -319,7 +320,7 @@
     }
     const m = RC.moves[+selm.value], dims = m.dimension_ranking_by_surprise, d0 = m.by_dimension[dims[0]];
     const sp = m.stages;
-    const stageTxt = sp ? ` By process stage: promise ${sgn(sp.shapley_pp.promise, 1)} pp, seller handling ${sgn(sp.shapley_pp.seller_days, 1)} pp, carrier transit ${sgn(sp.shapley_pp.transit, 1)} pp (late rate ${fmtPct(sp.late_rate_from)} → ${fmtPct(sp.late_rate_to)}).` : "";
+    const stageTxt = sp ? ` By process stage (distributional Shapley): carrier transit ${sgn(sp.shapley_pp.transit, 1)} pp, promise ${sgn(sp.shapley_pp.promise, 1)} pp, seller handling ${sgn(sp.shapley_pp.seller_days, 1)} pp, residual ${sgn(sp.residual_pp_dependence, 1)} pp (late rate ${fmtPct(sp.late_rate_from)} → ${fmtPct(sp.late_rate_to)}).` : "";
     document.getElementById("rca-summary").innerHTML = `<b>${D.meta[m.kpi].label}</b> ${fmt(m.kpi, d0.kpi_from)} → ${fmt(m.kpi, d0.kpi_to)}. <b>Verdict: ${m.verdict.text.replace(/_/g, " ")}.</b>${stageTxt}`;
     ["c-rca-0", "c-rca-1", "c-rca-2"].forEach((id, j) => {
       const dim = dims[j], d = m.by_dimension[dim], rows = d.top_segments.slice(0, 7).reverse();

@@ -309,7 +309,7 @@
           "bin": "1-3 late",
           "effect": -0.650961,
           "ci95": [
-            -0.728652,
+            -0.728651,
             -0.573271
           ],
           "n": 1851,
@@ -942,6 +942,31 @@
       ]
     ],
     "assumption": "Exclusion: the strike moved delivery times but did not change what customers think of the product or seller except through lateness. Same-lane comparison (lane FE) with category FE. Threats: strike-related stockouts and general mood; the post-delivery subsample is selected on answer timing.",
+    "recorded_robustness": {
+      "first_stage_F_day_clustered": 42.122028,
+      "iv_with_seller_fe": {
+        "estimate": -1.218999,
+        "se": 0.253261,
+        "ci95": [
+          -1.718899,
+          -0.719099
+        ],
+        "p": 3e-06,
+        "n_obs": 11523
+      },
+      "anderson_rubin_95_set_day_clustered": [
+        -2.05,
+        -0.9
+      ],
+      "mean_days_late_among_late_strike_vs_control": [
+        6.237154,
+        10.008584
+      ]
+    },
+    "post_delivery_share_strike_vs_control": [
+      0.949543,
+      0.982773
+    ],
     "recorded_all_reviews": {
       "n": 12023,
       "late_rate_strike_window": 0.092505,
@@ -956,7 +981,7 @@
         "p": 5e-06,
         "n_obs": 11944
       },
-      "first_stage_F": 22.280274,
+      "first_stage_F": 22.280273,
       "reduced_form": {
         "estimate": -0.109363,
         "se": 0.027947,
@@ -992,7 +1017,7 @@
         "p": 0.0,
         "n_obs": 11642
       },
-      "first_stage_F": 33.701311,
+      "first_stage_F": 33.701308,
       "reduced_form": {
         "estimate": -0.018714,
         "se": 0.022144,
@@ -1012,7 +1037,8 @@
         ],
         "p": 0.424061,
         "n_obs": 11642
-      }
+      },
+      "status": "INVALID: the strike itself shifts who answers after delivery (selection on a post-instrument variable). Not used as evidence."
     }
   },
   "rd_appendix": {
@@ -1243,8 +1269,8 @@
     "lost_repeat_orders_point": 16.183749,
     "lost_repeat_gmv_brl_point": 2227.202147,
     "lost_repeat_gmv_brl_ci95": [
-      -1331.745386,
-      5786.14968
+      -1331.745563,
+      5786.149857
     ],
     "extra_1_2_star_reviews_recorded": 2954.099971,
     "extra_1_2_star_reviews_post_delivery": 538.793648,
@@ -1254,6 +1280,14 @@
       "avg_star_gain_on_those_reviews": 1.908292,
       "network_avg_review_gain": 0.10245,
       "reviews_in_window": 73724,
+      "one_two_star_avoided_exact_day_cells": 1866.13913,
+      "pre_delivery_reviews_without_exact_day_match": 451,
+      "post_delivery_reviews_in_8plus_day_bins": {
+        "15+ late": 18,
+        "8-14 late": 47
+      },
+      "pre_delivery_share_in_8plus_day_bins": 0.604851,
+      "framing": "Two instruments: keep a delivery-issue contact at promise + 2 days (incl. never-delivered orders, no public star) and move only the product/seller star rating to confirmed delivery. Value = rating accuracy for buyers and sellers; no BRL is claimed.",
       "note": "Upper bound: assumes pre-delivery reviewers would score like same-bin post-delivery reviewers once the parcel arrives (post-delivery reviewers are a selected, calmer group). Orders that never arrive are not in this sample."
     }
   }

@@ -34,7 +34,7 @@ def main() -> int:
     pp, s, ln = read_report("promise_policy"), read_report("sellers"), read_report("lanes")
     an, mc = read_report("anomalies"), read_report("metric_conflicts")
     voc, rv, rec = read_report("voc"), read_report("review_value"), read_report("recommendations")
-    sup, tree = g["supply_side"], g["supply_side"]["jun_aug_vs_mar_may_seller_tree"]
+    sup, tree = g["supply_side"], g["supply_side"]["jun_jul_vs_mar_may_seller_tree"]
     b = di["bounds"]
     fy, sel, te = pp["policies"]["full_year"], pp["policies"]["selection"], pp["policies"]["test"]
     lever = di["impact"]["survey_on_delivery_lever"]
@@ -50,8 +50,13 @@ def main() -> int:
          f"{brl(ml.value('gmv'))} / {ml.value('orders'):,.0f}", "metrics layer, unwindowed"),
         ("", "On-time / avg review (window)",
          f"{pct(ml.value('on_time_delivery_rate', start=W0, end=W1))} / {ml.value('avg_review_score', start=W0, end=W1):.2f}", "metrics layer"),
-        ("Growth", "Jun-Aug 2018 vs Mar-May 2018 monthly GMV", pct(sup["plateau"]["jun_aug_vs_mar_may"]), "growth.json supply_side.plateau"),
-        ("", "Active sellers / GMV per seller (Mar-May -> Jun-Aug avg)",
+        ("Growth", "Jun-Jul 2018 vs Mar-May 2018 monthly GMV (full months; Aug capture decays after Aug 21)",
+         pct(sup["plateau"]["jun_jul_vs_mar_may_full_months"]), "growth.json supply_side.plateau"),
+        ("", "Days 1-20 of Jun-Aug vs days 1-20 of Mar-May; Aug 1-20 vs May 1-20",
+         f"{pct(sup['plateau']['days_1_20_jun_aug_vs_mar_may'])}; {pct(sup['plateau']['aug_1_20_vs_may_1_20'])}", "growth.json supply_side.plateau"),
+        ("", "Jun-Aug incl. truncated August (round-2 figure, superseded)",
+         pct(sup["plateau"]["jun_aug_vs_mar_may_incl_truncated_august"]), "growth.json supply_side.plateau"),
+        ("", "Active sellers / GMV per seller (Mar-May -> Jun-Jul avg, full months)",
          f"{tree['sellers_from']:,.0f} -> {tree['sellers_to']:,.0f} / {brl(tree['gmv_per_seller_from'])} -> {brl(tree['gmv_per_seller_to'])}", "growth.json seller tree"),
         ("", "New sellers' share of 2018 GMV", pct(sup["new_seller_gmv_share_2018"]), "growth.json"),
         ("", "Funnel: MQL -> won -> sold; funnel sellers' share of 2018 GMV",
@@ -66,11 +71,17 @@ def main() -> int:
          f"{b['D_same_delivery_time']['recorded_all_reviews']:+.2f} / {b['D_same_delivery_time']['post_delivery_reviews']:+.2f}", "bounds"),
         ("", "Carrier-leg only, post-delivery, within seller x month",
          f"{di['E_carrier_leg_only']['estimate']:+.2f} {ci(di['E_carrier_leg_only']['ci95'])}", "E_carrier_leg_only"),
-        ("", "Truckers' strike IV: recorded / post-delivery (first-stage F)",
-         f"{iv['recorded_all_reviews']['iv_late_effect']['estimate']:+.2f} {ci(iv['recorded_all_reviews']['iv_late_effect']['ci95'])} (F {iv['recorded_all_reviews']['first_stage_F']:.0f}) / "
-         f"{iv['post_delivery_reviews']['iv_late_effect']['estimate']:+.2f} {ci(iv['post_delivery_reviews']['iv_late_effect']['ci95'])} (F {iv['post_delivery_reviews']['first_stage_F']:.0f})", "F_strike_iv"),
-        ("", "Survey-on-delivery lever: 1-2 star reviews avoided / yr; network avg stars",
-         f"<= {lever['one_two_star_reviews_avoided_upper_bound']:,.0f}; +{lever['network_avg_review_gain']:.2f}", "impact.survey_on_delivery_lever"),
+        ("", "Truckers' strike IV on RECORDED stars: lane FE / + seller FE",
+         f"{iv['recorded_all_reviews']['iv_late_effect']['estimate']:+.2f} {ci(iv['recorded_all_reviews']['iv_late_effect']['ci95'])} / "
+         f"{iv['recorded_robustness']['iv_with_seller_fe']['estimate']:+.2f} {ci(iv['recorded_robustness']['iv_with_seller_fe']['ci95'])}", "F_strike_iv"),
+        ("", "Strike IV first-stage F (lane / purchase-day clusters); Anderson-Rubin 95% set",
+         f"{iv['recorded_all_reviews']['first_stage_F']:.0f} / {iv['recorded_robustness']['first_stage_F_day_clustered']:.0f}; "
+         f"{iv['recorded_robustness']['anderson_rubin_95_set_day_clustered']}", "F_strike_iv.recorded_robustness"),
+        ("", "Strike IV on post-delivery reviews", "INVALID (strike shifts post-delivery share "
+         f"{pct(iv['post_delivery_share_strike_vs_control'][1])} -> {pct(iv['post_delivery_share_strike_vs_control'][0])}); not used", "F_strike_iv"),
+        ("", "Split-survey lever: pre-delivery 1-2 star ratings removed / yr (bin-matched / exact-day)",
+         f"<= {lever['one_two_star_reviews_avoided_upper_bound']:,.0f} / {lever['one_two_star_avoided_exact_day_cells']:,.0f}; "
+         f"post-delivery reviews in 8+ day bins: {sum(lever['post_delivery_reviews_in_8plus_day_bins'].values())}", "impact.survey_on_delivery_lever"),
         ("Repurchase", "180-d effect / MDE (80% power) / MDE relative to base",
          f"{100 * di['repurchase']['fe_lpm']['estimate']:+.2f} pp / {100 * di['repurchase']['mde_80pct_power']:.2f} pp / {pct(di['repurchase']['mde_relative_to_base'], 0)}", "repurchase"),
         ("Review value", "Seller next-4-week GMV per extra 1-2 star review",
@@ -83,13 +94,19 @@ def main() -> int:
          f"{fy['lane_q80']['mean_days_saved_vs_current']:.1f} d / {pct(fy['lane_q80']['late_rate'])}", "policies.full_year"),
         ("", "Lane-P80 break-even conversion lift per promise-day (survey today)",
          pct(fy["lane_q80"]["survey_today"]["breakeven_conversion_lift_per_promise_day"], 3), "policies.full_year"),
-        ("", "Policy chosen by the pre-set rule on the selection period", pp["recommended_policy"], "recommended_policy"),
+        ("", "Policy chosen by the pre-set rule on the selection period", f"{pp['recommended_policy']} (q99 in "
+         f"{pp['recalibrated_policy_summary']['months_at_q99']} of {pp['recalibrated_policy_summary']['months']} months; "
+         f"+{pp['recalibrated_policy_summary']['mean_extra_promise_days_full_year']:.1f} d promise on average)", "recommended_policy"),
+        ("", "A/B arm (lane-P80 capped at 3 days shorter), full year: days saved / late rate",
+         f"{fy['lane_q80_capped_3d']['mean_days_saved_vs_current']:.1f} d / {pct(fy['lane_q80_capped_3d']['late_rate'])}", "policies.full_year"),
+        ("", "Oct-2017 analog, treatment - control late: 5-day cap / 3-day cap",
+         f"{pp['ab_analogs']['2017-10']['capped5_minus_control_pp']:+.1f} pp / {pp['ab_analogs']['2017-10']['capped3_minus_control_pp']:+.1f} pp", "ab_analogs"),
         ("", "Model P50/P80/P90 coverage (ceil), selection / test",
          " / ".join(f"{pct(cov['selection'][q]['model_coverage_ceil'])}-{pct(cov['test'][q]['model_coverage_ceil'])}" for q in ("p50", "p80", "p90")), "coverage"),
         ("", "P90 pinball (test): model / lane / Olist",
          f"{cov['test']['p90']['model_pinball_delivered']:.2f} / {cov['test']['p90']['lane_pinball_delivered']:.2f} / {cov['test']['p90']['olist_pinball_delivered']:.2f}", "coverage.test"),
-        ("Root cause", "Jan->Mar 2018 late rate by stage: promise / transit / seller / unexplained (pp)",
-         f"{stg['shapley_pp']['promise']:+.1f} / {stg['shapley_pp']['transit']:+.1f} / {stg['shapley_pp']['seller_days']:+.1f} / {stg['unexplained_pp_distribution_shape']:+.1f}", "root_cause.json stages"),
+        ("Root cause", "Jan->Mar 2018 late rate by stage (distributional Shapley): transit / promise / seller / residual (pp)",
+         f"{stg['shapley_pp']['transit']:+.1f} / {stg['shapley_pp']['promise']:+.1f} / {stg['shapley_pp']['seller_days']:+.1f} / {stg['residual_pp_dependence']:+.1f}", "root_cause.json stages"),
         ("", "In-flight monitor first alert, Feb-Mar 2018 slump (volume monitor: none)",
          an["inflight_late_monitor"]["first_alert_by_incident"]["feb_mar_2018_slowdown"], "anomalies.json inflight_late_monitor"),
         ("Lanes", "10 worst lanes excess late orders: lane-adjusted / vs network average",

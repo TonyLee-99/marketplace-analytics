@@ -296,7 +296,8 @@ def main() -> int:
     policies = {"current_olist_estimate": "olist_promised_days", "uniform_minus_5_days": None,
                 **{f"lane_q{int(q * 100)}": f"lane_q{int(q * 100)}" for q in LANE_Q_GRID},
                 "lane_recalibrated_to_7pct_late": "lane_recalibrated",
-                "lane_q80_capped_5d": "CAPPED",
+                "lane_q80_capped_5d": "CAPPED5",
+                "lane_q80_capped_3d": "CAPPED3",
                 "model_p80": "model_p80", "model_p90": "model_p90"}
     sims = {}
     for pname, (a, b) in periods.items():
@@ -306,8 +307,9 @@ def main() -> int:
         for k, col in policies.items():
             if col is None:
                 prom = s["olist_promised_days"].to_numpy() - 5
-            elif col == "CAPPED":  # the A/B variant: never more than 5 days shorter than today
-                prom = np.maximum(np.ceil(s["lane_q80"].to_numpy()), s["olist_promised_days"].to_numpy() - 5)
+            elif col in ("CAPPED5", "CAPPED3"):  # A/B variants: never more than 5 / 3 days shorter than today
+                cap = 5 if col == "CAPPED5" else 3
+                prom = np.maximum(np.ceil(s["lane_q80"].to_numpy()), s["olist_promised_days"].to_numpy() - cap)
             else:
                 prom = s[col].to_numpy()
             sims[pname][k] = simulate(s, prom, effects, brl_per_bad, rep, months)
@@ -322,6 +324,11 @@ def main() -> int:
         "n": len(g), "current_late": float(np.mean(g.y_eval > g.olist_promised_days)),
         "lane_q80_late": float(np.mean(g.y_eval > np.ceil(g.lane_q80))),
         "recalibrated_late": float(np.mean(g.y_eval > np.ceil(g.lane_recalibrated))),
+        "capped5_late": float(np.mean(g.y_eval > np.maximum(np.ceil(g.lane_q80), g.olist_promised_days - 5))),
+        "capped3_late": float(np.mean(g.y_eval > np.maximum(np.ceil(g.lane_q80), g.olist_promised_days - 3))),
+        "capped5_days_saved": float(np.mean(g.olist_promised_days - np.maximum(np.ceil(g.lane_q80), g.olist_promised_days - 5))),
+        "capped3_days_saved": float(np.mean(g.olist_promised_days - np.maximum(np.ceil(g.lane_q80), g.olist_promised_days - 3))),
+        "recal_promise_minus_current": float(np.mean(np.ceil(g.lane_recalibrated) - g.olist_promised_days)),
         "recal_q": float(g.recal_q.iloc[0]),
         "model_p90_coverage": float(np.mean(g.y_eval <= np.ceil(g.model_p90))),
         "median_actual": float(g.y.median()), "mean_olist_promise": float(g.olist_promised_days.mean())}),
@@ -332,7 +339,20 @@ def main() -> int:
                                       lane_p80=("lane_q80", lambda s: float(np.ceil(s).mean())),
                                       actual_median=("y", "median"), late_current=("late_cur", "mean"))
                  .query("n >= 100").reset_index())
+    bm = by_month.set_index("month")
+    ab_analogs = {m: {"control_late": float(bm.loc[m, "current_late"]),
+                      "capped5_late": float(bm.loc[m, "capped5_late"]), "capped3_late": float(bm.loc[m, "capped3_late"]),
+                      "capped5_minus_control_pp": float(100 * (bm.loc[m, "capped5_late"] - bm.loc[m, "current_late"])),
+                      "capped3_minus_control_pp": float(100 * (bm.loc[m, "capped3_late"] - bm.loc[m, "current_late"])),
+                      "capped5_days_saved": float(bm.loc[m, "capped5_days_saved"]),
+                      "capped3_days_saved": float(bm.loc[m, "capped3_days_saved"])}
+                  for m in ("2017-10", "2018-01", "2018-02") if m in bm.index}
+    recal_summary = {"months_at_q99": int((bm["recal_q"] >= 0.99).sum()), "months": int(len(bm)),
+                     "mean_extra_promise_days_full_year": float(sims["full_year"]["lane_recalibrated_to_7pct_late"]["mean_days_saved_vs_current"] * -1),
+                     "mean_extra_promise_days_test": float(sims["test"]["lane_recalibrated_to_7pct_late"]["mean_days_saved_vs_current"] * -1)}
     write_report("promise_policy", {
+        "ab_analogs": ab_analogs,
+        "recalibrated_policy_summary": recal_summary,
         "padding": padding_report(d),
         "design": {"selection_period": SELECT, "test_period": TEST, "chosen_window_months": window,
                    "window_selection_mean_pinball": win_score, "features": FEATURES,

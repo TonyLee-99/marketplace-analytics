@@ -6,42 +6,100 @@
   "state": {
     "gmv_window": 13449529.68,
     "orders_window": 97905.0,
-    "on_time_window": 0.932112304190098,
-    "review_window": 4.117320792772027,
     "plateau": {
       "avg_monthly_gmv_nov17_feb18": 882349.4125,
       "avg_monthly_gmv_mar_may_2018": 989171.93,
       "avg_monthly_gmv_jun_aug_2018": 863389.966667,
-      "jun_aug_vs_mar_may": -0.127159
+      "jun_aug_vs_mar_may_incl_truncated_august": -0.127159,
+      "jun_jul_vs_mar_may_full_months": -0.119814,
+      "days_1_20_jun_aug_vs_mar_may": -0.11,
+      "aug_1_20_vs_may_1_20": -0.021372,
+      "aug_daily_orders_14_31": [
+        {
+          "d": "2018-08-14",
+          "n": 312
+        },
+        {
+          "d": "2018-08-15",
+          "n": 283
+        },
+        {
+          "d": "2018-08-16",
+          "n": 316
+        },
+        {
+          "d": "2018-08-17",
+          "n": 254
+        },
+        {
+          "d": "2018-08-18",
+          "n": 196
+        },
+        {
+          "d": "2018-08-19",
+          "n": 204
+        },
+        {
+          "d": "2018-08-20",
+          "n": 252
+        },
+        {
+          "d": "2018-08-21",
+          "n": 239
+        },
+        {
+          "d": "2018-08-22",
+          "n": 186
+        },
+        {
+          "d": "2018-08-23",
+          "n": 142
+        },
+        {
+          "d": "2018-08-24",
+          "n": 97
+        },
+        {
+          "d": "2018-08-25",
+          "n": 69
+        },
+        {
+          "d": "2018-08-26",
+          "n": 73
+        },
+        {
+          "d": "2018-08-27",
+          "n": 66
+        },
+        {
+          "d": "2018-08-28",
+          "n": 39
+        },
+        {
+          "d": "2018-08-29",
+          "n": 11
+        }
+      ],
+      "caveats": "Daily capture decays from 2018-08-21 (extract artefact), so August is excluded or day-matched. The FIFA World Cup (14 Jun - 15 Jul 2018, Brazil playing) overlaps the weak Jun-Jul window; not tested."
     },
-    "seller_tree": {
+    "seller_tree_full_months": {
       "gmv_from": 989171.93,
-      "gmv_to": 863389.966667,
-      "pct_change": -0.127159,
+      "gmv_to": 870654.9,
+      "pct_change": -0.119814,
       "drivers": {
         "active_sellers": {
-          "log_change": 0.134503,
-          "contribution_brl": 124395.538168
+          "log_change": 0.118198,
+          "contribution_brl": 109764.539235
         },
         "gmv_per_seller": {
-          "log_change": -0.270504,
-          "contribution_brl": -250177.501501
+          "log_change": -0.24582,
+          "contribution_brl": -228281.569235
         }
       },
       "sellers_from": 1072.0,
-      "sellers_to": 1226.333333,
+      "sellers_to": 1206.5,
       "gmv_per_seller_from": 922.735009,
-      "gmv_per_seller_to": 704.041832
-    },
-    "new_seller_gmv_share_2018": 0.070032,
-    "funnel": {
-      "mqls": 8000.0,
-      "won": 842.0,
-      "sold": 379.0,
-      "gmv_from_funnel_sellers": 674005.39,
-      "win_rate": 0.10525,
-      "sold_rate_of_won": 0.450119,
-      "funnel_seller_share_of_2018_gmv": 0.091813
+      "gmv_per_seller_to": 721.636884
     },
     "yoy_ytd": 1.382795,
     "repeat_rate_distinct_days": 0.021730204352357792,
@@ -50,16 +108,6 @@
       "post_delivery_reviews": -0.508922
     },
     "carrier_leg_post_delivery": -0.535017,
-    "strike_iv_post_delivery": {
-      "estimate": -0.490048,
-      "se": 0.611563,
-      "ci95": [
-        -1.697183,
-        0.717086
-      ],
-      "p": 0.424061,
-      "n_obs": 11642
-    },
     "strike_iv_recorded": {
       "estimate": -1.494622,
       "se": 0.305625,
@@ -70,6 +118,21 @@
       "p": 2e-06,
       "n_obs": 11944
     },
+    "strike_iv_recorded_seller_fe": {
+      "estimate": -1.218999,
+      "se": 0.253261,
+      "ci95": [
+        -1.718899,
+        -0.719099
+      ],
+      "p": 3e-06,
+      "n_obs": 11523
+    },
+    "strike_ar_set": [
+      -2.05,
+      -0.9
+    ],
+    "strike_first_stage_F_day": 42.122028,
     "repurchase": {
       "effect_pp": -0.2892,
       "mde_pp": 0.6596000000000001,
@@ -77,61 +140,101 @@
       "base": 0.018396
     },
     "stages_jan_mar_2018": {
-      "medians_from_to": {
-        "promise": [
-          26.0,
-          22.0
-        ],
-        "seller_days": [
-          2.449896,
-          2.365312
-        ],
-        "transit": [
-          8.035972,
-          9.880127
-        ]
+      "method": "distributional Shapley (rank-preserving quantile mapping of each stage)",
+      "tails": {
+        "promise": {
+          "from_p50_p90_p99": [
+            26.0,
+            36.0,
+            54.0
+          ],
+          "to_p50_p90_p99": [
+            22.0,
+            33.0,
+            47.0
+          ]
+        },
+        "seller_days": {
+          "from_p50_p90_p99": [
+            2.449896,
+            6.555657,
+            21.445953
+          ],
+          "to_p50_p90_p99": [
+            2.365312,
+            6.204345,
+            17.90033
+          ]
+        },
+        "transit": {
+          "from_p50_p90_p99": [
+            8.035972,
+            20.85913,
+            42.721701
+          ],
+          "to_p50_p90_p99": [
+            9.880127,
+            28.218125,
+            49.200251
+          ]
+        }
       },
       "late_rate_from": 0.057009,
       "late_rate_to": 0.189633,
       "shapley_pp": {
-        "promise": 5.62854,
-        "seller_days": -0.997192,
-        "transit": 2.522728
+        "promise": 5.966491,
+        "seller_days": -1.351802,
+        "transit": 8.079871
       },
-      "explained_pp": 7.154077,
-      "unexplained_pp_distribution_shape": 6.108277,
+      "residual_pp_dependence": 0.567794,
       "reading": "Positive = this stage's change raised the late rate."
     }
   },
   "recommendations": [
     {
       "id": 1,
-      "title": "Send the review survey on confirmed delivery",
+      "title": "Split the survey: delivery-issue contact at promise + 2 days, star rating on confirmed delivery",
       "why": "70% of late orders are rated before they arrive.",
-      "impact": "\u2264 2,215 fewer 1\u20132\u2605/yr; +0.10\u2605 network average (upper bounds)",
-      "cost": "1 sprint (change the survey trigger event)",
+      "impact": "removes \u2264 2,215 pre-delivery 1\u20132\u2605 ratings/yr (\u22481,866 with exact-day matching); value = rating accuracy, no BRL claimed",
       "confidence": "High on direction, medium on size",
       "owner": "CX product manager",
       "date": "ship by 2018-09-30"
     },
     {
       "id": 2,
-      "title": "Don't roll out shorter promises. A/B-test a capped cut (lane-P80, at most 5 days shorter) outside peak season",
-      "why": "Full year: lane-P80 saves 6.4 days but late rises 9.3% \u2192 20.6%. Oct\u2013Mar, today's promise was already 12.5% late; the pre-set rule picks 'lane recalibrated to 7pct late', which lengthens peak promises.",
-      "impact": "Rollout cost +3,428 1\u20132\u2605/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): \u22122.8 d, late 12.2%",
-      "cost": "A/B test: 1 sprint + 4 weeks",
+      "title": "Don't roll out shorter promises; A/B a 3-day-capped lane-P80 after the peak",
+      "why": "Full year, lane-P80 saves 6.4 d but late rises 9.3% \u2192 20.6%.",
+      "impact": "capped arm: \u22121.6 d, late 9.3% \u2192 10.8% (full year); pays only above +0.032% conversion per day saved",
       "confidence": "Low: upside unmeasured",
       "owner": "Delivery-promise PM + analytics",
-      "date": "start 2018-09-17, read out 2018-10-15 (before the Black Friday freeze)",
+      "date": "run 2019-01-14 \u2192 2019-02-10 (after the peak and after #1), final read-out 2019-03-03",
       "ab_design": {
-        "unit": "customer (cookie), 50/50, all lanes; treatment promise = max(lane-P80, current - 5 days)",
+        "unit": "customer (cookie), 50/50, all lanes; treatment promise = max(lane-P80, current \u2212 3 days)",
         "primary_metric": "checkout conversion of sessions that saw a promise",
-        "guardrails": "lane late rate <= 7% (never-delivered = late); 1\u20132\u2605 share",
-        "duration": "4 weeks",
-        "guardrail_mde_late_rate_pp": 1.660569528373474,
+        "guardrail": "matured late rate, treatment \u2212 control \u2264 +3 pp (read after promise + 7 days)",
+        "guardrail_mde_pp": 1.8731639361353574,
         "orders_per_arm": 3004.707692307692,
-        "kill_rule": "stop if treatment late rate exceeds control by 3 pp for 7 consecutive days, or 1\u20132\u2605 share is +1 pp",
-        "conversion_mde_note": "needs session counts (not in the Olist extract): MDE \u2248 2.8\u00b7sqrt(2c(1\u2212c)/S) for conversion c and S sessions per arm"
+        "kill_metric": "in-flight past-promise share (real time): stop if treatment \u2212 control > 3 pp for 3 consecutive days",
+        "analog_oct_2017": {
+          "control_late": 0.056301,
+          "capped5_late": 0.098527,
+          "capped3_late": 0.079393,
+          "capped5_minus_control_pp": 4.222564,
+          "capped3_minus_control_pp": 2.309215,
+          "capped5_days_saved": 4.29426,
+          "capped3_days_saved": 2.694084
+        },
+        "analog_jan_2018": {
+          "control_late": 0.072492,
+          "capped5_late": 0.117852,
+          "capped3_late": 0.098233,
+          "capped5_minus_control_pp": 4.535968,
+          "capped3_minus_control_pp": 2.574092,
+          "capped5_days_saved": 4.6278,
+          "capped3_days_saved": 2.90135
+        },
+        "overrides_preset_rule": "The pre-set rule rejects every capped arm (5-day cap: 17.6% late in Oct\u2013Mar vs the 7% bar). Its own pick uses the 99th percentile in 7 of 11 months and lengthens promises by 7.5 days on average all year. Testing a capped cut is a judgement call that overrides the rule.",
+        "conversion_mde_note": "needs session counts (not in the extract): MDE \u2248 2.8\u00b7sqrt(2c(1\u2212c)/S)"
       }
     },
     {
@@ -139,7 +242,6 @@
       "title": "Fix partial shipments: mark 'delivered' only when every item has arrived, and announce split shipments",
       "why": "'Incomplete order' is a top-two complaint on ON-TIME orders (23%, CI 19%\u201327%); 65% are multi-item orders (12% of reviews).",
       "impact": "\u2264 973 1\u20132\u2605/yr on R$220k/yr of orders (upper bound); raises the measured late rate",
-      "cost": "product + seller ops",
       "confidence": "Medium (text classifier, silver labels)",
       "owner": "Marketplace ops + order-management engineering",
       "date": "scope by 2018-10-01"
@@ -147,22 +249,17 @@
   ],
   "demoted": [
     "Seller quality plan for the 82 'fix-first' sellers (22% of GMV, 87% on-time): ops hygiene, no measurable BRL.",
-    "Lane/carrier programme: against a lane-adjusted baseline (distance, destination, origin, month) the 10 worst lanes have only 277 excess late orders/yr (\u224857 1\u20132\u2605 recorded, 20 post-delivery). That is down from 1,143 against the network average. There is no carrier ID, so 'switch carrier' cannot be analysed.",
-    "Money on reviews: in a seller-week panel, one extra 1\u20132\u2605 review is associated with \u2212R$13 of the seller's next-4-week GMV (95% CI \u2212R$62 to R$36, p=0.60): not detectable, so no BRL is attached to review gains."
+    "Lane/carrier programme: against a lane-adjusted baseline the 10 worst lanes have only 277 excess late orders/yr (\u224857 1\u20132\u2605 recorded, 20 post-delivery), down from 1,143 vs the network average. No carrier ID exists.",
+    "Money on reviews: one extra 1\u20132\u2605 review is associated with \u2212R$13 of the seller's next-4-week GMV (95% CI \u2212R$62 to R$36): not detectable. Caveat: per the dataset description, Olist sells through the 'Olist Store' on partner marketplaces, so buyers may mostly see the store's reputation rather than a seller's; the seller-week panel may be the wrong unit, so the null is uninformative."
   ],
   "net": {
-    "late_orders_per_year": {
-      "rec1": 0,
-      "rec2_ab_only": "small (A/B on 10 lanes)",
-      "rec2_if_rolled_out_lane_p80": 8722.909091,
-      "rec3": "raises measured late rate (not quantified: no item-level delivery timestamps)"
-    },
     "one_two_star_per_year": {
       "rec1_upper_bound": -2214.600521,
-      "rec2_rollout_survey_today": 3428.024269,
-      "rec2_rollout_after_rec1": 462.919423,
+      "rec1_exact_day": -1866.13913,
+      "rec2_capped_rollout_survey_today": 364.987657,
+      "rec2_capped_rollout_after_rec1": 55.890876,
       "rec3_upper_bound": -973.1999999999999
     },
-    "interactions": "Rec 1 cuts the review cost of Rec 2 by about 86%. Rec 3 delays the recorded delivery, which delays the survey under Rec 1 and raises the measured late rate. The effects are not additive; the lever sizes are upper bounds."
+    "interactions": "Rec 1 changes how lateness is recorded in stars, so the A/B runs after it ships, never across it. Rec 3 delays the recorded delivery, which delays the star survey and raises the measured late rate. Sizes are upper bounds and not additive."
   }
 }

@@ -201,6 +201,28 @@ def strike_iv(d: pd.DataFrame) -> dict:
            "think of the product or seller except through lateness. Same-lane comparison (lane FE) with "
            "category FE. Threats: strike-related stockouts and general mood; the post-delivery subsample is "
            "selected on answer timing."}
+    s["pday"] = pd.to_datetime(s["purchase_date"]).dt.strftime("%Y-%m-%d")
+    # Recorded stars, clustered by purchase day (right level for a time shock) + seller FE + AR set
+    fs_day = coef(pf.feols(f"late ~ strike + {CONTROLS} | lane + primary_category", data=s,
+                           vcov={"CRV1": "pday"}), "strike")
+    iv_sfe = coef(pf.feols(f"review_score ~ {CONTROLS} | primary_seller_id + lane + primary_category | late ~ strike",
+                           data=s, vcov={"CRV1": "lane"}), "late")
+    acc = []
+    for b0 in np.arange(-4.0, 1.001, 0.05):
+        s["ytil"] = s["review_score"] - b0 * s["late"]
+        t = pf.feols(f"ytil ~ strike + {CONTROLS} | lane + primary_category", data=s, vcov={"CRV1": "pday"}).tidy().loc["strike"]
+        if t["Pr(>|t|)"] > 0.05:
+            acc.append(float(round(b0, 2)))
+    out["recorded_robustness"] = {
+        "first_stage_F_day_clustered": float((fs_day["estimate"] / fs_day["se"]) ** 2),
+        "iv_with_seller_fe": iv_sfe,
+        "anderson_rubin_95_set_day_clustered": [min(acc), max(acc)] if acc else None,
+        "mean_days_late_among_late_strike_vs_control": [
+            float(s.loc[(s.strike == 1) & (s.late == 1), "days_late"].mean()),
+            float(s.loc[(s.strike == 0) & (s.late == 1), "days_late"].mean())],
+    }
+    out["post_delivery_share_strike_vs_control"] = [float(s.loc[s.strike == 1, "post_delivery_review"].mean()),
+                                                     float(s.loc[s.strike == 0, "post_delivery_review"].mean())]
     for label, sub in (("recorded_all_reviews", s), ("post_delivery_reviews", s[s.post_delivery_review])):
         vc = {"CRV1": "lane"}
         fs = pf.feols(f"late ~ strike + {CONTROLS} | lane + primary_category", data=sub, vcov=vc)
@@ -216,6 +238,8 @@ def strike_iv(d: pd.DataFrame) -> dict:
             "reduced_form": coef(rf, "strike"),
             "iv_late_effect": coef(iv, "late"),
         }
+    out["post_delivery_reviews"]["status"] = ("INVALID: the strike itself shifts who answers after delivery "
+                                              "(selection on a post-instrument variable). Not used as evidence.")
     return out
 
 
@@ -317,6 +341,10 @@ def impact_sizing(d: pd.DataFrame, rec: dict, post: dict, rep: dict) -> dict:
     cf_score = pre["bin"].map(post_bin["score"])
     cf_low = pre["bin"].map(post_bin["low"])
     n_reviews = int(last12.review_score.notna().sum())
+    dlc = lr["days_late"].clip(upper=30)
+    post_day = lr[lr.post_delivery_review].groupby(dlc[lr.post_delivery_review])["low_review"].mean()
+    cf_exact = dlc[~lr.post_delivery_review].map(post_day)
+    thin = lr[lr.post_delivery_review & lr["bin"].isin(["8-14 late", "15+ late"])].groupby("bin").size()
     return {
         "window": f"2017-09-01..{WINDOW_END}",
         "late_orders": late_orders,
@@ -333,6 +361,13 @@ def impact_sizing(d: pd.DataFrame, rec: dict, post: dict, rep: dict) -> dict:
             "avg_star_gain_on_those_reviews": float((cf_score - pre["review_score"]).mean()),
             "network_avg_review_gain": float((cf_score - pre["review_score"]).sum() / n_reviews),
             "reviews_in_window": n_reviews,
+            "one_two_star_avoided_exact_day_cells": float((pre["low_review"] - cf_exact).sum(skipna=True)),
+            "pre_delivery_reviews_without_exact_day_match": int(cf_exact.isna().sum()),
+            "post_delivery_reviews_in_8plus_day_bins": {str(k): int(v) for k, v in thin.items()},
+            "pre_delivery_share_in_8plus_day_bins": float(pre["bin"].isin(["8-14 late", "15+ late"]).mean()),
+            "framing": "Two instruments: keep a delivery-issue contact at promise + 2 days (incl. never-delivered "
+            "orders, no public star) and move only the product/seller star rating to confirmed delivery. Value "
+            "= rating accuracy for buyers and sellers; no BRL is claimed.",
             "note": "Upper bound: assumes pre-delivery reviewers would score like same-bin post-delivery "
             "reviewers once the parcel arrives (post-delivery reviewers are a selected, calmer group). "
             "Orders that never arrive are not in this sample.",
@@ -378,6 +413,7 @@ def main() -> int:
     })
     print(bounds)
     print("carrier-leg:", round(carrier["estimate"], 3), carrier["ci95"])
+    print("strike robustness", iv["recorded_robustness"], iv["post_delivery_share_strike_vs_control"])
     for k in ("recorded_all_reviews", "post_delivery_reviews"):
         v = iv[k]
         print("strike IV", k, round(v["iv_late_effect"]["estimate"], 3), v["iv_late_effect"]["ci95"],

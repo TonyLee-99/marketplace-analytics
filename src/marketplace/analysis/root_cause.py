@@ -30,7 +30,7 @@ from marketplace.analysis.common import WINDOW_END, df, write_report
 from marketplace.metrics import MetricsLayer
 
 KPIS = ["gmv", "on_time_delivery_rate", "avg_review_score"]
-DIMENSIONS = ["customer_state", "category", "seller_tier", "seller_state", "lane_top", "fulfilment_leg"]
+DIMENSIONS = ["customer_state", "category", "seller_tier", "seller_state", "lane_top"]  # process stages: stage_shapley
 NETWORK_WIDE_VOLUME_SHARE = 0.8
 TOP_MOVES = 2
 
@@ -221,11 +221,12 @@ def verdict(kpi: str, dims: dict) -> dict:
 
 
 def stage_shapley(m0: str, m1: str) -> dict:
-    """On-time move split by process stage: promise length, seller stage (purchase -> carrier),
-    carrier transit. Each stage of month m1 is shifted to its m0 median level; Shapley values
-    over the 2^3 combinations add up to the explained part of the late-rate change."""
-    from itertools import combinations
-    from math import factorial
+    """On-time move split by process stage: promise length, seller stage (purchase -> carrier
+    hand-over) and carrier transit. A late rate is a TAIL quantity, so each stage of month m1 is
+    replaced by month m0's whole distribution (rank-preserving quantile mapping, DiNardo-Fortin-
+    Lemieux style), not shifted by its median. Shapley values over all orderings add up to the
+    change; what is left is only the dependence structure between stages."""
+    from itertools import permutations
 
     q = df(
         f"""
@@ -239,33 +240,36 @@ def stage_shapley(m0: str, m1: str) -> dict:
         """
     )
     q["m"] = pd.to_datetime(q["m"]).dt.strftime("%Y-%m-%d")
-    a, b = q[q.m == m0], q[q.m == m1]
-    med = {k: (float(a[k].median()), float(b[k].median())) for k in ("promise", "seller_days", "transit")}
-    shift = {"promise": med["promise"][0] - med["promise"][1],
-             "seller_days": med["seller_days"][0] - med["seller_days"][1],
-             "transit": med["transit"][0] - med["transit"][1]}
+    a, b = q[q.m == m0].reset_index(drop=True), q[q.m == m1].reset_index(drop=True)
+    factors = ["promise", "seller_days", "transit"]
+
+    def qmap(col):
+        r = b[col].rank(pct=True, method="average").clip(1e-6, 1 - 1e-6)
+        return np.quantile(a[col], r)
+
+    mapped = {k: qmap(k) for k in factors}
+    resid = b["y"] - (b["seller_days"] + b["transit"])  # each order's own rounding remainder
 
     def late(S):
-        y = b["y"] + sum(shift[k] for k in S if k != "promise")
-        p = b["promise"] + (shift["promise"] if "promise" in S else 0)
-        return float(np.mean(y > p))
+        sel = mapped["seller_days"] if "seller_days" in S else b["seller_days"]
+        tra = mapped["transit"] if "transit" in S else b["transit"]
+        pro = mapped["promise"] if "promise" in S else b["promise"]
+        return float(np.mean(sel + tra + resid > pro))
 
-    factors = list(shift)
-    n = len(factors)
-    phi = {}
-    for f in factors:
-        others = [x for x in factors if x != f]
-        v = 0.0
-        for k in range(n):
-            for S in combinations(others, k):
-                w = factorial(len(S)) * factorial(n - len(S) - 1) / factorial(n)
-                v += w * (late(set(S)) - late(set(S) | {f}))
-        phi[f] = v  # contribution of factor f to (late_m1 - late_counterfactual_all_shifted)
-    late0, late1 = float(np.mean(a.y > a.promise)), late(set())
-    explained = late1 - late(set(factors))
-    return {"medians_from_to": med, "late_rate_from": late0, "late_rate_to": late1,
-            "shapley_pp": {k: 100 * v for k, v in phi.items()}, "explained_pp": 100 * explained,
-            "unexplained_pp_distribution_shape": 100 * ((late1 - late0) - explained),
+    perms = list(permutations(factors))
+    phi = {f: 0.0 for f in factors}
+    for order in perms:
+        S: set = set()
+        for f in order:
+            phi[f] += (late(S) - late(S | {f})) / len(perms)
+            S |= {f}
+    late0, late1 = float(np.mean(a.y > a.promise)), float(np.mean(b.y > b.promise))
+    tails = {k: {"from_p50_p90_p99": [float(x) for x in np.quantile(a[k], [0.5, 0.9, 0.99])],
+                 "to_p50_p90_p99": [float(x) for x in np.quantile(b[k], [0.5, 0.9, 0.99])]} for k in factors}
+    return {"method": "distributional Shapley (rank-preserving quantile mapping of each stage)",
+            "tails": tails, "late_rate_from": late0, "late_rate_to": late1,
+            "shapley_pp": {k: 100 * v for k, v in phi.items()},
+            "residual_pp_dependence": 100 * ((late1 - late0) - sum(phi.values())),
             "reading": "Positive = this stage's change raised the late rate."}
 
 
