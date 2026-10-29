@@ -142,8 +142,7 @@ def review_models(d: pd.DataFrame) -> dict:
     )
     out["C_within_seller_month"] = coef(
         pf.feols(
-            f"review_score ~ late + {CONTROLS} | seller_month + primary_category + "
-            "customer_state",
+            f"review_score ~ late + {CONTROLS} | seller_month + primary_category + customer_state",
             data=r,
             vcov=vc,
         ),
@@ -265,9 +264,7 @@ def repurchase_models(d: pd.DataFrame) -> dict:
         "n_on_time": int((f.late == 0).sum()),
     }
     naive["diff"] = naive["rate_late"] - naive["rate_on_time"]
-    fe = coef(
-        pf.feols(f"repurchased ~ late + {CONTROLS} | {FE_FULL}", data=f, vcov=vc), "late"
-    )
+    fe = coef(pf.feols(f"repurchased ~ late + {CONTROLS} | {FE_FULL}", data=f, vcov=vc), "late")
     with_review = coef(
         pf.feols(
             f"repurchased ~ late + C(review_score) + {CONTROLS} | {FE_FULL}",

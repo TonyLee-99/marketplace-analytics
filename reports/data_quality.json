@@ -1,0 +1,194 @@
+[
+  {
+    "id": "DQ01",
+    "issue": "customer_id is order-scoped: distinct customer_id vs distinct people (customer_unique_id)",
+    "count": 3345,
+    "handling": "dim_customers is keyed on customer_unique_id; all customer metrics pinned to it in metrics.yml. Using customer_id would make the repeat rate 0%."
+  },
+  {
+    "id": "DQ02",
+    "issue": "Orders with status 'delivered' but no delivered_to_customer date",
+    "count": 8,
+    "handling": "is_delivered requires both status and date, so these 8 are excluded from delivery KPIs (still revenue orders)."
+  },
+  {
+    "id": "DQ03",
+    "issue": "Orders NOT delivered but carrying a customer-delivery date (canceled after delivery)",
+    "count": 6,
+    "handling": "Status wins: not counted as delivered."
+  },
+  {
+    "id": "DQ04",
+    "issue": "Orders with no items at all (mostly unavailable / canceled)",
+    "count": 775,
+    "handling": "is_revenue_order = false; kept in fct_orders for cancellation-rate denominators."
+  },
+  {
+    "id": "DQ05",
+    "issue": "Orders with no payment row",
+    "count": 1,
+    "handling": "Kept; payment_total_brl null, excluded from the reconciliation test."
+  },
+  {
+    "id": "DQ06",
+    "issue": "Orders with no review",
+    "count": 768,
+    "handling": "Review metrics use reviewed orders only (documented caveat: survey non-response is not random)."
+  },
+  {
+    "id": "DQ07",
+    "issue": "Orders with more than one review row",
+    "count": 547,
+    "handling": "int_reviews_latest_per_order keeps the latest answered review."
+  },
+  {
+    "id": "DQ08",
+    "issue": "review_id values shared by more than one order (review_id is not a key)",
+    "count": 789,
+    "handling": "Grain of stg_olist__reviews is (review_id, order_id) via review_key."
+  },
+  {
+    "id": "DQ09",
+    "issue": "Geolocation rows that are duplicates of (zip, lat, lng)",
+    "count": 280009,
+    "handling": "int_zip_geolocation: one row per zip prefix (median lat/lng, modal city/state)."
+  },
+  {
+    "id": "DQ10",
+    "issue": "Geolocation points outside Brazil's bounding box",
+    "count": 42,
+    "handling": "Dropped before taking the median coordinate."
+  },
+  {
+    "id": "DQ11",
+    "issue": "Zip prefixes mapped to more than one state in geolocation",
+    "count": 8,
+    "handling": "Modal state used."
+  },
+  {
+    "id": "DQ12",
+    "issue": "City spelling variants in geolocation (distinct raw names minus accent/case-normalised names)",
+    "count": 2042,
+    "handling": "Cities normalised with lower(strip_accents(trim())) in staging."
+  },
+  {
+    "id": "DQ13",
+    "issue": "Customer zip prefixes with no geolocation match",
+    "count": 278,
+    "handling": "seller_customer_km is null for those orders; models treat missing distance as 0 km + the log feature (documented)."
+  },
+  {
+    "id": "DQ14",
+    "issue": "Seller zip prefixes with no geolocation match",
+    "count": 7,
+    "handling": "Same as DQ13."
+  },
+  {
+    "id": "DQ15",
+    "issue": "Products with null category",
+    "count": 610,
+    "handling": "category = 'unknown'."
+  },
+  {
+    "id": "DQ16",
+    "issue": "Categories missing from the English translation file",
+    "count": 2,
+    "handling": "seeds/category_translation_patch.csv adds the 2 missing names."
+  },
+  {
+    "id": "DQ17",
+    "issue": "Products with weight 0 g",
+    "count": 4,
+    "handling": "Set to null (physically impossible)."
+  },
+  {
+    "id": "DQ18",
+    "issue": "Source column names misspelled ('lenght')",
+    "count": 2,
+    "handling": "Renamed to *_length in stg_olist__products."
+  },
+  {
+    "id": "DQ19",
+    "issue": "Translation file header starts with a UTF-8 BOM",
+    "count": 1,
+    "handling": "Column renamed in ingest (marketplace.ingest)."
+  },
+  {
+    "id": "DQ20",
+    "issue": "Orders handed to the carrier before they were purchased",
+    "count": 166,
+    "handling": "Kept (timestamps likely recorded in different time zones/systems); handling_days can be negative; analyses use medians."
+  },
+  {
+    "id": "DQ21",
+    "issue": "Orders delivered to the customer before the carrier pick-up",
+    "count": 23,
+    "handling": "Kept; carrier_transit_days can be negative; medians used."
+  },
+  {
+    "id": "DQ22",
+    "issue": "Orders delivered before purchase",
+    "count": 0,
+    "handling": "None found; enforced by dbt test assert_delivered_not_before_purchase."
+  },
+  {
+    "id": "DQ23",
+    "issue": "Orders where payments differ from item price + freight by > 1 BRL",
+    "count": 249,
+    "handling": "Mostly instalment interest (n>1 and overpaid) - allowed. Remaining exceptions WARN in dbt test assert_payments_reconcile_to_items (error only if >0.5% of orders)."
+  },
+  {
+    "id": "DQ24",
+    "issue": "...of which NOT explained by instalment interest",
+    "count": 20,
+    "handling": "Reported as dbt WARN; investigated in a real team."
+  },
+  {
+    "id": "DQ25",
+    "issue": "Payment rows with payment_type 'not_defined'",
+    "count": 3,
+    "handling": "Kept as a category (all have value 0)."
+  },
+  {
+    "id": "DQ26",
+    "issue": "Payment rows with value 0",
+    "count": 9,
+    "handling": "Kept."
+  },
+  {
+    "id": "DQ27",
+    "issue": "Item lines with freight 0",
+    "count": 383,
+    "handling": "Kept (free shipping promotions)."
+  },
+  {
+    "id": "DQ28",
+    "issue": "Purchase months with sparse capture: orders in Sep-Dec 2016 (Nov-2016 has none)",
+    "count": 329,
+    "handling": "Analyses use the reliable window Jan-2017..Aug-2018 (dim_date.is_in_reliable_window)."
+  },
+  {
+    "id": "DQ29",
+    "issue": "Orders purchased after 2018-08-31 (feed tails off: Sep/Oct 2018)",
+    "count": 20,
+    "handling": "Excluded from analyses; the anomaly monitor flags the drop as a data-feed incident."
+  },
+  {
+    "id": "DQ30",
+    "issue": "People (customer_unique_id) with more than one delivery zip over time",
+    "count": 250,
+    "handling": "Modelled as SCD2 history in dim_customer_location_history."
+  },
+  {
+    "id": "DQ31",
+    "issue": "Orders with items from more than one seller",
+    "count": 1278,
+    "handling": "Order-level seller = primary seller (largest price share); item-level facts keep every seller."
+  },
+  {
+    "id": "DQ32",
+    "issue": "Estimated delivery date stored as midnight timestamp (it is a date)",
+    "count": 0,
+    "handling": "0 non-midnight values: cast to DATE; on-time compares dates (timestamp compare would mis-count same-day deliveries as late)."
+  }
+]

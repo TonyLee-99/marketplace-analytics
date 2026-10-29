@@ -17,6 +17,7 @@ import math
 import re
 import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import duckdb
 import pandas as pd
@@ -50,7 +51,7 @@ class MetricsLayer:
     # ------------------------------------------------------------------ loading
     @classmethod
     def load(cls, path=METRICS_YAML, db_path=None) -> MetricsLayer:
-        spec = yaml.safe_load(open(path))
+        spec = yaml.safe_load(Path(path).read_text())
         layer = cls(spec=spec, db_path=str(db_path or WAREHOUSE))
         layer.validate()
         return layer
@@ -71,9 +72,10 @@ class MetricsLayer:
             missing = required - m.keys()
             if missing:
                 raise ValueError(f"metric {m.get('name')} missing {missing}")
-            if m["type"] in {"simple", "ratio", "concentration"} and m["model"] not in self.spec[
-                "models"
-            ]:
+            if (
+                m["type"] in {"simple", "ratio", "concentration"}
+                and m["model"] not in self.spec["models"]
+            ):
                 raise ValueError(f"metric {m['name']} uses unknown model {m['model']}")
             if m["type"] == "derived":
                 for dep in re.findall(r"[a-z_][a-z0-9_]*", m["formula"]):
@@ -142,6 +144,53 @@ class MetricsLayer:
                     f" as value from r group by 1"
                 )
         raise ValueError(f"cannot compile metric type {m['type']} for {name}")
+
+    def components(
+        self, name: str, by: str, grain="month", where=None, start=None, end=None
+    ) -> pd.DataFrame:
+        """Additive numerator/denominator of a metric per (period, segment).
+
+        value = num / den, and num, den are additive across segments, which is what a
+        mix-vs-rate decomposition needs. Supported: simple sum/count (den = 1 per segment is
+        meaningless, so den = None), simple avg (num = sum, den = count), ratio of sums/counts.
+        `by` is a declared dimension or raw column of the model's table, or a list of them
+        (then one output column per dimension instead of `segment`).
+        """
+        m = self.metrics[name]
+        model = self.spec["models"][m["model"]]
+        dims = [by] if isinstance(by, str) else list(by)
+        cols = [model["dimensions"].get(d, d) for d in dims]
+        period = self._period_sql(model, grain)
+        w = self._where_sql(model, where, start, end)
+        t = model["table"]
+
+        def part(meas):
+            if meas["agg"] == "count_distinct":
+                raise ValueError(f"{name}: count_distinct is not additive across segments")
+            return _measure_sql(meas)
+
+        if m["type"] == "simple" and m["measure"]["agg"] == "avg":
+            meas = m["measure"]
+            flt = meas.get("filter", "true")
+            num = f"sum({meas['expr']}) filter (where {flt} and {meas['expr']} is not null)"
+            den = f"count({meas['expr']}) filter (where {flt})"
+        elif m["type"] == "simple":
+            num, den = part(m["measure"]), "null"
+        elif m["type"] == "ratio":
+            num, den = part(m["numerator"]), part(m["denominator"])
+        else:
+            raise ValueError(f"{name}: components not defined for type {m['type']}")
+        if len(dims) == 1:
+            seg_sql, n_group = f"{cols[0]} as segment", 2
+        else:
+            seg_sql = ", ".join(f"{c} as {d}" for c, d in zip(cols, dims, strict=True))
+            n_group = 1 + len(dims)
+        groups = ", ".join(str(i) for i in range(1, n_group + 1))
+        sql = (
+            f"select {period} as period, {seg_sql}, ({num})::double as num, "
+            f"({den})::double as den from {t} where {w} group by {groups}"
+        )
+        return self.con.execute(sql).df()
 
     # ---------------------------------------------------------------- computing
     def compute(self, names, grain="month", where=None, start=None, end=None) -> pd.DataFrame:

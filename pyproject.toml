@@ -3,7 +3,22 @@ name = "marketplace-analytics"
 version = "1.0.0"
 description = "Olist marketplace: dbt + DuckDB star schema, governed metrics layer, analyses, executive BI dashboard"
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "dbt-core==1.12.6",
+    "dbt-duckdb==1.11.1",
+    "duckdb==2.0.0",
+    "numpy==2.5.4",
+    "pandas==3.1.0",
+    "playwright==1.64.1",
+    "plotly==7.1.0",
+    "pyarrow==26.0.0",
+    "pyfixest==0.60.0",
+    "pytest==9.2.0",
+    "pyyaml==6.0.3",
+    "ruff==0.17.3",
+    "scikit-learn==1.9.1",
+    "statsmodels==0.15.0",
+]
 
 [tool.ruff]
 line-length = 100
@@ -12,6 +27,8 @@ extend-exclude = ["dbt/target", "dbt/dbt_packages", ".venv"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+# Line length is enforced by `ruff format`; long SQL/prose strings are allowed.
+ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

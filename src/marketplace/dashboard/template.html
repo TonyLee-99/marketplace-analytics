@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace Executive Dashboard (Olist, 2017-2018)</title>
+<style>
+.viz-root {
+  color-scheme: light;
+  --surface-0: #f4f4f2;
+  --surface-1: #fcfcfb;
+  --border: #e2e1dc;
+  --grid: #ecebe7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7a7974;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --good: #1a7f37;
+  --critical: #c62828;
+  --neutral: #9a9994;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+       background: var(--surface-0); color: var(--text-primary); font-size: 14px; }
+header { background: var(--surface-1); border-bottom: 1px solid var(--border); padding: 14px 24px 0; }
+header h1 { font-size: 18px; margin: 0 0 2px; font-weight: 650; }
+header .sub { color: var(--text-secondary); font-size: 12px; margin-bottom: 10px; }
+nav { display: flex; gap: 2px; }
+nav button { border: 0; background: none; padding: 10px 14px; font-size: 13px; cursor: pointer;
+             color: var(--text-secondary); border-bottom: 2px solid transparent; }
+nav button.active { color: var(--text-primary); border-bottom-color: var(--series-1); font-weight: 600; }
+.filters { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding: 10px 24px;
+           background: var(--surface-1); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
+.filters label { font-size: 12px; color: var(--text-secondary); display: flex; gap: 6px; align-items: center; }
+.filters select { font-size: 13px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
+.filters .note { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+main { padding: 18px 24px 40px; max-width: 1440px; margin: 0 auto; }
+.page { display: none; }
+.page.active { display: block; }
+.grid { display: grid; gap: 14px; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.card h2 { font-size: 14px; margin: 0 0 2px; font-weight: 620; line-height: 1.35; }
+.card .cap { font-size: 11.5px; color: var(--text-muted); margin: 0 0 6px; }
+.chart { width: 100%; height: 300px; }
+.chart.tall { height: 380px; }
+.kpi { padding: 12px 14px; }
+.kpi .name { font-size: 12px; color: var(--text-secondary); }
+.kpi .val { font-size: 26px; font-weight: 650; margin: 2px 0; font-variant-numeric: tabular-nums; }
+.kpi .row { font-size: 12px; color: var(--text-secondary); display: flex; gap: 10px; flex-wrap: wrap; }
+.pill { display: inline-flex; gap: 3px; align-items: center; font-weight: 600; }
+.pill.good { color: var(--good); } .pill.bad { color: var(--critical); } .pill.flat { color: var(--text-muted); }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th { text-align: left; color: var(--text-secondary); font-weight: 600; border-bottom: 1px solid var(--border); padding: 5px 6px; }
+td { border-bottom: 1px solid var(--grid); padding: 5px 6px; }
+td.n, th.n { text-align: right; }
+.callout { background: #eef4fc; border-left: 3px solid var(--series-1); padding: 10px 12px; border-radius: 6px; font-size: 13px; line-height: 1.45; }
+.callout b { font-weight: 650; }
+.sim-controls { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin: 6px 0 10px; font-size: 13px; }
+.sim-controls select, .sim-controls input { font-size: 13px; }
+.sim-out { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.sim-out .kpi .val { font-size: 20px; }
+.muted { color: var(--text-muted); }
+.badge { font-size: 10.5px; color: var(--series-1); border: 1px solid #b7d3f6; border-radius: 10px; padding: 1px 7px; margin-left: 6px; vertical-align: 1px; font-weight: 500; }
+footer { color: var(--text-muted); font-size: 11px; padding: 0 24px 24px; max-width: 1440px; margin: 0 auto; }
+@media (max-width: 1000px) { .g2, .g3, .g4, .sim-out { grid-template-columns: 1fr; } }
+</style>
+<script>/*__PLOTLY__*/</script>
+</head>
+<body class="viz-root">
+<header>
+  <h1>Marketplace Executive Dashboard <span class="muted" style="font-weight:400">· Olist Brazil, Jan-2017 to Aug-2018</span></h1>
+  <div class="sub">Every KPI is computed by the governed metrics layer (metrics/metrics.yml) from the dbt marts. Real public data (CC BY-NC-SA 4.0). Targets are illustrative planning targets, not Olist's.</div>
+  <nav id="nav"></nav>
+</header>
+<div class="filters" id="filters">
+  <label>From <select id="f-from"></select></label>
+  <label>To <select id="f-to"></select></label>
+  <label>Customer state <select id="f-state"></select></label>
+  <label>Category <select id="f-cat"></select></label>
+  <span class="note">Charts marked <span class="badge">filters</span> respond to these controls; the others are fixed analyses over the full window.</span>
+</div>
+<main id="main"></main>
+<footer>Built by <code>make dashboard</code> from data/warehouse.duckdb. Sources: reports/*.json (analyses), metrics.metric_values. Methodology and caveats: docs/exec_memo.md appendix.</footer>
+<script>/*__DATA__*/</script>
+<script>/*__APP__*/</script>
+</body>
+</html>

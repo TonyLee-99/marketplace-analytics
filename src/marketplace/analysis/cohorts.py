@@ -58,7 +58,8 @@ def main() -> int:
     orders["cohort"] = orders["customer_unique_id"].map(first["purchase_month"])
     orders["k"] = (
         (orders["purchase_month"].dt.year - orders["cohort"].dt.year) * 12
-        + orders["purchase_month"].dt.month - orders["cohort"].dt.month
+        + orders["purchase_month"].dt.month
+        - orders["cohort"].dt.month
     )
     sizes = first.groupby("purchase_month").size()
     active = orders.groupby(["cohort", "k"])["customer_unique_id"].nunique().unstack(fill_value=0)
@@ -92,15 +93,20 @@ def main() -> int:
     km_all = kaplan_meier(np.where(obs_all, gap, censor), obs_all.astype(int), at_days)
     # Exclude same calendar-day next orders: look for the next order on a later day.
     o["pdate"] = o["purchased_at"].dt.normalize()
-    later = o.merge(o[["customer_unique_id", "purchased_at", "pdate"]], on="customer_unique_id",
-                    suffixes=("", "_n"))
+    later = o.merge(
+        o[["customer_unique_id", "purchased_at", "pdate"]],
+        on="customer_unique_id",
+        suffixes=("", "_n"),
+    )
     later = later[later.pdate_n > later.pdate]
     nxt = later.groupby("order_id")["purchased_at_n"].min()
     gap2 = (f["order_id"].map(nxt) - f["purchased_at"]).dt.total_seconds() / 86400
     obs2 = gap2.notna().to_numpy()
     km_later = kaplan_meier(np.where(obs2, gap2, censor), obs2.astype(int), at_days)
-    same_day_share = float(((gap < 1) & (f["next_at"].dt.normalize() == f["purchased_at"].dt.normalize())).sum()
-                           / max(obs_all.sum(), 1))
+    same_day_share = float(
+        ((gap < 1) & (f["next_at"].dt.normalize() == f["purchased_at"].dt.normalize())).sum()
+        / max(obs_all.sum(), 1)
+    )
 
     ml = MetricsLayer.load()
     repeat_gmv = float(orders.loc[orders.customer_order_number >= 2, "items_price_brl"].sum())
@@ -112,8 +118,12 @@ def main() -> int:
         "cohorts",
         {
             "people": people,
-            "people_with_2plus_orders": int((orders.groupby("customer_unique_id").size() >= 2).sum()),
-            "lifetime_repeat_rate": float((orders.groupby("customer_unique_id").size() >= 2).mean()),
+            "people_with_2plus_orders": int(
+                (orders.groupby("customer_unique_id").size() >= 2).sum()
+            ),
+            "lifetime_repeat_rate": float(
+                (orders.groupby("customer_unique_id").size() >= 2).mean()
+            ),
             "orders_per_person_distribution": n_orders_dist.head(6),
             "repeat_gmv_share": repeat_gmv / total_gmv,
             "km_cumulative_2nd_order_any": km_all,

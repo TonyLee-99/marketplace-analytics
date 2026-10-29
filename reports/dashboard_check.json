@@ -1,0 +1,45 @@
+{
+  "pages": {
+    "exec": {
+      "charts": 2,
+      "empty": [],
+      "screenshot": "dashboard_exec.png"
+    },
+    "growth": {
+      "charts": 4,
+      "empty": [],
+      "screenshot": "dashboard_growth.png"
+    },
+    "customers": {
+      "charts": 2,
+      "empty": [],
+      "screenshot": "dashboard_customers.png"
+    },
+    "delivery": {
+      "charts": 5,
+      "empty": [],
+      "screenshot": "dashboard_delivery.png"
+    },
+    "sellers": {
+      "charts": 2,
+      "empty": [
+        "c-voc"
+      ],
+      "screenshot": "dashboard_sellers.png"
+    },
+    "rca": {
+      "charts": 3,
+      "empty": [],
+      "screenshot": "dashboard_rca.png"
+    }
+  },
+  "filter_test": {
+    "kpis_changed_with_state_filter": true,
+    "kpis_changed_with_category_and_date_filter": true,
+    "gmv_card_all": "R$13.45M",
+    "gmv_card_RJ": "R$1.80M"
+  },
+  "errors": [
+    "sellers: empty charts ['c-voc']"
+  ]
+}

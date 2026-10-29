@@ -33,8 +33,12 @@ def decompose(g0: pd.Series, g1: pd.Series) -> dict:
     """LMDI decomposition of the change between two metric-tree rows."""
     total = g1["gmv"] - g0["gmv"]
     ln_total = np.log(g1["gmv"] / g0["gmv"])
-    out = {"gmv_from": g0["gmv"], "gmv_to": g1["gmv"], "delta_gmv": total,
-           "pct_change": g1["gmv"] / g0["gmv"] - 1}
+    out = {
+        "gmv_from": g0["gmv"],
+        "gmv_to": g1["gmv"],
+        "delta_gmv": total,
+        "pct_change": g1["gmv"] / g0["gmv"] - 1,
+    }
     parts = {}
     for d in DRIVERS:
         ln_i = np.log(g1[d] / g0[d])
@@ -67,15 +71,22 @@ def segment_contribution(dim: str, a: tuple, b: tuple, top: int = 8) -> list[dic
     seg["share_of_growth"] = seg["delta"] / tot
     seg["share_of_gmv_from"] = seg["g0"] / seg["g0"].sum()
     seg["share_of_gmv_to"] = seg["g1"] / seg["g1"].sum()
-    seg["growth_pct"] = np.where(seg["g0"] > 0, seg["g1"] / seg["g0"].replace(0, np.nan) - 1,
-                                 np.nan)
+    seg["growth_pct"] = np.where(
+        seg["g0"] > 0, seg["g1"] / seg["g0"].replace(0, np.nan) - 1, np.nan
+    )
     return seg.sort_values("delta", ascending=False).head(top).to_dict(orient="records")
 
 
 def main() -> int:
     ml = MetricsLayer.load()
-    m = tree(ml.compute(["gmv", "orders", "active_customers", "aov"], grain="month",
-                        start="2017-01-01", end="2018-08-31"))
+    m = tree(
+        ml.compute(
+            ["gmv", "orders", "active_customers", "aov"],
+            grain="month",
+            start="2017-01-01",
+            end="2018-08-31",
+        )
+    )
     m.index = pd.to_datetime(m.index)
     mom = []
     for i in range(1, len(m)):
@@ -110,8 +121,9 @@ def main() -> int:
     d = ytd["drivers"]
     print(
         f"YTD GMV {ytd['gmv_from']:,.0f} -> {ytd['gmv_to']:,.0f} ({ytd['pct_change']:+.1%}); "
-        + ", ".join(f"{k} {v['pct_change']:+.1%} = {v['contribution_brl']:,.0f} BRL"
-                    for k, v in d.items())
+        + ", ".join(
+            f"{k} {v['pct_change']:+.1%} = {v['contribution_brl']:,.0f} BRL" for k, v in d.items()
+        )
         + f"; residual {ytd['log_residual']:.2e}"
     )
     return 0

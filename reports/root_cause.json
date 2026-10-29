@@ -1,0 +1,1835 @@
+{
+  "simpson_scan": {
+    "n_cases": 114,
+    "n_simpson": 7,
+    "cases": [
+      {
+        "kpi": "on_time_delivery_rate",
+        "month": "2017-02",
+        "dimension": "customer_state",
+        "delta": -0.00031,
+        "rate_effect": 0.000106,
+        "mix_effect": 0.000895,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "on_time_delivery_rate",
+        "month": "2017-02",
+        "dimension": "category",
+        "delta": -0.00031,
+        "rate_effect": 0.002348,
+        "mix_effect": -0.000275,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "on_time_delivery_rate",
+        "month": "2017-06",
+        "dimension": "category",
+        "delta": -0.000402,
+        "rate_effect": 7.5e-05,
+        "mix_effect": 0.000309,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "on_time_delivery_rate",
+        "month": "2017-06",
+        "dimension": "seller_tier",
+        "delta": -0.000402,
+        "rate_effect": 0.001157,
+        "mix_effect": 0.000373,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2017-06",
+        "dimension": "category",
+        "delta": -0.00029,
+        "rate_effect": 0.003023,
+        "mix_effect": 0.009323,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2017-06",
+        "dimension": "seller_tier",
+        "delta": -0.00029,
+        "rate_effect": 0.008237,
+        "mix_effect": 0.000272,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2018-07",
+        "dimension": "seller_tier",
+        "delta": 0.001962,
+        "rate_effect": -0.004819,
+        "mix_effect": 0.001671,
+        "simpson_paradox": true
+      }
+    ],
+    "n_material_simpson": 0,
+    "max_abs_delta_among_simpson_cases": 0.001962
+  },
+  "method": "mix/rate/interaction decomposition over the governed metric components",
+  "dimensions": [
+    "customer_state",
+    "category",
+    "seller_tier"
+  ],
+  "moves": [
+    {
+      "kpi": "gmv",
+      "from_month": "2017-10-01",
+      "to_month": "2017-11-01",
+      "robust_z_of_change": 2.849204,
+      "headline": "gmv 2017-10 -> 2017-11: 6.602e+05 -> 1.004e+06. Most surprising dimension: category (top-3 segments = 27% of movement); #1 = bed_bath_table (+4.397e+04)",
+      "dimension_ranking_by_surprise": [
+        "category",
+        "seller_tier",
+        "customer_state"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.009038,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "value_from": 226121.73,
+              "value_to": 355815.0,
+              "contribution": 129693.27,
+              "share_of_abs_movement": 0.357918
+            },
+            {
+              "segment": "RJ",
+              "value_from": 96958.51,
+              "value_to": 150222.04,
+              "contribution": 53263.53,
+              "share_of_abs_movement": 0.146993
+            },
+            {
+              "segment": "MG",
+              "value_from": 81546.4,
+              "value_to": 133533.66,
+              "contribution": 51987.26,
+              "share_of_abs_movement": 0.143471
+            },
+            {
+              "segment": "RS",
+              "value_from": 37561.21,
+              "value_to": 58699.88,
+              "contribution": 21138.67,
+              "share_of_abs_movement": 0.058337
+            },
+            {
+              "segment": "SC",
+              "value_from": 21022.55,
+              "value_to": 40312.9,
+              "contribution": 19290.35,
+              "share_of_abs_movement": 0.053236
+            },
+            {
+              "segment": "ES",
+              "value_from": 10380.69,
+              "value_to": 24302.25,
+              "contribution": 13921.56,
+              "share_of_abs_movement": 0.03842
+            },
+            {
+              "segment": "DF",
+              "value_from": 13093.39,
+              "value_to": 26859.84,
+              "contribution": 13766.45,
+              "share_of_abs_movement": 0.037992
+            },
+            {
+              "segment": "PR",
+              "value_from": 33100.66,
+              "value_to": 46853.49,
+              "contribution": 13752.83,
+              "share_of_abs_movement": 0.037954
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.648382
+        },
+        "category": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.030984,
+          "top_segments": [
+            {
+              "segment": "bed_bath_table",
+              "value_from": 46264.44,
+              "value_to": 90229.59,
+              "contribution": 43965.15,
+              "share_of_abs_movement": 0.103967
+            },
+            {
+              "segment": "health_beauty",
+              "value_from": 42063.82,
+              "value_to": 79017.45,
+              "contribution": 36953.63,
+              "share_of_abs_movement": 0.087386
+            },
+            {
+              "segment": "furniture_decor",
+              "value_from": 30182.49,
+              "value_to": 62759.6,
+              "contribution": 32577.11,
+              "share_of_abs_movement": 0.077037
+            },
+            {
+              "segment": "watches_gifts",
+              "value_from": 65077.43,
+              "value_to": 96752.48,
+              "contribution": 31675.05,
+              "share_of_abs_movement": 0.074904
+            },
+            {
+              "segment": "computers",
+              "value_from": 40393.92,
+              "value_to": 9768.0,
+              "contribution": -30625.92,
+              "share_of_abs_movement": 0.072423
+            },
+            {
+              "segment": "toys",
+              "value_from": 34354.69,
+              "value_to": 64203.99,
+              "contribution": 29849.3,
+              "share_of_abs_movement": 0.070586
+            },
+            {
+              "segment": "computers_accessories",
+              "value_from": 43097.44,
+              "value_to": 71772.4,
+              "contribution": 28674.96,
+              "share_of_abs_movement": 0.067809
+            },
+            {
+              "segment": "garden_tools",
+              "value_from": 25868.84,
+              "value_to": 45443.76,
+              "contribution": 19574.92,
+              "share_of_abs_movement": 0.04629
+            }
+          ],
+          "n_segments": 69,
+          "top3_share_of_abs_movement": 0.26839
+        },
+        "seller_tier": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.014235,
+          "top_segments": [
+            {
+              "segment": "new_seller",
+              "value_from": 73789.8,
+              "value_to": 206212.49,
+              "contribution": 132422.69,
+              "share_of_abs_movement": 0.385305
+            },
+            {
+              "segment": "A_top10pct",
+              "value_from": 367314.7,
+              "value_to": 465083.3,
+              "contribution": 97768.6,
+              "share_of_abs_movement": 0.284474
+            },
+            {
+              "segment": "B_next40pct",
+              "value_from": 175708.89,
+              "value_to": 248398.15,
+              "contribution": 72689.26,
+              "share_of_abs_movement": 0.211501
+            },
+            {
+              "segment": "C_bottom50pct",
+              "value_from": 43366.23,
+              "value_to": 84168.2,
+              "contribution": 40801.97,
+              "share_of_abs_movement": 0.11872
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.88128
+        }
+      }
+    },
+    {
+      "kpi": "gmv",
+      "from_month": "2017-11-01",
+      "to_month": "2017-12-01",
+      "robust_z_of_change": -2.008772,
+      "headline": "gmv 2017-11 -> 2017-12: 1.004e+06 -> 7.422e+05. Most surprising dimension: category (top-3 segments = 33% of movement); #1 = bed_bath_table (-3.979e+04)",
+      "dimension_ranking_by_surprise": [
+        "category",
+        "customer_state",
+        "seller_tier"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.004328,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "value_from": 355815.0,
+              "value_to": 280099.34,
+              "contribution": -75715.66,
+              "share_of_abs_movement": 0.285939
+            },
+            {
+              "segment": "MG",
+              "value_from": 133533.66,
+              "value_to": 93138.31,
+              "contribution": -40395.35,
+              "share_of_abs_movement": 0.152552
+            },
+            {
+              "segment": "RJ",
+              "value_from": 150222.04,
+              "value_to": 117170.96,
+              "contribution": -33051.08,
+              "share_of_abs_movement": 0.124817
+            },
+            {
+              "segment": "PR",
+              "value_from": 46853.49,
+              "value_to": 30122.83,
+              "contribution": -16730.66,
+              "share_of_abs_movement": 0.063183
+            },
+            {
+              "segment": "RS",
+              "value_from": 58699.88,
+              "value_to": 42179.75,
+              "contribution": -16520.13,
+              "share_of_abs_movement": 0.062388
+            },
+            {
+              "segment": "SC",
+              "value_from": 40312.9,
+              "value_to": 24234.89,
+              "contribution": -16078.01,
+              "share_of_abs_movement": 0.060718
+            },
+            {
+              "segment": "ES",
+              "value_from": 24302.25,
+              "value_to": 12606.65,
+              "contribution": -11695.6,
+              "share_of_abs_movement": 0.044168
+            },
+            {
+              "segment": "DF",
+              "value_from": 26859.84,
+              "value_to": 16965.57,
+              "contribution": -9894.27,
+              "share_of_abs_movement": 0.037366
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.563308
+        },
+        "category": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.020041,
+          "top_segments": [
+            {
+              "segment": "bed_bath_table",
+              "value_from": 90229.59,
+              "value_to": 50438.3,
+              "contribution": -39791.29,
+              "share_of_abs_movement": 0.124997
+            },
+            {
+              "segment": "computers_accessories",
+              "value_from": 71772.4,
+              "value_to": 37835.85,
+              "contribution": -33936.55,
+              "share_of_abs_movement": 0.106606
+            },
+            {
+              "segment": "furniture_decor",
+              "value_from": 62759.6,
+              "value_to": 31964.65,
+              "contribution": -30794.95,
+              "share_of_abs_movement": 0.096737
+            },
+            {
+              "segment": "watches_gifts",
+              "value_from": 96752.48,
+              "value_to": 71641.52,
+              "contribution": -25110.96,
+              "share_of_abs_movement": 0.078882
+            },
+            {
+              "segment": "cool_stuff",
+              "value_from": 56383.22,
+              "value_to": 38265.91,
+              "contribution": -18117.31,
+              "share_of_abs_movement": 0.056912
+            },
+            {
+              "segment": "garden_tools",
+              "value_from": 45443.76,
+              "value_to": 27541.59,
+              "contribution": -17902.17,
+              "share_of_abs_movement": 0.056237
+            },
+            {
+              "segment": "health_beauty",
+              "value_from": 79017.45,
+              "value_to": 61189.15,
+              "contribution": -17828.3,
+              "share_of_abs_movement": 0.056004
+            },
+            {
+              "segment": "telephony",
+              "value_from": 26474.4,
+              "value_to": 13561.02,
+              "contribution": -12913.38,
+              "share_of_abs_movement": 0.040565
+            }
+          ],
+          "n_segments": 68,
+          "top3_share_of_abs_movement": 0.32834
+        },
+        "seller_tier": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.0004,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "value_from": 487488.4,
+              "value_to": 354034.78,
+              "contribution": -133453.62,
+              "share_of_abs_movement": 0.509991
+            },
+            {
+              "segment": "B_next40pct",
+              "value_from": 323741.88,
+              "value_to": 232957.03,
+              "contribution": -90784.85,
+              "share_of_abs_movement": 0.346933
+            },
+            {
+              "segment": "C_bottom50pct",
+              "value_from": 84486.75,
+              "value_to": 64845.37,
+              "contribution": -19641.38,
+              "share_of_abs_movement": 0.075059
+            },
+            {
+              "segment": "new_seller",
+              "value_from": 108145.11,
+              "value_to": 90346.61,
+              "contribution": -17798.5,
+              "share_of_abs_movement": 0.068017
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.931983
+        }
+      }
+    },
+    {
+      "kpi": "on_time_delivery_rate",
+      "from_month": "2018-01-01",
+      "to_month": "2018-02-01",
+      "robust_z_of_change": -2.884202,
+      "headline": "on_time_delivery_rate 2018-01 -> 2018-02: 0.943 -> 0.8587. Most surprising dimension: category (top-3 segments = 36% of movement); #1 = bed_bath_table (-0.01328); rate effect -0.0853, mix effect +0.0005, segments (by volume) improving 5%",
+      "dimension_ranking_by_surprise": [
+        "category",
+        "seller_tier",
+        "customer_state"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": -0.001306,
+          "rate_effect": -0.079995,
+          "interaction": -0.002956,
+          "surprise_js": 0.004701,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.007215,
+          "top_segments": [
+            {
+              "segment": "RJ",
+              "share_from": 0.120243,
+              "share_to": 0.134096,
+              "rate_from": 0.869412,
+              "rate_to": 0.659841,
+              "n_from": 850.0,
+              "n_to": 879.0,
+              "mix": -0.001019,
+              "rate": -0.0252,
+              "interaction": -0.002903,
+              "contribution": -0.029122,
+              "share_of_abs_movement": 0.342606
+            },
+            {
+              "segment": "SP",
+              "share_from": 0.420852,
+              "share_to": 0.401526,
+              "rate_from": 0.965714,
+              "rate_to": 0.926672,
+              "n_from": 2975.0,
+              "n_to": 2632.0,
+              "mix": -0.000439,
+              "rate": -0.016431,
+              "interaction": 0.000755,
+              "contribution": -0.016116,
+              "share_of_abs_movement": 0.189594
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.119677,
+              "share_to": 0.120519,
+              "rate_from": 0.969267,
+              "rate_to": 0.916456,
+              "n_from": 846.0,
+              "n_to": 790.0,
+              "mix": 2.2e-05,
+              "rate": -0.00632,
+              "interaction": -4.4e-05,
+              "contribution": -0.006343,
+              "share_of_abs_movement": 0.074618
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.043995,
+              "share_to": 0.038749,
+              "rate_from": 0.900322,
+              "rate_to": 0.759843,
+              "n_from": 311.0,
+              "n_to": 254.0,
+              "mix": 0.000224,
+              "rate": -0.00618,
+              "interaction": 0.000737,
+              "contribution": -0.00522,
+              "share_of_abs_movement": 0.061406
+            },
+            {
+              "segment": "BA",
+              "share_from": 0.032254,
+              "share_to": 0.031732,
+              "rate_from": 0.934211,
+              "rate_to": 0.807692,
+              "n_from": 228.0,
+              "n_to": 208.0,
+              "mix": 5e-06,
+              "rate": -0.004081,
+              "interaction": 6.6e-05,
+              "contribution": -0.00401,
+              "share_of_abs_movement": 0.047176
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.052483,
+              "share_to": 0.051106,
+              "rate_from": 0.983827,
+              "rate_to": 0.910448,
+              "n_from": 371.0,
+              "n_to": 335.0,
+              "mix": -5.6e-05,
+              "rate": -0.003851,
+              "interaction": 0.000101,
+              "contribution": -0.003806,
+              "share_of_abs_movement": 0.04478
+            },
+            {
+              "segment": "CE",
+              "share_from": 0.010893,
+              "share_to": 0.012815,
+              "rate_from": 0.883117,
+              "rate_to": 0.607143,
+              "n_from": 77.0,
+              "n_to": 84.0,
+              "mix": -0.000115,
+              "rate": -0.003006,
+              "interaction": -0.00053,
+              "contribution": -0.003652,
+              "share_of_abs_movement": 0.042959
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.051917,
+              "share_to": 0.055378,
+              "rate_from": 0.918256,
+              "rate_to": 0.867769,
+              "n_from": 367.0,
+              "n_to": 363.0,
+              "mix": -8.6e-05,
+              "rate": -0.002621,
+              "interaction": -0.000175,
+              "contribution": -0.002881,
+              "share_of_abs_movement": 0.033899
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.606818
+        },
+        "category": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": 0.000523,
+          "rate_effect": -0.085273,
+          "interaction": 0.000493,
+          "surprise_js": 0.039073,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.054437,
+          "top_segments": [
+            {
+              "segment": "bed_bath_table",
+              "share_from": 0.096902,
+              "share_to": 0.08955,
+              "rate_from": 0.953285,
+              "rate_to": 0.805792,
+              "n_from": 685.0,
+              "n_to": 587.0,
+              "mix": -7.6e-05,
+              "rate": -0.014292,
+              "interaction": 0.001084,
+              "contribution": -0.013284,
+              "share_of_abs_movement": 0.150329
+            },
+            {
+              "segment": "computers_accessories",
+              "share_from": 0.080775,
+              "share_to": 0.120519,
+              "rate_from": 0.957968,
+              "rate_to": 0.858228,
+              "n_from": 571.0,
+              "n_to": 790.0,
+              "mix": 0.000595,
+              "rate": -0.008057,
+              "interaction": -0.003964,
+              "contribution": -0.011425,
+              "share_of_abs_movement": 0.129299
+            },
+            {
+              "segment": "sports_leisure",
+              "share_from": 0.080351,
+              "share_to": 0.087109,
+              "rate_from": 0.940141,
+              "rate_to": 0.856392,
+              "n_from": 568.0,
+              "n_to": 571.0,
+              "mix": -1.9e-05,
+              "rate": -0.006729,
+              "interaction": -0.000566,
+              "contribution": -0.007315,
+              "share_of_abs_movement": 0.082777
+            },
+            {
+              "segment": "watches_gifts",
+              "share_from": 0.045551,
+              "share_to": 0.046377,
+              "rate_from": 0.947205,
+              "rate_to": 0.809211,
+              "n_from": 322.0,
+              "n_to": 304.0,
+              "mix": 3e-06,
+              "rate": -0.006286,
+              "interaction": -0.000114,
+              "contribution": -0.006396,
+              "share_of_abs_movement": 0.072385
+            },
+            {
+              "segment": "health_beauty",
+              "share_from": 0.079502,
+              "share_to": 0.09077,
+              "rate_from": 0.941281,
+              "rate_to": 0.87563,
+              "n_from": 562.0,
+              "n_to": 595.0,
+              "mix": -1.9e-05,
+              "rate": -0.005219,
+              "interaction": -0.00074,
+              "contribution": -0.005978,
+              "share_of_abs_movement": 0.067657
+            },
+            {
+              "segment": "furniture_decor",
+              "share_from": 0.065356,
+              "share_to": 0.049886,
+              "rate_from": 0.945887,
+              "rate_to": 0.834862,
+              "n_from": 462.0,
+              "n_to": 327.0,
+              "mix": -4.5e-05,
+              "rate": -0.007256,
+              "interaction": 0.001718,
+              "contribution": -0.005583,
+              "share_of_abs_movement": 0.063186
+            },
+            {
+              "segment": "electronics",
+              "share_from": 0.045127,
+              "share_to": 0.045614,
+              "rate_from": 0.946708,
+              "rate_to": 0.83612,
+              "n_from": 319.0,
+              "n_to": 299.0,
+              "mix": 2e-06,
+              "rate": -0.00499,
+              "interaction": -5.4e-05,
+              "contribution": -0.005043,
+              "share_of_abs_movement": 0.057066
+            },
+            {
+              "segment": "telephony",
+              "share_from": 0.048522,
+              "share_to": 0.050038,
+              "rate_from": 0.927114,
+              "rate_to": 0.859756,
+              "n_from": 343.0,
+              "n_to": 328.0,
+              "mix": -2.4e-05,
+              "rate": -0.003268,
+              "interaction": -0.000102,
+              "contribution": -0.003395,
+              "share_of_abs_movement": 0.038415
+            }
+          ],
+          "n_segments": 70,
+          "top3_share_of_abs_movement": 0.362405
+        },
+        "seller_tier": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": -0.001561,
+          "rate_effect": -0.083805,
+          "interaction": 0.00111,
+          "surprise_js": 0.018602,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "share_from": 0.468383,
+              "share_to": 0.420442,
+              "rate_from": 0.946844,
+              "rate_to": 0.855951,
+              "n_from": 3311.0,
+              "n_to": 2756.0,
+              "mix": -0.000185,
+              "rate": -0.042573,
+              "interaction": 0.004357,
+              "contribution": -0.0384,
+              "share_of_abs_movement": 0.455751
+            },
+            {
+              "segment": "B_next40pct",
+              "share_from": 0.372896,
+              "share_to": 0.360336,
+              "rate_from": 0.942337,
+              "rate_to": 0.859441,
+              "n_from": 2636.0,
+              "n_to": 2362.0,
+              "mix": 8e-06,
+              "rate": -0.030911,
+              "interaction": 0.001041,
+              "contribution": -0.029862,
+              "share_of_abs_movement": 0.354418
+            },
+            {
+              "segment": "new_seller",
+              "share_from": 0.05121,
+              "share_to": 0.11106,
+              "rate_from": 0.91989,
+              "rate_to": 0.848901,
+              "n_from": 362.0,
+              "n_to": 728.0,
+              "mix": -0.001383,
+              "rate": -0.003635,
+              "interaction": -0.004249,
+              "contribution": -0.009267,
+              "share_of_abs_movement": 0.109981
+            },
+            {
+              "segment": "C_bottom50pct",
+              "share_from": 0.107512,
+              "share_to": 0.108162,
+              "rate_from": 0.939474,
+              "rate_to": 0.877292,
+              "n_from": 760.0,
+              "n_to": 709.0,
+              "mix": -2e-06,
+              "rate": -0.006685,
+              "interaction": -4e-05,
+              "contribution": -0.006728,
+              "share_of_abs_movement": 0.079851
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.920149
+        }
+      }
+    },
+    {
+      "kpi": "on_time_delivery_rate",
+      "from_month": "2018-03-01",
+      "to_month": "2018-04-01",
+      "robust_z_of_change": 5.064032,
+      "headline": "on_time_delivery_rate 2018-03 -> 2018-04: 0.8104 -> 0.955. Most surprising dimension: seller_tier (top-3 segments = 93% of movement); #1 = A_top10pct (+0.06901); rate effect +0.1450, mix effect +0.0016, segments (by volume) improving 100%",
+      "dimension_ranking_by_surprise": [
+        "seller_tier",
+        "category",
+        "customer_state"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": 0.002709,
+          "rate_effect": 0.14358,
+          "interaction": -0.001669,
+          "surprise_js": 0.003299,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.987291,
+          "top_segments": [
+            {
+              "segment": "RJ",
+              "share_from": 0.123376,
+              "share_to": 0.118711,
+              "rate_from": 0.655093,
+              "rate_to": 0.951673,
+              "n_from": 864.0,
+              "n_to": 807.0,
+              "mix": 0.000724,
+              "rate": 0.036591,
+              "interaction": -0.001383,
+              "contribution": 0.035932,
+              "share_of_abs_movement": 0.243844
+            },
+            {
+              "segment": "SP",
+              "share_from": 0.424247,
+              "share_to": 0.4416,
+              "rate_from": 0.905756,
+              "rate_to": 0.983011,
+              "n_from": 2971.0,
+              "n_to": 3002.0,
+              "mix": 0.001655,
+              "rate": 0.032775,
+              "interaction": 0.001341,
+              "contribution": 0.035771,
+              "share_of_abs_movement": 0.242757
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.122233,
+              "share_to": 0.114445,
+              "rate_from": 0.795561,
+              "rate_to": 0.975578,
+              "n_from": 856.0,
+              "n_to": 778.0,
+              "mix": 0.000115,
+              "rate": 0.022004,
+              "interaction": -0.001402,
+              "contribution": 0.020718,
+              "share_of_abs_movement": 0.140596
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.058118,
+              "share_to": 0.05075,
+              "rate_from": 0.808354,
+              "rate_to": 0.965217,
+              "n_from": 407.0,
+              "n_to": 345.0,
+              "mix": 1.5e-05,
+              "rate": 0.009117,
+              "interaction": -0.001156,
+              "contribution": 0.007976,
+              "share_of_abs_movement": 0.054126
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.052692,
+              "share_to": 0.056046,
+              "rate_from": 0.867209,
+              "rate_to": 0.986877,
+              "n_from": 369.0,
+              "n_to": 381.0,
+              "mix": 0.000191,
+              "rate": 0.006306,
+              "interaction": 0.000401,
+              "contribution": 0.006898,
+              "share_of_abs_movement": 0.046809
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.035271,
+              "share_to": 0.03604,
+              "rate_from": 0.805668,
+              "rate_to": 0.979592,
+              "n_from": 247.0,
+              "n_to": 245.0,
+              "mix": -4e-06,
+              "rate": 0.006134,
+              "interaction": 0.000134,
+              "contribution": 0.006265,
+              "share_of_abs_movement": 0.042514
+            },
+            {
+              "segment": "ES",
+              "share_from": 0.018992,
+              "share_to": 0.020594,
+              "rate_from": 0.586466,
+              "rate_to": 0.842857,
+              "n_from": 133.0,
+              "n_to": 140.0,
+              "mix": -0.000359,
+              "rate": 0.004869,
+              "interaction": 0.000411,
+              "contribution": 0.004921,
+              "share_of_abs_movement": 0.033398
+            },
+            {
+              "segment": "BA",
+              "share_from": 0.033557,
+              "share_to": 0.031774,
+              "rate_from": 0.685106,
+              "rate_to": 0.814815,
+              "n_from": 235.0,
+              "n_to": 216.0,
+              "mix": 0.000223,
+              "rate": 0.004353,
+              "interaction": -0.000231,
+              "contribution": 0.004345,
+              "share_of_abs_movement": 0.029485
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.627196
+        },
+        "category": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": 0.000166,
+          "rate_effect": 0.144607,
+          "interaction": -0.000154,
+          "surprise_js": 0.028163,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.975418,
+          "top_segments": [
+            {
+              "segment": "health_beauty",
+              "share_from": 0.086392,
+              "share_to": 0.090321,
+              "rate_from": 0.761983,
+              "rate_to": 0.946254,
+              "n_from": 605.0,
+              "n_to": 614.0,
+              "mix": -0.00019,
+              "rate": 0.015919,
+              "interaction": 0.000724,
+              "contribution": 0.016453,
+              "share_of_abs_movement": 0.111074
+            },
+            {
+              "segment": "bed_bath_table",
+              "share_from": 0.092675,
+              "share_to": 0.088114,
+              "rate_from": 0.784284,
+              "rate_to": 0.944908,
+              "n_from": 649.0,
+              "n_to": 599.0,
+              "mix": 0.000119,
+              "rate": 0.014886,
+              "interaction": -0.000733,
+              "contribution": 0.014272,
+              "share_of_abs_movement": 0.096349
+            },
+            {
+              "segment": "watches_gifts",
+              "share_from": 0.057975,
+              "share_to": 0.067667,
+              "rate_from": 0.753695,
+              "rate_to": 0.963043,
+              "n_from": 406.0,
+              "n_to": 460.0,
+              "mix": -0.000549,
+              "rate": 0.012137,
+              "interaction": 0.002029,
+              "contribution": 0.013617,
+              "share_of_abs_movement": 0.091924
+            },
+            {
+              "segment": "sports_leisure",
+              "share_from": 0.091818,
+              "share_to": 0.076052,
+              "rate_from": 0.802488,
+              "rate_to": 0.959381,
+              "n_from": 643.0,
+              "n_to": 517.0,
+              "mix": 0.000124,
+              "rate": 0.014406,
+              "interaction": -0.002474,
+              "contribution": 0.012056,
+              "share_of_abs_movement": 0.081389
+            },
+            {
+              "segment": "furniture_decor",
+              "share_from": 0.059974,
+              "share_to": 0.066196,
+              "rate_from": 0.819048,
+              "rate_to": 0.971111,
+              "n_from": 420.0,
+              "n_to": 450.0,
+              "mix": 5.4e-05,
+              "rate": 0.00912,
+              "interaction": 0.000946,
+              "contribution": 0.01012,
+              "share_of_abs_movement": 0.068318
+            },
+            {
+              "segment": "computers_accessories",
+              "share_from": 0.089819,
+              "share_to": 0.068255,
+              "rate_from": 0.839428,
+              "rate_to": 0.965517,
+              "n_from": 629.0,
+              "n_to": 464.0,
+              "mix": -0.000627,
+              "rate": 0.011325,
+              "interaction": -0.002719,
+              "contribution": 0.00798,
+              "share_of_abs_movement": 0.053869
+            },
+            {
+              "segment": "housewares",
+              "share_from": 0.045124,
+              "share_to": 0.059871,
+              "rate_from": 0.835443,
+              "rate_to": 0.943489,
+              "n_from": 316.0,
+              "n_to": 407.0,
+              "mix": 0.00037,
+              "rate": 0.004875,
+              "interaction": 0.001593,
+              "contribution": 0.006839,
+              "share_of_abs_movement": 0.046166
+            },
+            {
+              "segment": "auto",
+              "share_from": 0.045124,
+              "share_to": 0.048102,
+              "rate_from": 0.813291,
+              "rate_to": 0.948012,
+              "n_from": 316.0,
+              "n_to": 327.0,
+              "mix": 9e-06,
+              "rate": 0.006079,
+              "interaction": 0.000401,
+              "contribution": 0.006489,
+              "share_of_abs_movement": 0.043807
+            }
+          ],
+          "n_segments": 72,
+          "top3_share_of_abs_movement": 0.299347
+        },
+        "seller_tier": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": 0.001575,
+          "rate_effect": 0.144998,
+          "interaction": -0.001954,
+          "surprise_js": 0.040422,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 1.0,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "share_from": 0.512209,
+              "share_to": 0.440571,
+              "rate_from": 0.804572,
+              "rate_to": 0.960267,
+              "n_from": 3587.0,
+              "n_to": 2995.0,
+              "mix": 0.000415,
+              "rate": 0.079748,
+              "interaction": -0.011154,
+              "contribution": 0.06901,
+              "share_of_abs_movement": 0.477181
+            },
+            {
+              "segment": "B_next40pct",
+              "share_from": 0.362559,
+              "share_to": 0.357017,
+              "rate_from": 0.810555,
+              "rate_to": 0.95138,
+              "n_from": 2539.0,
+              "n_to": 2427.0,
+              "mix": -1e-06,
+              "rate": 0.051057,
+              "interaction": -0.00078,
+              "contribution": 0.050276,
+              "share_of_abs_movement": 0.347641
+            },
+            {
+              "segment": "new_seller",
+              "share_from": 0.029559,
+              "share_to": 0.112092,
+              "rate_from": 0.826087,
+              "rate_to": 0.954068,
+              "n_from": 207.0,
+              "n_to": 762.0,
+              "mix": 0.001297,
+              "rate": 0.003783,
+              "interaction": 0.010563,
+              "contribution": 0.015643,
+              "share_of_abs_movement": 0.108167
+            },
+            {
+              "segment": "C_bottom50pct",
+              "share_from": 0.095673,
+              "share_to": 0.090321,
+              "rate_from": 0.835821,
+              "rate_to": 0.944625,
+              "n_from": 670.0,
+              "n_to": 614.0,
+              "mix": -0.000136,
+              "rate": 0.01041,
+              "interaction": -0.000582,
+              "contribution": 0.009691,
+              "share_of_abs_movement": 0.067011
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.932989
+        }
+      }
+    },
+    {
+      "kpi": "avg_review_score",
+      "from_month": "2017-10-01",
+      "to_month": "2017-11-01",
+      "robust_z_of_change": -2.800345,
+      "headline": "avg_review_score 2017-10 -> 2017-11: 4.174 -> 3.949. Most surprising dimension: category (top-3 segments = 33% of movement); #1 = bed_bath_table (-0.03981); rate effect -0.2137, mix effect -0.0040, segments (by volume) improving 7%",
+      "dimension_ranking_by_surprise": [
+        "category",
+        "seller_tier",
+        "customer_state"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": 0.004193,
+          "rate_effect": -0.235024,
+          "interaction": 0.006537,
+          "surprise_js": 0.004362,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.04102,
+          "top_segments": [
+            {
+              "segment": "RJ",
+              "share_from": 0.144124,
+              "share_to": 0.139538,
+              "rate_from": 4.176923,
+              "rate_to": 3.626095,
+              "n_from": 650.0,
+              "n_to": 1027.0,
+              "mix": -1.5e-05,
+              "rate": -0.079388,
+              "interaction": 0.002526,
+              "contribution": -0.076877,
+              "share_of_abs_movement": 0.328823
+            },
+            {
+              "segment": "SP",
+              "share_from": 0.386031,
+              "share_to": 0.397418,
+              "rate_from": 4.191844,
+              "rate_to": 4.102906,
+              "n_from": 1741.0,
+              "n_to": 2925.0,
+              "mix": 0.000208,
+              "rate": -0.034333,
+              "interaction": -0.001013,
+              "contribution": -0.035138,
+              "share_of_abs_movement": 0.150295
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.054324,
+              "share_to": 0.056386,
+              "rate_from": 4.183673,
+              "rate_to": 3.816867,
+              "n_from": 245.0,
+              "n_to": 415.0,
+              "mix": 2.1e-05,
+              "rate": -0.019926,
+              "interaction": -0.000756,
+              "contribution": -0.020662,
+              "share_of_abs_movement": 0.088377
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.038359,
+              "share_to": 0.040082,
+              "rate_from": 4.225434,
+              "rate_to": 3.850847,
+              "n_from": 173.0,
+              "n_to": 295.0,
+              "mix": 8.9e-05,
+              "rate": -0.014369,
+              "interaction": -0.000645,
+              "contribution": -0.014925,
+              "share_of_abs_movement": 0.063837
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.121064,
+              "share_to": 0.125408,
+              "rate_from": 4.265568,
+              "rate_to": 4.144095,
+              "n_from": 546.0,
+              "n_to": 923.0,
+              "mix": 0.000399,
+              "rate": -0.014706,
+              "interaction": -0.000528,
+              "contribution": -0.014834,
+              "share_of_abs_movement": 0.06345
+            },
+            {
+              "segment": "ES",
+              "share_from": 0.022173,
+              "share_to": 0.02269,
+              "rate_from": 4.27,
+              "rate_to": 3.766467,
+              "n_from": 100.0,
+              "n_to": 167.0,
+              "mix": 5e-05,
+              "rate": -0.011165,
+              "interaction": -0.00026,
+              "contribution": -0.011375,
+              "share_of_abs_movement": 0.048656
+            },
+            {
+              "segment": "PE",
+              "share_from": 0.017295,
+              "share_to": 0.016984,
+              "rate_from": 4.269231,
+              "rate_to": 3.768,
+              "n_from": 78.0,
+              "n_to": 125.0,
+              "mix": -3e-05,
+              "rate": -0.008669,
+              "interaction": 0.000156,
+              "contribution": -0.008543,
+              "share_of_abs_movement": 0.036539
+            },
+            {
+              "segment": "GO",
+              "share_from": 0.023282,
+              "share_to": 0.020652,
+              "rate_from": 4.380952,
+              "rate_to": 4.013158,
+              "n_from": 105.0,
+              "n_to": 152.0,
+              "mix": -0.000545,
+              "rate": -0.008563,
+              "interaction": 0.000967,
+              "contribution": -0.008141,
+              "share_of_abs_movement": 0.034821
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.567495
+        },
+        "category": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": -0.004026,
+          "rate_effect": -0.213728,
+          "interaction": -0.006539,
+          "surprise_js": 0.022026,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.069226,
+          "top_segments": [
+            {
+              "segment": "bed_bath_table",
+              "share_from": 0.096896,
+              "share_to": 0.108696,
+              "rate_from": 4.006865,
+              "rate_to": 3.65875,
+              "n_from": 437.0,
+              "n_to": 800.0,
+              "mix": -0.001968,
+              "rate": -0.033731,
+              "interaction": -0.004108,
+              "contribution": -0.039806,
+              "share_of_abs_movement": 0.156346
+            },
+            {
+              "segment": "furniture_decor",
+              "share_from": 0.05898,
+              "share_to": 0.072554,
+              "rate_from": 4.075188,
+              "rate_to": 3.724719,
+              "n_from": 266.0,
+              "n_to": 534.0,
+              "mix": -0.001336,
+              "rate": -0.020671,
+              "interaction": -0.004757,
+              "contribution": -0.026764,
+              "share_of_abs_movement": 0.105121
+            },
+            {
+              "segment": "garden_tools",
+              "share_from": 0.046785,
+              "share_to": 0.057745,
+              "rate_from": 4.298578,
+              "rate_to": 3.992941,
+              "n_from": 211.0,
+              "n_to": 425.0,
+              "mix": 0.00137,
+              "rate": -0.014299,
+              "interaction": -0.00335,
+              "contribution": -0.016279,
+              "share_of_abs_movement": 0.06394
+            },
+            {
+              "segment": "baby",
+              "share_from": 0.028381,
+              "share_to": 0.024864,
+              "rate_from": 4.421875,
+              "rate_to": 3.874317,
+              "n_from": 128.0,
+              "n_to": 183.0,
+              "mix": -0.000873,
+              "rate": -0.01554,
+              "interaction": 0.001926,
+              "contribution": -0.014488,
+              "share_of_abs_movement": 0.056903
+            },
+            {
+              "segment": "telephony",
+              "share_from": 0.049889,
+              "share_to": 0.047011,
+              "rate_from": 4.128889,
+              "rate_to": 3.83237,
+              "n_from": 225.0,
+              "n_to": 346.0,
+              "mix": 0.000129,
+              "rate": -0.014793,
+              "interaction": 0.000853,
+              "contribution": -0.013811,
+              "share_of_abs_movement": 0.054245
+            },
+            {
+              "segment": "perfumery",
+              "share_from": 0.039024,
+              "share_to": 0.039674,
+              "rate_from": 4.323864,
+              "rate_to": 4.027397,
+              "n_from": 176.0,
+              "n_to": 292.0,
+              "mix": 9.8e-05,
+              "rate": -0.011569,
+              "interaction": -0.000193,
+              "contribution": -0.011664,
+              "share_of_abs_movement": 0.045814
+            },
+            {
+              "segment": "toys",
+              "share_from": 0.060754,
+              "share_to": 0.06019,
+              "rate_from": 4.262774,
+              "rate_to": 4.072235,
+              "n_from": 274.0,
+              "n_to": 443.0,
+              "mix": -5e-05,
+              "rate": -0.011576,
+              "interaction": 0.000107,
+              "contribution": -0.011519,
+              "share_of_abs_movement": 0.045242
+            },
+            {
+              "segment": "computers_accessories",
+              "share_from": 0.056984,
+              "share_to": 0.059783,
+              "rate_from": 4.120623,
+              "rate_to": 3.936364,
+              "n_from": 257.0,
+              "n_to": 440.0,
+              "mix": -0.000148,
+              "rate": -0.0105,
+              "interaction": -0.000516,
+              "contribution": -0.011164,
+              "share_of_abs_movement": 0.043848
+            }
+          ],
+          "n_segments": 69,
+          "top3_share_of_abs_movement": 0.325406
+        },
+        "seller_tier": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": 0.003042,
+          "rate_effect": -0.21803,
+          "interaction": -0.009306,
+          "surprise_js": 0.021946,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "share_from": 0.477605,
+              "share_to": 0.437228,
+              "rate_from": 4.155525,
+              "rate_to": 3.944686,
+              "n_from": 2154.0,
+              "n_to": 3218.0,
+              "mix": 0.00073,
+              "rate": -0.100698,
+              "interaction": 0.008513,
+              "contribution": -0.091454,
+              "share_of_abs_movement": 0.407743
+            },
+            {
+              "segment": "B_next40pct",
+              "share_from": 0.349224,
+              "share_to": 0.31413,
+              "rate_from": 4.187302,
+              "rate_to": 3.959343,
+              "n_from": 1575.0,
+              "n_to": 2312.0,
+              "mix": -0.00048,
+              "rate": -0.079609,
+              "interaction": 0.008,
+              "contribution": -0.072089,
+              "share_of_abs_movement": 0.321406
+            },
+            {
+              "segment": "new_seller",
+              "share_from": 0.072949,
+              "share_to": 0.151223,
+              "rate_from": 4.209726,
+              "rate_to": 3.875112,
+              "n_from": 329.0,
+              "n_to": 1113.0,
+              "mix": 0.002827,
+              "rate": -0.02441,
+              "interaction": -0.026192,
+              "contribution": -0.047775,
+              "share_of_abs_movement": 0.213001
+            },
+            {
+              "segment": "C_bottom50pct",
+              "share_from": 0.100222,
+              "share_to": 0.097418,
+              "rate_from": 4.185841,
+              "rate_to": 4.052999,
+              "n_from": 452.0,
+              "n_to": 717.0,
+              "mix": -3.4e-05,
+              "rate": -0.013314,
+              "interaction": 0.000372,
+              "contribution": -0.012976,
+              "share_of_abs_movement": 0.057851
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.942149
+        }
+      }
+    },
+    {
+      "kpi": "avg_review_score",
+      "from_month": "2018-03-01",
+      "to_month": "2018-04-01",
+      "robust_z_of_change": 4.743494,
+      "headline": "avg_review_score 2018-03 -> 2018-04: 3.764 -> 4.17. Most surprising dimension: seller_tier (top-3 segments = 94% of movement); #1 = A_top10pct (+0.1966); rate effect +0.4040, mix effect +0.0047, segments (by volume) improving 100%",
+      "dimension_ranking_by_surprise": [
+        "seller_tier",
+        "category",
+        "customer_state"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": 0.011893,
+          "rate_effect": 0.400997,
+          "interaction": -0.006573,
+          "surprise_js": 0.002463,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.973121,
+          "top_segments": [
+            {
+              "segment": "RJ",
+              "share_from": 0.124683,
+              "share_to": 0.120356,
+              "rate_from": 3.185102,
+              "rate_to": 4.035109,
+              "n_from": 886.0,
+              "n_to": 826.0,
+              "mix": 0.002504,
+              "rate": 0.105982,
+              "interaction": -0.003679,
+              "contribution": 0.104807,
+              "share_of_abs_movement": 0.248097
+            },
+            {
+              "segment": "SP",
+              "share_from": 0.421334,
+              "share_to": 0.440769,
+              "rate_from": 4.096526,
+              "rate_to": 4.270413,
+              "n_from": 2994.0,
+              "n_to": 3025.0,
+              "mix": 0.006471,
+              "rate": 0.073264,
+              "interaction": 0.00338,
+              "contribution": 0.083115,
+              "share_of_abs_movement": 0.196749
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.121869,
+              "share_to": 0.11409,
+              "rate_from": 3.654734,
+              "rate_to": 4.204342,
+              "n_from": 866.0,
+              "n_to": 783.0,
+              "mix": 0.000847,
+              "rate": 0.06698,
+              "interaction": -0.004275,
+              "contribution": 0.063551,
+              "share_of_abs_movement": 0.150438
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.058401,
+              "share_to": 0.050707,
+              "rate_from": 3.749398,
+              "rate_to": 4.247126,
+              "n_from": 415.0,
+              "n_to": 348.0,
+              "mix": 0.000109,
+              "rate": 0.029068,
+              "interaction": -0.00383,
+              "contribution": 0.025347,
+              "share_of_abs_movement": 0.060002
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.052632,
+              "share_to": 0.055952,
+              "rate_from": 3.882353,
+              "rate_to": 4.283854,
+              "n_from": 374.0,
+              "n_to": 384.0,
+              "mix": 0.000394,
+              "rate": 0.021132,
+              "interaction": 0.001333,
+              "contribution": 0.022859,
+              "share_of_abs_movement": 0.054112
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.0349,
+              "share_to": 0.035553,
+              "rate_from": 3.810484,
+              "rate_to": 4.385246,
+              "n_from": 248.0,
+              "n_to": 244.0,
+              "mix": 3.1e-05,
+              "rate": 0.020059,
+              "interaction": 0.000375,
+              "contribution": 0.020465,
+              "share_of_abs_movement": 0.048445
+            },
+            {
+              "segment": "BA",
+              "share_from": 0.034619,
+              "share_to": 0.03191,
+              "rate_from": 3.345528,
+              "rate_to": 3.799087,
+              "n_from": 246.0,
+              "n_to": 219.0,
+              "mix": 0.001132,
+              "rate": 0.015702,
+              "interaction": -0.001228,
+              "contribution": 0.015605,
+              "share_of_abs_movement": 0.036941
+            },
+            {
+              "segment": "ES",
+              "share_from": 0.018435,
+              "share_to": 0.020254,
+              "rate_from": 3.282443,
+              "rate_to": 3.935252,
+              "n_from": 131.0,
+              "n_to": 139.0,
+              "mix": -0.000875,
+              "rate": 0.012035,
+              "interaction": 0.001187,
+              "contribution": 0.012347,
+              "share_of_abs_movement": 0.029227
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.595284
+        },
+        "category": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": 0.006306,
+          "rate_effect": 0.398732,
+          "interaction": 0.001278,
+          "surprise_js": 0.027136,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.98493,
+          "top_segments": [
+            {
+              "segment": "health_beauty",
+              "share_from": 0.086124,
+              "share_to": 0.089611,
+              "rate_from": 3.720588,
+              "rate_to": 4.234146,
+              "n_from": 612.0,
+              "n_to": 615.0,
+              "mix": -0.00015,
+              "rate": 0.04423,
+              "interaction": 0.001791,
+              "contribution": 0.045871,
+              "share_of_abs_movement": 0.110026
+            },
+            {
+              "segment": "sports_leisure",
+              "share_from": 0.092598,
+              "share_to": 0.076497,
+              "rate_from": 3.767477,
+              "rate_to": 4.259048,
+              "n_from": 658.0,
+              "n_to": 525.0,
+              "mix": -6.3e-05,
+              "rate": 0.045518,
+              "interaction": -0.007915,
+              "contribution": 0.037541,
+              "share_of_abs_movement": 0.090047
+            },
+            {
+              "segment": "watches_gifts",
+              "share_from": 0.056994,
+              "share_to": 0.068046,
+              "rate_from": 3.711111,
+              "rate_to": 4.256959,
+              "n_from": 405.0,
+              "n_to": 467.0,
+              "mix": -0.00058,
+              "rate": 0.03111,
+              "interaction": 0.006033,
+              "contribution": 0.036563,
+              "share_of_abs_movement": 0.087701
+            },
+            {
+              "segment": "bed_bath_table",
+              "share_from": 0.092457,
+              "share_to": 0.087134,
+              "rate_from": 3.640791,
+              "rate_to": 4.048495,
+              "n_from": 657.0,
+              "n_to": 598.0,
+              "mix": 0.000654,
+              "rate": 0.037695,
+              "interaction": -0.00217,
+              "contribution": 0.036178,
+              "share_of_abs_movement": 0.086778
+            },
+            {
+              "segment": "furniture_decor",
+              "share_from": 0.059949,
+              "share_to": 0.066443,
+              "rate_from": 3.701878,
+              "rate_to": 4.190789,
+              "n_from": 426.0,
+              "n_to": 456.0,
+              "mix": -0.000401,
+              "rate": 0.02931,
+              "interaction": 0.003175,
+              "contribution": 0.032084,
+              "share_of_abs_movement": 0.076958
+            },
+            {
+              "segment": "housewares",
+              "share_from": 0.046158,
+              "share_to": 0.060469,
+              "rate_from": 3.77439,
+              "rate_to": 4.108434,
+              "n_from": 328.0,
+              "n_to": 415.0,
+              "mix": 0.000155,
+              "rate": 0.015419,
+              "interaction": 0.00478,
+              "contribution": 0.020354,
+              "share_of_abs_movement": 0.048822
+            },
+            {
+              "segment": "telephony",
+              "share_from": 0.045455,
+              "share_to": 0.035553,
+              "rate_from": 3.560372,
+              "rate_to": 4.008197,
+              "n_from": 323.0,
+              "n_to": 244.0,
+              "mix": 0.002012,
+              "rate": 0.020356,
+              "interaction": -0.004434,
+              "contribution": 0.017934,
+              "share_of_abs_movement": 0.043016
+            },
+            {
+              "segment": "toys",
+              "share_from": 0.030678,
+              "share_to": 0.028122,
+              "rate_from": 3.743119,
+              "rate_to": 4.274611,
+              "n_from": 218.0,
+              "n_to": 193.0,
+              "mix": 5.2e-05,
+              "rate": 0.016305,
+              "interaction": -0.001359,
+              "contribution": 0.014999,
+              "share_of_abs_movement": 0.035977
+            }
+          ],
+          "n_segments": 72,
+          "top3_share_of_abs_movement": 0.287773
+        },
+        "seller_tier": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": 0.004692,
+          "rate_effect": 0.404003,
+          "interaction": -0.002379,
+          "surprise_js": 0.041018,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 1.0,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "share_from": 0.513088,
+              "share_to": 0.438292,
+              "rate_from": 3.722161,
+              "rate_to": 4.163564,
+              "n_from": 3646.0,
+              "n_to": 3008.0,
+              "mix": 0.003098,
+              "rate": 0.226478,
+              "interaction": -0.033015,
+              "contribution": 0.196561,
+              "share_of_abs_movement": 0.483764
+            },
+            {
+              "segment": "B_next40pct",
+              "share_from": 0.361948,
+              "share_to": 0.358298,
+              "rate_from": 3.770607,
+              "rate_to": 4.154128,
+              "n_from": 2572.0,
+              "n_to": 2459.0,
+              "mix": -2.6e-05,
+              "rate": 0.138815,
+              "interaction": -0.0014,
+              "contribution": 0.137389,
+              "share_of_abs_movement": 0.338134
+            },
+            {
+              "segment": "new_seller",
+              "share_from": 0.029834,
+              "share_to": 0.112342,
+              "rate_from": 3.792453,
+              "rate_to": 4.194553,
+              "n_from": 212.0,
+              "n_to": 771.0,
+              "mix": 0.002382,
+              "rate": 0.011996,
+              "interaction": 0.033176,
+              "contribution": 0.047555,
+              "share_of_abs_movement": 0.117039
+            },
+            {
+              "segment": "C_bottom50pct",
+              "share_from": 0.095131,
+              "share_to": 0.091068,
+              "rate_from": 3.951183,
+              "rate_to": 4.232,
+              "n_from": 676.0,
+              "n_to": 625.0,
+              "mix": -0.000762,
+              "rate": 0.026714,
+              "interaction": -0.001141,
+              "contribution": 0.024811,
+              "share_of_abs_movement": 0.061064
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.938936
+        }
+      }
+    }
+  ]
+}

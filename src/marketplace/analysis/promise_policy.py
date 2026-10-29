@@ -26,7 +26,7 @@ import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
 
 from marketplace.analysis.common import WINDOW_END, df, read_report, write_report
-from marketplace.analysis.delivery_impact import BINS, lateness_bin
+from marketplace.analysis.delivery_impact import lateness_bin
 
 TRAIN = ("2017-01-01", "2018-01-31", "2018-02-28")  # purchase from, to, delivered by
 CAL = ("2018-02-01", "2018-02-28", "2018-03-31")
@@ -287,8 +287,13 @@ def rolling_predictions(d: pd.DataFrame, window: int, period=TEST) -> pd.DataFra
         te = te.copy()
         for q in QUANTILES:
             m = HistGradientBoostingRegressor(
-                loss="quantile", quantile=q, max_iter=400, learning_rate=0.05,
-                max_leaf_nodes=31, min_samples_leaf=50, categorical_features=cat_mask,
+                loss="quantile",
+                quantile=q,
+                max_iter=400,
+                learning_rate=0.05,
+                max_leaf_nodes=31,
+                min_samples_leaf=50,
+                categorical_features=cat_mask,
                 random_state=7,
             )
             m.fit(xtr, tr["y"])

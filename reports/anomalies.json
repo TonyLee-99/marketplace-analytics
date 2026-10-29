@@ -1,0 +1,6040 @@
+{
+  "rule": "|z|>=4.0 on orders or gmv, or |z|>=3.0 on both; known events +-1 day -> expected_event",
+  "daily_series_days": 608,
+  "zero_order_days": 6,
+  "retrospective_alerts": [
+    {
+      "date": "2017-01-03",
+      "orders_z": -0.429564,
+      "orders_expected": 0.025131,
+      "gmv_z": -18.442852,
+      "gmv_expected": 7.163203,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-04",
+      "orders_z": -14.570379,
+      "orders_expected": 1.664899,
+      "gmv_z": -30.433518,
+      "gmv_expected": 31.016141,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-05",
+      "orders_z": 34.726664,
+      "orders_expected": 2.146193,
+      "gmv_z": 18.404095,
+      "gmv_expected": 47.730581,
+      "orders": 32.0,
+      "gmv": 396.9,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-06",
+      "orders_z": 7.563011,
+      "orders_expected": 1.987045,
+      "gmv_z": 19.499167,
+      "gmv_expected": 98.168459,
+      "orders": 4.0,
+      "gmv": 916.38,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-07",
+      "orders_z": 0.770727,
+      "orders_expected": 3.726418,
+      "gmv_z": 23.66741,
+      "gmv_expected": 89.943614,
+      "orders": 4.0,
+      "gmv": 1351.9,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-08",
+      "orders_z": 5.548003,
+      "orders_expected": 3.791722,
+      "gmv_z": 0.960088,
+      "gmv_expected": 634.442039,
+      "orders": 6.0,
+      "gmv": 709.58,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-14",
+      "orders_z": 4.122859,
+      "orders_expected": 13.320621,
+      "gmv_z": -0.022939,
+      "gmv_expected": 1112.998698,
+      "orders": 18.0,
+      "gmv": 1112.69,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-16",
+      "orders_z": 1.216771,
+      "orders_expected": 17.344459,
+      "gmv_z": 4.96721,
+      "gmv_expected": 1873.159519,
+      "orders": 19.0,
+      "gmv": 3307.92,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-17",
+      "orders_z": 7.666543,
+      "orders_expected": 18.577087,
+      "gmv_z": 0.413222,
+      "gmv_expected": 3143.196893,
+      "orders": 32.0,
+      "gmv": 3302.53,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-26",
+      "orders_z": 8.752594,
+      "orders_expected": 45.858414,
+      "gmv_z": 5.554616,
+      "gmv_expected": 6943.058511,
+      "orders": 84.0,
+      "gmv": 13107.96,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-01-27",
+      "orders_z": 6.301578,
+      "orders_expected": 39.334329,
+      "gmv_z": 2.411482,
+      "gmv_expected": 8665.002475,
+      "orders": 61.0,
+      "gmv": 11432.95,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-04",
+      "orders_z": 6.398456,
+      "orders_expected": 42.302752,
+      "gmv_z": 5.58674,
+      "gmv_expected": 7371.679497,
+      "orders": 66.0,
+      "gmv": 13968.16,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-05",
+      "orders_z": 5.061357,
+      "orders_expected": 52.763271,
+      "gmv_z": 1.281989,
+      "gmv_expected": 7330.506416,
+      "orders": 75.0,
+      "gmv": 8503.79,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-11",
+      "orders_z": -0.122117,
+      "orders_expected": 45.186669,
+      "gmv_z": -6.309534,
+      "gmv_expected": 8822.145286,
+      "orders": 45.0,
+      "gmv": 4307.56,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-12",
+      "orders_z": 2.744881,
+      "orders_expected": 51.11703,
+      "gmv_z": 7.416185,
+      "gmv_expected": 6468.302279,
+      "orders": 62.0,
+      "gmv": 15098.25,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-18",
+      "orders_z": 5.169553,
+      "orders_expected": 36.219748,
+      "gmv_z": 0.01566,
+      "gmv_expected": 7267.307201,
+      "orders": 52.0,
+      "gmv": 7297.33,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-21",
+      "orders_z": -5.368536,
+      "orders_expected": 59.109301,
+      "gmv_z": -0.250496,
+      "gmv_expected": 8505.723959,
+      "orders": 41.0,
+      "gmv": 8285.64,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-25",
+      "orders_z": -0.234846,
+      "orders_expected": 42.504562,
+      "gmv_z": -6.037619,
+      "gmv_expected": 8332.591417,
+      "orders": 42.0,
+      "gmv": 4196.59,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-02-27",
+      "orders_z": -8.52835,
+      "orders_expected": 75.185439,
+      "gmv_z": -6.040835,
+      "gmv_expected": 11546.363085,
+      "orders": 42.0,
+      "gmv": 5813.22,
+      "direction": "drop",
+      "known_event": "Carnival 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-03-01",
+      "orders_z": 4.998215,
+      "orders_expected": 67.201821,
+      "gmv_z": 0.439556,
+      "gmv_expected": 11913.98437,
+      "orders": 95.0,
+      "gmv": 12555.41,
+      "direction": "spike",
+      "known_event": "Carnival 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-03-04",
+      "orders_z": 5.078944,
+      "orders_expected": 53.406,
+      "gmv_z": -0.011624,
+      "gmv_expected": 10847.52081,
+      "orders": 76.0,
+      "gmv": 10858.51,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-03-05",
+      "orders_z": 4.026644,
+      "orders_expected": 52.86289,
+      "gmv_z": 0.150968,
+      "gmv_expected": 6609.261752,
+      "orders": 70.0,
+      "gmv": 6739.72,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-03-06",
+      "orders_z": 0.518271,
+      "orders_expected": 94.192902,
+      "gmv_z": -4.51988,
+      "gmv_expected": 14891.163427,
+      "orders": 98.0,
+      "gmv": 8916.64,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-03-18",
+      "orders_z": 0.138156,
+      "orders_expected": 72.005224,
+      "gmv_z": 4.108704,
+      "gmv_expected": 10264.478299,
+      "orders": 73.0,
+      "gmv": 16433.82,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-03-29",
+      "orders_z": -4.981629,
+      "orders_expected": 102.174409,
+      "gmv_z": -5.922264,
+      "gmv_expected": 16252.274481,
+      "orders": 73.0,
+      "gmv": 8294.04,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-03-30",
+      "orders_z": -4.811767,
+      "orders_expected": 102.375506,
+      "gmv_z": -5.27821,
+      "gmv_expected": 18254.637918,
+      "orders": 74.0,
+      "gmv": 10025.6,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-01",
+      "orders_z": -0.496641,
+      "orders_expected": 69.02555,
+      "gmv_z": 4.237296,
+      "gmv_expected": 10892.877277,
+      "orders": 67.0,
+      "gmv": 17697.37,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-03",
+      "orders_z": -4.548879,
+      "orders_expected": 97.847558,
+      "gmv_z": -5.44937,
+      "gmv_expected": 17001.177533,
+      "orders": 72.0,
+      "gmv": 9156.76,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-12",
+      "orders_z": -4.792971,
+      "orders_expected": 85.725226,
+      "gmv_z": -3.284698,
+      "gmv_expected": 11706.231272,
+      "orders": 62.0,
+      "gmv": 8069.21,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-13",
+      "orders_z": -4.513833,
+      "orders_expected": 81.403303,
+      "gmv_z": -1.593022,
+      "gmv_expected": 11593.932812,
+      "orders": 60.0,
+      "gmv": 9691.43,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-18",
+      "orders_z": -1.257052,
+      "orders_expected": 77.053265,
+      "gmv_z": 6.762465,
+      "gmv_expected": 9825.270831,
+      "orders": 71.0,
+      "gmv": 21286.72,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-27",
+      "orders_z": -5.941229,
+      "orders_expected": 116.522949,
+      "gmv_z": -2.02823,
+      "gmv_expected": 12385.055058,
+      "orders": 78.0,
+      "gmv": 9851.71,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-28",
+      "orders_z": 0.549349,
+      "orders_expected": 93.993249,
+      "gmv_z": 4.021042,
+      "gmv_expected": 9961.684987,
+      "orders": 98.0,
+      "gmv": 15790.49,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-04-30",
+      "orders_z": -5.076538,
+      "orders_expected": 95.821997,
+      "gmv_z": -2.088234,
+      "gmv_expected": 10241.638149,
+      "orders": 68.0,
+      "gmv": 8091.16,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-03",
+      "orders_z": -1.827385,
+      "orders_expected": 115.045891,
+      "gmv_z": -4.901231,
+      "gmv_expected": 17535.658663,
+      "orders": 102.0,
+      "gmv": 10053.56,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-06",
+      "orders_z": 5.959809,
+      "orders_expected": 70.900953,
+      "gmv_z": 1.647932,
+      "gmv_expected": 13410.996416,
+      "orders": 107.0,
+      "gmv": 16219.98,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-21",
+      "orders_z": 4.756593,
+      "orders_expected": 106.59705,
+      "gmv_z": 0.393465,
+      "gmv_expected": 16623.055925,
+      "orders": 148.0,
+      "gmv": 17426.2,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-26",
+      "orders_z": -6.760335,
+      "orders_expected": 123.209787,
+      "gmv_z": -4.466249,
+      "gmv_expected": 17679.385971,
+      "orders": 78.0,
+      "gmv": 10651.18,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-28",
+      "orders_z": -0.561333,
+      "orders_expected": 101.395509,
+      "gmv_z": -4.303824,
+      "gmv_expected": 15092.651355,
+      "orders": 98.0,
+      "gmv": 9262.62,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-05-30",
+      "orders_z": -4.150827,
+      "orders_expected": 132.132878,
+      "gmv_z": -0.883622,
+      "gmv_expected": 15389.487022,
+      "orders": 100.0,
+      "gmv": 13947.59,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-06-07",
+      "orders_z": -0.758643,
+      "orders_expected": 130.022214,
+      "gmv_z": -4.484895,
+      "gmv_expected": 21244.039038,
+      "orders": 124.0,
+      "gmv": 12771.66,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-06-19",
+      "orders_z": 4.706388,
+      "orders_expected": 112.034684,
+      "gmv_z": 4.096416,
+      "gmv_expected": 14193.831805,
+      "orders": 155.0,
+      "gmv": 22692.83,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-06-20",
+      "orders_z": -4.098232,
+      "orders_expected": 121.152888,
+      "gmv_z": -1.398415,
+      "gmv_expected": 12833.622462,
+      "orders": 92.0,
+      "gmv": 10968.33,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-06-21",
+      "orders_z": -17.816668,
+      "orders_expected": 118.462527,
+      "gmv_z": -8.516361,
+      "gmv_expected": 16285.918407,
+      "orders": 35.0,
+      "gmv": 6183.65,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-06-26",
+      "orders_z": -7.212307,
+      "orders_expected": 117.334872,
+      "gmv_z": -0.249588,
+      "gmv_expected": 13769.642299,
+      "orders": 72.0,
+      "gmv": 13414.76,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-07-06",
+      "orders_z": 3.045435,
+      "orders_expected": 119.783305,
+      "gmv_z": 4.825631,
+      "gmv_expected": 12791.764196,
+      "orders": 148.0,
+      "gmv": 22223.72,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-08-15",
+      "orders_z": 4.28636,
+      "orders_expected": 143.614815,
+      "gmv_z": 1.337632,
+      "gmv_expected": 20324.505487,
+      "orders": 193.0,
+      "gmv": 23727.26,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-08-23",
+      "orders_z": -5.563921,
+      "orders_expected": 161.421356,
+      "gmv_z": -1.413249,
+      "gmv_expected": 18604.457005,
+      "orders": 111.0,
+      "gmv": 15873.61,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-09-07",
+      "orders_z": -5.880861,
+      "orders_expected": 144.194588,
+      "gmv_z": -1.012892,
+      "gmv_expected": 18916.594104,
+      "orders": 97.0,
+      "gmv": 16893.5,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-09-08",
+      "orders_z": -1.853633,
+      "orders_expected": 128.795764,
+      "gmv_z": -4.67015,
+      "gmv_expected": 19662.042598,
+      "orders": 114.0,
+      "gmv": 11573.57,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-09-29",
+      "orders_z": -1.01988,
+      "orders_expected": 123.820425,
+      "gmv_z": 5.404986,
+      "gmv_expected": 16637.821144,
+      "orders": 116.0,
+      "gmv": 30878.56,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-11-01",
+      "orders_z": -4.807641,
+      "orders_expected": 150.575155,
+      "gmv_z": 0.088537,
+      "gmv_expected": 19144.187125,
+      "orders": 109.0,
+      "gmv": 19383.61,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-11-02",
+      "orders_z": -4.098665,
+      "orders_expected": 156.621234,
+      "gmv_z": -0.495329,
+      "gmv_expected": 22340.755594,
+      "orders": 119.0,
+      "gmv": 21163.83,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-11-24",
+      "orders_z": 23.111352,
+      "orders_expected": 242.861711,
+      "gmv_z": 12.190271,
+      "gmv_expected": 37957.312599,
+      "orders": 1166.0,
+      "gmv": 152653.74,
+      "direction": "spike",
+      "known_event": "Black Friday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-11-25",
+      "orders_z": 13.321068,
+      "orders_expected": 201.035186,
+      "gmv_z": 5.733694,
+      "gmv_expected": 31619.814776,
+      "orders": 498.0,
+      "gmv": 60923.48,
+      "direction": "spike",
+      "known_event": "Black Friday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-11-26",
+      "orders_z": 7.388881,
+      "orders_expected": 233.537697,
+      "gmv_z": 2.591841,
+      "gmv_expected": 33394.532537,
+      "orders": 387.0,
+      "gmv": 44976.28,
+      "direction": "spike",
+      "known_event": "Cyber Monday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-12-24",
+      "orders_z": -10.2499,
+      "orders_expected": 116.426736,
+      "gmv_z": -8.676437,
+      "gmv_expected": 15135.829715,
+      "orders": 58.0,
+      "gmv": 5643.01,
+      "direction": "drop",
+      "known_event": "Christmas 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-12-25",
+      "orders_z": -10.227773,
+      "orders_expected": 179.845261,
+      "gmv_z": -6.337127,
+      "gmv_expected": 21327.10705,
+      "orders": 90.0,
+      "gmv": 10381.34,
+      "direction": "drop",
+      "known_event": "Christmas 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-12-30",
+      "orders_z": -4.940251,
+      "orders_expected": 133.864585,
+      "gmv_z": -1.045806,
+      "gmv_expected": 14659.504033,
+      "orders": 96.0,
+      "gmv": 13042.65,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-12-31",
+      "orders_z": -9.748486,
+      "orders_expected": 141.37537,
+      "gmv_z": -6.531567,
+      "gmv_expected": 18149.52154,
+      "orders": 73.0,
+      "gmv": 8640.87,
+      "direction": "drop",
+      "known_event": "New Year 2018",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2018-01-01",
+      "orders_z": -16.550581,
+      "orders_expected": 224.430688,
+      "gmv_z": -11.996211,
+      "gmv_expected": 27207.414363,
+      "orders": 73.0,
+      "gmv": 6948.21,
+      "direction": "drop",
+      "known_event": "New Year 2018",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2018-03-14",
+      "orders_z": -4.470122,
+      "orders_expected": 267.031199,
+      "gmv_z": -4.232234,
+      "gmv_expected": 38025.652619,
+      "orders": 198.0,
+      "gmv": 23528.79,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-05-16",
+      "orders_z": 4.950382,
+      "orders_expected": 253.446457,
+      "gmv_z": 4.796563,
+      "gmv_expected": 32478.615012,
+      "orders": 356.0,
+      "gmv": 56238.83,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-05-25",
+      "orders_z": -5.32162,
+      "orders_expected": 147.371052,
+      "gmv_z": -0.998333,
+      "gmv_expected": 17762.217739,
+      "orders": 103.0,
+      "gmv": 15888.92,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-06-03",
+      "orders_z": 4.06991,
+      "orders_expected": 144.232252,
+      "gmv_z": 3.959166,
+      "gmv_expected": 18082.873528,
+      "orders": 191.0,
+      "gmv": 28461.66,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-07-04",
+      "orders_z": 4.399256,
+      "orders_expected": 187.642173,
+      "gmv_z": 4.301218,
+      "gmv_expected": 21638.933222,
+      "orders": 254.0,
+      "gmv": 35412.65,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-07-10",
+      "orders_z": -4.463477,
+      "orders_expected": 178.056031,
+      "gmv_z": -1.040212,
+      "gmv_expected": 21032.323378,
+      "orders": 132.0,
+      "gmv": 18724.57,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-07-11",
+      "orders_z": -6.576064,
+      "orders_expected": 196.208577,
+      "gmv_z": -1.634637,
+      "gmv_expected": 22144.161678,
+      "orders": 126.0,
+      "gmv": 18422.98,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-07-12",
+      "orders_z": -7.453293,
+      "orders_expected": 195.068377,
+      "gmv_z": -2.751843,
+      "gmv_expected": 26883.724744,
+      "orders": 118.0,
+      "gmv": 19691.97,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-15",
+      "orders_z": 8.624382,
+      "orders_expected": 156.924249,
+      "gmv_z": 1.449019,
+      "gmv_expected": 38403.014388,
+      "orders": 283.0,
+      "gmv": 45405.14,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-21",
+      "orders_z": 7.344716,
+      "orders_expected": 144.508383,
+      "gmv_z": 0.229606,
+      "gmv_expected": 25583.260986,
+      "orders": 239.0,
+      "gmv": 26323.06,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-22",
+      "orders_z": 17.134322,
+      "orders_expected": 57.517338,
+      "gmv_z": -0.23693,
+      "gmv_expected": 20804.033129,
+      "orders": 186.0,
+      "gmv": 20297.13,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-27",
+      "orders_z": 0.091596,
+      "orders_expected": 65.307571,
+      "gmv_z": -6.91609,
+      "gmv_expected": 11732.218992,
+      "orders": 66.0,
+      "gmv": 5345.91,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-28",
+      "orders_z": -0.360257,
+      "orders_expected": 39.813701,
+      "gmv_z": -7.711626,
+      "gmv_expected": 8828.540072,
+      "orders": 39.0,
+      "gmv": 3673.91,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-29",
+      "orders_z": -0.356313,
+      "orders_expected": 11.240848,
+      "gmv_z": -13.309301,
+      "gmv_expected": 7033.998809,
+      "orders": 11.0,
+      "gmv": 1546.04,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-30",
+      "orders_z": -56.189575,
+      "orders_expected": 43.342159,
+      "gmv_z": -75.811377,
+      "gmv_expected": 5641.363128,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-31",
+      "orders_z": -49.158346,
+      "orders_expected": 26.575012,
+      "gmv_z": -70.250998,
+      "gmv_expected": 2992.891162,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    }
+  ],
+  "online_alerts": [
+    {
+      "date": "2017-06-21",
+      "orders_err": -1.136908,
+      "orders_expected": 111.216117,
+      "gmv_err": -1.206669,
+      "gmv_expected": 20670.148639,
+      "orders_z": -4.260555,
+      "gmv_z": -3.060434,
+      "orders": 35.0,
+      "gmv": 6183.65,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-11-24",
+      "orders_err": 1.703586,
+      "orders_expected": 211.428579,
+      "gmv_err": 1.471119,
+      "gmv_expected": 35058.970389,
+      "orders_z": 12.833702,
+      "gmv_z": 6.837889,
+      "orders": 1166.0,
+      "gmv": 152653.74,
+      "direction": "spike",
+      "known_event": "Black Friday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-11-25",
+      "orders_err": 1.102744,
+      "orders_expected": 164.647586,
+      "gmv_err": 0.608855,
+      "gmv_expected": 33140.279656,
+      "orders_z": 7.416506,
+      "gmv_z": 2.793905,
+      "orders": 498.0,
+      "gmv": 60923.48,
+      "direction": "spike",
+      "known_event": "Black Friday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-11-26",
+      "orders_err": 0.67539,
+      "orders_expected": 196.475749,
+      "gmv_err": 0.504332,
+      "gmv_expected": 27161.177541,
+      "orders_z": 4.477946,
+      "gmv_z": 2.303694,
+      "orders": 387.0,
+      "gmv": 44976.28,
+      "direction": "spike",
+      "known_event": "Cyber Monday 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2017-12-02",
+      "orders_err": -1.331578,
+      "orders_expected": 813.20821,
+      "gmv_err": -0.886112,
+      "gmv_expected": 75702.393321,
+      "orders_z": -7.549996,
+      "gmv_z": -4.151596,
+      "orders": 214.0,
+      "gmv": 31208.13,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-12-03",
+      "orders_err": -0.793061,
+      "orders_expected": 511.75513,
+      "gmv_err": -0.628991,
+      "gmv_expected": 54889.852473,
+      "orders_z": -4.476686,
+      "gmv_z": -2.788657,
+      "orders": 231.0,
+      "gmv": 29262.92,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2017-12-24",
+      "orders_err": -0.626348,
+      "orders_expected": 109.37523,
+      "gmv_err": -0.874947,
+      "gmv_expected": 13537.553528,
+      "orders_z": -3.895719,
+      "gmv_z": -3.798339,
+      "orders": 58.0,
+      "gmv": 5643.01,
+      "direction": "drop",
+      "known_event": "Christmas 2017",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2018-01-01",
+      "orders_err": -0.816971,
+      "orders_expected": 166.508802,
+      "gmv_err": -1.026555,
+      "gmv_expected": 19397.259026,
+      "orders_z": -3.640183,
+      "gmv_z": -3.341394,
+      "orders": 73.0,
+      "gmv": 6948.21,
+      "direction": "drop",
+      "known_event": "New Year 2018",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2018-01-08",
+      "orders_err": 0.961568,
+      "orders_expected": 111.011816,
+      "gmv_err": 1.034308,
+      "gmv_expected": 13761.257439,
+      "orders_z": 4.125886,
+      "gmv_z": 2.850419,
+      "orders": 292.0,
+      "gmv": 38714.4,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-06-01",
+      "orders_err": 0.824881,
+      "orders_expected": 80.083106,
+      "gmv_err": 0.636032,
+      "gmv_expected": 17098.218211,
+      "orders_z": 5.370145,
+      "gmv_z": 1.79717,
+      "orders": 184.0,
+      "gmv": 32298.92,
+      "direction": "spike",
+      "known_event": "Truckers strike end",
+      "classification": "expected_event"
+    },
+    {
+      "date": "2018-07-13",
+      "orders_err": 0.665854,
+      "orders_expected": 85.324209,
+      "gmv_err": 0.752682,
+      "gmv_expected": 13022.710914,
+      "orders_z": 3.480627,
+      "gmv_z": 3.031462,
+      "orders": 167.0,
+      "gmv": 27644.23,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-07-14",
+      "orders_err": 0.869864,
+      "orders_expected": 60.594241,
+      "gmv_err": 1.186627,
+      "gmv_expected": 6728.431808,
+      "orders_z": 4.283916,
+      "gmv_z": 4.617471,
+      "orders": 146.0,
+      "gmv": 22044.71,
+      "direction": "spike",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-28",
+      "orders_err": -1.107407,
+      "orders_expected": 120.060042,
+      "gmv_err": -1.032174,
+      "gmv_expected": 10315.071752,
+      "orders_z": -4.211014,
+      "gmv_z": -2.65546,
+      "orders": 39.0,
+      "gmv": 3673.91,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-29",
+      "orders_err": -1.601368,
+      "orders_expected": 58.517757,
+      "gmv_err": -1.58678,
+      "gmv_expected": 7560.908289,
+      "orders_z": -5.843307,
+      "gmv_z": -4.062631,
+      "orders": 11.0,
+      "gmv": 1546.04,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-30",
+      "orders_err": -4.034556,
+      "orders_expected": 55.517819,
+      "gmv_err": -8.556522,
+      "gmv_expected": 5199.560468,
+      "orders_z": -14.904812,
+      "gmv_z": -22.738216,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    },
+    {
+      "date": "2018-08-31",
+      "orders_err": -3.508265,
+      "orders_expected": 32.390274,
+      "gmv_err": -8.188116,
+      "gmv_expected": 3596.937228,
+      "orders_z": -12.433972,
+      "gmv_z": -21.496037,
+      "orders": 0.0,
+      "gmv": 0.0,
+      "direction": "drop",
+      "known_event": null,
+      "classification": "investigate"
+    }
+  ],
+  "n_retro_alerts": 77,
+  "n_online_alerts": 16,
+  "n_online_investigate": 10,
+  "black_friday_2017": {
+    "orders": 1166.0,
+    "gmv": 152653.74,
+    "orders_expected_retro": 242.861711,
+    "orders_z_retro": 23.111352,
+    "orders_z_online": 12.833702,
+    "gmv_z_online": 6.837889,
+    "flagged_retro": true,
+    "flagged_online": true,
+    "classification": "expected_event",
+    "multiple_of_expected_orders": 4.801086,
+    "handling": "Black Friday is in the event calendar: the alert fires (so the monitor is proven sensitive) but is classified expected_event and annotated rather than paged. The STL is robust (bisquare weights), so the spike does not drag the trend and mask the following days."
+  },
+  "post_black_friday_orders_mean": 373.833333,
+  "series": [
+    {
+      "date": "2017-01-01",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": 0.174786,
+      "orders_expected": -0.015881,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-02",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": -0.479851,
+      "orders_expected": 0.02862,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-03",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": -0.429564,
+      "orders_expected": 0.025131,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-04",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": -14.570379,
+      "orders_expected": 1.664899,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-05",
+      "orders": 32.0,
+      "gmv": 396.9,
+      "orders_z": 34.726664,
+      "orders_expected": 2.146193,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-06",
+      "orders": 4.0,
+      "gmv": 916.38,
+      "orders_z": 7.563011,
+      "orders_expected": 1.987045,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-07",
+      "orders": 4.0,
+      "gmv": 1351.9,
+      "orders_z": 0.770727,
+      "orders_expected": 3.726418,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-08",
+      "orders": 6.0,
+      "gmv": 709.58,
+      "orders_z": 5.548003,
+      "orders_expected": 3.791722,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-09",
+      "orders": 5.0,
+      "gmv": 673.79,
+      "orders_z": 0.599352,
+      "orders_expected": 4.737751,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-10",
+      "orders": 6.0,
+      "gmv": 1434.87,
+      "orders_z": 2.245886,
+      "orders_expected": 4.989327,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-11",
+      "orders": 11.0,
+      "gmv": 2611.26,
+      "orders_z": -0.413441,
+      "orders_expected": 11.288184,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-12",
+      "orders": 13.0,
+      "gmv": 2234.58,
+      "orders_z": 0.828944,
+      "orders_expected": 12.182023,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-13",
+      "orders": 11.0,
+      "gmv": 2505.58,
+      "orders_z": -0.088124,
+      "orders_expected": 11.021058,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-14",
+      "orders": 18.0,
+      "gmv": 1112.69,
+      "orders_z": 4.122859,
+      "orders_expected": 13.320621,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-15",
+      "orders": 14.0,
+      "gmv": 2199.57,
+      "orders_z": 0.107103,
+      "orders_expected": 13.829435,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-16",
+      "orders": 19.0,
+      "gmv": 3307.92,
+      "orders_z": 1.216771,
+      "orders_expected": 17.344459,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-17",
+      "orders": 32.0,
+      "gmv": 3302.53,
+      "orders_z": 7.666543,
+      "orders_expected": 18.577087,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-18",
+      "orders": 33.0,
+      "gmv": 4032.36,
+      "orders_z": 1.134827,
+      "orders_expected": 30.358706,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-19",
+      "orders": 29.0,
+      "gmv": 3553.95,
+      "orders_z": -0.624916,
+      "orders_expected": 30.162518,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-20",
+      "orders": 28.0,
+      "gmv": 4035.83,
+      "orders_z": 0.798053,
+      "orders_expected": 26.362664,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-21",
+      "orders": 24.0,
+      "gmv": 2458.6,
+      "orders_z": -0.603321,
+      "orders_expected": 24.930905,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-22",
+      "orders": 30.0,
+      "gmv": 3619.27,
+      "orders_z": 1.060007,
+      "orders_expected": 27.736652,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-23",
+      "orders": 39.0,
+      "gmv": 6581.47,
+      "orders_z": 0.685915,
+      "orders_expected": 37.028622,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-24",
+      "orders": 40.0,
+      "gmv": 5955.17,
+      "orders_z": -0.127709,
+      "orders_expected": 40.181934,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-25",
+      "orders": 62.0,
+      "gmv": 8977.23,
+      "orders_z": 3.095328,
+      "orders_expected": 49.8976,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-26",
+      "orders": 84.0,
+      "gmv": 13107.96,
+      "orders_z": 8.752594,
+      "orders_expected": 45.858414,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-27",
+      "orders": 61.0,
+      "gmv": 11432.95,
+      "orders_z": 6.301578,
+      "orders_expected": 39.334329,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-28",
+      "orders": 29.0,
+      "gmv": 5211.01,
+      "orders_z": -0.744077,
+      "orders_expected": 30.414403,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-29",
+      "orders": 35.0,
+      "gmv": 6457.66,
+      "orders_z": -0.943699,
+      "orders_expected": 37.209126,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-30",
+      "orders": 51.0,
+      "gmv": 10801.13,
+      "orders_z": -0.654985,
+      "orders_expected": 53.124872,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-01-31",
+      "orders": 67.0,
+      "gmv": 11116.13,
+      "orders_z": 1.527964,
+      "orders_expected": 60.073557,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-01",
+      "orders": 66.0,
+      "gmv": 8099.76,
+      "orders_z": -0.610645,
+      "orders_expected": 68.529223,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-02",
+      "orders": 68.0,
+      "gmv": 8917.64,
+      "orders_z": 0.85522,
+      "orders_expected": 63.853312,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-03",
+      "orders": 56.0,
+      "gmv": 10171.74,
+      "orders_z": -0.079106,
+      "orders_expected": 56.065248,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-04",
+      "orders": 66.0,
+      "gmv": 13968.16,
+      "orders_z": 6.398456,
+      "orders_expected": 42.302752,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-05",
+      "orders": 75.0,
+      "gmv": 8503.79,
+      "orders_z": 5.061357,
+      "orders_expected": 52.763271,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-06",
+      "orders": 81.0,
+      "gmv": 9539.44,
+      "orders_z": 0.719302,
+      "orders_expected": 76.783029,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-07",
+      "orders": 110.0,
+      "gmv": 14073.58,
+      "orders_z": 3.971141,
+      "orders_expected": 83.524533,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-08",
+      "orders": 89.0,
+      "gmv": 11908.37,
+      "orders_z": 1.026844,
+      "orders_expected": 82.616122,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-09",
+      "orders": 77.0,
+      "gmv": 9190.29,
+      "orders_z": 0.172768,
+      "orders_expected": 75.771722,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-10",
+      "orders": 65.0,
+      "gmv": 13656.94,
+      "orders_z": 0.234577,
+      "orders_expected": 63.68999,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-11",
+      "orders": 45.0,
+      "gmv": 4307.56,
+      "orders_z": -0.122117,
+      "orders_expected": 45.186669,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-12",
+      "orders": 62.0,
+      "gmv": 15098.25,
+      "orders_z": 2.744881,
+      "orders_expected": 51.11703,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-13",
+      "orders": 75.0,
+      "gmv": 10405.15,
+      "orders_z": 0.439241,
+      "orders_expected": 72.4686,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-14",
+      "orders": 71.0,
+      "gmv": 12694.11,
+      "orders_z": 0.458404,
+      "orders_expected": 68.511783,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-15",
+      "orders": 60.0,
+      "gmv": 6770.15,
+      "orders_z": -0.604017,
+      "orders_expected": 62.274382,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-16",
+      "orders": 50.0,
+      "gmv": 6093.04,
+      "orders_z": -1.718494,
+      "orders_expected": 56.038462,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-17",
+      "orders": 45.0,
+      "gmv": 6801.26,
+      "orders_z": -1.806284,
+      "orders_expected": 50.752492,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-18",
+      "orders": 52.0,
+      "gmv": 7297.33,
+      "orders_z": 5.169553,
+      "orders_expected": 36.219748,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-19",
+      "orders": 40.0,
+      "gmv": 3797.9,
+      "orders_z": -0.817549,
+      "orders_expected": 42.146653,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-20",
+      "orders": 62.0,
+      "gmv": 7861.4,
+      "orders_z": -0.55259,
+      "orders_expected": 64.122301,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-21",
+      "orders": 41.0,
+      "gmv": 8285.64,
+      "orders_z": -5.368536,
+      "orders_expected": 59.109301,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-22",
+      "orders": 58.0,
+      "gmv": 7356.57,
+      "orders_z": 0.016602,
+      "orders_expected": 57.686837,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-23",
+      "orders": 59.0,
+      "gmv": 6940.82,
+      "orders_z": 0.21701,
+      "orders_expected": 57.878921,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-24",
+      "orders": 62.0,
+      "gmv": 6682.21,
+      "orders_z": 1.073531,
+      "orders_expected": 57.34696,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-25",
+      "orders": 42.0,
+      "gmv": 4196.59,
+      "orders_z": -0.234846,
+      "orders_expected": 42.504562,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-26",
+      "orders": 45.0,
+      "gmv": 5446.68,
+      "orders_z": -0.14614,
+      "orders_expected": 45.261692,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-27",
+      "orders": 42.0,
+      "gmv": 5813.22,
+      "orders_z": -8.52835,
+      "orders_expected": 75.185439,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-02-28",
+      "orders": 54.0,
+      "gmv": 11081.76,
+      "orders_z": -2.950932,
+      "orders_expected": 65.852997,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-01",
+      "orders": 95.0,
+      "gmv": 12555.41,
+      "orders_z": 4.998215,
+      "orders_expected": 67.201821,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-02",
+      "orders": 68.0,
+      "gmv": 11377.0,
+      "orders_z": -0.460304,
+      "orders_expected": 69.881114,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-03",
+      "orders": 72.0,
+      "gmv": 12364.44,
+      "orders_z": 0.427421,
+      "orders_expected": 69.6249,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-04",
+      "orders": 76.0,
+      "gmv": 10858.51,
+      "orders_z": 5.078944,
+      "orders_expected": 53.406,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-05",
+      "orders": 70.0,
+      "gmv": 6739.72,
+      "orders_z": 4.026644,
+      "orders_expected": 52.86289,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-06",
+      "orders": 98.0,
+      "gmv": 8916.64,
+      "orders_z": 0.518271,
+      "orders_expected": 94.192902,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-07",
+      "orders": 80.0,
+      "gmv": 11648.52,
+      "orders_z": 0.218611,
+      "orders_expected": 78.477946,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-08",
+      "orders": 77.0,
+      "gmv": 14587.47,
+      "orders_z": -1.724099,
+      "orders_expected": 86.268332,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-09",
+      "orders": 92.0,
+      "gmv": 11705.54,
+      "orders_z": 0.07335,
+      "orders_expected": 91.152397,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-10",
+      "orders": 86.0,
+      "gmv": 11984.97,
+      "orders_z": 0.607002,
+      "orders_expected": 82.154395,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-11",
+      "orders": 70.0,
+      "gmv": 10833.27,
+      "orders_z": 0.290514,
+      "orders_expected": 68.328256,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-12",
+      "orders": 63.0,
+      "gmv": 6496.17,
+      "orders_z": 0.310806,
+      "orders_expected": 61.407461,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-13",
+      "orders": 108.0,
+      "gmv": 16681.16,
+      "orders_z": -0.549184,
+      "orders_expected": 111.645992,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-14",
+      "orders": 98.0,
+      "gmv": 14129.16,
+      "orders_z": 0.660207,
+      "orders_expected": 93.284453,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-15",
+      "orders": 107.0,
+      "gmv": 14999.33,
+      "orders_z": 1.164032,
+      "orders_expected": 98.41366,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-16",
+      "orders": 102.0,
+      "gmv": 14199.79,
+      "orders_z": -0.14459,
+      "orders_expected": 102.575115,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-17",
+      "orders": 65.0,
+      "gmv": 11970.4,
+      "orders_z": -3.179111,
+      "orders_expected": 80.469879,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-18",
+      "orders": 73.0,
+      "gmv": 16433.82,
+      "orders_z": 0.138156,
+      "orders_expected": 72.005224,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-19",
+      "orders": 56.0,
+      "gmv": 6649.34,
+      "orders_z": -1.338802,
+      "orders_expected": 61.134392,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-20",
+      "orders": 114.0,
+      "gmv": 16906.09,
+      "orders_z": 0.484925,
+      "orders_expected": 109.827011,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-21",
+      "orders": 92.0,
+      "gmv": 11311.15,
+      "orders_z": -0.672709,
+      "orders_expected": 95.916229,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-22",
+      "orders": 105.0,
+      "gmv": 14188.97,
+      "orders_z": 0.196683,
+      "orders_expected": 103.162374,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-23",
+      "orders": 110.0,
+      "gmv": 16300.56,
+      "orders_z": 0.592726,
+      "orders_expected": 105.19591,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-24",
+      "orders": 76.0,
+      "gmv": 10143.22,
+      "orders_z": -0.070668,
+      "orders_expected": 76.044207,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-25",
+      "orders": 74.0,
+      "gmv": 9361.44,
+      "orders_z": 0.13384,
+      "orders_expected": 73.013362,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-26",
+      "orders": 64.0,
+      "gmv": 6320.95,
+      "orders_z": -0.254905,
+      "orders_expected": 64.851894,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-27",
+      "orders": 109.0,
+      "gmv": 16356.97,
+      "orders_z": -0.017871,
+      "orders_expected": 108.671264,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-28",
+      "orders": 100.0,
+      "gmv": 11802.11,
+      "orders_z": 0.378807,
+      "orders_expected": 97.035354,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-29",
+      "orders": 73.0,
+      "gmv": 8294.04,
+      "orders_z": -4.981629,
+      "orders_expected": 102.174409,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-30",
+      "orders": 74.0,
+      "gmv": 10025.6,
+      "orders_z": -4.811767,
+      "orders_expected": 102.375506,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-03-31",
+      "orders": 70.0,
+      "gmv": 12199.56,
+      "orders_z": -0.131528,
+      "orders_expected": 70.333459,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-01",
+      "orders": 67.0,
+      "gmv": 17697.37,
+      "orders_z": -0.496641,
+      "orders_expected": 69.02555,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-02",
+      "orders": 65.0,
+      "gmv": 9129.88,
+      "orders_z": -0.126235,
+      "orders_expected": 65.28627,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-03",
+      "orders": 72.0,
+      "gmv": 9156.76,
+      "orders_z": -4.548879,
+      "orders_expected": 97.847558,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-04",
+      "orders": 96.0,
+      "gmv": 12301.65,
+      "orders_z": 0.672749,
+      "orders_expected": 91.301474,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-05",
+      "orders": 96.0,
+      "gmv": 18902.94,
+      "orders_z": -0.474095,
+      "orders_expected": 98.737351,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-06",
+      "orders": 95.0,
+      "gmv": 23168.89,
+      "orders_z": -0.422085,
+      "orders_expected": 97.362898,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-07",
+      "orders": 84.0,
+      "gmv": 13250.29,
+      "orders_z": 3.641977,
+      "orders_expected": 65.181499,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-08",
+      "orders": 66.0,
+      "gmv": 8785.09,
+      "orders_z": 0.28035,
+      "orders_expected": 64.46738,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-09",
+      "orders": 71.0,
+      "gmv": 7914.65,
+      "orders_z": 1.599048,
+      "orders_expected": 63.356309,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-10",
+      "orders": 86.0,
+      "gmv": 11577.41,
+      "orders_z": 0.086698,
+      "orders_expected": 85.129373,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-11",
+      "orders": 77.0,
+      "gmv": 8296.51,
+      "orders_z": -0.478517,
+      "orders_expected": 79.225134,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-12",
+      "orders": 62.0,
+      "gmv": 8069.21,
+      "orders_z": -4.792971,
+      "orders_expected": 85.725226,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-13",
+      "orders": 60.0,
+      "gmv": 9691.43,
+      "orders_z": -4.513833,
+      "orders_expected": 81.403303,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-14",
+      "orders": 51.0,
+      "gmv": 7001.07,
+      "orders_z": -0.929288,
+      "orders_expected": 54.13725,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-15",
+      "orders": 52.0,
+      "gmv": 8333.94,
+      "orders_z": -0.399846,
+      "orders_expected": 53.222989,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-16",
+      "orders": 49.0,
+      "gmv": 5455.96,
+      "orders_z": -2.261795,
+      "orders_expected": 57.010746,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-17",
+      "orders": 64.0,
+      "gmv": 7966.87,
+      "orders_z": -2.508618,
+      "orders_expected": 75.682058,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-18",
+      "orders": 71.0,
+      "gmv": 21286.72,
+      "orders_z": -1.257052,
+      "orders_expected": 77.053265,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-19",
+      "orders": 97.0,
+      "gmv": 12103.46,
+      "orders_z": 0.7865,
+      "orders_expected": 91.539134,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-20",
+      "orders": 96.0,
+      "gmv": 13373.14,
+      "orders_z": 0.521293,
+      "orders_expected": 92.250773,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-21",
+      "orders": 67.0,
+      "gmv": 8446.26,
+      "orders_z": -0.733671,
+      "orders_expected": 70.155936,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-22",
+      "orders": 83.0,
+      "gmv": 12860.18,
+      "orders_z": 2.821567,
+      "orders_expected": 68.13029,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-23",
+      "orders": 85.0,
+      "gmv": 10029.05,
+      "orders_z": 0.255813,
+      "orders_expected": 83.172174,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-24",
+      "orders": 114.0,
+      "gmv": 13296.03,
+      "orders_z": 0.784504,
+      "orders_expected": 107.606487,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-25",
+      "orders": 111.0,
+      "gmv": 14671.74,
+      "orders_z": 0.111871,
+      "orders_expected": 109.690787,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-26",
+      "orders": 123.0,
+      "gmv": 15430.49,
+      "orders_z": 0.402817,
+      "orders_expected": 119.165156,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-27",
+      "orders": 78.0,
+      "gmv": 9851.71,
+      "orders_z": -5.941229,
+      "orders_expected": 116.522949,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-28",
+      "orders": 98.0,
+      "gmv": 15790.49,
+      "orders_z": 0.549349,
+      "orders_expected": 93.993249,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-29",
+      "orders": 73.0,
+      "gmv": 11912.63,
+      "orders_z": -0.328998,
+      "orders_expected": 74.346065,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-04-30",
+      "orders": 68.0,
+      "gmv": 8091.16,
+      "orders_z": -5.076538,
+      "orders_expected": 95.821997,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-01",
+      "orders": 116.0,
+      "gmv": 12580.27,
+      "orders_z": -0.234515,
+      "orders_expected": 117.370236,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-02",
+      "orders": 125.0,
+      "gmv": 17640.2,
+      "orders_z": 0.767273,
+      "orders_expected": 118.133541,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-03",
+      "orders": 102.0,
+      "gmv": 10053.56,
+      "orders_z": -1.827385,
+      "orders_expected": 115.045891,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-04",
+      "orders": 108.0,
+      "gmv": 13508.55,
+      "orders_z": -0.857983,
+      "orders_expected": 114.02073,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-05",
+      "orders": 110.0,
+      "gmv": 13969.76,
+      "orders_z": 0.858783,
+      "orders_expected": 103.304133,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-06",
+      "orders": 107.0,
+      "gmv": 16219.98,
+      "orders_z": 5.959809,
+      "orders_expected": 70.900953,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-07",
+      "orders": 109.0,
+      "gmv": 17167.87,
+      "orders_z": 0.850913,
+      "orders_expected": 102.419427,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-08",
+      "orders": 122.0,
+      "gmv": 16148.41,
+      "orders_z": -0.621303,
+      "orders_expected": 126.735142,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-09",
+      "orders": 124.0,
+      "gmv": 20787.05,
+      "orders_z": -0.372433,
+      "orders_expected": 126.647784,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-10",
+      "orders": 115.0,
+      "gmv": 20927.49,
+      "orders_z": -0.637128,
+      "orders_expected": 119.594521,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-11",
+      "orders": 126.0,
+      "gmv": 18164.55,
+      "orders_z": 1.022596,
+      "orders_expected": 117.025506,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-12",
+      "orders": 110.0,
+      "gmv": 12191.61,
+      "orders_z": -1.355586,
+      "orders_expected": 120.13583,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-13",
+      "orders": 72.0,
+      "gmv": 9053.65,
+      "orders_z": -0.401521,
+      "orders_expected": 73.692945,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-14",
+      "orders": 110.0,
+      "gmv": 15022.9,
+      "orders_z": -0.254374,
+      "orders_expected": 111.45074,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-15",
+      "orders": 153.0,
+      "gmv": 17822.03,
+      "orders_z": 0.550624,
+      "orders_expected": 146.754541,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-16",
+      "orders": 150.0,
+      "gmv": 21115.89,
+      "orders_z": 1.062862,
+      "orders_expected": 138.948311,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-17",
+      "orders": 140.0,
+      "gmv": 18195.95,
+      "orders_z": 0.41703,
+      "orders_expected": 135.508272,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-18",
+      "orders": 125.0,
+      "gmv": 18245.13,
+      "orders_z": -0.09485,
+      "orders_expected": 125.278475,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-19",
+      "orders": 144.0,
+      "gmv": 18397.67,
+      "orders_z": 1.340893,
+      "orders_expected": 130.886729,
+      "orders_z_online": null
+    },
+    {
+      "date": "2017-05-20",
+      "orders": 72.0,
+      "gmv": 10632.41,
+      "orders_z": -0.9404,
+      "orders_expected": 76.462348,
+      "orders_z_online": -0.911734
+    },
+    {
+      "date": "2017-05-21",
+      "orders": 148.0,
+      "gmv": 17426.2,
+      "orders_z": 4.756593,
+      "orders_expected": 106.59705,
+      "orders_z_online": 0.249758
+    },
+    {
+      "date": "2017-05-22",
+      "orders": 148.0,
+      "gmv": 25414.2,
+      "orders_z": -0.101329,
+      "orders_expected": 148.394686,
+      "orders_z_online": -0.94777
+    },
+    {
+      "date": "2017-05-23",
+      "orders": 124.0,
+      "gmv": 17625.88,
+      "orders_z": -0.910116,
+      "orders_expected": 131.369909,
+      "orders_z_online": -1.588037
+    },
+    {
+      "date": "2017-05-24",
+      "orders": 141.0,
+      "gmv": 23350.97,
+      "orders_z": 1.279696,
+      "orders_expected": 128.693137,
+      "orders_z_online": -0.112304
+    },
+    {
+      "date": "2017-05-25",
+      "orders": 104.0,
+      "gmv": 15116.79,
+      "orders_z": -1.864702,
+      "orders_expected": 117.597838,
+      "orders_z_online": -1.401909
+    },
+    {
+      "date": "2017-05-26",
+      "orders": 78.0,
+      "gmv": 10651.18,
+      "orders_z": -6.760335,
+      "orders_expected": 123.209787,
+      "orders_z_online": -2.716628
+    },
+    {
+      "date": "2017-05-27",
+      "orders": 79.0,
+      "gmv": 13960.71,
+      "orders_z": 0.268592,
+      "orders_expected": 77.232124,
+      "orders_z_online": 0.860464
+    },
+    {
+      "date": "2017-05-28",
+      "orders": 98.0,
+      "gmv": 9262.62,
+      "orders_z": -0.561333,
+      "orders_expected": 101.395509,
+      "orders_z_online": -1.280251
+    },
+    {
+      "date": "2017-05-29",
+      "orders": 157.0,
+      "gmv": 18732.86,
+      "orders_z": 0.876604,
+      "orders_expected": 147.2903,
+      "orders_z_online": 0.7146
+    },
+    {
+      "date": "2017-05-30",
+      "orders": 100.0,
+      "gmv": 13947.59,
+      "orders_z": -4.150827,
+      "orders_expected": 132.132878,
+      "orders_z_online": -0.810646
+    },
+    {
+      "date": "2017-05-31",
+      "orders": 123.0,
+      "gmv": 19825.26,
+      "orders_z": -1.10107,
+      "orders_expected": 132.01593,
+      "orders_z_online": 0.034337
+    },
+    {
+      "date": "2017-06-01",
+      "orders": 124.0,
+      "gmv": 19305.25,
+      "orders_z": 0.155714,
+      "orders_expected": 122.173443,
+      "orders_z_online": 0.766095
+    },
+    {
+      "date": "2017-06-02",
+      "orders": 126.0,
+      "gmv": 19131.33,
+      "orders_z": 0.279585,
+      "orders_expected": 123.101297,
+      "orders_z_online": 1.28002
+    },
+    {
+      "date": "2017-06-03",
+      "orders": 89.0,
+      "gmv": 10450.35,
+      "orders_z": 1.063289,
+      "orders_expected": 82.41049,
+      "orders_z_online": 0.772289
+    },
+    {
+      "date": "2017-06-04",
+      "orders": 101.0,
+      "gmv": 13863.23,
+      "orders_z": -0.533975,
+      "orders_expected": 104.30359,
+      "orders_z_online": -0.225114
+    },
+    {
+      "date": "2017-06-05",
+      "orders": 145.0,
+      "gmv": 23925.55,
+      "orders_z": 0.070698,
+      "orders_expected": 143.695268,
+      "orders_z_online": -0.62795
+    },
+    {
+      "date": "2017-06-06",
+      "orders": 133.0,
+      "gmv": 14589.15,
+      "orders_z": 0.086743,
+      "orders_expected": 131.658632,
+      "orders_z_online": 0.516682
+    },
+    {
+      "date": "2017-06-07",
+      "orders": 124.0,
+      "gmv": 12771.66,
+      "orders_z": -0.758643,
+      "orders_expected": 130.022214,
+      "orders_z_online": -0.584161
+    },
+    {
+      "date": "2017-06-08",
+      "orders": 137.0,
+      "gmv": 18503.08,
+      "orders_z": 2.021986,
+      "orders_expected": 118.874947,
+      "orders_z_online": 0.283397
+    },
+    {
+      "date": "2017-06-09",
+      "orders": 106.0,
+      "gmv": 16051.35,
+      "orders_z": -0.852814,
+      "orders_expected": 111.870835,
+      "orders_z_online": -1.244439
+    },
+    {
+      "date": "2017-06-10",
+      "orders": 76.0,
+      "gmv": 8220.35,
+      "orders_z": -0.916667,
+      "orders_expected": 80.575959,
+      "orders_z_online": -0.742615
+    },
+    {
+      "date": "2017-06-11",
+      "orders": 113.0,
+      "gmv": 14303.56,
+      "orders_z": 1.547951,
+      "orders_expected": 101.249859,
+      "orders_z_online": 0.305934
+    },
+    {
+      "date": "2017-06-12",
+      "orders": 125.0,
+      "gmv": 14803.11,
+      "orders_z": -0.059693,
+      "orders_expected": 124.978892,
+      "orders_z_online": -1.146739
+    },
+    {
+      "date": "2017-06-13",
+      "orders": 124.0,
+      "gmv": 13926.19,
+      "orders_z": -0.320849,
+      "orders_expected": 126.203703,
+      "orders_z_online": 0.068282
+    },
+    {
+      "date": "2017-06-14",
+      "orders": 130.0,
+      "gmv": 20441.67,
+      "orders_z": 1.032036,
+      "orders_expected": 120.665223,
+      "orders_z_online": -0.011332
+    },
+    {
+      "date": "2017-06-15",
+      "orders": 105.0,
+      "gmv": 12665.77,
+      "orders_z": -0.230218,
+      "orders_expected": 106.21028,
+      "orders_z_online": -1.02409
+    },
+    {
+      "date": "2017-06-16",
+      "orders": 95.0,
+      "gmv": 12831.33,
+      "orders_z": -0.440268,
+      "orders_expected": 97.483806,
+      "orders_z_online": -0.635446
+    },
+    {
+      "date": "2017-06-17",
+      "orders": 74.0,
+      "gmv": 11264.77,
+      "orders_z": 0.463581,
+      "orders_expected": 71.382785,
+      "orders_z_online": -0.266024
+    },
+    {
+      "date": "2017-06-18",
+      "orders": 88.0,
+      "gmv": 15726.27,
+      "orders_z": -0.957717,
+      "orders_expected": 93.550953,
+      "orders_z_online": -0.457471
+    },
+    {
+      "date": "2017-06-19",
+      "orders": 155.0,
+      "gmv": 22692.83,
+      "orders_z": 4.706388,
+      "orders_expected": 112.034684,
+      "orders_z_online": 1.210308
+    },
+    {
+      "date": "2017-06-20",
+      "orders": 92.0,
+      "gmv": 10968.33,
+      "orders_z": -4.098232,
+      "orders_expected": 121.152888,
+      "orders_z_online": -0.893879
+    },
+    {
+      "date": "2017-06-21",
+      "orders": 35.0,
+      "gmv": 6183.65,
+      "orders_z": -17.816668,
+      "orders_expected": 118.462527,
+      "orders_z_online": -4.260555
+    },
+    {
+      "date": "2017-06-22",
+      "orders": 86.0,
+      "gmv": 8643.41,
+      "orders_z": -2.785679,
+      "orders_expected": 103.575229,
+      "orders_z_online": -0.291581
+    },
+    {
+      "date": "2017-06-23",
+      "orders": 106.0,
+      "gmv": 13023.98,
+      "orders_z": 0.916352,
+      "orders_expected": 99.155125,
+      "orders_z_online": 1.416345
+    },
+    {
+      "date": "2017-06-24",
+      "orders": 76.0,
+      "gmv": 8325.65,
+      "orders_z": -0.201001,
+      "orders_expected": 76.725596,
+      "orders_z_online": 0.713453
+    },
+    {
+      "date": "2017-06-25",
+      "orders": 105.0,
+      "gmv": 17646.18,
+      "orders_z": 0.654534,
+      "orders_expected": 99.989726,
+      "orders_z_online": 0.695654
+    },
+    {
+      "date": "2017-06-26",
+      "orders": 72.0,
+      "gmv": 13414.76,
+      "orders_z": -7.212307,
+      "orders_expected": 117.334872,
+      "orders_z_online": -2.907183
+    },
+    {
+      "date": "2017-06-27",
+      "orders": 140.0,
+      "gmv": 16681.61,
+      "orders_z": 0.939069,
+      "orders_expected": 130.777723,
+      "orders_z_online": 1.36723
+    },
+    {
+      "date": "2017-06-28",
+      "orders": 120.0,
+      "gmv": 14655.82,
+      "orders_z": -0.863435,
+      "orders_expected": 126.730602,
+      "orders_z_online": -0.108054
+    },
+    {
+      "date": "2017-06-29",
+      "orders": 110.0,
+      "gmv": 12169.53,
+      "orders_z": -0.045076,
+      "orders_expected": 109.871868,
+      "orders_z_online": 0.245893
+    },
+    {
+      "date": "2017-06-30",
+      "orders": 93.0,
+      "gmv": 12736.89,
+      "orders_z": -1.956642,
+      "orders_expected": 105.834838,
+      "orders_z_online": -0.848985
+    },
+    {
+      "date": "2017-07-01",
+      "orders": 80.0,
+      "gmv": 12151.75,
+      "orders_z": 0.144582,
+      "orders_expected": 78.876439,
+      "orders_z_online": -0.111327
+    },
+    {
+      "date": "2017-07-02",
+      "orders": 104.0,
+      "gmv": 11459.45,
+      "orders_z": 0.69762,
+      "orders_expected": 98.746225,
+      "orders_z_online": -0.027959
+    },
+    {
+      "date": "2017-07-03",
+      "orders": 116.0,
+      "gmv": 16569.25,
+      "orders_z": -0.195458,
+      "orders_expected": 117.058303,
+      "orders_z_online": 1.823559
+    },
+    {
+      "date": "2017-07-04",
+      "orders": 123.0,
+      "gmv": 15484.24,
+      "orders_z": -2.017339,
+      "orders_expected": 140.51016,
+      "orders_z_online": -0.284057
+    },
+    {
+      "date": "2017-07-05",
+      "orders": 139.0,
+      "gmv": 20662.92,
+      "orders_z": 0.679732,
+      "orders_expected": 132.155782,
+      "orders_z_online": 0.842606
+    },
+    {
+      "date": "2017-07-06",
+      "orders": 148.0,
+      "gmv": 22223.72,
+      "orders_z": 3.045435,
+      "orders_expected": 119.783305,
+      "orders_z_online": 1.525063
+    },
+    {
+      "date": "2017-07-07",
+      "orders": 116.0,
+      "gmv": 13237.87,
+      "orders_z": 0.024187,
+      "orders_expected": 115.319363,
+      "orders_z_online": 0.455452
+    },
+    {
+      "date": "2017-07-08",
+      "orders": 83.0,
+      "gmv": 10206.86,
+      "orders_z": -0.457565,
+      "orders_expected": 85.274089,
+      "orders_z_online": -0.485209
+    },
+    {
+      "date": "2017-07-09",
+      "orders": 88.0,
+      "gmv": 8070.58,
+      "orders_z": -2.569829,
+      "orders_expected": 104.430526,
+      "orders_z_online": -1.246558
+    },
+    {
+      "date": "2017-07-10",
+      "orders": 140.0,
+      "gmv": 17326.93,
+      "orders_z": 0.052461,
+      "orders_expected": 138.912231,
+      "orders_z_online": 0.581454
+    },
+    {
+      "date": "2017-07-11",
+      "orders": 161.0,
+      "gmv": 19973.79,
+      "orders_z": 0.178708,
+      "orders_expected": 158.38499,
+      "orders_z_online": 0.593944
+    },
+    {
+      "date": "2017-07-12",
+      "orders": 147.0,
+      "gmv": 19042.22,
+      "orders_z": 0.002073,
+      "orders_expected": 146.359018,
+      "orders_z_online": -0.097652
+    },
+    {
+      "date": "2017-07-13",
+      "orders": 136.0,
+      "gmv": 14465.01,
+      "orders_z": -0.290803,
+      "orders_expected": 138.132553,
+      "orders_z_online": -0.153861
+    },
+    {
+      "date": "2017-07-14",
+      "orders": 149.0,
+      "gmv": 18745.15,
+      "orders_z": 1.69576,
+      "orders_expected": 132.202481,
+      "orders_z_online": 1.011029
+    },
+    {
+      "date": "2017-07-15",
+      "orders": 98.0,
+      "gmv": 10930.56,
+      "orders_z": -0.056519,
+      "orders_expected": 97.962192,
+      "orders_z_online": 0.129635
+    },
+    {
+      "date": "2017-07-16",
+      "orders": 111.0,
+      "gmv": 13027.62,
+      "orders_z": -0.312645,
+      "orders_expected": 112.911362,
+      "orders_z_online": -0.091157
+    },
+    {
+      "date": "2017-07-17",
+      "orders": 163.0,
+      "gmv": 21554.98,
+      "orders_z": 0.322428,
+      "orders_expected": 158.793607,
+      "orders_z_online": 0.227608
+    },
+    {
+      "date": "2017-07-18",
+      "orders": 190.0,
+      "gmv": 28238.2,
+      "orders_z": 1.642278,
+      "orders_expected": 169.225103,
+      "orders_z_online": 0.155409
+    },
+    {
+      "date": "2017-07-19",
+      "orders": 150.0,
+      "gmv": 16545.34,
+      "orders_z": 0.34179,
+      "orders_expected": 145.934714,
+      "orders_z_online": -0.767367
+    },
+    {
+      "date": "2017-07-20",
+      "orders": 140.0,
+      "gmv": 17974.18,
+      "orders_z": 0.393051,
+      "orders_expected": 135.729602,
+      "orders_z_online": -0.467081
+    },
+    {
+      "date": "2017-07-21",
+      "orders": 113.0,
+      "gmv": 12799.85,
+      "orders_z": -2.058379,
+      "orders_expected": 129.45927,
+      "orders_z_online": -1.407991
+    },
+    {
+      "date": "2017-07-22",
+      "orders": 88.0,
+      "gmv": 11456.81,
+      "orders_z": -1.30788,
+      "orders_expected": 95.81439,
+      "orders_z_online": -0.417172
+    },
+    {
+      "date": "2017-07-23",
+      "orders": 104.0,
+      "gmv": 12117.61,
+      "orders_z": 0.040448,
+      "orders_expected": 103.274552,
+      "orders_z_online": -0.025182
+    },
+    {
+      "date": "2017-07-24",
+      "orders": 158.0,
+      "gmv": 18212.72,
+      "orders_z": 1.119662,
+      "orders_expected": 145.798387,
+      "orders_z_online": 0.170224
+    },
+    {
+      "date": "2017-07-25",
+      "orders": 149.0,
+      "gmv": 17070.12,
+      "orders_z": -0.605613,
+      "orders_expected": 154.609529,
+      "orders_z_online": -0.680486
+    },
+    {
+      "date": "2017-07-26",
+      "orders": 121.0,
+      "gmv": 11097.25,
+      "orders_z": -1.77161,
+      "orders_expected": 135.935459,
+      "orders_z_online": -0.558153
+    },
+    {
+      "date": "2017-07-27",
+      "orders": 123.0,
+      "gmv": 15693.93,
+      "orders_z": -1.240834,
+      "orders_expected": 133.277866,
+      "orders_z_online": 0.106559
+    },
+    {
+      "date": "2017-07-28",
+      "orders": 132.0,
+      "gmv": 20043.16,
+      "orders_z": 0.194137,
+      "orders_expected": 129.71678,
+      "orders_z_online": 1.511758
+    },
+    {
+      "date": "2017-07-29",
+      "orders": 114.0,
+      "gmv": 15814.28,
+      "orders_z": 1.530973,
+      "orders_expected": 102.265168,
+      "orders_z_online": 1.980507
+    },
+    {
+      "date": "2017-07-30",
+      "orders": 117.0,
+      "gmv": 12944.87,
+      "orders_z": 0.981024,
+      "orders_expected": 108.969918,
+      "orders_z_online": 0.86594
+    },
+    {
+      "date": "2017-07-31",
+      "orders": 145.0,
+      "gmv": 17146.08,
+      "orders_z": -1.320973,
+      "orders_expected": 157.959667,
+      "orders_z_online": -0.71465
+    },
+    {
+      "date": "2017-08-01",
+      "orders": 165.0,
+      "gmv": 21745.04,
+      "orders_z": 0.349289,
+      "orders_expected": 160.449055,
+      "orders_z_online": 0.051075
+    },
+    {
+      "date": "2017-08-02",
+      "orders": 152.0,
+      "gmv": 17999.35,
+      "orders_z": 0.259784,
+      "orders_expected": 148.707995,
+      "orders_z_online": 0.670997
+    },
+    {
+      "date": "2017-08-03",
+      "orders": 145.0,
+      "gmv": 18985.61,
+      "orders_z": -0.275841,
+      "orders_expected": 147.122843,
+      "orders_z_online": 0.223843
+    },
+    {
+      "date": "2017-08-04",
+      "orders": 141.0,
+      "gmv": 18361.62,
+      "orders_z": 0.025365,
+      "orders_expected": 140.162693,
+      "orders_z_online": -0.039863
+    },
+    {
+      "date": "2017-08-05",
+      "orders": 114.0,
+      "gmv": 11898.24,
+      "orders_z": 0.720253,
+      "orders_expected": 108.078947,
+      "orders_z_online": -0.134873
+    },
+    {
+      "date": "2017-08-06",
+      "orders": 108.0,
+      "gmv": 14181.14,
+      "orders_z": 0.045293,
+      "orders_expected": 107.211492,
+      "orders_z_online": -0.591341
+    },
+    {
+      "date": "2017-08-07",
+      "orders": 157.0,
+      "gmv": 23257.84,
+      "orders_z": -0.007781,
+      "orders_expected": 156.420466,
+      "orders_z_online": -0.078116
+    },
+    {
+      "date": "2017-08-08",
+      "orders": 146.0,
+      "gmv": 18661.63,
+      "orders_z": -0.344519,
+      "orders_expected": 148.830966,
+      "orders_z_online": -0.769575
+    },
+    {
+      "date": "2017-08-09",
+      "orders": 141.0,
+      "gmv": 20508.27,
+      "orders_z": -0.931837,
+      "orders_expected": 149.593036,
+      "orders_z_online": 0.017056
+    },
+    {
+      "date": "2017-08-10",
+      "orders": 154.0,
+      "gmv": 19865.55,
+      "orders_z": 1.134821,
+      "orders_expected": 141.958862,
+      "orders_z_online": 0.84642
+    },
+    {
+      "date": "2017-08-11",
+      "orders": 137.0,
+      "gmv": 19139.34,
+      "orders_z": 0.287399,
+      "orders_expected": 133.779058,
+      "orders_z_online": 0.084392
+    },
+    {
+      "date": "2017-08-12",
+      "orders": 95.0,
+      "gmv": 13371.96,
+      "orders_z": -1.035603,
+      "orders_expected": 101.525612,
+      "orders_z_online": -0.986655
+    },
+    {
+      "date": "2017-08-13",
+      "orders": 91.0,
+      "gmv": 12264.29,
+      "orders_z": -1.760826,
+      "orders_expected": 102.187594,
+      "orders_z_online": -0.705919
+    },
+    {
+      "date": "2017-08-14",
+      "orders": 154.0,
+      "gmv": 17927.47,
+      "orders_z": -0.384036,
+      "orders_expected": 157.407374,
+      "orders_z_online": 0.616587
+    },
+    {
+      "date": "2017-08-15",
+      "orders": 193.0,
+      "gmv": 23727.26,
+      "orders_z": 4.28636,
+      "orders_expected": 143.614815,
+      "orders_z_online": 2.04107
+    },
+    {
+      "date": "2017-08-16",
+      "orders": 170.0,
+      "gmv": 21098.91,
+      "orders_z": 0.679461,
+      "orders_expected": 161.643259,
+      "orders_z_online": 1.267927
+    },
+    {
+      "date": "2017-08-17",
+      "orders": 155.0,
+      "gmv": 18357.91,
+      "orders_z": 0.543901,
+      "orders_expected": 148.741432,
+      "orders_z_online": 0.028947
+    },
+    {
+      "date": "2017-08-18",
+      "orders": 146.0,
+      "gmv": 17132.01,
+      "orders_z": 0.53401,
+      "orders_expected": 140.196825,
+      "orders_z_online": 0.048843
+    },
+    {
+      "date": "2017-08-19",
+      "orders": 107.0,
+      "gmv": 12882.48,
+      "orders_z": 0.366866,
+      "orders_expected": 103.914491,
+      "orders_z_online": -0.234431
+    },
+    {
+      "date": "2017-08-20",
+      "orders": 103.0,
+      "gmv": 12873.78,
+      "orders_z": -0.824387,
+      "orders_expected": 108.495743,
+      "orders_z_online": 0.058511
+    },
+    {
+      "date": "2017-08-21",
+      "orders": 177.0,
+      "gmv": 22219.35,
+      "orders_z": 1.487101,
+      "orders_expected": 159.310966,
+      "orders_z_online": 0.502756
+    },
+    {
+      "date": "2017-08-22",
+      "orders": 136.0,
+      "gmv": 16627.12,
+      "orders_z": -0.343245,
+      "orders_expected": 138.626367,
+      "orders_z_online": -2.886926
+    },
+    {
+      "date": "2017-08-23",
+      "orders": 111.0,
+      "gmv": 15873.61,
+      "orders_z": -5.563921,
+      "orders_expected": 161.421356,
+      "orders_z_online": -3.265177
+    },
+    {
+      "date": "2017-08-24",
+      "orders": 126.0,
+      "gmv": 13361.11,
+      "orders_z": -1.481341,
+      "orders_expected": 138.779375,
+      "orders_z_online": -1.649854
+    },
+    {
+      "date": "2017-08-25",
+      "orders": 121.0,
+      "gmv": 15068.65,
+      "orders_z": -0.717031,
+      "orders_expected": 126.518689,
+      "orders_z_online": -0.755279
+    },
+    {
+      "date": "2017-08-26",
+      "orders": 93.0,
+      "gmv": 10141.69,
+      "orders_z": -0.64737,
+      "orders_expected": 96.790793,
+      "orders_z_online": 0.227837
+    },
+    {
+      "date": "2017-08-27",
+      "orders": 118.0,
+      "gmv": 13367.88,
+      "orders_z": 0.944577,
+      "orders_expected": 110.175283,
+      "orders_z_online": 2.160533
+    },
+    {
+      "date": "2017-08-28",
+      "orders": 154.0,
+      "gmv": 22062.52,
+      "orders_z": -0.281224,
+      "orders_expected": 156.310906,
+      "orders_z_online": 0.71557
+    },
+    {
+      "date": "2017-08-29",
+      "orders": 137.0,
+      "gmv": 33756.48,
+      "orders_z": -0.790011,
+      "orders_expected": 143.955394,
+      "orders_z_online": 1.213854
+    },
+    {
+      "date": "2017-08-30",
+      "orders": 177.0,
+      "gmv": 30856.17,
+      "orders_z": 0.629102,
+      "orders_expected": 168.878148,
+      "orders_z_online": 2.895459
+    },
+    {
+      "date": "2017-08-31",
+      "orders": 148.0,
+      "gmv": 20671.51,
+      "orders_z": 0.397371,
+      "orders_expected": 143.445141,
+      "orders_z_online": 0.614389
+    },
+    {
+      "date": "2017-09-01",
+      "orders": 157.0,
+      "gmv": 28419.14,
+      "orders_z": 2.973577,
+      "orders_expected": 127.702233,
+      "orders_z_online": 1.263349
+    },
+    {
+      "date": "2017-09-02",
+      "orders": 104.0,
+      "gmv": 18128.66,
+      "orders_z": 0.194455,
+      "orders_expected": 102.195243,
+      "orders_z_online": 0.056508
+    },
+    {
+      "date": "2017-09-03",
+      "orders": 124.0,
+      "gmv": 27741.42,
+      "orders_z": 0.507789,
+      "orders_expected": 119.278205,
+      "orders_z_online": -0.107395
+    },
+    {
+      "date": "2017-09-04",
+      "orders": 148.0,
+      "gmv": 24937.98,
+      "orders_z": -0.81126,
+      "orders_expected": 155.734646,
+      "orders_z_online": -1.117052
+    },
+    {
+      "date": "2017-09-05",
+      "orders": 154.0,
+      "gmv": 20981.55,
+      "orders_z": -0.080014,
+      "orders_expected": 154.18694,
+      "orders_z_online": 0.443038
+    },
+    {
+      "date": "2017-09-06",
+      "orders": 139.0,
+      "gmv": 25134.71,
+      "orders_z": -2.655286,
+      "orders_expected": 165.806038,
+      "orders_z_online": -1.998285
+    },
+    {
+      "date": "2017-09-07",
+      "orders": 97.0,
+      "gmv": 16893.5,
+      "orders_z": -5.880861,
+      "orders_expected": 144.194588,
+      "orders_z_online": -2.356071
+    },
+    {
+      "date": "2017-09-08",
+      "orders": 114.0,
+      "gmv": 11573.57,
+      "orders_z": -1.853633,
+      "orders_expected": 128.795764,
+      "orders_z_online": -1.268367
+    },
+    {
+      "date": "2017-09-09",
+      "orders": 106.0,
+      "gmv": 15082.53,
+      "orders_z": -0.460994,
+      "orders_expected": 108.922219,
+      "orders_z_online": 1.351416
+    },
+    {
+      "date": "2017-09-10",
+      "orders": 134.0,
+      "gmv": 17708.37,
+      "orders_z": 0.530059,
+      "orders_expected": 128.705173,
+      "orders_z_online": 0.809787
+    },
+    {
+      "date": "2017-09-11",
+      "orders": 177.0,
+      "gmv": 23326.79,
+      "orders_z": 0.317779,
+      "orders_expected": 172.48901,
+      "orders_z_online": 1.0105
+    },
+    {
+      "date": "2017-09-12",
+      "orders": 203.0,
+      "gmv": 27006.02,
+      "orders_z": 1.02582,
+      "orders_expected": 188.542979,
+      "orders_z_online": 1.921455
+    },
+    {
+      "date": "2017-09-13",
+      "orders": 204.0,
+      "gmv": 27333.38,
+      "orders_z": 1.338408,
+      "orders_expected": 185.49185,
+      "orders_z_online": 1.265214
+    },
+    {
+      "date": "2017-09-14",
+      "orders": 166.0,
+      "gmv": 22557.76,
+      "orders_z": -0.2542,
+      "orders_expected": 168.180654,
+      "orders_z_online": 2.28131
+    },
+    {
+      "date": "2017-09-15",
+      "orders": 148.0,
+      "gmv": 18208.27,
+      "orders_z": 0.305832,
+      "orders_expected": 144.341207,
+      "orders_z_online": 0.680907
+    },
+    {
+      "date": "2017-09-16",
+      "orders": 127.0,
+      "gmv": 20705.63,
+      "orders_z": 0.732268,
+      "orders_expected": 120.311098,
+      "orders_z_online": -0.116539
+    },
+    {
+      "date": "2017-09-17",
+      "orders": 125.0,
+      "gmv": 19979.42,
+      "orders_z": -0.957662,
+      "orders_expected": 132.85815,
+      "orders_z_online": -1.678444
+    },
+    {
+      "date": "2017-09-18",
+      "orders": 183.0,
+      "gmv": 28487.81,
+      "orders_z": 1.215062,
+      "orders_expected": 167.788507,
+      "orders_z_online": -0.218574
+    },
+    {
+      "date": "2017-09-19",
+      "orders": 153.0,
+      "gmv": 20057.95,
+      "orders_z": -3.307979,
+      "orders_expected": 190.758629,
+      "orders_z_online": -1.613532
+    },
+    {
+      "date": "2017-09-20",
+      "orders": 161.0,
+      "gmv": 22102.55,
+      "orders_z": -0.499444,
+      "orders_expected": 165.857164,
+      "orders_z_online": -1.32448
+    },
+    {
+      "date": "2017-09-21",
+      "orders": 150.0,
+      "gmv": 19015.53,
+      "orders_z": 0.119752,
+      "orders_expected": 148.155463,
+      "orders_z_online": -0.072177
+    },
+    {
+      "date": "2017-09-22",
+      "orders": 135.0,
+      "gmv": 15755.12,
+      "orders_z": 0.951774,
+      "orders_expected": 125.995696,
+      "orders_z_online": 0.31531
+    },
+    {
+      "date": "2017-09-23",
+      "orders": 84.0,
+      "gmv": 10302.51,
+      "orders_z": -3.318269,
+      "orders_expected": 104.914407,
+      "orders_z_online": -1.338094
+    },
+    {
+      "date": "2017-09-24",
+      "orders": 112.0,
+      "gmv": 12920.75,
+      "orders_z": -0.519807,
+      "orders_expected": 115.548252,
+      "orders_z_online": -0.080181
+    },
+    {
+      "date": "2017-09-25",
+      "orders": 132.0,
+      "gmv": 17897.6,
+      "orders_z": -1.547598,
+      "orders_expected": 146.039846,
+      "orders_z_online": -0.823592
+    },
+    {
+      "date": "2017-09-26",
+      "orders": 179.0,
+      "gmv": 21681.9,
+      "orders_z": 0.184986,
+      "orders_expected": 176.019335,
+      "orders_z_online": 1.495183
+    },
+    {
+      "date": "2017-09-27",
+      "orders": 144.0,
+      "gmv": 20646.92,
+      "orders_z": -0.513883,
+      "orders_expected": 148.493217,
+      "orders_z_online": -0.123212
+    },
+    {
+      "date": "2017-09-28",
+      "orders": 142.0,
+      "gmv": 23264.52,
+      "orders_z": 0.404472,
+      "orders_expected": 137.562066,
+      "orders_z_online": 0.404011
+    },
+    {
+      "date": "2017-09-29",
+      "orders": 116.0,
+      "gmv": 30878.56,
+      "orders_z": -1.01988,
+      "orders_expected": 123.820425,
+      "orders_z_online": -0.223278
+    },
+    {
+      "date": "2017-09-30",
+      "orders": 109.0,
+      "gmv": 12685.49,
+      "orders_z": 0.611767,
+      "orders_expected": 104.103904,
+      "orders_z_online": 1.921903
+    },
+    {
+      "date": "2017-10-01",
+      "orders": 126.0,
+      "gmv": 18431.37,
+      "orders_z": 0.772588,
+      "orders_expected": 119.035933,
+      "orders_z_online": 1.139614
+    },
+    {
+      "date": "2017-10-02",
+      "orders": 142.0,
+      "gmv": 21764.65,
+      "orders_z": -1.277329,
+      "orders_expected": 154.234975,
+      "orders_z_online": 0.165184
+    },
+    {
+      "date": "2017-10-03",
+      "orders": 198.0,
+      "gmv": 26118.57,
+      "orders_z": 1.001986,
+      "orders_expected": 184.195291,
+      "orders_z_online": 0.306907
+    },
+    {
+      "date": "2017-10-04",
+      "orders": 157.0,
+      "gmv": 21197.7,
+      "orders_z": 0.271481,
+      "orders_expected": 153.478288,
+      "orders_z_online": 0.230731
+    },
+    {
+      "date": "2017-10-05",
+      "orders": 139.0,
+      "gmv": 25230.42,
+      "orders_z": -0.395313,
+      "orders_expected": 142.186679,
+      "orders_z_online": -0.476134
+    },
+    {
+      "date": "2017-10-06",
+      "orders": 125.0,
+      "gmv": 17024.77,
+      "orders_z": -0.476767,
+      "orders_expected": 128.579119,
+      "orders_z_online": -0.177328
+    },
+    {
+      "date": "2017-10-07",
+      "orders": 102.0,
+      "gmv": 15111.02,
+      "orders_z": -0.611985,
+      "orders_expected": 105.897882,
+      "orders_z_online": -0.604875
+    },
+    {
+      "date": "2017-10-08",
+      "orders": 124.0,
+      "gmv": 16539.01,
+      "orders_z": -0.113216,
+      "orders_expected": 124.431802,
+      "orders_z_online": 0.13152
+    },
+    {
+      "date": "2017-10-09",
+      "orders": 189.0,
+      "gmv": 29148.89,
+      "orders_z": 2.117673,
+      "orders_expected": 162.981715,
+      "orders_z_online": 1.545631
+    },
+    {
+      "date": "2017-10-10",
+      "orders": 178.0,
+      "gmv": 28072.33,
+      "orders_z": -0.653316,
+      "orders_expected": 185.293457,
+      "orders_z_online": -0.880521
+    },
+    {
+      "date": "2017-10-11",
+      "orders": 156.0,
+      "gmv": 22669.37,
+      "orders_z": -0.512502,
+      "orders_expected": 160.849971,
+      "orders_z_online": 0.034759
+    },
+    {
+      "date": "2017-10-12",
+      "orders": 138.0,
+      "gmv": 18704.98,
+      "orders_z": -1.362295,
+      "orders_expected": 150.76139,
+      "orders_z_online": 0.120687
+    },
+    {
+      "date": "2017-10-13",
+      "orders": 151.0,
+      "gmv": 22881.19,
+      "orders_z": 1.255934,
+      "orders_expected": 138.049503,
+      "orders_z_online": 1.215825
+    },
+    {
+      "date": "2017-10-14",
+      "orders": 115.0,
+      "gmv": 13490.95,
+      "orders_z": 0.44646,
+      "orders_expected": 111.081612,
+      "orders_z_online": 0.116795
+    },
+    {
+      "date": "2017-10-15",
+      "orders": 120.0,
+      "gmv": 18751.85,
+      "orders_z": -2.352697,
+      "orders_expected": 140.250813,
+      "orders_z_online": -0.630293
+    },
+    {
+      "date": "2017-10-16",
+      "orders": 194.0,
+      "gmv": 30580.16,
+      "orders_z": 0.911896,
+      "orders_expected": 181.580656,
+      "orders_z_online": 1.32177
+    },
+    {
+      "date": "2017-10-17",
+      "orders": 197.0,
+      "gmv": 29675.77,
+      "orders_z": 0.321559,
+      "orders_expected": 191.932879,
+      "orders_z_online": -0.009629
+    },
+    {
+      "date": "2017-10-18",
+      "orders": 176.0,
+      "gmv": 27257.79,
+      "orders_z": 0.207981,
+      "orders_expected": 172.798804,
+      "orders_z_online": 0.319215
+    },
+    {
+      "date": "2017-10-19",
+      "orders": 175.0,
+      "gmv": 23223.71,
+      "orders_z": 1.203101,
+      "orders_expected": 160.580394,
+      "orders_z_online": 0.752225
+    },
+    {
+      "date": "2017-10-20",
+      "orders": 119.0,
+      "gmv": 18543.3,
+      "orders_z": -2.883885,
+      "orders_expected": 144.201885,
+      "orders_z_online": -1.673488
+    },
+    {
+      "date": "2017-10-21",
+      "orders": 108.0,
+      "gmv": 14559.65,
+      "orders_z": -0.044312,
+      "orders_expected": 107.868556,
+      "orders_z_online": -0.810727
+    },
+    {
+      "date": "2017-10-22",
+      "orders": 156.0,
+      "gmv": 19735.66,
+      "orders_z": 1.850044,
+      "orders_expected": 136.972936,
+      "orders_z_online": 0.591243
+    },
+    {
+      "date": "2017-10-23",
+      "orders": 157.0,
+      "gmv": 22138.1,
+      "orders_z": -0.879657,
+      "orders_expected": 165.971619,
+      "orders_z_online": -1.761496
+    },
+    {
+      "date": "2017-10-24",
+      "orders": 163.0,
+      "gmv": 22051.37,
+      "orders_z": -0.267377,
+      "orders_expected": 165.289448,
+      "orders_z_online": -0.906786
+    },
+    {
+      "date": "2017-10-25",
+      "orders": 154.0,
+      "gmv": 17507.06,
+      "orders_z": 0.054319,
+      "orders_expected": 152.784924,
+      "orders_z_online": -0.144167
+    },
+    {
+      "date": "2017-10-26",
+      "orders": 142.0,
+      "gmv": 21851.8,
+      "orders_z": -0.486833,
+      "orders_expected": 146.162066,
+      "orders_z_online": -0.077554
+    },
+    {
+      "date": "2017-10-27",
+      "orders": 131.0,
+      "gmv": 20377.58,
+      "orders_z": 0.340995,
+      "orders_expected": 127.45314,
+      "orders_z_online": 1.100074
+    },
+    {
+      "date": "2017-10-28",
+      "orders": 86.0,
+      "gmv": 16483.61,
+      "orders_z": -1.901541,
+      "orders_expected": 97.511653,
+      "orders_z_online": -0.43287
+    },
+    {
+      "date": "2017-10-29",
+      "orders": 129.0,
+      "gmv": 17048.75,
+      "orders_z": -0.040375,
+      "orders_expected": 128.808697,
+      "orders_z_online": -0.124415
+    },
+    {
+      "date": "2017-10-30",
+      "orders": 143.0,
+      "gmv": 20195.24,
+      "orders_z": -1.022966,
+      "orders_expected": 152.657174,
+      "orders_z_online": 0.213187
+    },
+    {
+      "date": "2017-10-31",
+      "orders": 157.0,
+      "gmv": 23813.0,
+      "orders_z": 0.440069,
+      "orders_expected": 151.728811,
+      "orders_z_online": 0.566515
+    },
+    {
+      "date": "2017-11-01",
+      "orders": 109.0,
+      "gmv": 19383.61,
+      "orders_z": -4.807641,
+      "orders_expected": 150.575155,
+      "orders_z_online": -1.293339
+    },
+    {
+      "date": "2017-11-02",
+      "orders": 119.0,
+      "gmv": 21163.83,
+      "orders_z": -4.098665,
+      "orders_expected": 156.621234,
+      "orders_z_online": -0.217946
+    },
+    {
+      "date": "2017-11-03",
+      "orders": 138.0,
+      "gmv": 22844.05,
+      "orders_z": -0.186951,
+      "orders_expected": 139.176716,
+      "orders_z_online": 1.012865
+    },
+    {
+      "date": "2017-11-04",
+      "orders": 111.0,
+      "gmv": 19169.07,
+      "orders_z": -0.13327,
+      "orders_expected": 111.539266,
+      "orders_z_online": 1.864647
+    },
+    {
+      "date": "2017-11-05",
+      "orders": 140.0,
+      "gmv": 16461.54,
+      "orders_z": -0.412859,
+      "orders_expected": 143.380483,
+      "orders_z_online": 0.376295
+    },
+    {
+      "date": "2017-11-06",
+      "orders": 186.0,
+      "gmv": 27867.84,
+      "orders_z": 0.922196,
+      "orders_expected": 173.968374,
+      "orders_z_online": 1.282982
+    },
+    {
+      "date": "2017-11-07",
+      "orders": 157.0,
+      "gmv": 20829.71,
+      "orders_z": -1.177537,
+      "orders_expected": 169.365898,
+      "orders_z_online": -0.456982
+    },
+    {
+      "date": "2017-11-08",
+      "orders": 173.0,
+      "gmv": 19227.52,
+      "orders_z": 0.186383,
+      "orders_expected": 170.102537,
+      "orders_z_online": 1.345383
+    },
+    {
+      "date": "2017-11-09",
+      "orders": 186.0,
+      "gmv": 24640.35,
+      "orders_z": -0.28949,
+      "orders_expected": 188.894003,
+      "orders_z_online": 1.437309
+    },
+    {
+      "date": "2017-11-10",
+      "orders": 163.0,
+      "gmv": 19323.84,
+      "orders_z": -0.403359,
+      "orders_expected": 166.824166,
+      "orders_z_online": 0.206443
+    },
+    {
+      "date": "2017-11-11",
+      "orders": 154.0,
+      "gmv": 23203.07,
+      "orders_z": 1.76237,
+      "orders_expected": 136.024541,
+      "orders_z_online": 1.827679
+    },
+    {
+      "date": "2017-11-12",
+      "orders": 172.0,
+      "gmv": 23087.26,
+      "orders_z": 1.060193,
+      "orders_expected": 159.367044,
+      "orders_z_online": -0.143022
+    },
+    {
+      "date": "2017-11-13",
+      "orders": 200.0,
+      "gmv": 24200.32,
+      "orders_z": -0.638166,
+      "orders_expected": 207.975858,
+      "orders_z_online": -0.570221
+    },
+    {
+      "date": "2017-11-14",
+      "orders": 185.0,
+      "gmv": 26692.95,
+      "orders_z": -0.706435,
+      "orders_expected": 193.274608,
+      "orders_z_online": -0.345214
+    },
+    {
+      "date": "2017-11-15",
+      "orders": 182.0,
+      "gmv": 22947.39,
+      "orders_z": -0.240233,
+      "orders_expected": 184.214726,
+      "orders_z_online": -1.263643
+    },
+    {
+      "date": "2017-11-16",
+      "orders": 224.0,
+      "gmv": 28268.82,
+      "orders_z": 0.755946,
+      "orders_expected": 211.901325,
+      "orders_z_online": 0.341497
+    },
+    {
+      "date": "2017-11-17",
+      "orders": 189.0,
+      "gmv": 29209.07,
+      "orders_z": 0.417874,
+      "orders_expected": 182.936837,
+      "orders_z_online": 0.042675
+    },
+    {
+      "date": "2017-11-18",
+      "orders": 145.0,
+      "gmv": 23224.8,
+      "orders_z": -0.576438,
+      "orders_expected": 150.161698,
+      "orders_z_online": -1.157546
+    },
+    {
+      "date": "2017-11-19",
+      "orders": 158.0,
+      "gmv": 19955.56,
+      "orders_z": -1.183109,
+      "orders_expected": 170.508713,
+      "orders_z_online": -1.499295
+    },
+    {
+      "date": "2017-11-20",
+      "orders": 225.0,
+      "gmv": 44235.47,
+      "orders_z": -0.982206,
+      "orders_expected": 239.493229,
+      "orders_z_online": -0.050688
+    },
+    {
+      "date": "2017-11-21",
+      "orders": 224.0,
+      "gmv": 34209.84,
+      "orders_z": -0.229683,
+      "orders_expected": 226.560769,
+      "orders_z_online": 0.945994
+    },
+    {
+      "date": "2017-11-22",
+      "orders": 197.0,
+      "gmv": 24678.47,
+      "orders_z": -1.803797,
+      "orders_expected": 221.723309,
+      "orders_z_online": -0.571458
+    },
+    {
+      "date": "2017-11-23",
+      "orders": 275.0,
+      "gmv": 43563.89,
+      "orders_z": 0.988895,
+      "orders_expected": 256.081032,
+      "orders_z_online": 0.672357
+    },
+    {
+      "date": "2017-11-24",
+      "orders": 1166.0,
+      "gmv": 152653.74,
+      "orders_z": 23.111352,
+      "orders_expected": 242.861711,
+      "orders_z_online": 12.833702
+    },
+    {
+      "date": "2017-11-25",
+      "orders": 498.0,
+      "gmv": 60923.48,
+      "orders_z": 13.321068,
+      "orders_expected": 201.035186,
+      "orders_z_online": 7.416506
+    },
+    {
+      "date": "2017-11-26",
+      "orders": 387.0,
+      "gmv": 44976.28,
+      "orders_z": 7.388881,
+      "orders_expected": 233.537697,
+      "orders_z_online": 4.477946
+    },
+    {
+      "date": "2017-11-27",
+      "orders": 400.0,
+      "gmv": 47923.66,
+      "orders_z": 1.88432,
+      "orders_expected": 350.587113,
+      "orders_z_online": 1.322027
+    },
+    {
+      "date": "2017-11-28",
+      "orders": 376.0,
+      "gmv": 47886.55,
+      "orders_z": 1.526685,
+      "orders_expected": 337.62824,
+      "orders_z_online": 0.530264
+    },
+    {
+      "date": "2017-11-29",
+      "orders": 318.0,
+      "gmv": 39787.42,
+      "orders_z": 0.267146,
+      "orders_expected": 310.981065,
+      "orders_z_online": -0.668681
+    },
+    {
+      "date": "2017-11-30",
+      "orders": 264.0,
+      "gmv": 31322.74,
+      "orders_z": -2.207781,
+      "orders_expected": 305.337029,
+      "orders_z_online": -3.728039
+    },
+    {
+      "date": "2017-12-01",
+      "orders": 274.0,
+      "gmv": 39981.91,
+      "orders_z": -0.168308,
+      "orders_expected": 275.978967,
+      "orders_z_online": -2.974643
+    },
+    {
+      "date": "2017-12-02",
+      "orders": 214.0,
+      "gmv": 31208.13,
+      "orders_z": 0.541546,
+      "orders_expected": 205.407242,
+      "orders_z_online": -7.549996
+    },
+    {
+      "date": "2017-12-03",
+      "orders": 231.0,
+      "gmv": 29262.92,
+      "orders_z": 0.321444,
+      "orders_expected": 225.064518,
+      "orders_z_online": -4.476686
+    },
+    {
+      "date": "2017-12-04",
+      "orders": 330.0,
+      "gmv": 46548.53,
+      "orders_z": 0.03077,
+      "orders_expected": 327.928115,
+      "orders_z_online": -1.949826
+    },
+    {
+      "date": "2017-12-05",
+      "orders": 275.0,
+      "gmv": 33632.37,
+      "orders_z": -0.927075,
+      "orders_expected": 291.607822,
+      "orders_z_online": -0.136232
+    },
+    {
+      "date": "2017-12-06",
+      "orders": 273.0,
+      "gmv": 39198.74,
+      "orders_z": 0.676233,
+      "orders_expected": 259.66651,
+      "orders_z_online": 0.280542
+    },
+    {
+      "date": "2017-12-07",
+      "orders": 226.0,
+      "gmv": 28055.78,
+      "orders_z": -0.455648,
+      "orders_expected": 232.115253,
+      "orders_z_online": -2.203136
+    },
+    {
+      "date": "2017-12-08",
+      "orders": 215.0,
+      "gmv": 29847.46,
+      "orders_z": -0.324952,
+      "orders_expected": 218.868941,
+      "orders_z_online": -0.806787
+    },
+    {
+      "date": "2017-12-09",
+      "orders": 155.0,
+      "gmv": 20027.04,
+      "orders_z": -0.868761,
+      "orders_expected": 163.736734,
+      "orders_z_online": -0.898141
+    },
+    {
+      "date": "2017-12-10",
+      "orders": 187.0,
+      "gmv": 24695.79,
+      "orders_z": 0.379093,
+      "orders_expected": 181.478122,
+      "orders_z_online": 0.033838
+    },
+    {
+      "date": "2017-12-11",
+      "orders": 266.0,
+      "gmv": 33705.39,
+      "orders_z": -0.3329,
+      "orders_expected": 270.928418,
+      "orders_z_online": 0.01904
+    },
+    {
+      "date": "2017-12-12",
+      "orders": 258.0,
+      "gmv": 33468.71,
+      "orders_z": 0.912023,
+      "orders_expected": 241.502489,
+      "orders_z_online": 0.781264
+    },
+    {
+      "date": "2017-12-13",
+      "orders": 217.0,
+      "gmv": 29361.48,
+      "orders_z": -0.516907,
+      "orders_expected": 223.801247,
+      "orders_z_online": -0.324948
+    },
+    {
+      "date": "2017-12-14",
+      "orders": 199.0,
+      "gmv": 25286.23,
+      "orders_z": 0.551914,
+      "orders_expected": 190.872294,
+      "orders_z_online": 0.379835
+    },
+    {
+      "date": "2017-12-15",
+      "orders": 192.0,
+      "gmv": 27382.2,
+      "orders_z": 1.433141,
+      "orders_expected": 173.455147,
+      "orders_z_online": 0.169664
+    },
+    {
+      "date": "2017-12-16",
+      "orders": 131.0,
+      "gmv": 20296.28,
+      "orders_z": -0.129225,
+      "orders_expected": 131.599318,
+      "orders_z_online": -0.441316
+    },
+    {
+      "date": "2017-12-17",
+      "orders": 133.0,
+      "gmv": 19312.41,
+      "orders_z": -0.363845,
+      "orders_expected": 135.759047,
+      "orders_z_online": -1.210049
+    },
+    {
+      "date": "2017-12-18",
+      "orders": 208.0,
+      "gmv": 29162.11,
+      "orders_z": -0.131244,
+      "orders_expected": 208.977564,
+      "orders_z_online": -0.602429
+    },
+    {
+      "date": "2017-12-19",
+      "orders": 174.0,
+      "gmv": 20615.99,
+      "orders_z": -0.627891,
+      "orders_expected": 180.817892,
+      "orders_z_online": -1.005029
+    },
+    {
+      "date": "2017-12-20",
+      "orders": 171.0,
+      "gmv": 27958.53,
+      "orders_z": 0.186841,
+      "orders_expected": 168.130612,
+      "orders_z_online": -0.201205
+    },
+    {
+      "date": "2017-12-21",
+      "orders": 142.0,
+      "gmv": 18327.53,
+      "orders_z": -0.552335,
+      "orders_expected": 146.814736,
+      "orders_z_online": -0.491177
+    },
+    {
+      "date": "2017-12-22",
+      "orders": 110.0,
+      "gmv": 14935.3,
+      "orders_z": -2.785396,
+      "orders_expected": 132.421016,
+      "orders_z_online": -1.666916
+    },
+    {
+      "date": "2017-12-23",
+      "orders": 107.0,
+      "gmv": 12875.05,
+      "orders_z": -0.73164,
+      "orders_expected": 111.996868,
+      "orders_z_online": 0.539173
+    },
+    {
+      "date": "2017-12-24",
+      "orders": 58.0,
+      "gmv": 5643.01,
+      "orders_z": -10.2499,
+      "orders_expected": 116.426736,
+      "orders_z_online": -3.895719
+    },
+    {
+      "date": "2017-12-25",
+      "orders": 90.0,
+      "gmv": 10381.34,
+      "orders_z": -10.227773,
+      "orders_expected": 179.845261,
+      "orders_z_online": -3.268558
+    },
+    {
+      "date": "2017-12-26",
+      "orders": 168.0,
+      "gmv": 20549.43,
+      "orders_z": 0.483856,
+      "orders_expected": 161.879285,
+      "orders_z_online": 2.730334
+    },
+    {
+      "date": "2017-12-27",
+      "orders": 166.0,
+      "gmv": 17700.4,
+      "orders_z": 0.103309,
+      "orders_expected": 164.143363,
+      "orders_z_online": 2.165013
+    },
+    {
+      "date": "2017-12-28",
+      "orders": 146.0,
+      "gmv": 15037.49,
+      "orders_z": -0.897307,
+      "orders_expected": 154.532363,
+      "orders_z_online": 0.543726
+    },
+    {
+      "date": "2017-12-29",
+      "orders": 133.0,
+      "gmv": 16042.72,
+      "orders_z": -0.78331,
+      "orders_expected": 139.690075,
+      "orders_z_online": 1.087317
+    },
+    {
+      "date": "2017-12-30",
+      "orders": 96.0,
+      "gmv": 13042.65,
+      "orders_z": -4.940251,
+      "orders_expected": 133.864585,
+      "orders_z_online": -0.255211
+    },
+    {
+      "date": "2017-12-31",
+      "orders": 73.0,
+      "gmv": 8640.87,
+      "orders_z": -9.748486,
+      "orders_expected": 141.37537,
+      "orders_z_online": -1.746991
+    },
+    {
+      "date": "2018-01-01",
+      "orders": 73.0,
+      "gmv": 6948.21,
+      "orders_z": -16.550581,
+      "orders_expected": 224.430688,
+      "orders_z_online": -3.640183
+    },
+    {
+      "date": "2018-01-02",
+      "orders": 203.0,
+      "gmv": 25315.0,
+      "orders_z": -0.544942,
+      "orders_expected": 209.763279,
+      "orders_z_online": 1.57743
+    },
+    {
+      "date": "2018-01-03",
+      "orders": 221.0,
+      "gmv": 31286.73,
+      "orders_z": -0.424575,
+      "orders_expected": 226.502463,
+      "orders_z_online": 1.568687
+    },
+    {
+      "date": "2018-01-04",
+      "orders": 255.0,
+      "gmv": 34839.44,
+      "orders_z": 2.05429,
+      "orders_expected": 220.891926,
+      "orders_z_online": 2.451099
+    },
+    {
+      "date": "2018-01-05",
+      "orders": 209.0,
+      "gmv": 27720.39,
+      "orders_z": 0.551684,
+      "orders_expected": 200.469044,
+      "orders_z_online": 1.421784
+    },
+    {
+      "date": "2018-01-06",
+      "orders": 215.0,
+      "gmv": 27609.67,
+      "orders_z": 1.552765,
+      "orders_expected": 192.673569,
+      "orders_z_online": 2.317356
+    },
+    {
+      "date": "2018-01-07",
+      "orders": 195.0,
+      "gmv": 29433.01,
+      "orders_z": -0.312713,
+      "orders_expected": 198.345808,
+      "orders_z_online": 2.821933
+    },
+    {
+      "date": "2018-01-08",
+      "orders": 292.0,
+      "gmv": 38714.4,
+      "orders_z": 0.200738,
+      "orders_expected": 286.841662,
+      "orders_z_online": 4.125886
+    },
+    {
+      "date": "2018-01-09",
+      "orders": 251.0,
+      "gmv": 30248.91,
+      "orders_z": -1.058196,
+      "orders_expected": 268.540833,
+      "orders_z_online": -0.811178
+    },
+    {
+      "date": "2018-01-10",
+      "orders": 277.0,
+      "gmv": 38479.53,
+      "orders_z": 0.096827,
+      "orders_expected": 274.029725,
+      "orders_z_online": -0.747454
+    },
+    {
+      "date": "2018-01-11",
+      "orders": 264.0,
+      "gmv": 40056.96,
+      "orders_z": 0.17907,
+      "orders_expected": 259.715982,
+      "orders_z_online": -0.35724
+    },
+    {
+      "date": "2018-01-12",
+      "orders": 239.0,
+      "gmv": 30988.94,
+      "orders_z": 0.031688,
+      "orders_expected": 237.48293,
+      "orders_z_online": 0.294993
+    },
+    {
+      "date": "2018-01-13",
+      "orders": 216.0,
+      "gmv": 28091.91,
+      "orders_z": 0.048374,
+      "orders_expected": 214.385383,
+      "orders_z_online": -0.364418
+    },
+    {
+      "date": "2018-01-14",
+      "orders": 232.0,
+      "gmv": 30962.53,
+      "orders_z": 1.162147,
+      "orders_expected": 213.503089,
+      "orders_z_online": 3.697225
+    },
+    {
+      "date": "2018-01-15",
+      "orders": 305.0,
+      "gmv": 38330.3,
+      "orders_z": -0.246739,
+      "orders_expected": 308.839464,
+      "orders_z_online": -0.389756
+    },
+    {
+      "date": "2018-01-16",
+      "orders": 301.0,
+      "gmv": 44237.17,
+      "orders_z": 1.00807,
+      "orders_expected": 279.934634,
+      "orders_z_online": 0.276705
+    },
+    {
+      "date": "2018-01-17",
+      "orders": 282.0,
+      "gmv": 36089.22,
+      "orders_z": 0.270738,
+      "orders_expected": 275.706027,
+      "orders_z_online": -0.324175
+    },
+    {
+      "date": "2018-01-18",
+      "orders": 238.0,
+      "gmv": 27774.77,
+      "orders_z": -0.983837,
+      "orders_expected": 253.35494,
+      "orders_z_online": -0.695049
+    },
+    {
+      "date": "2018-01-19",
+      "orders": 232.0,
+      "gmv": 29954.78,
+      "orders_z": -0.176698,
+      "orders_expected": 233.809785,
+      "orders_z_online": -0.029004
+    },
+    {
+      "date": "2018-01-20",
+      "orders": 183.0,
+      "gmv": 22232.68,
+      "orders_z": -0.518784,
+      "orders_expected": 188.764568,
+      "orders_z_online": -0.612797
+    },
+    {
+      "date": "2018-01-21",
+      "orders": 193.0,
+      "gmv": 23708.93,
+      "orders_z": -0.094841,
+      "orders_expected": 193.428637,
+      "orders_z_online": -0.257478
+    },
+    {
+      "date": "2018-01-22",
+      "orders": 309.0,
+      "gmv": 37047.65,
+      "orders_z": 1.418473,
+      "orders_expected": 279.490745,
+      "orders_z_online": 0.729288
+    },
+    {
+      "date": "2018-01-23",
+      "orders": 260.0,
+      "gmv": 34326.37,
+      "orders_z": -0.165664,
+      "orders_expected": 261.831253,
+      "orders_z_online": 0.319592
+    },
+    {
+      "date": "2018-01-24",
+      "orders": 240.0,
+      "gmv": 31413.79,
+      "orders_z": -0.613132,
+      "orders_expected": 249.139671,
+      "orders_z_online": 0.002938
+    },
+    {
+      "date": "2018-01-25",
+      "orders": 230.0,
+      "gmv": 29528.62,
+      "orders_z": 0.310499,
+      "orders_expected": 224.256613,
+      "orders_z_online": 0.415999
+    },
+    {
+      "date": "2018-01-26",
+      "orders": 225.0,
+      "gmv": 33770.2,
+      "orders_z": 0.945415,
+      "orders_expected": 210.127654,
+      "orders_z_online": 0.484092
+    },
+    {
+      "date": "2018-01-27",
+      "orders": 150.0,
+      "gmv": 21544.61,
+      "orders_z": -1.772777,
+      "orders_expected": 168.499044,
+      "orders_z_online": -0.558364
+    },
+    {
+      "date": "2018-01-28",
+      "orders": 152.0,
+      "gmv": 23671.85,
+      "orders_z": -2.102448,
+      "orders_expected": 174.612137,
+      "orders_z_online": -0.573481
+    },
+    {
+      "date": "2018-01-29",
+      "orders": 242.0,
+      "gmv": 29987.56,
+      "orders_z": -0.683777,
+      "orders_expected": 252.422151,
+      "orders_z_online": -0.133469
+    },
+    {
+      "date": "2018-01-30",
+      "orders": 251.0,
+      "gmv": 28839.57,
+      "orders_z": 0.097788,
+      "orders_expected": 248.291334,
+      "orders_z_online": 0.900261
+    },
+    {
+      "date": "2018-01-31",
+      "orders": 252.0,
+      "gmv": 32302.59,
+      "orders_z": 0.343839,
+      "orders_expected": 245.154541,
+      "orders_z_online": 1.094157
+    },
+    {
+      "date": "2018-02-01",
+      "orders": 228.0,
+      "gmv": 29985.75,
+      "orders_z": -0.248462,
+      "orders_expected": 230.900318,
+      "orders_z_online": 0.721848
+    },
+    {
+      "date": "2018-02-02",
+      "orders": 208.0,
+      "gmv": 27613.53,
+      "orders_z": -0.682035,
+      "orders_expected": 216.938255,
+      "orders_z_online": 0.221102
+    },
+    {
+      "date": "2018-02-03",
+      "orders": 190.0,
+      "gmv": 23084.67,
+      "orders_z": 0.766901,
+      "orders_expected": 179.595853,
+      "orders_z_online": 1.334827
+    },
+    {
+      "date": "2018-02-04",
+      "orders": 200.0,
+      "gmv": 23810.79,
+      "orders_z": 1.2535,
+      "orders_expected": 182.90491,
+      "orders_z_online": 1.246616
+    },
+    {
+      "date": "2018-02-05",
+      "orders": 266.0,
+      "gmv": 36866.24,
+      "orders_z": 0.687601,
+      "orders_expected": 252.812133,
+      "orders_z_online": 0.476654
+    },
+    {
+      "date": "2018-02-06",
+      "orders": 266.0,
+      "gmv": 33905.63,
+      "orders_z": 0.540442,
+      "orders_expected": 255.348121,
+      "orders_z_online": 0.071966
+    },
+    {
+      "date": "2018-02-07",
+      "orders": 243.0,
+      "gmv": 31121.44,
+      "orders_z": -0.774001,
+      "orders_expected": 255.020871,
+      "orders_z_online": -0.247477
+    },
+    {
+      "date": "2018-02-08",
+      "orders": 225.0,
+      "gmv": 27074.86,
+      "orders_z": -0.77054,
+      "orders_expected": 236.078646,
+      "orders_z_online": -0.243701
+    },
+    {
+      "date": "2018-02-09",
+      "orders": 208.0,
+      "gmv": 30571.07,
+      "orders_z": 0.23268,
+      "orders_expected": 203.877899,
+      "orders_z_online": -0.144478
+    },
+    {
+      "date": "2018-02-10",
+      "orders": 175.0,
+      "gmv": 21129.16,
+      "orders_z": -0.003006,
+      "orders_expected": 174.297884,
+      "orders_z_online": -0.134248
+    },
+    {
+      "date": "2018-02-11",
+      "orders": 169.0,
+      "gmv": 22435.08,
+      "orders_z": -0.87313,
+      "orders_expected": 178.5738,
+      "orders_z_online": -0.43183
+    },
+    {
+      "date": "2018-02-12",
+      "orders": 214.0,
+      "gmv": 23255.73,
+      "orders_z": -1.54423,
+      "orders_expected": 236.641923,
+      "orders_z_online": -0.469256
+    },
+    {
+      "date": "2018-02-13",
+      "orders": 220.0,
+      "gmv": 23516.44,
+      "orders_z": -1.974185,
+      "orders_expected": 250.473401,
+      "orders_z_online": -0.227783
+    },
+    {
+      "date": "2018-02-14",
+      "orders": 290.0,
+      "gmv": 36830.97,
+      "orders_z": 1.724239,
+      "orders_expected": 256.916096,
+      "orders_z_online": 1.968215
+    },
+    {
+      "date": "2018-02-15",
+      "orders": 276.0,
+      "gmv": 31968.97,
+      "orders_z": 1.467217,
+      "orders_expected": 248.808043,
+      "orders_z_online": 1.655238
+    },
+    {
+      "date": "2018-02-16",
+      "orders": 212.0,
+      "gmv": 26894.99,
+      "orders_z": -0.531695,
+      "orders_expected": 218.864809,
+      "orders_z_online": 0.091126
+    },
+    {
+      "date": "2018-02-17",
+      "orders": 199.0,
+      "gmv": 24841.48,
+      "orders_z": 0.558503,
+      "orders_expected": 190.786904,
+      "orders_z_online": 0.428497
+    },
+    {
+      "date": "2018-02-18",
+      "orders": 200.0,
+      "gmv": 24491.63,
+      "orders_z": -0.394222,
+      "orders_expected": 204.559999,
+      "orders_z_online": 0.281182
+    },
+    {
+      "date": "2018-02-19",
+      "orders": 255.0,
+      "gmv": 27869.13,
+      "orders_z": -0.196212,
+      "orders_expected": 257.328775,
+      "orders_z_online": 0.091877
+    },
+    {
+      "date": "2018-02-20",
+      "orders": 285.0,
+      "gmv": 36412.09,
+      "orders_z": 0.666618,
+      "orders_expected": 271.259356,
+      "orders_z_online": 0.279165
+    },
+    {
+      "date": "2018-02-21",
+      "orders": 261.0,
+      "gmv": 32107.91,
+      "orders_z": -1.112761,
+      "orders_expected": 280.271851,
+      "orders_z_online": -1.419561
+    },
+    {
+      "date": "2018-02-22",
+      "orders": 274.0,
+      "gmv": 31154.98,
+      "orders_z": 0.186346,
+      "orders_expected": 269.421363,
+      "orders_z_online": -0.695411
+    },
+    {
+      "date": "2018-02-23",
+      "orders": 235.0,
+      "gmv": 28424.7,
+      "orders_z": -0.213896,
+      "orders_expected": 237.431528,
+      "orders_z_online": -0.320627
+    },
+    {
+      "date": "2018-02-24",
+      "orders": 189.0,
+      "gmv": 24210.18,
+      "orders_z": -1.197571,
+      "orders_expected": 204.147853,
+      "orders_z_online": -1.107608
+    },
+    {
+      "date": "2018-02-25",
+      "orders": 236.0,
+      "gmv": 29053.87,
+      "orders_z": 0.421922,
+      "orders_expected": 228.374259,
+      "orders_z_online": 1.12278
+    },
+    {
+      "date": "2018-02-26",
+      "orders": 293.0,
+      "gmv": 43632.16,
+      "orders_z": 0.802334,
+      "orders_expected": 276.320579,
+      "orders_z_online": 0.755885
+    },
+    {
+      "date": "2018-02-27",
+      "orders": 296.0,
+      "gmv": 40151.4,
+      "orders_z": 0.077101,
+      "orders_expected": 293.218566,
+      "orders_z_online": -0.259034
+    },
+    {
+      "date": "2018-02-28",
+      "orders": 311.0,
+      "gmv": 45480.58,
+      "orders_z": 0.661205,
+      "orders_expected": 296.118842,
+      "orders_z_online": 0.515757
+    },
+    {
+      "date": "2018-03-01",
+      "orders": 272.0,
+      "gmv": 39381.63,
+      "orders_z": -0.551901,
+      "orders_expected": 281.1835,
+      "orders_z_online": -1.043189
+    },
+    {
+      "date": "2018-03-02",
+      "orders": 265.0,
+      "gmv": 31776.46,
+      "orders_z": 0.923875,
+      "orders_expected": 247.857268,
+      "orders_z_online": 0.463906
+    },
+    {
+      "date": "2018-03-03",
+      "orders": 209.0,
+      "gmv": 26091.27,
+      "orders_z": 0.316916,
+      "orders_expected": 203.68997,
+      "orders_z_online": -0.272755
+    },
+    {
+      "date": "2018-03-04",
+      "orders": 235.0,
+      "gmv": 32441.9,
+      "orders_z": 0.299049,
+      "orders_expected": 229.310384,
+      "orders_z_online": -0.346658
+    },
+    {
+      "date": "2018-03-05",
+      "orders": 259.0,
+      "gmv": 38116.07,
+      "orders_z": -0.315481,
+      "orders_expected": 263.487775,
+      "orders_z_online": -0.814146
+    },
+    {
+      "date": "2018-03-06",
+      "orders": 271.0,
+      "gmv": 39173.99,
+      "orders_z": 0.203924,
+      "orders_expected": 266.153852,
+      "orders_z_online": -0.546155
+    },
+    {
+      "date": "2018-03-07",
+      "orders": 258.0,
+      "gmv": 36137.89,
+      "orders_z": -0.57389,
+      "orders_expected": 267.110545,
+      "orders_z_online": -0.751686
+    },
+    {
+      "date": "2018-03-08",
+      "orders": 233.0,
+      "gmv": 27994.39,
+      "orders_z": -0.966515,
+      "orders_expected": 247.742433,
+      "orders_z_online": -0.613095
+    },
+    {
+      "date": "2018-03-09",
+      "orders": 203.0,
+      "gmv": 28405.44,
+      "orders_z": -1.259054,
+      "orders_expected": 220.180831,
+      "orders_z_online": -0.650662
+    },
+    {
+      "date": "2018-03-10",
+      "orders": 191.0,
+      "gmv": 25964.94,
+      "orders_z": 1.019289,
+      "orders_expected": 177.472132,
+      "orders_z_online": 0.943395
+    },
+    {
+      "date": "2018-03-11",
+      "orders": 218.0,
+      "gmv": 31320.43,
+      "orders_z": 0.585704,
+      "orders_expected": 208.62109,
+      "orders_z_online": 0.747797
+    },
+    {
+      "date": "2018-03-12",
+      "orders": 232.0,
+      "gmv": 30644.66,
+      "orders_z": -1.57353,
+      "orders_expected": 257.047824,
+      "orders_z_online": 0.219912
+    },
+    {
+      "date": "2018-03-13",
+      "orders": 226.0,
+      "gmv": 35776.24,
+      "orders_z": -2.233871,
+      "orders_expected": 261.872396,
+      "orders_z_online": -0.390413
+    },
+    {
+      "date": "2018-03-14",
+      "orders": 198.0,
+      "gmv": 23528.79,
+      "orders_z": -4.470122,
+      "orders_expected": 267.031199,
+      "orders_z_online": -1.01792
+    },
+    {
+      "date": "2018-03-15",
+      "orders": 286.0,
+      "gmv": 44311.46,
+      "orders_z": 1.413755,
+      "orders_expected": 258.762915,
+      "orders_z_online": 2.943676
+    },
+    {
+      "date": "2018-03-16",
+      "orders": 252.0,
+      "gmv": 32832.19,
+      "orders_z": 1.284324,
+      "orders_expected": 230.00074,
+      "orders_z_online": 2.886831
+    },
+    {
+      "date": "2018-03-17",
+      "orders": 180.0,
+      "gmv": 20078.5,
+      "orders_z": -0.814978,
+      "orders_expected": 189.443608,
+      "orders_z_online": -0.072616
+    },
+    {
+      "date": "2018-03-18",
+      "orders": 215.0,
+      "gmv": 31119.33,
+      "orders_z": -0.688023,
+      "orders_expected": 224.328762,
+      "orders_z_online": -0.01006
+    },
+    {
+      "date": "2018-03-19",
+      "orders": 301.0,
+      "gmv": 44580.19,
+      "orders_z": 0.620139,
+      "orders_expected": 287.394811,
+      "orders_z_online": 2.761945
+    },
+    {
+      "date": "2018-03-20",
+      "orders": 295.0,
+      "gmv": 35431.47,
+      "orders_z": 1.031786,
+      "orders_expected": 273.912322,
+      "orders_z_online": 1.330913
+    },
+    {
+      "date": "2018-03-21",
+      "orders": 284.0,
+      "gmv": 39589.43,
+      "orders_z": 0.755072,
+      "orders_expected": 268.690937,
+      "orders_z_online": 1.242206
+    },
+    {
+      "date": "2018-03-22",
+      "orders": 254.0,
+      "gmv": 31119.41,
+      "orders_z": -0.533425,
+      "orders_expected": 262.24919,
+      "orders_z_online": -1.198894
+    },
+    {
+      "date": "2018-03-23",
+      "orders": 219.0,
+      "gmv": 29621.24,
+      "orders_z": 0.387555,
+      "orders_expected": 212.416188,
+      "orders_z_online": -1.89018
+    },
+    {
+      "date": "2018-03-24",
+      "orders": 165.0,
+      "gmv": 23787.77,
+      "orders_z": -0.544423,
+      "orders_expected": 170.497448,
+      "orders_z_online": -0.888245
+    },
+    {
+      "date": "2018-03-25",
+      "orders": 190.0,
+      "gmv": 25557.29,
+      "orders_z": -0.541509,
+      "orders_expected": 196.286529,
+      "orders_z_online": -0.558868
+    },
+    {
+      "date": "2018-03-26",
+      "orders": 270.0,
+      "gmv": 35725.11,
+      "orders_z": 0.38876,
+      "orders_expected": 261.86855,
+      "orders_z_online": 0.384673
+    },
+    {
+      "date": "2018-03-27",
+      "orders": 244.0,
+      "gmv": 34726.52,
+      "orders_z": 0.153137,
+      "orders_expected": 240.461973,
+      "orders_z_online": -0.550663
+    },
+    {
+      "date": "2018-03-28",
+      "orders": 218.0,
+      "gmv": 29683.44,
+      "orders_z": -1.590991,
+      "orders_expected": 241.829083,
+      "orders_z_online": -0.935385
+    },
+    {
+      "date": "2018-03-29",
+      "orders": 193.0,
+      "gmv": 28841.74,
+      "orders_z": -3.425403,
+      "orders_expected": 242.490069,
+      "orders_z_online": -0.825102
+    },
+    {
+      "date": "2018-03-30",
+      "orders": 165.0,
+      "gmv": 22088.14,
+      "orders_z": -2.209847,
+      "orders_expected": 190.920934,
+      "orders_z_online": -0.544623
+    },
+    {
+      "date": "2018-03-31",
+      "orders": 167.0,
+      "gmv": 25203.73,
+      "orders_z": 0.558541,
+      "orders_expected": 160.100588,
+      "orders_z_online": 2.25153
+    },
+    {
+      "date": "2018-04-01",
+      "orders": 207.0,
+      "gmv": 29396.66,
+      "orders_z": 0.811143,
+      "orders_expected": 195.082865,
+      "orders_z_online": 2.887557
+    },
+    {
+      "date": "2018-04-02",
+      "orders": 280.0,
+      "gmv": 39722.1,
+      "orders_z": 0.419639,
+      "orders_expected": 271.000459,
+      "orders_z_online": 1.389952
+    },
+    {
+      "date": "2018-04-03",
+      "orders": 246.0,
+      "gmv": 36246.51,
+      "orders_z": -0.016346,
+      "orders_expected": 245.236471,
+      "orders_z_online": 0.666195
+    },
+    {
+      "date": "2018-04-04",
+      "orders": 257.0,
+      "gmv": 37982.73,
+      "orders_z": -0.096752,
+      "orders_expected": 257.603432,
+      "orders_z_online": 1.364845
+    },
+    {
+      "date": "2018-04-05",
+      "orders": 266.0,
+      "gmv": 36058.79,
+      "orders_z": 0.593211,
+      "orders_expected": 254.435851,
+      "orders_z_online": 1.856967
+    },
+    {
+      "date": "2018-04-06",
+      "orders": 188.0,
+      "gmv": 27507.44,
+      "orders_z": -0.116573,
+      "orders_expected": 188.695899,
+      "orders_z_online": 0.056011
+    },
+    {
+      "date": "2018-04-07",
+      "orders": 164.0,
+      "gmv": 25517.38,
+      "orders_z": 0.605408,
+      "orders_expected": 156.723597,
+      "orders_z_online": -0.251192
+    },
+    {
+      "date": "2018-04-08",
+      "orders": 185.0,
+      "gmv": 23463.85,
+      "orders_z": -0.967369,
+      "orders_expected": 196.729758,
+      "orders_z_online": -0.789824
+    },
+    {
+      "date": "2018-04-09",
+      "orders": 253.0,
+      "gmv": 49308.73,
+      "orders_z": -0.702453,
+      "orders_expected": 264.22838,
+      "orders_z_online": -0.812477
+    },
+    {
+      "date": "2018-04-10",
+      "orders": 201.0,
+      "gmv": 27870.56,
+      "orders_z": -2.564309,
+      "orders_expected": 238.20254,
+      "orders_z_online": -0.841374
+    },
+    {
+      "date": "2018-04-11",
+      "orders": 274.0,
+      "gmv": 40782.96,
+      "orders_z": 0.770754,
+      "orders_expected": 258.952537,
+      "orders_z_online": 1.348163
+    },
+    {
+      "date": "2018-04-12",
+      "orders": 255.0,
+      "gmv": 34117.58,
+      "orders_z": -0.344235,
+      "orders_expected": 259.925113,
+      "orders_z_online": 0.36637
+    },
+    {
+      "date": "2018-04-13",
+      "orders": 199.0,
+      "gmv": 29850.81,
+      "orders_z": 0.248024,
+      "orders_expected": 194.852268,
+      "orders_z_online": 0.874716
+    },
+    {
+      "date": "2018-04-14",
+      "orders": 146.0,
+      "gmv": 18845.7,
+      "orders_z": -1.252253,
+      "orders_expected": 158.30709,
+      "orders_z_online": -0.272231
+    },
+    {
+      "date": "2018-04-15",
+      "orders": 223.0,
+      "gmv": 30524.04,
+      "orders_z": 1.424953,
+      "orders_expected": 201.588469,
+      "orders_z_online": 1.636158
+    },
+    {
+      "date": "2018-04-16",
+      "orders": 279.0,
+      "gmv": 40357.06,
+      "orders_z": -0.039022,
+      "orders_expected": 278.562418,
+      "orders_z_online": 0.429142
+    },
+    {
+      "date": "2018-04-17",
+      "orders": 264.0,
+      "gmv": 36654.07,
+      "orders_z": 0.49016,
+      "orders_expected": 254.293673,
+      "orders_z_online": 1.433187
+    },
+    {
+      "date": "2018-04-18",
+      "orders": 280.0,
+      "gmv": 39472.71,
+      "orders_z": -0.147862,
+      "orders_expected": 281.631464,
+      "orders_z_online": -0.03866
+    },
+    {
+      "date": "2018-04-19",
+      "orders": 290.0,
+      "gmv": 43080.23,
+      "orders_z": 0.849273,
+      "orders_expected": 272.621715,
+      "orders_z_online": 0.439758
+    },
+    {
+      "date": "2018-04-20",
+      "orders": 196.0,
+      "gmv": 28353.84,
+      "orders_z": -1.434006,
+      "orders_expected": 215.13085,
+      "orders_z_online": -0.284308
+    },
+    {
+      "date": "2018-04-21",
+      "orders": 156.0,
+      "gmv": 18966.34,
+      "orders_z": -0.50095,
+      "orders_expected": 160.723708,
+      "orders_z_online": -0.18395
+    },
+    {
+      "date": "2018-04-22",
+      "orders": 200.0,
+      "gmv": 27350.9,
+      "orders_z": 0.290957,
+      "orders_expected": 195.261447,
+      "orders_z_online": -0.676689
+    },
+    {
+      "date": "2018-04-23",
+      "orders": 285.0,
+      "gmv": 37674.27,
+      "orders_z": -0.222848,
+      "orders_expected": 288.121483,
+      "orders_z_online": 0.331855
+    },
+    {
+      "date": "2018-04-24",
+      "orders": 270.0,
+      "gmv": 43046.78,
+      "orders_z": 0.488846,
+      "orders_expected": 260.097081,
+      "orders_z_online": 0.347354
+    },
+    {
+      "date": "2018-04-25",
+      "orders": 283.0,
+      "gmv": 40945.12,
+      "orders_z": -0.016004,
+      "orders_expected": 282.115555,
+      "orders_z_online": 0.092696
+    },
+    {
+      "date": "2018-04-26",
+      "orders": 253.0,
+      "gmv": 31409.56,
+      "orders_z": -0.880212,
+      "orders_expected": 267.432794,
+      "orders_z_online": -0.698721
+    },
+    {
+      "date": "2018-04-27",
+      "orders": 241.0,
+      "gmv": 40680.04,
+      "orders_z": 1.164324,
+      "orders_expected": 221.755838,
+      "orders_z_online": 1.869771
+    },
+    {
+      "date": "2018-04-28",
+      "orders": 168.0,
+      "gmv": 23420.91,
+      "orders_z": 0.228678,
+      "orders_expected": 164.711617,
+      "orders_z_online": 0.673586
+    },
+    {
+      "date": "2018-04-29",
+      "orders": 170.0,
+      "gmv": 19302.7,
+      "orders_z": -1.663686,
+      "orders_expected": 189.539765,
+      "orders_z_online": -1.622628
+    },
+    {
+      "date": "2018-04-30",
+      "orders": 240.0,
+      "gmv": 35682.61,
+      "orders_z": -3.814413,
+      "orders_expected": 309.534875,
+      "orders_z_online": -0.966818
+    },
+    {
+      "date": "2018-05-01",
+      "orders": 254.0,
+      "gmv": 32963.9,
+      "orders_z": -1.533367,
+      "orders_expected": 280.647598,
+      "orders_z_online": 0.082877
+    },
+    {
+      "date": "2018-05-02",
+      "orders": 295.0,
+      "gmv": 38557.72,
+      "orders_z": -0.337771,
+      "orders_expected": 300.562936,
+      "orders_z_online": 0.677531
+    },
+    {
+      "date": "2018-05-03",
+      "orders": 304.0,
+      "gmv": 42497.77,
+      "orders_z": 1.259431,
+      "orders_expected": 277.947891,
+      "orders_z_online": 1.368228
+    },
+    {
+      "date": "2018-05-04",
+      "orders": 265.0,
+      "gmv": 39730.93,
+      "orders_z": 0.453195,
+      "orders_expected": 255.897807,
+      "orders_z_online": 1.174076
+    },
+    {
+      "date": "2018-05-05",
+      "orders": 195.0,
+      "gmv": 28239.05,
+      "orders_z": 0.165029,
+      "orders_expected": 192.014443,
+      "orders_z_online": 1.137778
+    },
+    {
+      "date": "2018-05-06",
+      "orders": 209.0,
+      "gmv": 28288.25,
+      "orders_z": -0.128969,
+      "orders_expected": 209.949811,
+      "orders_z_online": 0.349862
+    },
+    {
+      "date": "2018-05-07",
+      "orders": 369.0,
+      "gmv": 53211.98,
+      "orders_z": 0.40193,
+      "orders_expected": 357.578828,
+      "orders_z_online": 1.528371
+    },
+    {
+      "date": "2018-05-08",
+      "orders": 327.0,
+      "gmv": 47800.69,
+      "orders_z": 0.080604,
+      "orders_expected": 323.851348,
+      "orders_z_online": 0.197692
+    },
+    {
+      "date": "2018-05-09",
+      "orders": 341.0,
+      "gmv": 43561.22,
+      "orders_z": 1.271999,
+      "orders_expected": 311.521989,
+      "orders_z_online": -0.444858
+    },
+    {
+      "date": "2018-05-10",
+      "orders": 278.0,
+      "gmv": 50380.67,
+      "orders_z": -0.322832,
+      "orders_expected": 282.956701,
+      "orders_z_online": -1.693178
+    },
+    {
+      "date": "2018-05-11",
+      "orders": 246.0,
+      "gmv": 37859.19,
+      "orders_z": -1.7958,
+      "orders_expected": 276.691618,
+      "orders_z_online": -1.524057
+    },
+    {
+      "date": "2018-05-12",
+      "orders": 204.0,
+      "gmv": 29604.14,
+      "orders_z": 0.549152,
+      "orders_expected": 195.705807,
+      "orders_z_online": 0.230562
+    },
+    {
+      "date": "2018-05-13",
+      "orders": 206.0,
+      "gmv": 31313.52,
+      "orders_z": -0.20846,
+      "orders_expected": 208.055941,
+      "orders_z_online": -0.112803
+    },
+    {
+      "date": "2018-05-14",
+      "orders": 363.0,
+      "gmv": 53702.39,
+      "orders_z": 1.240464,
+      "orders_expected": 332.335166,
+      "orders_z_online": -0.242264
+    },
+    {
+      "date": "2018-05-15",
+      "orders": 351.0,
+      "gmv": 41054.86,
+      "orders_z": 2.304138,
+      "orders_expected": 298.994618,
+      "orders_z_online": 0.6926
+    },
+    {
+      "date": "2018-05-16",
+      "orders": 356.0,
+      "gmv": 56238.83,
+      "orders_z": 4.950382,
+      "orders_expected": 253.446457,
+      "orders_z_online": 0.372308
+    },
+    {
+      "date": "2018-05-17",
+      "orders": 226.0,
+      "gmv": 31450.63,
+      "orders_z": 0.474404,
+      "orders_expected": 217.918432,
+      "orders_z_online": -1.985517
+    },
+    {
+      "date": "2018-05-18",
+      "orders": 236.0,
+      "gmv": 31621.52,
+      "orders_z": 0.618034,
+      "orders_expected": 225.35528,
+      "orders_z_online": -0.78773
+    },
+    {
+      "date": "2018-05-19",
+      "orders": 138.0,
+      "gmv": 25081.39,
+      "orders_z": -1.013879,
+      "orders_expected": 147.230821,
+      "orders_z_online": -2.611395
+    },
+    {
+      "date": "2018-05-20",
+      "orders": 160.0,
+      "gmv": 19528.55,
+      "orders_z": 1.194854,
+      "orders_expected": 146.891715,
+      "orders_z_online": -0.84059
+    },
+    {
+      "date": "2018-05-21",
+      "orders": 201.0,
+      "gmv": 25230.09,
+      "orders_z": -0.66384,
+      "orders_expected": 209.380126,
+      "orders_z_online": -3.198353
+    },
+    {
+      "date": "2018-05-22",
+      "orders": 197.0,
+      "gmv": 27568.98,
+      "orders_z": 0.427627,
+      "orders_expected": 190.555279,
+      "orders_z_online": -2.387239
+    },
+    {
+      "date": "2018-05-23",
+      "orders": 132.0,
+      "gmv": 17501.05,
+      "orders_z": -2.252531,
+      "orders_expected": 153.212035,
+      "orders_z_online": -3.808783
+    },
+    {
+      "date": "2018-05-24",
+      "orders": 114.0,
+      "gmv": 20073.26,
+      "orders_z": -2.425831,
+      "orders_expected": 133.911572,
+      "orders_z_online": -1.725989
+    },
+    {
+      "date": "2018-05-25",
+      "orders": 103.0,
+      "gmv": 15888.92,
+      "orders_z": -5.32162,
+      "orders_expected": 147.371052,
+      "orders_z_online": -1.755429
+    },
+    {
+      "date": "2018-05-26",
+      "orders": 99.0,
+      "gmv": 14799.17,
+      "orders_z": -0.48307,
+      "orders_expected": 101.884377,
+      "orders_z_online": 0.98009
+    },
+    {
+      "date": "2018-05-27",
+      "orders": 100.0,
+      "gmv": 12523.25,
+      "orders_z": -1.154564,
+      "orders_expected": 107.735887,
+      "orders_z_online": 0.419193
+    },
+    {
+      "date": "2018-05-28",
+      "orders": 142.0,
+      "gmv": 26702.47,
+      "orders_z": -1.789435,
+      "orders_expected": 159.699719,
+      "orders_z_online": -0.006473
+    },
+    {
+      "date": "2018-05-29",
+      "orders": 149.0,
+      "gmv": 25572.08,
+      "orders_z": -0.77624,
+      "orders_expected": 156.413689,
+      "orders_z_online": 0.476558
+    },
+    {
+      "date": "2018-05-30",
+      "orders": 140.0,
+      "gmv": 19214.0,
+      "orders_z": -0.31978,
+      "orders_expected": 142.475418,
+      "orders_z_online": 2.421728
+    },
+    {
+      "date": "2018-05-31",
+      "orders": 133.0,
+      "gmv": 25111.28,
+      "orders_z": -1.05193,
+      "orders_expected": 142.266604,
+      "orders_z_online": 2.853814
+    },
+    {
+      "date": "2018-06-01",
+      "orders": 184.0,
+      "gmv": 32298.92,
+      "orders_z": 1.383289,
+      "orders_expected": 166.787995,
+      "orders_z_online": 5.370145
+    },
+    {
+      "date": "2018-06-02",
+      "orders": 142.0,
+      "gmv": 25266.62,
+      "orders_z": 1.079571,
+      "orders_expected": 131.384306,
+      "orders_z_online": 3.301023
+    },
+    {
+      "date": "2018-06-03",
+      "orders": 191.0,
+      "gmv": 28461.66,
+      "orders_z": 4.06991,
+      "orders_expected": 144.232252,
+      "orders_z_online": 3.425063
+    },
+    {
+      "date": "2018-06-04",
+      "orders": 225.0,
+      "gmv": 28622.4,
+      "orders_z": 0.031116,
+      "orders_expected": 223.580112,
+      "orders_z_online": 0.881542
+    },
+    {
+      "date": "2018-06-05",
+      "orders": 197.0,
+      "gmv": 30709.36,
+      "orders_z": -1.178262,
+      "orders_expected": 212.506949,
+      "orders_z_online": -1.545736
+    },
+    {
+      "date": "2018-06-06",
+      "orders": 227.0,
+      "gmv": 26134.4,
+      "orders_z": 0.75569,
+      "orders_expected": 214.743742,
+      "orders_z_online": 1.294474
+    },
+    {
+      "date": "2018-06-07",
+      "orders": 223.0,
+      "gmv": 37020.4,
+      "orders_z": 1.400423,
+      "orders_expected": 201.924483,
+      "orders_z_online": 0.548032
+    },
+    {
+      "date": "2018-06-08",
+      "orders": 198.0,
+      "gmv": 26870.41,
+      "orders_z": -0.912027,
+      "orders_expected": 209.760096,
+      "orders_z_online": -2.085562
+    },
+    {
+      "date": "2018-06-09",
+      "orders": 172.0,
+      "gmv": 29325.08,
+      "orders_z": -0.041626,
+      "orders_expected": 171.760019,
+      "orders_z_online": -1.093291
+    },
+    {
+      "date": "2018-06-10",
+      "orders": 191.0,
+      "gmv": 25369.24,
+      "orders_z": 0.794216,
+      "orders_expected": 180.206672,
+      "orders_z_online": -1.1351
+    },
+    {
+      "date": "2018-06-11",
+      "orders": 294.0,
+      "gmv": 49669.7,
+      "orders_z": 1.283209,
+      "orders_expected": 268.368984,
+      "orders_z_online": 0.641034
+    },
+    {
+      "date": "2018-06-12",
+      "orders": 246.0,
+      "gmv": 40369.0,
+      "orders_z": 0.306177,
+      "orders_expected": 239.929138,
+      "orders_z_online": -0.084036
+    },
+    {
+      "date": "2018-06-13",
+      "orders": 258.0,
+      "gmv": 34228.8,
+      "orders_z": 1.131224,
+      "orders_expected": 237.937697,
+      "orders_z_online": 0.121692
+    },
+    {
+      "date": "2018-06-14",
+      "orders": 212.0,
+      "gmv": 27504.6,
+      "orders_z": -0.974128,
+      "orders_expected": 225.535891,
+      "orders_z_online": -0.948258
+    },
+    {
+      "date": "2018-06-15",
+      "orders": 185.0,
+      "gmv": 26418.56,
+      "orders_z": -0.602096,
+      "orders_expected": 191.909967,
+      "orders_z_online": -1.670456
+    },
+    {
+      "date": "2018-06-16",
+      "orders": 165.0,
+      "gmv": 24616.05,
+      "orders_z": 0.531722,
+      "orders_expected": 158.4714,
+      "orders_z_online": -0.650313
+    },
+    {
+      "date": "2018-06-17",
+      "orders": 152.0,
+      "gmv": 17316.33,
+      "orders_z": -2.12074,
+      "orders_expected": 174.829286,
+      "orders_z_online": -1.043958
+    },
+    {
+      "date": "2018-06-18",
+      "orders": 245.0,
+      "gmv": 34488.4,
+      "orders_z": -0.104836,
+      "orders_expected": 245.710071,
+      "orders_z_online": -0.762973
+    },
+    {
+      "date": "2018-06-19",
+      "orders": 229.0,
+      "gmv": 34467.02,
+      "orders_z": -0.205295,
+      "orders_expected": 231.234723,
+      "orders_z_online": 0.315402
+    },
+    {
+      "date": "2018-06-20",
+      "orders": 216.0,
+      "gmv": 28722.99,
+      "orders_z": -0.507227,
+      "orders_expected": 222.623761,
+      "orders_z_online": -0.227228
+    },
+    {
+      "date": "2018-06-21",
+      "orders": 234.0,
+      "gmv": 27703.58,
+      "orders_z": 0.199081,
+      "orders_expected": 229.888602,
+      "orders_z_online": 0.844088
+    },
+    {
+      "date": "2018-06-22",
+      "orders": 179.0,
+      "gmv": 24807.27,
+      "orders_z": -0.19205,
+      "orders_expected": 180.586347,
+      "orders_z_online": 0.119988
+    },
+    {
+      "date": "2018-06-23",
+      "orders": 150.0,
+      "gmv": 17432.02,
+      "orders_z": 0.071435,
+      "orders_expected": 148.643139,
+      "orders_z_online": -0.367184
+    },
+    {
+      "date": "2018-06-24",
+      "orders": 198.0,
+      "gmv": 24303.6,
+      "orders_z": 1.514614,
+      "orders_expected": 177.891242,
+      "orders_z_online": 1.016128
+    },
+    {
+      "date": "2018-06-25",
+      "orders": 239.0,
+      "gmv": 36045.52,
+      "orders_z": 0.075753,
+      "orders_expected": 236.774028,
+      "orders_z_online": -0.322248
+    },
+    {
+      "date": "2018-06-26",
+      "orders": 240.0,
+      "gmv": 30633.79,
+      "orders_z": -0.254705,
+      "orders_expected": 243.155256,
+      "orders_z_online": 0.292336
+    },
+    {
+      "date": "2018-06-27",
+      "orders": 214.0,
+      "gmv": 26496.48,
+      "orders_z": 0.142239,
+      "orders_expected": 211.051272,
+      "orders_z_online": -0.506527
+    },
+    {
+      "date": "2018-06-28",
+      "orders": 242.0,
+      "gmv": 32151.97,
+      "orders_z": 0.314023,
+      "orders_expected": 235.901849,
+      "orders_z_online": 0.263769
+    },
+    {
+      "date": "2018-06-29",
+      "orders": 173.0,
+      "gmv": 20431.48,
+      "orders_z": 0.370334,
+      "orders_expected": 167.989296,
+      "orders_z_online": 0.003173
+    },
+    {
+      "date": "2018-06-30",
+      "orders": 124.0,
+      "gmv": 15379.88,
+      "orders_z": -0.777837,
+      "orders_expected": 130.192224,
+      "orders_z_online": -1.042536
+    },
+    {
+      "date": "2018-07-01",
+      "orders": 161.0,
+      "gmv": 24369.47,
+      "orders_z": 0.314087,
+      "orders_expected": 156.933875,
+      "orders_z_online": -0.681368
+    },
+    {
+      "date": "2018-07-02",
+      "orders": 193.0,
+      "gmv": 22872.2,
+      "orders_z": -0.120716,
+      "orders_expected": 193.768826,
+      "orders_z_online": -0.699602
+    },
+    {
+      "date": "2018-07-03",
+      "orders": 215.0,
+      "gmv": 26222.42,
+      "orders_z": 1.268048,
+      "orders_expected": 196.435012,
+      "orders_z_online": 0.250226
+    },
+    {
+      "date": "2018-07-04",
+      "orders": 254.0,
+      "gmv": 35412.65,
+      "orders_z": 4.399256,
+      "orders_expected": 187.642173,
+      "orders_z_online": 1.428504
+    },
+    {
+      "date": "2018-07-05",
+      "orders": 194.0,
+      "gmv": 28590.33,
+      "orders_z": 0.629757,
+      "orders_expected": 185.094231,
+      "orders_z_online": -0.557281
+    },
+    {
+      "date": "2018-07-06",
+      "orders": 121.0,
+      "gmv": 19005.54,
+      "orders_z": -1.413158,
+      "orders_expected": 132.659147,
+      "orders_z_online": -0.48026
+    },
+    {
+      "date": "2018-07-07",
+      "orders": 91.0,
+      "gmv": 9076.56,
+      "orders_z": -1.410404,
+      "orders_expected": 99.773388,
+      "orders_z_online": -0.480063
+    },
+    {
+      "date": "2018-07-08",
+      "orders": 120.0,
+      "gmv": 14207.98,
+      "orders_z": -0.225598,
+      "orders_expected": 121.343356,
+      "orders_z_online": -0.293213
+    },
+    {
+      "date": "2018-07-09",
+      "orders": 148.0,
+      "gmv": 19564.85,
+      "orders_z": -1.910808,
+      "orders_expected": 167.821015,
+      "orders_z_online": 0.170181
+    },
+    {
+      "date": "2018-07-10",
+      "orders": 132.0,
+      "gmv": 18724.57,
+      "orders_z": -4.463477,
+      "orders_expected": 178.056031,
+      "orders_z_online": -0.715274
+    },
+    {
+      "date": "2018-07-11",
+      "orders": 126.0,
+      "gmv": 18422.98,
+      "orders_z": -6.576064,
+      "orders_expected": 196.208577,
+      "orders_z_online": 0.45798
+    },
+    {
+      "date": "2018-07-12",
+      "orders": 118.0,
+      "gmv": 19691.97,
+      "orders_z": -7.453293,
+      "orders_expected": 195.068377,
+      "orders_z_online": -0.638554
+    },
+    {
+      "date": "2018-07-13",
+      "orders": 167.0,
+      "gmv": 27644.23,
+      "orders_z": -0.002073,
+      "orders_expected": 166.319249,
+      "orders_z_online": 3.480627
+    },
+    {
+      "date": "2018-07-14",
+      "orders": 146.0,
+      "gmv": 22044.71,
+      "orders_z": 1.205363,
+      "orders_expected": 133.93573,
+      "orders_z_online": 4.283916
+    },
+    {
+      "date": "2018-07-15",
+      "orders": 151.0,
+      "gmv": 29997.49,
+      "orders_z": -0.933106,
+      "orders_expected": 160.212,
+      "orders_z_online": 2.658785
+    },
+    {
+      "date": "2018-07-16",
+      "orders": 243.0,
+      "gmv": 31042.79,
+      "orders_z": 0.610836,
+      "orders_expected": 232.154229,
+      "orders_z_online": 1.804699
+    },
+    {
+      "date": "2018-07-17",
+      "orders": 219.0,
+      "gmv": 29733.48,
+      "orders_z": -1.210888,
+      "orders_expected": 236.753435,
+      "orders_z_online": -1.382901
+    },
+    {
+      "date": "2018-07-18",
+      "orders": 305.0,
+      "gmv": 41193.49,
+      "orders_z": 0.493097,
+      "orders_expected": 293.733454,
+      "orders_z_online": 2.329677
+    },
+    {
+      "date": "2018-07-19",
+      "orders": 253.0,
+      "gmv": 38705.58,
+      "orders_z": 0.003204,
+      "orders_expected": 251.880613,
+      "orders_z_online": -1.472879
+    },
+    {
+      "date": "2018-07-20",
+      "orders": 247.0,
+      "gmv": 31898.19,
+      "orders_z": 0.826259,
+      "orders_expected": 232.552475,
+      "orders_z_online": 0.938624
+    },
+    {
+      "date": "2018-07-21",
+      "orders": 185.0,
+      "gmv": 20901.68,
+      "orders_z": 0.439307,
+      "orders_expected": 178.803934,
+      "orders_z_online": 0.207093
+    },
+    {
+      "date": "2018-07-22",
+      "orders": 214.0,
+      "gmv": 25958.42,
+      "orders_z": 1.215542,
+      "orders_expected": 196.21931,
+      "orders_z_online": 0.150233
+    },
+    {
+      "date": "2018-07-23",
+      "orders": 304.0,
+      "gmv": 39841.42,
+      "orders_z": 1.022606,
+      "orders_expected": 282.446887,
+      "orders_z_online": 0.07487
+    },
+    {
+      "date": "2018-07-24",
+      "orders": 270.0,
+      "gmv": 41525.76,
+      "orders_z": 0.139172,
+      "orders_expected": 266.338617,
+      "orders_z_online": -0.33946
+    },
+    {
+      "date": "2018-07-25",
+      "orders": 267.0,
+      "gmv": 40367.55,
+      "orders_z": -1.173791,
+      "orders_expected": 287.901934,
+      "orders_z_online": -1.762213
+    },
+    {
+      "date": "2018-07-26",
+      "orders": 245.0,
+      "gmv": 34864.02,
+      "orders_z": -0.432443,
+      "orders_expected": 251.231373,
+      "orders_z_online": -1.496754
+    },
+    {
+      "date": "2018-07-27",
+      "orders": 189.0,
+      "gmv": 28371.75,
+      "orders_z": -3.733376,
+      "orders_expected": 242.483348,
+      "orders_z_online": -1.845579
+    },
+    {
+      "date": "2018-07-28",
+      "orders": 175.0,
+      "gmv": 25210.12,
+      "orders_z": -0.708154,
+      "orders_expected": 182.851096,
+      "orders_z_online": 0.100505
+    },
+    {
+      "date": "2018-07-29",
+      "orders": 184.0,
+      "gmv": 29652.51,
+      "orders_z": -1.482122,
+      "orders_expected": 202.626369,
+      "orders_z_online": 0.192609
+    },
+    {
+      "date": "2018-07-30",
+      "orders": 280.0,
+      "gmv": 37866.76,
+      "orders_z": -0.921587,
+      "orders_expected": 296.798236,
+      "orders_z_online": 0.534259
+    },
+    {
+      "date": "2018-07-31",
+      "orders": 316.0,
+      "gmv": 45062.8,
+      "orders_z": 0.429536,
+      "orders_expected": 305.642394,
+      "orders_z_online": 1.756586
+    },
+    {
+      "date": "2018-08-01",
+      "orders": 308.0,
+      "gmv": 40424.0,
+      "orders_z": 0.07822,
+      "orders_expected": 305.083033,
+      "orders_z_online": 0.630693
+    },
+    {
+      "date": "2018-08-02",
+      "orders": 298.0,
+      "gmv": 38434.62,
+      "orders_z": -0.050454,
+      "orders_expected": 297.76337,
+      "orders_z_online": 0.955056
+    },
+    {
+      "date": "2018-08-03",
+      "orders": 312.0,
+      "gmv": 41802.19,
+      "orders_z": 0.860516,
+      "orders_expected": 293.08442,
+      "orders_z_online": 1.642866
+    },
+    {
+      "date": "2018-08-04",
+      "orders": 242.0,
+      "gmv": 35374.06,
+      "orders_z": 1.102231,
+      "orders_expected": 223.616606,
+      "orders_z_online": 0.762104
+    },
+    {
+      "date": "2018-08-05",
+      "orders": 274.0,
+      "gmv": 35425.35,
+      "orders_z": 1.316279,
+      "orders_expected": 249.54629,
+      "orders_z_online": 0.908929
+    },
+    {
+      "date": "2018-08-06",
+      "orders": 368.0,
+      "gmv": 53811.14,
+      "orders_z": 1.232905,
+      "orders_expected": 337.086561,
+      "orders_z_online": -0.1609
+    },
+    {
+      "date": "2018-08-07",
+      "orders": 361.0,
+      "gmv": 48298.68,
+      "orders_z": 0.635382,
+      "orders_expected": 344.335992,
+      "orders_z_online": -0.27834
+    },
+    {
+      "date": "2018-08-08",
+      "orders": 314.0,
+      "gmv": 42831.07,
+      "orders_z": 0.613687,
+      "orders_expected": 299.940321,
+      "orders_z_online": -0.892884
+    },
+    {
+      "date": "2018-08-09",
+      "orders": 283.0,
+      "gmv": 40040.28,
+      "orders_z": -0.65709,
+      "orders_expected": 294.647109,
+      "orders_z_online": -0.760128
+    },
+    {
+      "date": "2018-08-10",
+      "orders": 252.0,
+      "gmv": 33305.73,
+      "orders_z": -0.509863,
+      "orders_expected": 259.76907,
+      "orders_z_online": -1.491092
+    },
+    {
+      "date": "2018-08-11",
+      "orders": 186.0,
+      "gmv": 25960.93,
+      "orders_z": -1.328026,
+      "orders_expected": 202.696061,
+      "orders_z_online": -1.40147
+    },
+    {
+      "date": "2018-08-12",
+      "orders": 197.0,
+      "gmv": 31524.21,
+      "orders_z": -2.549865,
+      "orders_expected": 233.237171,
+      "orders_z_online": -0.824634
+    },
+    {
+      "date": "2018-08-13",
+      "orders": 287.0,
+      "gmv": 38561.21,
+      "orders_z": -0.477885,
+      "orders_expected": 295.203225,
+      "orders_z_online": -0.295762
+    },
+    {
+      "date": "2018-08-14",
+      "orders": 312.0,
+      "gmv": 44030.95,
+      "orders_z": 2.335119,
+      "orders_expected": 265.198837,
+      "orders_z_online": 0.36553
+    },
+    {
+      "date": "2018-08-15",
+      "orders": 283.0,
+      "gmv": 45405.14,
+      "orders_z": 8.624382,
+      "orders_expected": 156.924249,
+      "orders_z_online": 0.777126
+    },
+    {
+      "date": "2018-08-16",
+      "orders": 316.0,
+      "gmv": 35166.77,
+      "orders_z": 1.317461,
+      "orders_expected": 287.788472,
+      "orders_z_online": 1.389091
+    },
+    {
+      "date": "2018-08-17",
+      "orders": 254.0,
+      "gmv": 31683.18,
+      "orders_z": 0.817662,
+      "orders_expected": 239.284214,
+      "orders_z_online": 0.073161
+    },
+    {
+      "date": "2018-08-18",
+      "orders": 196.0,
+      "gmv": 24340.95,
+      "orders_z": 1.108863,
+      "orders_expected": 181.015024,
+      "orders_z_online": 0.258194
+    },
+    {
+      "date": "2018-08-19",
+      "orders": 204.0,
+      "gmv": 25487.39,
+      "orders_z": 0.663412,
+      "orders_expected": 194.193209,
+      "orders_z_online": -0.024057
+    },
+    {
+      "date": "2018-08-20",
+      "orders": 252.0,
+      "gmv": 34479.5,
+      "orders_z": 3.137368,
+      "orders_expected": 202.818583,
+      "orders_z_online": -0.905887
+    },
+    {
+      "date": "2018-08-21",
+      "orders": 239.0,
+      "gmv": 26323.06,
+      "orders_z": 7.344716,
+      "orders_expected": 144.508383,
+      "orders_z_online": -1.409973
+    },
+    {
+      "date": "2018-08-22",
+      "orders": 186.0,
+      "gmv": 20297.13,
+      "orders_z": 17.134322,
+      "orders_expected": 57.517338,
+      "orders_z_online": -1.407855
+    },
+    {
+      "date": "2018-08-23",
+      "orders": 142.0,
+      "gmv": 17030.87,
+      "orders_z": 0.063447,
+      "orders_expected": 140.791522,
+      "orders_z_online": -2.442732
+    },
+    {
+      "date": "2018-08-24",
+      "orders": 97.0,
+      "gmv": 9585.71,
+      "orders_z": 0.152848,
+      "orders_expected": 95.586679,
+      "orders_z_online": -2.89949
+    },
+    {
+      "date": "2018-08-25",
+      "orders": 69.0,
+      "gmv": 10599.41,
+      "orders_z": 0.28179,
+      "orders_expected": 67.392102,
+      "orders_z_online": -2.627945
+    },
+    {
+      "date": "2018-08-26",
+      "orders": 73.0,
+      "gmv": 8070.71,
+      "orders_z": 0.42488,
+      "orders_expected": 70.604656,
+      "orders_z_online": -2.544333
+    },
+    {
+      "date": "2018-08-27",
+      "orders": 66.0,
+      "gmv": 5345.91,
+      "orders_z": 0.091596,
+      "orders_expected": 65.307571,
+      "orders_z_online": -3.050515
+    },
+    {
+      "date": "2018-08-28",
+      "orders": 39.0,
+      "gmv": 3673.91,
+      "orders_z": -0.360257,
+      "orders_expected": 39.813701,
+      "orders_z_online": -4.211014
+    },
+    {
+      "date": "2018-08-29",
+      "orders": 11.0,
+      "gmv": 1546.04,
+      "orders_z": -0.356313,
+      "orders_expected": 11.240848,
+      "orders_z_online": -5.843307
+    },
+    {
+      "date": "2018-08-30",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": -56.189575,
+      "orders_expected": 43.342159,
+      "orders_z_online": -14.904812
+    },
+    {
+      "date": "2018-08-31",
+      "orders": 0.0,
+      "gmv": 0.0,
+      "orders_z": -49.158346,
+      "orders_expected": 26.575012,
+      "orders_z_online": -12.433972
+    }
+  ]
+}

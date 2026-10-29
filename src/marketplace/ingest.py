@@ -107,8 +107,7 @@ def load(manifest: dict) -> dict[str, int]:
         tcols = [r[0] for r in con.execute("describe raw.category_translation").fetchall()]
         if tcols[0] != "product_category_name":
             con.execute(
-                f'alter table raw.category_translation rename "{tcols[0]}" '
-                "to product_category_name"
+                f'alter table raw.category_translation rename "{tcols[0]}" to product_category_name'
             )
     return counts
 

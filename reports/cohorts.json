@@ -2,7 +2,14 @@
   "people": 94983,
   "people_with_2plus_orders": 2886,
   "lifetime_repeat_rate": 0.030384,
-  "orders_per_person_distribution": "1    92097\n2     2650\n3      188\n4       29\n5        9\n6        5\nName: count, dtype: int64",
+  "orders_per_person_distribution": {
+    "1": 92097,
+    "2": 2650,
+    "3": 188,
+    "4": 29,
+    "5": 9,
+    "6": 5
+  },
   "repeat_gmv_share": 0.029242,
   "km_cumulative_2nd_order_any": {
     "7": 0.011196,

@@ -47,6 +47,8 @@ def _clean(o):
         return o.strftime("%Y-%m-%d")
     if isinstance(o, pd.DataFrame):
         return _clean(o.to_dict(orient="records"))
+    if isinstance(o, pd.Series):
+        return {str(k): _clean(v) for k, v in o.items()}
     return o
 
 
