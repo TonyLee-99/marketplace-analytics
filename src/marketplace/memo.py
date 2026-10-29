@@ -54,7 +54,7 @@ def build() -> dict:
     recs = [
         {
             "id": 1,
-            "title": "Send the review survey on confirmed delivery, not at promise + 2 days",
+            "title": "Send the review survey on confirmed delivery",
             "why": f"{pct(di['survey_timing']['late_answered_before_delivery_share'], 0)} of late orders are rated before they arrive.",
             "impact": f"≤ {lever['one_two_star_reviews_avoided_upper_bound']:,.0f} fewer 1–2★/yr; "
             f"+{lever['network_avg_review_gain']:.2f}★ network average (upper bounds)",
@@ -96,13 +96,14 @@ def build() -> dict:
             f"({pct(voc['all_text_reviews_on_multi_item_orders'], 0)} of reviews).",
             "impact": f"≤ {inc_yr:,.0f} 1–2★/yr on {brl(voc['incomplete_order_1_2_star_gmv_brl'] / voc['months_covered'] * 12)}/yr of orders "
             "(upper bound); raises the measured late rate",
-            "cost": "product + seller ops; also put the "
-            f"{t2['sellers']} 'fix-first' sellers ({pct(t2['gmv_share'], 0)} of GMV, {pct(t2['on_time'], 0)} on-time) on a quality plan",
+            "cost": "product + seller ops",
             "confidence": "Medium (text classifier, silver labels)",
             "owner": "Marketplace ops + order-management engineering", "date": "scope by 2018-10-01",
         },
     ]
     demoted = [
+        f"Seller quality plan for the {t2['sellers']} 'fix-first' sellers ({pct(t2['gmv_share'], 0)} of GMV, "
+        f"{pct(t2['on_time'], 0)} on-time): ops hygiene, no measurable BRL.",
         f"Lane/carrier programme: against a lane-adjusted baseline (distance, destination, origin, month) the 10 worst lanes "
         f"have only {ln['summary']['top10_excess_late_orders']:,.0f} excess late orders/yr "
         f"(≈{ln['summary']['low_reviews_avoidable_top10']:.0f} 1–2★ recorded, "
@@ -175,7 +176,7 @@ def render(r: dict) -> str:
         f"{st['strike_iv_post_delivery']['ci95'][1]:+.1f}).",
         f"- **The spring-2018 delivery slump had two causes.** Late rate Jan → Mar 2018: Olist cut the median promise by 4 days "
         f"({sh['promise']:+.1f} pp), carrier transit slowed ({sh['transit']:+.1f} pp), and seller handling was not the cause "
-        f"({sh['seller_days']:+.1f} pp). No single state, category or lane drove it.",
+        f"({sh['seller_days']:+.1f} pp); no single state, category or lane.",
         f"- **Repurchase effects can't be measured here.** Late delivery shifts 180-day repurchase by {st['repurchase']['effect_pp']:+.2f} pp, "
         f"but the test can only detect ≥ {st['repurchase']['mde_pp']:.2f} pp ({pct(st['repurchase']['mde_rel'], 0)} of the base): "
         "underpowered, not 'no effect'.",
@@ -191,13 +192,13 @@ def render(r: dict) -> str:
         "",
         f"**Net (the recommendations interact):** 1–2★/yr: #1 ≤ {n1['rec1_upper_bound']:,.0f}, #3 ≤ {n1['rec3_upper_bound']:,.0f}; "
         f"a full #2 rollout {n1['rec2_rollout_survey_today']:+,.0f} today vs {n1['rec2_rollout_after_rec1']:+,.0f} after #1. "
-        "Sizes are upper bounds and not additive.",
+        "Upper bounds, not additive.",
         "",
         f"**Ask today:** approve #1 and the #2 A/B test: 4 weeks, 50/50 by customer, ≈{ab['orders_per_arm']:,.0f} orders/arm. "
         f"Primary metric: conversion. Guardrails: late ≤ 7% (MDE {ab['guardrail_mde_late_rate_pp']:.1f} pp), 1–2★ share. "
-        f"Kill rule: {ab['kill_rule']}.",
+        "Kill rule: treatment late rate +3 pp for 7 days, or 1–2★ share +1 pp.",
         "",
-        "**Deprioritised:** lane/carrier programme and seller-rating money (details in the appendix).",
+        "**Deprioritised:** lane/carrier programme, seller-rating money (appendix).",
         "",
         "---",
         "### Appendix: methodology and caveats",

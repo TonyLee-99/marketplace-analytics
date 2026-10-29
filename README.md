@@ -86,8 +86,8 @@ item grain.
   so this is not evidence of "no effect".
 - **No BRL attaches to reviews.** A seller-week panel finds no detectable link from bad reviews to
   the seller's next-4-week GMV (−R$13 per review, CI −62 to +36).
-- **Promise coverage is miscalibrated in both directions.** Model P90 covers 79.8% in the
-  Oct–Mar peak and 94.5% in Apr–Aug.
+- **Promise coverage is miscalibrated in both directions.** Model P90 covers about 80% in the
+  Oct–Mar peak and about 95% in Apr–Aug (exact values in RESULTS.md).
 - **The conversion benefit of shorter promises is not measurable here.** There are no sessions in
   the data, so only break-even elasticities are given.
 - **No carrier identifier.** Carrier-level counterfactuals are impossible.

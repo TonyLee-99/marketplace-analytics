@@ -719,8 +719,8 @@
           "bin": "15+ late",
           "effect": -0.533123,
           "ci95": [
-            -1.441448,
-            0.375203
+            -1.441449,
+            0.375204
           ],
           "n": 19,
           "raw_mean": 2.894737
@@ -883,8 +883,8 @@
           "bin": "15+ late",
           "effect": 0.144561,
           "ci95": [
-            -0.122333,
-            0.411456
+            -0.122332,
+            0.411455
           ],
           "n": 19,
           "raw_mean": 0.421053
@@ -1243,8 +1243,8 @@
     "lost_repeat_orders_point": 16.183749,
     "lost_repeat_gmv_brl_point": 2227.202147,
     "lost_repeat_gmv_brl_ci95": [
-      -1331.745379,
-      5786.149672
+      -1331.745386,
+      5786.14968
     ],
     "extra_1_2_star_reviews_recorded": 2954.099971,
     "extra_1_2_star_reviews_post_delivery": 538.793648,

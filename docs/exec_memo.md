@@ -5,24 +5,25 @@
 ## State of the business
 - **Growth has stalled.** Monthly GMV has been flat since Nov-2017, and Jun–Aug 2018 averaged R$863k/month, **12.7% below Mar–May**. The headline "+138% YoY" is a base effect from the 2017 ramp-up. Supply kept growing: active sellers rose 1,072 → 1,226 while GMV per seller fell R$923 → R$704/month. Demand is the constraint; 2.2% of buyers ever return.
 - **The "late delivery costs ~1.9 stars" number is mostly a survey artefact.** The survey fires about 2 days after the promised date, so most late orders are rated before the parcel arrives. For the same seller in the same month, a late order records **-1.89★** overall but **-0.51★** after delivery (carrier-leg only -0.54★; May-2018 strike natural experiment -0.49★, CI -1.7 to +0.7).
-- **The spring-2018 delivery slump had two causes.** Late rate Jan → Mar 2018: Olist cut the median promise by 4 days (+5.6 pp), carrier transit slowed (+2.5 pp), and seller handling was not the cause (-1.0 pp). No single state, category or lane drove it.
+- **The spring-2018 delivery slump had two causes.** Late rate Jan → Mar 2018: Olist cut the median promise by 4 days (+5.6 pp), carrier transit slowed (+2.5 pp), and seller handling was not the cause (-1.0 pp); no single state, category or lane.
 - **Repurchase effects can't be measured here.** Late delivery shifts 180-day repurchase by -0.29 pp, but the test can only detect ≥ 0.66 pp (36% of the base): underpowered, not 'no effect'.
 
 ## Decisions (in priority order)
 | # | Decision | Why | Sized impact (12 mo) | Confidence | Owner / date |
 |---|---|---|---|---|---|
-| 1 | **Send the review survey on confirmed delivery, not at promise + 2 days** | 70% of late orders are rated before they arrive. | ≤ 2,215 fewer 1–2★/yr; +0.10★ network average (upper bounds) | High on direction, medium on size | CX product manager; ship by 2018-09-30 |
-| 2 | **Don't roll out shorter promises. A/B-test a capped cut (lane-P80, at most 5 days shorter) outside peak season** | Full year: lane-P80 saves 6.4 days but late rises 9.3% → 20.6%. Oct–Mar, today's promise was already 12.5% late; the pre-set rule picks 'lane recalibrated to 7pct late', which lengthens peak promises. | Rollout cost +3,428 1–2★/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): −6.4 d, late 20.6% | Low: upside unmeasured | Delivery-promise PM + analytics; start 2018-09-17, read out 2018-10-15 (before the Black Friday freeze) |
+| 1 | **Send the review survey on confirmed delivery** | 70% of late orders are rated before they arrive. | ≤ 2,215 fewer 1–2★/yr; +0.10★ network average (upper bounds) | High on direction, medium on size | CX product manager; ship by 2018-09-30 |
+| 2 | **Don't roll out shorter promises. A/B-test a capped cut (lane-P80, at most 5 days shorter) outside peak season** | Full year: lane-P80 saves 6.4 days but late rises 9.3% → 20.6%. Oct–Mar, today's promise was already 12.5% late; the pre-set rule picks 'lane recalibrated to 7pct late', which lengthens peak promises. | Rollout cost +3,428 1–2★/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): −2.8 d, late 12.2% | Low: upside unmeasured | Delivery-promise PM + analytics; start 2018-09-17, read out 2018-10-15 (before the Black Friday freeze) |
 | 3 | **Fix partial shipments: mark 'delivered' only when every item has arrived, and announce split shipments** | 'Incomplete order' is a top-two complaint on ON-TIME orders (23%, CI 19%–27%); 65% are multi-item orders (12% of reviews). | ≤ 973 1–2★/yr on R$220k/yr of orders (upper bound); raises the measured late rate | Medium (text classifier, silver labels) | Marketplace ops + order-management engineering; scope by 2018-10-01 |
 
-**Net (the recommendations interact):** 1–2★/yr: #1 ≤ -2,215, #3 ≤ -973; a full #2 rollout +3,428 today vs +463 after #1. Sizes are upper bounds and not additive.
+**Net (the recommendations interact):** 1–2★/yr: #1 ≤ -2,215, #3 ≤ -973; a full #2 rollout +3,428 today vs +463 after #1. Upper bounds, not additive.
 
-**Ask today:** approve #1 and the #2 A/B test: 4 weeks, 50/50 by customer, ≈3,005 orders/arm. Primary metric: conversion. Guardrails: late ≤ 7% (MDE 1.7 pp), 1–2★ share. Kill rule: stop if treatment late rate exceeds control by 3 pp for 7 consecutive days, or 1–2★ share is +1 pp.
+**Ask today:** approve #1 and the #2 A/B test: 4 weeks, 50/50 by customer, ≈3,005 orders/arm. Primary metric: conversion. Guardrails: late ≤ 7% (MDE 1.7 pp), 1–2★ share. Kill rule: treatment late rate +3 pp for 7 days, or 1–2★ share +1 pp.
 
-**Deprioritised:** lane/carrier programme and seller-rating money (details in the appendix).
+**Deprioritised:** lane/carrier programme, seller-rating money (appendix).
 
 ---
 ### Appendix: methodology and caveats
+- Seller quality plan for the 82 'fix-first' sellers (22% of GMV, 87% on-time): ops hygiene, no measurable BRL.
 - Lane/carrier programme: against a lane-adjusted baseline (distance, destination, origin, month) the 10 worst lanes have only 277 excess late orders/yr (≈57 1–2★ recorded, 20 post-delivery). That is down from 1,143 against the network average. There is no carrier ID, so 'switch carrier' cannot be analysed.
 - Money on reviews: in a seller-week panel, one extra 1–2★ review is associated with −R$13 of the seller's next-4-week GMV (95% CI −R$62 to R$36, p=0.60): not detectable, so no BRL is attached to review gains.
 - Interactions: Rec 1 cuts the review cost of Rec 2 by about 86%. Rec 3 delays the recorded delivery, which delays the survey under Rec 1 and raises the measured late rate. The effects are not additive; the lever sizes are upper bounds.

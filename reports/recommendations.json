@@ -106,7 +106,7 @@
   "recommendations": [
     {
       "id": 1,
-      "title": "Send the review survey on confirmed delivery, not at promise + 2 days",
+      "title": "Send the review survey on confirmed delivery",
       "why": "70% of late orders are rated before they arrive.",
       "impact": "\u2264 2,215 fewer 1\u20132\u2605/yr; +0.10\u2605 network average (upper bounds)",
       "cost": "1 sprint (change the survey trigger event)",
@@ -118,7 +118,7 @@
       "id": 2,
       "title": "Don't roll out shorter promises. A/B-test a capped cut (lane-P80, at most 5 days shorter) outside peak season",
       "why": "Full year: lane-P80 saves 6.4 days but late rises 9.3% \u2192 20.6%. Oct\u2013Mar, today's promise was already 12.5% late; the pre-set rule picks 'lane recalibrated to 7pct late', which lengthens peak promises.",
-      "impact": "Rollout cost +3,428 1\u20132\u2605/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): \u22126.4 d, late 20.6%",
+      "impact": "Rollout cost +3,428 1\u20132\u2605/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): \u22122.8 d, late 12.2%",
       "cost": "A/B test: 1 sprint + 4 weeks",
       "confidence": "Low: upside unmeasured",
       "owner": "Delivery-promise PM + analytics",
@@ -139,13 +139,14 @@
       "title": "Fix partial shipments: mark 'delivered' only when every item has arrived, and announce split shipments",
       "why": "'Incomplete order' is a top-two complaint on ON-TIME orders (23%, CI 19%\u201327%); 65% are multi-item orders (12% of reviews).",
       "impact": "\u2264 973 1\u20132\u2605/yr on R$220k/yr of orders (upper bound); raises the measured late rate",
-      "cost": "product + seller ops; also put the 82 'fix-first' sellers (22% of GMV, 87% on-time) on a quality plan",
+      "cost": "product + seller ops",
       "confidence": "Medium (text classifier, silver labels)",
       "owner": "Marketplace ops + order-management engineering",
       "date": "scope by 2018-10-01"
     }
   ],
   "demoted": [
+    "Seller quality plan for the 82 'fix-first' sellers (22% of GMV, 87% on-time): ops hygiene, no measurable BRL.",
     "Lane/carrier programme: against a lane-adjusted baseline (distance, destination, origin, month) the 10 worst lanes have only 277 excess late orders/yr (\u224857 1\u20132\u2605 recorded, 20 post-delivery). That is down from 1,143 against the network average. There is no carrier ID, so 'switch carrier' cannot be analysed.",
     "Money on reviews: in a seller-week panel, one extra 1\u20132\u2605 review is associated with \u2212R$13 of the seller's next-4-week GMV (95% CI \u2212R$62 to R$36, p=0.60): not detectable, so no BRL is attached to review gains."
   ],

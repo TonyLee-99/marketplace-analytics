@@ -81,52 +81,43 @@ filled in at the end of the build (see the bottom section) with PASS/FAIL and ev
 | H8 | Dashboard surfaces the promise-policy simulator (interactive), root-cause view and complaint drivers | screenshots in `docs/img/` |
 | H9 | Warehouse at stable path `data/warehouse.duckdb` and metrics at `metrics/metrics.yml`, documented in README for read-only consumers | README "For downstream consumers" |
 
-## Results
-Filled in 2026-10-29 at the end of the build. Evidence = command + output excerpt (numbers also in docs/RESULTS.md).
+## Results (round 2, after the independent review; every number also in docs/RESULTS.md)
+Round 1 marked everything PASS except H2. The review found that several PASSes rested on a
+wrong reading of the data, so each row below is re-judged against what the evidence actually supports.
 
 | ID | Result | Evidence |
 |----|--------|----------|
-| A1 | PASS | `make ingest` → `raw.orders 99,441 … raw.products 32,951 rows (sha256 + header + count verified)`; also geolocation 1,000,163, translation 71, closed deals 842, MQLs 8,000 |
-| A2 | PASS | data_manifest.json pins sha256. LFS sha256 of 4 files equals HF API oids of bulutttt/olist-raw-data and MafiaAzulBr/olistcsv; git blob ids of the 5 small files match; funnel sha256 identical across 2 GitHub mirrors (docs/DATA_PROVENANCE.md) |
-| A3 | PASS | ingest compares headers with the manifest (fails otherwise); the original misspellings (`lenght`) and BOM are preserved |
-| A4 | PASS | docs/DATA_PROVENANCE.md, README "Data sources and license" |
-| B1 | PASS | `dbt build` → `Done. PASS=144 WARN=1 ERROR=0 SKIP=0`. The WARN is the designed threshold test (20 unexplained payment mismatches, errors only above 493) |
-| B2 | PASS | `dbt ls --resource-type model`: 10 staging, 6 intermediate, 10 marts incl. fct_orders, fct_order_items, fct_payments, dim_customers (PK customer_unique_id, 96,096 rows), dim_sellers, dim_products, dim_date |
-| B3 | PASS | snapshot `snap_sellers` (check strategy) + `dim_customer_location_history` (valid_from/valid_to/is_current; 250 people with >1 address); `assert_scd2_no_overlap` passes |
-| B4 | PASS | 115 tests: unique, not_null, 16 relationships, 6 accepted_values, 4 within_range, value_at_least_column, plus singular `assert_payments_reconcile_to_items`, `assert_delivered_not_before_purchase`, `assert_gmv_conserved_staging_to_marts`, `assert_scd2_no_overlap`, `assert_one_customer_per_person_in_dim` |
-| B5 | PASS | `dbt ls --resource-type test | wc -l` → 115 (≥40) |
-| B6 | PASS | `dbt source freshness` → 11 of 11 sources PASS (warn 24 h / error 72 h on `_loaded_at`) |
-| B7 | PASS | 3 exposures: executive_dashboard, executive_memo, analytics_agent_readonly |
-| B8 | PASS | `dbt docs generate` → `Catalog written to …/target/catalog.json`; target/index.html exists |
-| B9 | PASS | docs/DATA_QUALITY.md: 32 generated checks with counts and handling (e.g. DQ01 3,345 order-scoped customer ids; DQ09 280,009 duplicate geolocation rows; DQ24 20 unexplained payment mismatches) |
-| C1 | PASS | `pytest tests/test_metrics_layer.py::test_catalog_complete` passes; metrics.yml defines 17 metrics, each with definition/owner/grain/caveats |
-| C2 | PASS | `test_metric_equals_hand_sql` passes for 14 metrics, rel_tol 1e-9 (GMV, orders, AOV, active customers, repeat rate, on-time, delivery days, days vs promise, review, NPS-style, freight ratio, cancellation, HHI, top-10% share) |
-| C3 | PASS | src/marketplace/dashboard/build.py only ships MetricsLayer.components()/compute() outputs; app.js sums num/den and evaluates `formula` strings from metrics.yml |
-| C4 | PASS | `make metrics` writes docs/metrics_catalog.md (header: "Generated from metrics/metrics.yml … Do not edit by hand") |
-| D1 | PASS | `test_growth_report_residuals` passes (all MoM/YoY/YTD log residuals < 1e-9; YTD 1.1e-16). Category and state contributions are in growth.json |
-| D2 | PASS | cohorts.json: 20 cohort retention rows, KM curves, lifetime repeat rate 3.04% stated plainly |
-| D3 | PASS | delivery_impact.json: FE models clustered by seller; 8-bin dose-response; impact block with 95% CI (lost repeat GMV R$2.2k, CI −R$1.3k…R$5.8k) |
-| D4 | PASS | sellers.json + reports/seller_scorecard.csv: 9 KPIs per seller, 5 tiers, Pareto curve, HHI 38 |
-| D5 | PASS | lanes.json: 61 lanes ≥100 orders, ranked by excess late orders, sized in orders, 1–2★ reviews and BRL GMV (top 10: R$152.6k on excess-late orders) |
-| D6 | PASS | anomalies.json: rule stated; online STL backtest gives 16 alerts. Black Friday 2017 `flagged_online: true, classification: expected_event` (z 12.8) |
-| E1 | PASS | `make dashboard` → dashboard/index.html (6.3 MB, plotly inlined); `test_dashboard_self_contained_with_all_pages` asserts no external `<script src=http…>` |
-| E2 | PASS | docs/img/dashboard_{exec,growth,customers,delivery,sellers,rca}.png. 6 pages: the 5 required plus "Why did it move?" |
-| E3 | PASS | reports/dashboard_check.json: `kpis_changed_with_state_filter: true`, `kpis_changed_with_category_and_date_filter: true` (GMV card R$13.45M → R$1.80M for RJ) |
-| E4 | PASS | `make screenshots` → `"errors": []`, 0 empty charts. Screenshots inspected by eye; two layout bugs found that way were fixed (padding histogram mis-serialised; overlapping frontier labels). All chart titles state a takeaway |
-| F1 | PASS | main body of docs/exec_memo.md = 543 words (`awk '/^---/{exit} {print}' docs/exec_memo.md \| wc -w`); 3 prioritized recommendations with BRL/size and confidence |
-| F2 | PASS | memo footnotes [1]–[4] plus the appendix map every number to reports/*.json; docs/RESULTS.md is generated from those files |
-| G1 | PASS | Fresh `git clone` of commit HEAD into a scratch dir with only data/raw copied in, then `time make all` → `Done. PASS=144 WARN=1 ERROR=0` … `32 passed` … `All checks passed!` … `make all: OK`, `real 24m39s`. Its docs/RESULTS.md matches this repo on every row except the multithreaded-GBM promise model (P80 coverage 91.4% vs 91.0%, P90 95.4% vs 95.3%, pinball 1.38 vs 1.37) |
-| G2 | PASS | `make test` → `32 passed` |
-| G3 | PASS | `ruff check src tests` → `All checks passed!` (E501 handled by `ruff format`) |
-| G4 | PASS | Dockerfile, .dockerignore, .github/workflows/ci.yml present. Not executed: Docker daemon not running locally, CI not pushed |
-| G5 | PASS | README.md (mermaid, sources+licenses, results table, production mapping with citations, limitations, downstream-consumer section) |
-| G6 | PASS | `du -sh data` → 266M (≤3.5 GB) |
-| H1 | PASS | promise_policy.json padding: median 12 days, 74% > 7 days early; most/least padded lanes (≥200 orders, 48 lanes) and categories |
-| H2 | **FAIL (partial)** | Leakage-free and time-based: PASS (`test_no_post_purchase_features`; rolling retrain on months M-w-1..M-2 with labels known before M; window chosen on the 2017-10..2018-03 backtest). Coverage target: **FAIL**. Test P80 coverage 91.0–91.4% across runs (target 80 ±5) and P90 95.3–95.4% (target 90 ±5, misses by 0.3–0.4 pp). Cause: delivery kept speeding up in 2018 (median 13 → 7 days). The model still beats the lane-quantile baseline and Olist's estimate on pinball loss (P90 1.38 vs 1.57 vs 1.61). The static split plus conformal calibration over-covered even more (P80 94.4%, P90 97.2%). Multithreaded HGB gives run-to-run differences of about 0.1 pp |
-| H3 | PASS | 7 policies simulated; recommendation rule fixed before results; recommended lane_p80: −4.2 days, late 4.4% → 7.0%, review −0.033, repurchase GMV at risk R$771/yr (CI −R$454…R$2.0k), conversion upside R$114k–458k/yr (assumed elasticity). Confidence stated in the memo |
-| H4 | PASS | root_cause.json: 6 auto-detected moves × 3 dimensions; `test_root_cause_effects_add_up` (full-precision residual < 1e-9); Simpson scan of 114 cases (7 reversals, 0 material) |
-| H5 | PASS (with deviation) | 10-class taxonomy. Primary labeller is keyword rules on all 40,514 reviews with text (≥2,000). Accuracy on the fresh blind holdout B (n=160) is 70.6% (95% CI 63.1–77.5%), macro-F1 0.61, vs a 27.5% majority baseline; gold A (n=240) 71.7%. Tied to sellers and lanes. Deviation: the Ollama qwen2.5:7b run stopped at 400 of the 3,000-review sample because the shared laptop ran out of memory (75–120 s per request). On the 31 gold items it reached it scored 77.4%; rule/LLM agreement is 64.8% on 400 |
-| H6 | PASS | within-seller-month −1.89 [−1.95, −1.84]; same delivery time −1.26; RD at 4 bandwidths, 3 placebo cutoffs and a density check, with assumptions stated. The density check fails (ratio 0.64 vs 0.88) and one placebo is significant (p = 0.04), so the RD is reported as supporting evidence only |
-| H7 | PASS | metric_conflicts.json: repeat rate 3.04% vs 0%; April 2018 on-time 95.5% vs 82.9%; timestamp vs date 1.3 pp; GMV ±freight R$2.24M. Each is resolved in metrics.yml `rejected_alternatives` |
-| H8 | PASS | Delivery page has an interactive promise simulator (policy + elasticity selectors, frontier chart); "Why did it move?" page has the root cause; Sellers & VoC page has complaint drivers (screenshots) |
-| H9 | PASS | README "For downstream consumers": data/warehouse.duckdb (read-only), metrics/metrics.yml, schemas listed |
+| A1–A4 | PASS | `make ingest`: sha256 + header + row count verified for all 11 files (orders 99,441 … MQLs 8,000); provenance in docs/DATA_PROVENANCE.md; raw-CSV golden tests (`tests/test_golden_raw.py`) reproduce GMV, orders, on-time and repeat rate exactly |
+| B1 | PASS | final `make all`: `Done. PASS=147 WARN=1 ERROR=0`. The WARN is the designed payment-reconciliation threshold (20 orders) |
+| B2 | PASS | 10 staging, 6 intermediate, 10 mart models; dim_customers keyed on customer_unique_id |
+| B3 | PASS (demonstration) | snapshot snap_sellers + dim_customer_location_history (250 movers); no fact table joins it point-in-time yet (README limitation) |
+| B4/B5 | PASS | 118 dbt tests, including the item-grain tests `assert_item_price_rolls_up_to_orders` and `assert_item_fact_has_no_order_measures` (fan-out fix: order-level columns on fct_order_items are now `order_*`) |
+| B6–B8 | PASS | freshness 11/11 PASS; 3 exposures (no local paths); docs generated |
+| B9 | PASS | docs/DATA_QUALITY.md, 36 generated checks, incl. DQ20b 1,359 handed to carrier before approval, DQ33 4,473 late orders reviewed before delivery, DQ35 1,729 never-delivered revenue orders |
+| C1 | PASS | 17 metrics with owner/grain/caveats; repeat rate re-governed to distinct purchase days (2.17%; the rejected same-day-inclusive version is 3.04%) |
+| C2 | PASS (re-scoped) | the circular "compiler vs my own hand SQL" test was retired; replaced by raw-CSV golden tests (independent of dbt/marts) |
+| C3/C4 | PASS | dashboard ships only metric components; the decisions panel reads reports/recommendations.json, the same file the memo is generated from |
+| D1 | PASS (re-scoped) | the customer×frequency×AOV identity is no longer presented as a finding; seller-side tree: sellers 1,072→1,226, GMV/seller R$923→R$704, Jun–Aug vs Mar–May −12.7% |
+| D2 | PASS | KM later-day repeat 1.92% within 180 d; governed repeat rate 2.17% |
+| D3 | PASS (corrected) | review effects split by survey timing: within seller×month −1.89 recorded / −0.51 post-delivery; repurchase −0.29 pp with MDE 0.66 pp (36% of base), reported as underpowered |
+| D4 | PASS | 9-KPI scorecard, 5 tiers, Pareto, HHI 38 |
+| D5 | PASS (corrected) | lane-adjusted baseline: 10 worst lanes = 277 excess late orders (was 1,143 vs network); marginal 1–3-day dose-response gives 57 recorded / 20 post-delivery 1–2★; "switch carrier" removed (no carrier ID) |
+| D6 | PASS | volume monitor: 16 alerts, Black Friday classified expected_event; new in-flight monitor first alerts the spring-2018 slump on 2018-03-30 (volume monitor: 0 alerts in Feb–Mar) |
+| E1–E4 | PASS | `make screenshots`: `"errors": []`, filter test changes KPIs (GMV Jan–Aug 2018 R$7.34M → RJ R$901k); screenshots inspected; exec page now 4 KPI cards with YoY + window, no invented plan targets, readable names, axis titles on every chart |
+| F1 | PASS | memo main body 548 words (`awk '/^---/{exit} {print}' docs/exec_memo.md \| wc -w`), generated by `make results` |
+| F2 | PASS | every memo number comes from reports/*.json via src/marketplace/memo.py; listed in docs/RESULTS.md |
+| G1 | PASS | final `time make all` → `make all: OK`, `real 6m49s` (log: data/make_all_final.log) |
+| G2 | PASS | `22 passed`; identity tests retired; added temporal-leakage, raw-CSV golden, synthetic-Simpson and rescore tests |
+| G3 | PASS | `ruff check` → All checks passed |
+| G4 | PASS (not executed) | Dockerfile + CI yaml written; not run (no Docker daemon, no remote) |
+| G5 | PASS | README rewritten around the strongest true finding; production citations moved to docs/PRODUCTION_MAPPING.md |
+| G6 | PASS | `du -sh data` 266M |
+| H1 | PASS | median padding 12 days, 73.9% of orders > 7 days early |
+| H2 | **FAIL (coverage)** | leakage fixed (strictly prior-time seller/lane history; `test_history_uses_only_deliveries_before_purchase`, `test_future_label_change_does_not_move_features`, `test_training_rows_are_known_before_month_start`). Coverage is miscalibrated in both directions: model P80 70.4% (selection, Oct–Mar) vs 90.3% (test, Apr–Aug); P90 79.8% vs 94.7%. Target ±5 pp missed. A drift-aware recalibrated lane policy is evaluated instead |
+| H3 | PASS (outcome changed) | 14 policies on a full-year rolling backtest, never-delivered = late, policy chosen on the selection period by the pre-set rule → `lane_recalibrated_to_7pct_late` (it lengthens peak promises). Lane-P80 full year: −6.4 d, late 9.3%→20.6%, break-even conversion +0.071%/day. Recommendation changed from "roll out lane-P80" to "capped A/B" (capped variant: −2.8 d, late 12.2%) with guardrail MDE 1.7 pp and a kill rule. Confidence downgraded to low |
+| H4 | PASS | process-stage Shapley for on-time moves (Jan→Mar 2018: promise +5.6, transit +2.5, seller −1.0, unexplained +6.1 pp); 6 dimensions incl. lane and fulfilment leg; verdict prints "network-wide: no single segment driver" when the rate effect is broad |
+| H5 | PASS | rules on 40,514 reviews; agreement with **single-annotator labels**: 70.6% on fresh set B (CI 63.1–77.5%), macro-F1 0.61; circular LLM-vs-label accuracy removed; shares corrected for misclassification with bootstrap CIs; 50-review blind second-pass template + `voc rescore` |
+| H6 | PASS (stronger designs added) | carrier-leg-only within seller-month, post-delivery: −0.54 [−0.61, −0.46]; truckers'-strike 2SLS: recorded −1.49 [−2.10, −0.89] (F 22), post-delivery −0.49 [−1.70, +0.72] (F 34). RD demoted to a falsification appendix; same-delivery-time design flagged as a mediator problem |
+| H7 | PASS | April-2018 on-time 95.5% vs 82.9%; repeat 2.17% vs 3.04%; timestamp vs date 1.3 pp; GMV ± freight R$2.24M |
+| H8 | PASS | simulator (policy × period × survey regime, frontier across lane quantiles), root-cause page with stage split, VoC panel with corrected shares |
+| H9 | PASS | README "Reading the warehouse"; no local absolute paths in tracked files |
