@@ -190,5 +190,29 @@
     "issue": "Estimated delivery date stored as midnight timestamp (it is a date)",
     "count": 0,
     "handling": "0 non-midnight values: cast to DATE; on-time compares dates (timestamp compare would mis-count same-day deliveries as late)."
+  },
+  {
+    "id": "DQ20b",
+    "issue": "Orders handed to the carrier before they were APPROVED (negative handling time)",
+    "count": 1359,
+    "handling": "Kept; handling_days is negative for these. Stage analyses use medians; flagged as a source timestamp issue."
+  },
+  {
+    "id": "DQ33",
+    "issue": "Reviews of LATE delivered orders answered before the parcel arrived",
+    "count": 4473,
+    "handling": "Survey fires ~2 days after the promised date. Review effects are reported for all reviews AND post-delivery reviews only (delivery_impact.json)."
+  },
+  {
+    "id": "DQ34",
+    "issue": "Delivered revenue orders with no seller-customer distance (zip not geocoded)",
+    "count": 477,
+    "handling": "Models use a missing-distance indicator plus 0 km fill (no silent imputation)."
+  },
+  {
+    "id": "DQ35",
+    "issue": "Revenue orders never delivered (shipped/processing/invoiced/approved/created)",
+    "count": 1729,
+    "handling": "Counted as LATE in promise-policy evaluation; excluded from review regressions (no delivery date)."
   }
 ]

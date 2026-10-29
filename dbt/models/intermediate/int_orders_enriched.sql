@@ -45,6 +45,7 @@ base as (
         r.review_score,
         r.review_message is not null                          as has_review_text,
         r.n_reviews_for_order,
+        r.review_sent_at,
         r.review_answered_at,
 
         {{ haversine_km('sg.lat', 'sg.lng', 'cg.lat', 'cg.lng') }} as seller_customer_km,
@@ -77,5 +78,13 @@ select
             partition by customer_unique_id, is_revenue_order
             order by purchased_at, order_id
         )
-    end                                                               as customer_order_number
+    end                                                               as customer_order_number,
+    -- n-th distinct purchase DAY of the person (same-day split baskets share a number).
+    -- Governed repeat definition: a returning customer has customer_purchase_day_number >= 2.
+    case when is_revenue_order then
+        dense_rank() over (
+            partition by customer_unique_id, is_revenue_order
+            order by purchase_date
+        )
+    end                                                               as customer_purchase_day_number
 from base

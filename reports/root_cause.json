@@ -1,7 +1,7 @@
 {
   "simpson_scan": {
-    "n_cases": 114,
-    "n_simpson": 7,
+    "n_cases": 228,
+    "n_simpson": 13,
     "cases": [
       {
         "kpi": "on_time_delivery_rate",
@@ -23,6 +23,15 @@
       },
       {
         "kpi": "on_time_delivery_rate",
+        "month": "2017-02",
+        "dimension": "seller_state",
+        "delta": -0.00031,
+        "rate_effect": 0.001019,
+        "mix_effect": -0.002286,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "on_time_delivery_rate",
         "month": "2017-06",
         "dimension": "category",
         "delta": -0.000402,
@@ -37,6 +46,33 @@
         "delta": -0.000402,
         "rate_effect": 0.001157,
         "mix_effect": 0.000373,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "on_time_delivery_rate",
+        "month": "2017-06",
+        "dimension": "fulfilment_leg",
+        "delta": -0.000402,
+        "rate_effect": 0.000395,
+        "mix_effect": -0.000675,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2017-02",
+        "dimension": "fulfilment_leg",
+        "delta": 0.009795,
+        "rate_effect": -0.012385,
+        "mix_effect": 0.007527,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2017-03",
+        "dimension": "fulfilment_leg",
+        "delta": 0.029181,
+        "rate_effect": -0.062196,
+        "mix_effect": 0.089261,
         "simpson_paradox": true
       },
       {
@@ -59,22 +95,43 @@
       },
       {
         "kpi": "avg_review_score",
+        "month": "2017-06",
+        "dimension": "seller_state",
+        "delta": -0.00029,
+        "rate_effect": 0.002269,
+        "mix_effect": -0.002588,
+        "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
         "month": "2018-07",
         "dimension": "seller_tier",
         "delta": 0.001962,
         "rate_effect": -0.004819,
         "mix_effect": 0.001671,
         "simpson_paradox": true
+      },
+      {
+        "kpi": "avg_review_score",
+        "month": "2018-08",
+        "dimension": "fulfilment_leg",
+        "delta": -0.001807,
+        "rate_effect": 0.002963,
+        "mix_effect": -0.004638,
+        "simpson_paradox": true
       }
     ],
-    "n_material_simpson": 0,
-    "max_abs_delta_among_simpson_cases": 0.001962
+    "n_material_simpson": 1,
+    "max_abs_delta_among_simpson_cases": 0.029181
   },
   "method": "mix/rate/interaction decomposition over the governed metric components",
   "dimensions": [
     "customer_state",
     "category",
-    "seller_tier"
+    "seller_tier",
+    "seller_state",
+    "lane_top",
+    "fulfilment_leg"
   ],
   "moves": [
     {
@@ -83,10 +140,20 @@
       "to_month": "2017-11-01",
       "robust_z_of_change": 2.849204,
       "headline": "gmv 2017-10 -> 2017-11: 6.602e+05 -> 1.004e+06. Most surprising dimension: category (top-3 segments = 27% of movement); #1 = bed_bath_table (+4.397e+04)",
+      "verdict": {
+        "type": "segment",
+        "dimension": "category",
+        "segment": "bed_bath_table",
+        "text": "largest contributor: category = bed_bath_table"
+      },
+      "stages": null,
       "dimension_ranking_by_surprise": [
         "category",
+        "seller_state",
         "seller_tier",
-        "customer_state"
+        "customer_state",
+        "fulfilment_leg",
+        "lane_top"
       ],
       "by_dimension": {
         "customer_state": {
@@ -267,6 +334,178 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.88128
+        },
+        "seller_state": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.021594,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "value_from": 419026.66,
+              "value_to": 614603.82,
+              "contribution": 195577.16,
+              "share_of_abs_movement": 0.486196
+            },
+            {
+              "segment": "RJ",
+              "value_from": 31347.92,
+              "value_to": 86284.48,
+              "contribution": 54936.56,
+              "share_of_abs_movement": 0.13657
+            },
+            {
+              "segment": "PR",
+              "value_from": 47304.08,
+              "value_to": 93937.98,
+              "contribution": 46633.9,
+              "share_of_abs_movement": 0.11593
+            },
+            {
+              "segment": "SC",
+              "value_from": 24231.5,
+              "value_to": 51616.04,
+              "contribution": 27384.54,
+              "share_of_abs_movement": 0.068077
+            },
+            {
+              "segment": "MG",
+              "value_from": 51823.11,
+              "value_to": 76950.37,
+              "contribution": 25127.26,
+              "share_of_abs_movement": 0.062465
+            },
+            {
+              "segment": "BA",
+              "value_from": 47974.84,
+              "value_to": 23131.08,
+              "contribution": -24843.76,
+              "share_of_abs_movement": 0.06176
+            },
+            {
+              "segment": "RS",
+              "value_from": 19659.56,
+              "value_to": 33381.7,
+              "contribution": 13722.14,
+              "share_of_abs_movement": 0.034113
+            },
+            {
+              "segment": "PB",
+              "value_from": 0.0,
+              "value_to": 3467.5,
+              "contribution": 3467.5,
+              "share_of_abs_movement": 0.00862
+            }
+          ],
+          "n_segments": 20,
+          "top3_share_of_abs_movement": 0.738695
+        },
+        "lane_top": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.004134,
+          "top_segments": [
+            {
+              "segment": "other lanes",
+              "value_from": 238574.55,
+              "value_to": 346311.52,
+              "contribution": 107736.97,
+              "share_of_abs_movement": 0.313478
+            },
+            {
+              "segment": "SP>SP",
+              "value_from": 158687.79,
+              "value_to": 237987.19,
+              "contribution": 79299.4,
+              "share_of_abs_movement": 0.230734
+            },
+            {
+              "segment": "SP>RJ",
+              "value_from": 54827.77,
+              "value_to": 96277.45,
+              "contribution": 41449.68,
+              "share_of_abs_movement": 0.120605
+            },
+            {
+              "segment": "SP>MG",
+              "value_from": 48932.34,
+              "value_to": 67898.25,
+              "contribution": 18965.91,
+              "share_of_abs_movement": 0.055184
+            },
+            {
+              "segment": "RJ>SP",
+              "value_from": 7640.24,
+              "value_to": 26012.46,
+              "contribution": 18372.22,
+              "share_of_abs_movement": 0.053457
+            },
+            {
+              "segment": "PR>SP",
+              "value_from": 16566.59,
+              "value_to": 32319.34,
+              "contribution": 15752.75,
+              "share_of_abs_movement": 0.045835
+            },
+            {
+              "segment": "SP>RS",
+              "value_from": 22185.98,
+              "value_to": 32427.68,
+              "contribution": 10241.7,
+              "share_of_abs_movement": 0.0298
+            },
+            {
+              "segment": "SP>SC",
+              "value_from": 11977.49,
+              "value_to": 21769.87,
+              "contribution": 9792.38,
+              "share_of_abs_movement": 0.028493
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.664817
+        },
+        "fulfilment_leg": {
+          "kpi_from": 660179.62,
+          "kpi_to": 1003862.14,
+          "delta": 343682.52,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.008543,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "value_from": 603686.14,
+              "value_to": 850799.34,
+              "contribution": 247113.2,
+              "share_of_abs_movement": 0.719016
+            },
+            {
+              "segment": "seller_late_handover",
+              "value_from": 50236.85,
+              "value_to": 144229.5,
+              "contribution": 93992.65,
+              "share_of_abs_movement": 0.273487
+            },
+            {
+              "segment": "not_handed_over",
+              "value_from": 6256.63,
+              "value_to": 8833.3,
+              "contribution": 2576.67,
+              "share_of_abs_movement": 0.007497
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -276,10 +515,20 @@
       "to_month": "2017-12-01",
       "robust_z_of_change": -2.008772,
       "headline": "gmv 2017-11 -> 2017-12: 1.004e+06 -> 7.422e+05. Most surprising dimension: category (top-3 segments = 33% of movement); #1 = bed_bath_table (-3.979e+04)",
+      "verdict": {
+        "type": "segment",
+        "dimension": "category",
+        "segment": "bed_bath_table",
+        "text": "largest contributor: category = bed_bath_table"
+      },
+      "stages": null,
       "dimension_ranking_by_surprise": [
         "category",
         "customer_state",
-        "seller_tier"
+        "seller_state",
+        "lane_top",
+        "seller_tier",
+        "fulfilment_leg"
       ],
       "by_dimension": {
         "customer_state": {
@@ -460,6 +709,178 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.931983
+        },
+        "seller_state": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.003502,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "value_from": 614603.82,
+              "value_to": 475691.48,
+              "contribution": -138912.34,
+              "share_of_abs_movement": 0.521569
+            },
+            {
+              "segment": "PR",
+              "value_from": 93937.98,
+              "value_to": 59573.7,
+              "contribution": -34364.28,
+              "share_of_abs_movement": 0.129026
+            },
+            {
+              "segment": "RJ",
+              "value_from": 86284.48,
+              "value_to": 54552.75,
+              "contribution": -31731.73,
+              "share_of_abs_movement": 0.119142
+            },
+            {
+              "segment": "MG",
+              "value_from": 76950.37,
+              "value_to": 51552.72,
+              "contribution": -25397.65,
+              "share_of_abs_movement": 0.09536
+            },
+            {
+              "segment": "RS",
+              "value_from": 33381.7,
+              "value_to": 20742.88,
+              "contribution": -12638.82,
+              "share_of_abs_movement": 0.047455
+            },
+            {
+              "segment": "SC",
+              "value_from": 51616.04,
+              "value_to": 43042.45,
+              "contribution": -8573.59,
+              "share_of_abs_movement": 0.032191
+            },
+            {
+              "segment": "DF",
+              "value_from": 6962.72,
+              "value_to": 4526.41,
+              "contribution": -2436.31,
+              "share_of_abs_movement": 0.009148
+            },
+            {
+              "segment": "BA",
+              "value_from": 23131.08,
+              "value_to": 21074.18,
+              "contribution": -2056.9,
+              "share_of_abs_movement": 0.007723
+            }
+          ],
+          "n_segments": 20,
+          "top3_share_of_abs_movement": 0.769737
+        },
+        "lane_top": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.00242,
+          "top_segments": [
+            {
+              "segment": "other lanes",
+              "value_from": 346467.3,
+              "value_to": 229429.97,
+              "contribution": -117037.33,
+              "share_of_abs_movement": 0.447256
+            },
+            {
+              "segment": "SP>SP",
+              "value_from": 237987.19,
+              "value_to": 197197.15,
+              "contribution": -40790.04,
+              "share_of_abs_movement": 0.155879
+            },
+            {
+              "segment": "SP>RJ",
+              "value_from": 96277.45,
+              "value_to": 70134.55,
+              "contribution": -26142.9,
+              "share_of_abs_movement": 0.099905
+            },
+            {
+              "segment": "SP>PR",
+              "value_from": 28178.51,
+              "value_to": 16121.27,
+              "contribution": -12057.24,
+              "share_of_abs_movement": 0.046077
+            },
+            {
+              "segment": "SP>MG",
+              "value_from": 67898.25,
+              "value_to": 55948.32,
+              "contribution": -11949.93,
+              "share_of_abs_movement": 0.045666
+            },
+            {
+              "segment": "PR>SP",
+              "value_from": 32319.34,
+              "value_to": 22797.41,
+              "contribution": -9521.93,
+              "share_of_abs_movement": 0.036388
+            },
+            {
+              "segment": "RJ>SP",
+              "value_from": 26012.46,
+              "value_to": 17476.11,
+              "contribution": -8536.35,
+              "share_of_abs_movement": 0.032622
+            },
+            {
+              "segment": "SP>SC",
+              "value_from": 21769.87,
+              "value_to": 14519.98,
+              "contribution": -7249.89,
+              "share_of_abs_movement": 0.027705
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.70304
+        },
+        "fulfilment_leg": {
+          "kpi_from": 1003862.14,
+          "kpi_to": 742183.79,
+          "delta": -261678.35,
+          "mix_effect": null,
+          "rate_effect": null,
+          "interaction": null,
+          "surprise_js": 0.000309,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "value_from": 850799.34,
+              "value_to": 625051.42,
+              "contribution": -225747.92,
+              "share_of_abs_movement": 0.857072
+            },
+            {
+              "segment": "seller_late_handover",
+              "value_from": 144229.5,
+              "value_to": 107441.1,
+              "contribution": -36788.4,
+              "share_of_abs_movement": 0.13967
+            },
+            {
+              "segment": "not_handed_over",
+              "value_from": 8833.3,
+              "value_to": 9691.27,
+              "contribution": 857.97,
+              "share_of_abs_movement": 0.003257
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -469,10 +890,44 @@
       "to_month": "2018-02-01",
       "robust_z_of_change": -2.884202,
       "headline": "on_time_delivery_rate 2018-01 -> 2018-02: 0.943 -> 0.8587. Most surprising dimension: category (top-3 segments = 36% of movement); #1 = bed_bath_table (-0.01328); rate effect -0.0853, mix effect +0.0005, segments (by volume) improving 5%",
+      "verdict": {
+        "type": "network_wide",
+        "share_of_volume_moving_with_kpi_min_over_dims": 0.945563,
+        "text": "network-wide: no single segment driver (the move happened inside segments holding >= 95% of volume in every dimension)"
+      },
+      "stages": {
+        "medians_from_to": {
+          "promise": [
+            26.0,
+            25.0
+          ],
+          "seller_days": [
+            2.449896,
+            2.522083
+          ],
+          "transit": [
+            8.035972,
+            11.023576
+          ]
+        },
+        "late_rate_from": 0.057009,
+        "late_rate_to": 0.141266,
+        "shapley_pp": {
+          "promise": 1.057717,
+          "seller_days": 0.485634,
+          "transit": 2.575642
+        },
+        "explained_pp": 4.118993,
+        "unexplained_pp_distribution_shape": 4.30668,
+        "reading": "Positive = this stage's change raised the late rate."
+      },
       "dimension_ranking_by_surprise": [
         "category",
         "seller_tier",
-        "customer_state"
+        "seller_state",
+        "lane_top",
+        "customer_state",
+        "fulfilment_leg"
       ],
       "by_dimension": {
         "customer_state": {
@@ -802,6 +1257,320 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.920149
+        },
+        "seller_state": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": -5.5e-05,
+          "rate_effect": -0.085351,
+          "interaction": 0.001149,
+          "surprise_js": 0.010955,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.047269,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "share_from": 0.724572,
+              "share_to": 0.689245,
+              "rate_from": 0.945529,
+              "rate_to": 0.84108,
+              "n_from": 5122.0,
+              "n_to": 4518.0,
+              "mix": -9e-05,
+              "rate": -0.075681,
+              "interaction": 0.00369,
+              "contribution": -0.072081,
+              "share_of_abs_movement": 0.811352
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.087707,
+              "share_to": 0.126468,
+              "rate_from": 0.945161,
+              "rate_to": 0.88661,
+              "n_from": 620.0,
+              "n_to": 829.0,
+              "mix": 8.4e-05,
+              "rate": -0.005135,
+              "interaction": -0.00227,
+              "contribution": -0.007321,
+              "share_of_abs_movement": 0.082403
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.071722,
+              "share_to": 0.065904,
+              "rate_from": 0.962525,
+              "rate_to": 0.909722,
+              "n_from": 507.0,
+              "n_to": 432.0,
+              "mix": -0.000114,
+              "rate": -0.003787,
+              "interaction": 0.000307,
+              "contribution": -0.003594,
+              "share_of_abs_movement": 0.040449
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.031405,
+              "share_to": 0.035088,
+              "rate_from": 0.864865,
+              "rate_to": 0.926087,
+              "n_from": 222.0,
+              "n_to": 230.0,
+              "mix": -0.000288,
+              "rate": 0.001923,
+              "interaction": 0.000225,
+              "contribution": 0.00186,
+              "share_of_abs_movement": 0.020941
+            },
+            {
+              "segment": "RJ",
+              "share_from": 0.0406,
+              "share_to": 0.040427,
+              "rate_from": 0.926829,
+              "rate_to": 0.886792,
+              "n_from": 287.0,
+              "n_to": 265.0,
+              "mix": 3e-06,
+              "rate": -0.001625,
+              "interaction": 7e-06,
+              "contribution": -0.001616,
+              "share_of_abs_movement": 0.018188
+            },
+            {
+              "segment": "PE",
+              "share_from": 0.004951,
+              "share_to": 0.010526,
+              "rate_from": 1.0,
+              "rate_to": 0.898551,
+              "n_from": 35.0,
+              "n_to": 69.0,
+              "mix": 0.000318,
+              "rate": -0.000502,
+              "interaction": -0.000566,
+              "contribution": -0.00075,
+              "share_of_abs_movement": 0.008443
+            },
+            {
+              "segment": "MA",
+              "share_from": 0.001273,
+              "share_to": 0.001678,
+              "rate_from": 1.0,
+              "rate_to": 0.818182,
+              "n_from": 9.0,
+              "n_to": 11.0,
+              "mix": 2.3e-05,
+              "rate": -0.000231,
+              "interaction": -7.4e-05,
+              "contribution": -0.000282,
+              "share_of_abs_movement": 0.003175
+            },
+            {
+              "segment": "GO",
+              "share_from": 0.003961,
+              "share_to": 0.004577,
+              "rate_from": 1.0,
+              "rate_to": 0.933333,
+              "n_from": 28.0,
+              "n_to": 30.0,
+              "mix": 3.5e-05,
+              "rate": -0.000264,
+              "interaction": -4.1e-05,
+              "contribution": -0.00027,
+              "share_of_abs_movement": 0.003039
+            }
+          ],
+          "n_segments": 22,
+          "top3_share_of_abs_movement": 0.934205
+        },
+        "lane_top": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": -0.001607,
+          "rate_effect": -0.081129,
+          "interaction": -0.001521,
+          "surprise_js": 0.007416,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "SP>RJ",
+              "share_from": 0.0812,
+              "share_to": 0.086651,
+              "rate_from": 0.872822,
+              "rate_to": 0.609155,
+              "n_from": 574.0,
+              "n_to": 568.0,
+              "mix": -0.000383,
+              "rate": -0.02141,
+              "interaction": -0.001437,
+              "contribution": -0.02323,
+              "share_of_abs_movement": 0.274249
+            },
+            {
+              "segment": "other lanes",
+              "share_from": 0.251521,
+              "share_to": 0.259497,
+              "rate_from": 0.922385,
+              "rate_to": 0.864785,
+              "n_from": 1778.0,
+              "n_to": 1701.0,
+              "mix": -0.000164,
+              "rate": -0.014487,
+              "interaction": -0.000459,
+              "contribution": -0.015111,
+              "share_of_abs_movement": 0.178402
+            },
+            {
+              "segment": "SP>SP",
+              "share_from": 0.322676,
+              "share_to": 0.288787,
+              "rate_from": 0.970189,
+              "rate_to": 0.921289,
+              "n_from": 2281.0,
+              "n_to": 1893.0,
+              "mix": -0.000922,
+              "rate": -0.015779,
+              "interaction": 0.001657,
+              "contribution": -0.015043,
+              "share_of_abs_movement": 0.177601
+            },
+            {
+              "segment": "SP>MG",
+              "share_from": 0.079219,
+              "share_to": 0.07704,
+              "rate_from": 0.969643,
+              "rate_to": 0.89703,
+              "n_from": 560.0,
+              "n_to": 505.0,
+              "mix": -5.8e-05,
+              "rate": -0.005752,
+              "interaction": 0.000158,
+              "contribution": -0.005652,
+              "share_of_abs_movement": 0.06673
+            },
+            {
+              "segment": "PR>RJ",
+              "share_from": 0.012449,
+              "share_to": 0.018002,
+              "rate_from": 0.840909,
+              "rate_to": 0.610169,
+              "n_from": 88.0,
+              "n_to": 118.0,
+              "mix": -0.000567,
+              "rate": -0.002872,
+              "interaction": -0.001281,
+              "contribution": -0.004721,
+              "share_of_abs_movement": 0.05573
+            },
+            {
+              "segment": "SP>RS",
+              "share_from": 0.035366,
+              "share_to": 0.037223,
+              "rate_from": 0.94,
+              "rate_to": 0.82377,
+              "n_from": 250.0,
+              "n_to": 244.0,
+              "mix": -6e-06,
+              "rate": -0.004111,
+              "interaction": -0.000216,
+              "contribution": -0.004332,
+              "share_of_abs_movement": 0.051144
+            },
+            {
+              "segment": "SP>BA",
+              "share_from": 0.022917,
+              "share_to": 0.025172,
+              "rate_from": 0.925926,
+              "rate_to": 0.781818,
+              "n_from": 162.0,
+              "n_to": 165.0,
+              "mix": -3.8e-05,
+              "rate": -0.003303,
+              "interaction": -0.000325,
+              "contribution": -0.003666,
+              "share_of_abs_movement": 0.04328
+            },
+            {
+              "segment": "SP>SC",
+              "share_from": 0.029424,
+              "share_to": 0.026545,
+              "rate_from": 0.875,
+              "rate_to": 0.735632,
+              "n_from": 208.0,
+              "n_to": 174.0,
+              "mix": 0.000196,
+              "rate": -0.004101,
+              "interaction": 0.000401,
+              "contribution": -0.003504,
+              "share_of_abs_movement": 0.041364
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.630252
+        },
+        "fulfilment_leg": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.858734,
+          "delta": -0.084257,
+          "mix_effect": -0.002829,
+          "rate_effect": -0.082185,
+          "interaction": 0.000757,
+          "surprise_js": 0.00174,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "share_from": 0.898571,
+              "share_to": 0.877651,
+              "rate_from": 0.956707,
+              "rate_to": 0.87085,
+              "n_from": 6352.0,
+              "n_to": 5753.0,
+              "mix": -0.000287,
+              "rate": -0.077148,
+              "interaction": 0.001796,
+              "contribution": -0.075639,
+              "share_of_abs_movement": 0.897721
+            },
+            {
+              "segment": "seller_late_handover",
+              "share_from": 0.101429,
+              "share_to": 0.122349,
+              "rate_from": 0.821478,
+              "rate_to": 0.77182,
+              "n_from": 717.0,
+              "n_to": 802.0,
+              "mix": -0.002542,
+              "rate": -0.005037,
+              "interaction": -0.001039,
+              "contribution": -0.008618,
+              "share_of_abs_movement": 0.102279
+            },
+            {
+              "segment": "not_handed_over",
+              "share_from": 0.0,
+              "share_to": 0.0,
+              "rate_from": null,
+              "rate_to": null,
+              "n_from": 0.0,
+              "n_to": 0.0,
+              "mix": -0.0,
+              "rate": 0.0,
+              "interaction": 0.0,
+              "contribution": 0.0,
+              "share_of_abs_movement": 0.0
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -811,10 +1580,44 @@
       "to_month": "2018-04-01",
       "robust_z_of_change": 5.064032,
       "headline": "on_time_delivery_rate 2018-03 -> 2018-04: 0.8104 -> 0.955. Most surprising dimension: seller_tier (top-3 segments = 93% of movement); #1 = A_top10pct (+0.06901); rate effect +0.1450, mix effect +0.0016, segments (by volume) improving 100%",
+      "verdict": {
+        "type": "network_wide",
+        "share_of_volume_moving_with_kpi_min_over_dims": 0.975418,
+        "text": "network-wide: no single segment driver (the move happened inside segments holding >= 98% of volume in every dimension)"
+      },
+      "stages": {
+        "medians_from_to": {
+          "promise": [
+            22.0,
+            24.0
+          ],
+          "seller_days": [
+            2.365312,
+            2.061343
+          ],
+          "transit": [
+            9.880127,
+            6.910862
+          ]
+        },
+        "late_rate_from": 0.189633,
+        "late_rate_to": 0.045013,
+        "shapley_pp": {
+          "promise": -2.174659,
+          "seller_days": -1.100814,
+          "transit": -3.064627
+        },
+        "explained_pp": -6.3401,
+        "unexplained_pp_distribution_shape": -8.121877,
+        "reading": "Positive = this stage's change raised the late rate."
+      },
       "dimension_ranking_by_surprise": [
         "seller_tier",
         "category",
-        "customer_state"
+        "lane_top",
+        "seller_state",
+        "customer_state",
+        "fulfilment_leg"
       ],
       "by_dimension": {
         "customer_state": {
@@ -1144,6 +1947,1010 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.932989
+        },
+        "seller_state": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": -0.000664,
+          "rate_effect": 0.144683,
+          "interaction": 0.000601,
+          "surprise_js": 0.003537,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.989284,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "share_from": 0.734828,
+              "share_to": 0.736834,
+              "rate_from": 0.794792,
+              "rate_to": 0.952486,
+              "n_from": 5146.0,
+              "n_to": 5009.0,
+              "mix": -3.1e-05,
+              "rate": 0.115878,
+              "interaction": 0.000316,
+              "contribution": 0.116163,
+              "share_of_abs_movement": 0.798257
+            },
+            {
+              "segment": "RJ",
+              "share_from": 0.042125,
+              "share_to": 0.043984,
+              "rate_from": 0.681356,
+              "rate_to": 0.963211,
+              "n_from": 295.0,
+              "n_to": 299.0,
+              "mix": -0.00024,
+              "rate": 0.011873,
+              "interaction": 0.000524,
+              "contribution": 0.012157,
+              "share_of_abs_movement": 0.083543
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.08325,
+              "share_to": 0.077081,
+              "rate_from": 0.886792,
+              "rate_to": 0.969466,
+              "n_from": 583.0,
+              "n_to": 524.0,
+              "mix": -0.000471,
+              "rate": 0.006883,
+              "interaction": -0.00051,
+              "contribution": 0.005901,
+              "share_of_abs_movement": 0.040552
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.058689,
+              "share_to": 0.065902,
+              "rate_from": 0.875912,
+              "rate_to": 0.950893,
+              "n_from": 411.0,
+              "n_to": 448.0,
+              "mix": 0.000473,
+              "rate": 0.004401,
+              "interaction": 0.000541,
+              "contribution": 0.005414,
+              "share_of_abs_movement": 0.037205
+            },
+            {
+              "segment": "MA",
+              "share_from": 0.005855,
+              "share_to": 0.005149,
+              "rate_from": 0.585366,
+              "rate_to": 0.914286,
+              "n_from": 41.0,
+              "n_to": 35.0,
+              "mix": 0.000159,
+              "rate": 0.001926,
+              "interaction": -0.000232,
+              "contribution": 0.001852,
+              "share_of_abs_movement": 0.012729
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.015422,
+              "share_to": 0.019123,
+              "rate_from": 0.925926,
+              "rate_to": 0.969231,
+              "n_from": 108.0,
+              "n_to": 130.0,
+              "mix": 0.000428,
+              "rate": 0.000668,
+              "interaction": 0.00016,
+              "contribution": 0.001256,
+              "share_of_abs_movement": 0.00863
+            },
+            {
+              "segment": "DF",
+              "share_from": 0.007283,
+              "share_to": 0.006767,
+              "rate_from": 0.862745,
+              "rate_to": 0.956522,
+              "n_from": 51.0,
+              "n_to": 46.0,
+              "mix": -2.7e-05,
+              "rate": 0.000683,
+              "interaction": -4.8e-05,
+              "contribution": 0.000608,
+              "share_of_abs_movement": 0.004175
+            },
+            {
+              "segment": "GO",
+              "share_from": 0.004427,
+              "share_to": 0.004266,
+              "rate_from": 0.870968,
+              "rate_to": 1.0,
+              "n_from": 31.0,
+              "n_to": 29.0,
+              "mix": -1e-05,
+              "rate": 0.000571,
+              "interaction": -2.1e-05,
+              "contribution": 0.000541,
+              "share_of_abs_movement": 0.003716
+            }
+          ],
+          "n_segments": 20,
+          "top3_share_of_abs_movement": 0.922352
+        },
+        "lane_top": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": 0.002216,
+          "rate_effect": 0.143704,
+          "interaction": -0.0013,
+          "surprise_js": 0.003883,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.98672,
+          "top_segments": [
+            {
+              "segment": "other lanes",
+              "share_from": 0.240468,
+              "share_to": 0.232127,
+              "rate_from": 0.778504,
+              "rate_to": 0.917617,
+              "n_from": 1684.0,
+              "n_to": 1578.0,
+              "mix": 0.000266,
+              "rate": 0.033452,
+              "interaction": -0.00116,
+              "contribution": 0.032558,
+              "share_of_abs_movement": 0.223696
+            },
+            {
+              "segment": "SP>RJ",
+              "share_from": 0.084107,
+              "share_to": 0.082524,
+              "rate_from": 0.578947,
+              "rate_to": 0.942959,
+              "n_from": 589.0,
+              "n_to": 561.0,
+              "mix": 0.000366,
+              "rate": 0.030616,
+              "interaction": -0.000576,
+              "contribution": 0.030406,
+              "share_of_abs_movement": 0.208911
+            },
+            {
+              "segment": "SP>SP",
+              "share_from": 0.331287,
+              "share_to": 0.347602,
+              "rate_from": 0.912069,
+              "rate_to": 0.984765,
+              "n_from": 2320.0,
+              "n_to": 2363.0,
+              "mix": 0.001659,
+              "rate": 0.024083,
+              "interaction": 0.001186,
+              "contribution": 0.026929,
+              "share_of_abs_movement": 0.185019
+            },
+            {
+              "segment": "SP>MG",
+              "share_from": 0.083821,
+              "share_to": 0.074728,
+              "rate_from": 0.756388,
+              "rate_to": 0.966535,
+              "n_from": 587.0,
+              "n_to": 508.0,
+              "mix": 0.000491,
+              "rate": 0.017615,
+              "interaction": -0.001911,
+              "contribution": 0.016195,
+              "share_of_abs_movement": 0.111269
+            },
+            {
+              "segment": "SP>RS",
+              "share_from": 0.038555,
+              "share_to": 0.035305,
+              "rate_from": 0.788889,
+              "rate_to": 0.9625,
+              "n_from": 270.0,
+              "n_to": 240.0,
+              "mix": 7e-05,
+              "rate": 0.006694,
+              "interaction": -0.000564,
+              "contribution": 0.006199,
+              "share_of_abs_movement": 0.042592
+            },
+            {
+              "segment": "RJ>SP",
+              "share_from": 0.012138,
+              "share_to": 0.015004,
+              "rate_from": 0.576471,
+              "rate_to": 0.980392,
+              "n_from": 85.0,
+              "n_to": 102.0,
+              "mix": -0.000671,
+              "rate": 0.004903,
+              "interaction": 0.001158,
+              "contribution": 0.00539,
+              "share_of_abs_movement": 0.037034
+            },
+            {
+              "segment": "SP>SC",
+              "share_from": 0.024418,
+              "share_to": 0.025596,
+              "rate_from": 0.77193,
+              "rate_to": 0.971264,
+              "n_from": 171.0,
+              "n_to": 174.0,
+              "mix": -4.5e-05,
+              "rate": 0.004867,
+              "interaction": 0.000235,
+              "contribution": 0.005057,
+              "share_of_abs_movement": 0.034744
+            },
+            {
+              "segment": "SP>ES",
+              "share_from": 0.014708,
+              "share_to": 0.015593,
+              "rate_from": 0.504854,
+              "rate_to": 0.820755,
+              "n_from": 103.0,
+              "n_to": 106.0,
+              "mix": -0.00027,
+              "rate": 0.004646,
+              "interaction": 0.00028,
+              "contribution": 0.004655,
+              "share_of_abs_movement": 0.031986
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.617627
+        },
+        "fulfilment_leg": {
+          "kpi_from": 0.810367,
+          "kpi_to": 0.954987,
+          "delta": 0.14462,
+          "mix_effect": 0.004303,
+          "rate_effect": 0.141937,
+          "interaction": -0.00162,
+          "surprise_js": 0.002436,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 1.0,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "share_from": 0.914894,
+              "share_to": 0.940129,
+              "rate_from": 0.824879,
+              "rate_to": 0.961352,
+              "n_from": 6407.0,
+              "n_to": 6391.0,
+              "mix": 0.000366,
+              "rate": 0.124858,
+              "interaction": 0.003444,
+              "contribution": 0.128668,
+              "share_of_abs_movement": 0.889701
+            },
+            {
+              "segment": "seller_late_handover",
+              "share_from": 0.085106,
+              "share_to": 0.059871,
+              "rate_from": 0.654362,
+              "rate_to": 0.855037,
+              "n_from": 596.0,
+              "n_to": 407.0,
+              "mix": 0.003937,
+              "rate": 0.017079,
+              "interaction": -0.005064,
+              "contribution": 0.015951,
+              "share_of_abs_movement": 0.110299
+            },
+            {
+              "segment": "not_handed_over",
+              "share_from": 0.0,
+              "share_to": 0.0,
+              "rate_from": null,
+              "rate_to": null,
+              "n_from": 0.0,
+              "n_to": 0.0,
+              "mix": -0.0,
+              "rate": 0.0,
+              "interaction": 0.0,
+              "contribution": 0.0,
+              "share_of_abs_movement": 0.0
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
+        }
+      }
+    },
+    {
+      "kpi": "on_time_delivery_rate",
+      "from_month": "2018-01-01",
+      "to_month": "2018-03-01",
+      "robust_z_of_change": null,
+      "headline": "on_time_delivery_rate 2018-01 -> 2018-03: 0.943 -> 0.8104. Most surprising dimension: seller_tier (top-3 segments = 91% of movement); #1 = A_top10pct (-0.06541); rate effect -0.1337, mix effect -0.0021, segments (by volume) improving 0%",
+      "verdict": {
+        "type": "network_wide",
+        "share_of_volume_moving_with_kpi_min_over_dims": 0.965317,
+        "text": "network-wide: no single segment driver (the move happened inside segments holding >= 97% of volume in every dimension)"
+      },
+      "stages": {
+        "medians_from_to": {
+          "promise": [
+            26.0,
+            22.0
+          ],
+          "seller_days": [
+            2.449896,
+            2.365312
+          ],
+          "transit": [
+            8.035972,
+            9.880127
+          ]
+        },
+        "late_rate_from": 0.057009,
+        "late_rate_to": 0.189633,
+        "shapley_pp": {
+          "promise": 5.62854,
+          "seller_days": -0.997192,
+          "transit": 2.522728
+        },
+        "explained_pp": 7.154077,
+        "unexplained_pp_distribution_shape": 6.108277,
+        "reading": "Positive = this stage's change raised the late rate."
+      },
+      "dimension_ranking_by_surprise": [
+        "seller_tier",
+        "category",
+        "customer_state",
+        "seller_state",
+        "lane_top",
+        "fulfilment_leg"
+      ],
+      "by_dimension": {
+        "customer_state": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": 0.000256,
+          "rate_effect": -0.133271,
+          "interaction": 0.000391,
+          "surprise_js": 0.006476,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.004385,
+          "top_segments": [
+            {
+              "segment": "RJ",
+              "share_from": 0.120243,
+              "share_to": 0.123376,
+              "rate_from": 0.869412,
+              "rate_to": 0.655093,
+              "n_from": 850.0,
+              "n_to": 864.0,
+              "mix": -0.00023,
+              "rate": -0.02577,
+              "interaction": -0.000671,
+              "contribution": -0.026672,
+              "share_of_abs_movement": 0.199983
+            },
+            {
+              "segment": "SP",
+              "share_from": 0.420852,
+              "share_to": 0.424247,
+              "rate_from": 0.965714,
+              "rate_to": 0.905756,
+              "n_from": 2975.0,
+              "n_to": 2971.0,
+              "mix": 7.7e-05,
+              "rate": -0.025234,
+              "interaction": -0.000204,
+              "contribution": -0.02536,
+              "share_of_abs_movement": 0.190145
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.119677,
+              "share_to": 0.122233,
+              "rate_from": 0.969267,
+              "rate_to": 0.795561,
+              "n_from": 846.0,
+              "n_to": 856.0,
+              "mix": 6.7e-05,
+              "rate": -0.020789,
+              "interaction": -0.000444,
+              "contribution": -0.021166,
+              "share_of_abs_movement": 0.158695
+            },
+            {
+              "segment": "BA",
+              "share_from": 0.032254,
+              "share_to": 0.033557,
+              "rate_from": 0.934211,
+              "rate_to": 0.685106,
+              "n_from": 228.0,
+              "n_to": 235.0,
+              "mix": -1.1e-05,
+              "rate": -0.008034,
+              "interaction": -0.000325,
+              "contribution": -0.008371,
+              "share_of_abs_movement": 0.062761
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.051917,
+              "share_to": 0.058118,
+              "rate_from": 0.918256,
+              "rate_to": 0.808354,
+              "n_from": 367.0,
+              "n_to": 407.0,
+              "mix": -0.000153,
+              "rate": -0.005706,
+              "interaction": -0.000682,
+              "contribution": -0.006541,
+              "share_of_abs_movement": 0.049041
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.052483,
+              "share_to": 0.052692,
+              "rate_from": 0.983827,
+              "rate_to": 0.867209,
+              "n_from": 371.0,
+              "n_to": 369.0,
+              "mix": 9e-06,
+              "rate": -0.00612,
+              "interaction": -2.4e-05,
+              "contribution": -0.006136,
+              "share_of_abs_movement": 0.046009
+            },
+            {
+              "segment": "ES",
+              "share_from": 0.020512,
+              "share_to": 0.018992,
+              "rate_from": 0.903448,
+              "rate_to": 0.586466,
+              "n_from": 145.0,
+              "n_to": 133.0,
+              "mix": 6e-05,
+              "rate": -0.006502,
+              "interaction": 0.000482,
+              "contribution": -0.00596,
+              "share_of_abs_movement": 0.044687
+            },
+            {
+              "segment": "CE",
+              "share_from": 0.010893,
+              "share_to": 0.01328,
+              "rate_from": 0.883117,
+              "rate_to": 0.494624,
+              "n_from": 77.0,
+              "n_to": 93.0,
+              "mix": -0.000143,
+              "rate": -0.004232,
+              "interaction": -0.000927,
+              "contribution": -0.005302,
+              "share_of_abs_movement": 0.039754
+            }
+          ],
+          "n_segments": 27,
+          "top3_share_of_abs_movement": 0.548823
+        },
+        "category": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": 0.000595,
+          "rate_effect": -0.132499,
+          "interaction": -0.000719,
+          "surprise_js": 0.032709,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.00397,
+          "top_segments": [
+            {
+              "segment": "bed_bath_table",
+              "share_from": 0.096902,
+              "share_to": 0.092675,
+              "rate_from": 0.953285,
+              "rate_to": 0.784284,
+              "n_from": 685.0,
+              "n_to": 649.0,
+              "mix": -4.4e-05,
+              "rate": -0.016377,
+              "interaction": 0.000714,
+              "contribution": -0.015706,
+              "share_of_abs_movement": 0.117288
+            },
+            {
+              "segment": "health_beauty",
+              "share_from": 0.079502,
+              "share_to": 0.086392,
+              "rate_from": 0.941281,
+              "rate_to": 0.761983,
+              "n_from": 562.0,
+              "n_to": 605.0,
+              "mix": -1.2e-05,
+              "rate": -0.014255,
+              "interaction": -0.001235,
+              "contribution": -0.015502,
+              "share_of_abs_movement": 0.115764
+            },
+            {
+              "segment": "sports_leisure",
+              "share_from": 0.080351,
+              "share_to": 0.091818,
+              "rate_from": 0.940141,
+              "rate_to": 0.802488,
+              "n_from": 568.0,
+              "n_to": 643.0,
+              "mix": -3.3e-05,
+              "rate": -0.01106,
+              "interaction": -0.001578,
+              "contribution": -0.012672,
+              "share_of_abs_movement": 0.094631
+            },
+            {
+              "segment": "watches_gifts",
+              "share_from": 0.045551,
+              "share_to": 0.057975,
+              "rate_from": 0.947205,
+              "rate_to": 0.753695,
+              "n_from": 322.0,
+              "n_to": 406.0,
+              "mix": 5.2e-05,
+              "rate": -0.008815,
+              "interaction": -0.002404,
+              "contribution": -0.011166,
+              "share_of_abs_movement": 0.08339
+            },
+            {
+              "segment": "computers_accessories",
+              "share_from": 0.080775,
+              "share_to": 0.089819,
+              "rate_from": 0.957968,
+              "rate_to": 0.839428,
+              "n_from": 571.0,
+              "n_to": 629.0,
+              "mix": 0.000135,
+              "rate": -0.009575,
+              "interaction": -0.001072,
+              "contribution": -0.010512,
+              "share_of_abs_movement": 0.078501
+            },
+            {
+              "segment": "furniture_decor",
+              "share_from": 0.065356,
+              "share_to": 0.059974,
+              "rate_from": 0.945887,
+              "rate_to": 0.819048,
+              "n_from": 462.0,
+              "n_to": 420.0,
+              "mix": -1.6e-05,
+              "rate": -0.00829,
+              "interaction": 0.000683,
+              "contribution": -0.007623,
+              "share_of_abs_movement": 0.056926
+            },
+            {
+              "segment": "telephony",
+              "share_from": 0.048522,
+              "share_to": 0.045266,
+              "rate_from": 0.927114,
+              "rate_to": 0.794953,
+              "n_from": 343.0,
+              "n_to": 317.0,
+              "mix": 5.2e-05,
+              "rate": -0.006413,
+              "interaction": 0.00043,
+              "contribution": -0.005931,
+              "share_of_abs_movement": 0.04429
+            },
+            {
+              "segment": "auto",
+              "share_from": 0.034375,
+              "share_to": 0.045124,
+              "rate_from": 0.942387,
+              "rate_to": 0.813291,
+              "n_from": 243.0,
+              "n_to": 316.0,
+              "mix": -6e-06,
+              "rate": -0.004438,
+              "interaction": -0.001388,
+              "contribution": -0.005832,
+              "share_of_abs_movement": 0.043551
+            }
+          ],
+          "n_segments": 70,
+          "top3_share_of_abs_movement": 0.327683
+        },
+        "seller_tier": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": -0.002102,
+          "rate_effect": -0.133656,
+          "interaction": 0.003135,
+          "surprise_js": 0.034189,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "A_top10pct",
+              "share_from": 0.468383,
+              "share_to": 0.429816,
+              "rate_from": 0.946844,
+              "rate_to": 0.795017,
+              "n_from": 3311.0,
+              "n_to": 3010.0,
+              "mix": -0.000149,
+              "rate": -0.071113,
+              "interaction": 0.005856,
+              "contribution": -0.065406,
+              "share_of_abs_movement": 0.493173
+            },
+            {
+              "segment": "B_next40pct",
+              "share_from": 0.372896,
+              "share_to": 0.322433,
+              "rate_from": 0.942337,
+              "rate_to": 0.818423,
+              "n_from": 2636.0,
+              "n_to": 2258.0,
+              "mix": 3.3e-05,
+              "rate": -0.046207,
+              "interaction": 0.006253,
+              "contribution": -0.039921,
+              "share_of_abs_movement": 0.301009
+            },
+            {
+              "segment": "new_seller",
+              "share_from": 0.05121,
+              "share_to": 0.136656,
+              "rate_from": 0.91989,
+              "rate_to": 0.819227,
+              "n_from": 362.0,
+              "n_to": 957.0,
+              "mix": -0.001974,
+              "rate": -0.005155,
+              "interaction": -0.008601,
+              "contribution": -0.01573,
+              "share_of_abs_movement": 0.118607
+            },
+            {
+              "segment": "C_bottom50pct",
+              "share_from": 0.107512,
+              "share_to": 0.111095,
+              "rate_from": 0.939474,
+              "rate_to": 0.835476,
+              "n_from": 760.0,
+              "n_to": 778.0,
+              "mix": -1.3e-05,
+              "rate": -0.011181,
+              "interaction": -0.000373,
+              "contribution": -0.011566,
+              "share_of_abs_movement": 0.087212
+            }
+          ],
+          "n_segments": 4,
+          "top3_share_of_abs_movement": 0.912788
+        },
+        "seller_state": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": 0.000214,
+          "rate_effect": -0.130975,
+          "interaction": -0.001862,
+          "surprise_js": 0.006318,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.034683,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "share_from": 0.724572,
+              "share_to": 0.734828,
+              "rate_from": 0.945529,
+              "rate_to": 0.794792,
+              "n_from": 5122.0,
+              "n_to": 5146.0,
+              "mix": 2.6e-05,
+              "rate": -0.10922,
+              "interaction": -0.001546,
+              "contribution": -0.11074,
+              "share_of_abs_movement": 0.809809
+            },
+            {
+              "segment": "RJ",
+              "share_from": 0.0406,
+              "share_to": 0.042125,
+              "rate_from": 0.926829,
+              "rate_to": 0.681356,
+              "n_from": 287.0,
+              "n_to": 295.0,
+              "mix": -2.5e-05,
+              "rate": -0.009966,
+              "interaction": -0.000374,
+              "contribution": -0.010365,
+              "share_of_abs_movement": 0.075798
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.071722,
+              "share_to": 0.058689,
+              "rate_from": 0.962525,
+              "rate_to": 0.875912,
+              "n_from": 507.0,
+              "n_to": 411.0,
+              "mix": -0.000255,
+              "rate": -0.006212,
+              "interaction": 0.001129,
+              "contribution": -0.005338,
+              "share_of_abs_movement": 0.039034
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.087707,
+              "share_to": 0.08325,
+              "rate_from": 0.945161,
+              "rate_to": 0.886792,
+              "n_from": 620.0,
+              "n_to": 583.0,
+              "mix": -1e-05,
+              "rate": -0.005119,
+              "interaction": 0.00026,
+              "contribution": -0.004869,
+              "share_of_abs_movement": 0.035605
+            },
+            {
+              "segment": "MA",
+              "share_from": 0.001273,
+              "share_to": 0.005855,
+              "rate_from": 1.0,
+              "rate_to": 0.585366,
+              "n_from": 9.0,
+              "n_to": 41.0,
+              "mix": 0.000261,
+              "rate": -0.000528,
+              "interaction": -0.0019,
+              "contribution": -0.002166,
+              "share_of_abs_movement": 0.015842
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.031405,
+              "share_to": 0.033271,
+              "rate_from": 0.864865,
+              "rate_to": 0.918455,
+              "n_from": 222.0,
+              "n_to": 233.0,
+              "mix": -0.000146,
+              "rate": 0.001683,
+              "interaction": 0.0001,
+              "contribution": 0.001637,
+              "share_of_abs_movement": 0.011972
+            },
+            {
+              "segment": "GO",
+              "share_from": 0.003961,
+              "share_to": 0.004427,
+              "rate_from": 1.0,
+              "rate_to": 0.870968,
+              "n_from": 28.0,
+              "n_to": 31.0,
+              "mix": 2.7e-05,
+              "rate": -0.000511,
+              "interaction": -6e-05,
+              "contribution": -0.000545,
+              "share_of_abs_movement": 0.003983
+            },
+            {
+              "segment": "RN",
+              "share_from": 0.001556,
+              "share_to": 0.000428,
+              "rate_from": 1.0,
+              "rate_to": 0.666667,
+              "n_from": 11.0,
+              "n_to": 3.0,
+              "mix": -6.4e-05,
+              "rate": -0.000519,
+              "interaction": 0.000376,
+              "contribution": -0.000207,
+              "share_of_abs_movement": 0.001514
+            }
+          ],
+          "n_segments": 22,
+          "top3_share_of_abs_movement": 0.92464
+        },
+        "lane_top": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": 0.000459,
+          "rate_effect": -0.133058,
+          "interaction": -2.4e-05,
+          "surprise_js": 0.004187,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.011741,
+          "top_segments": [
+            {
+              "segment": "other lanes",
+              "share_from": 0.248691,
+              "share_to": 0.240468,
+              "rate_from": 0.925484,
+              "rate_to": 0.778504,
+              "n_from": 1758.0,
+              "n_to": 1684.0,
+              "mix": 0.000144,
+              "rate": -0.036553,
+              "interaction": 0.001209,
+              "contribution": -0.0352,
+              "share_of_abs_movement": 0.261178
+            },
+            {
+              "segment": "SP>RJ",
+              "share_from": 0.0812,
+              "share_to": 0.084107,
+              "rate_from": 0.872822,
+              "rate_to": 0.578947,
+              "n_from": 574.0,
+              "n_to": 589.0,
+              "mix": -0.000204,
+              "rate": -0.023863,
+              "interaction": -0.000854,
+              "contribution": -0.024921,
+              "share_of_abs_movement": 0.184908
+            },
+            {
+              "segment": "SP>SP",
+              "share_from": 0.322676,
+              "share_to": 0.331287,
+              "rate_from": 0.970189,
+              "rate_to": 0.912069,
+              "n_from": 2281.0,
+              "n_to": 2320.0,
+              "mix": 0.000234,
+              "rate": -0.018754,
+              "interaction": -0.0005,
+              "contribution": -0.01902,
+              "share_of_abs_movement": 0.141125
+            },
+            {
+              "segment": "SP>MG",
+              "share_from": 0.079219,
+              "share_to": 0.083821,
+              "rate_from": 0.969643,
+              "rate_to": 0.756388,
+              "n_from": 560.0,
+              "n_to": 587.0,
+              "mix": 0.000123,
+              "rate": -0.016894,
+              "interaction": -0.000981,
+              "contribution": -0.017753,
+              "share_of_abs_movement": 0.131721
+            },
+            {
+              "segment": "SP>BA",
+              "share_from": 0.022917,
+              "share_to": 0.024989,
+              "rate_from": 0.925926,
+              "rate_to": 0.662857,
+              "n_from": 162.0,
+              "n_to": 175.0,
+              "mix": -3.5e-05,
+              "rate": -0.006029,
+              "interaction": -0.000545,
+              "contribution": -0.006609,
+              "share_of_abs_movement": 0.04904
+            },
+            {
+              "segment": "SP>RS",
+              "share_from": 0.035366,
+              "share_to": 0.038555,
+              "rate_from": 0.94,
+              "rate_to": 0.788889,
+              "n_from": 250.0,
+              "n_to": 270.0,
+              "mix": -1e-05,
+              "rate": -0.005344,
+              "interaction": -0.000482,
+              "contribution": -0.005836,
+              "share_of_abs_movement": 0.043299
+            },
+            {
+              "segment": "SP>ES",
+              "share_from": 0.015985,
+              "share_to": 0.014708,
+              "rate_from": 0.902655,
+              "rate_to": 0.504854,
+              "n_from": 113.0,
+              "n_to": 103.0,
+              "mix": 5.2e-05,
+              "rate": -0.006359,
+              "interaction": 0.000508,
+              "contribution": -0.005799,
+              "share_of_abs_movement": 0.04303
+            },
+            {
+              "segment": "SP>PR",
+              "share_from": 0.036497,
+              "share_to": 0.035128,
+              "rate_from": 0.976744,
+              "rate_to": 0.853659,
+              "n_from": 258.0,
+              "n_to": 246.0,
+              "mix": -4.6e-05,
+              "rate": -0.004492,
+              "interaction": 0.000169,
+              "contribution": -0.00437,
+              "share_of_abs_movement": 0.032424
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.587212
+        },
+        "fulfilment_leg": {
+          "kpi_from": 0.942991,
+          "kpi_to": 0.810367,
+          "delta": -0.132624,
+          "mix_effect": 0.002207,
+          "rate_effect": -0.135407,
+          "interaction": 0.000576,
+          "surprise_js": 0.001532,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "share_from": 0.898571,
+              "share_to": 0.914894,
+              "rate_from": 0.956707,
+              "rate_to": 0.824879,
+              "n_from": 6352.0,
+              "n_to": 6407.0,
+              "mix": 0.000224,
+              "rate": -0.118456,
+              "interaction": -0.002152,
+              "contribution": -0.120384,
+              "share_of_abs_movement": 0.907714
+            },
+            {
+              "segment": "seller_late_handover",
+              "share_from": 0.101429,
+              "share_to": 0.085106,
+              "rate_from": 0.821478,
+              "rate_to": 0.654362,
+              "n_from": 717.0,
+              "n_to": 596.0,
+              "mix": 0.001983,
+              "rate": -0.01695,
+              "interaction": 0.002728,
+              "contribution": -0.012239,
+              "share_of_abs_movement": 0.092286
+            },
+            {
+              "segment": "not_handed_over",
+              "share_from": 0.0,
+              "share_to": 0.0,
+              "rate_from": null,
+              "rate_to": null,
+              "n_from": 0.0,
+              "n_to": 0.0,
+              "mix": -0.0,
+              "rate": 0.0,
+              "interaction": 0.0,
+              "contribution": 0.0,
+              "share_of_abs_movement": 0.0
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -1153,10 +2960,19 @@
       "to_month": "2017-11-01",
       "robust_z_of_change": -2.800345,
       "headline": "avg_review_score 2017-10 -> 2017-11: 4.174 -> 3.949. Most surprising dimension: category (top-3 segments = 33% of movement); #1 = bed_bath_table (-0.03981); rate effect -0.2137, mix effect -0.0040, segments (by volume) improving 7%",
+      "verdict": {
+        "type": "network_wide",
+        "share_of_volume_moving_with_kpi_min_over_dims": 0.930774,
+        "text": "network-wide: no single segment driver (the move happened inside segments holding >= 93% of volume in every dimension)"
+      },
+      "stages": null,
       "dimension_ranking_by_surprise": [
         "category",
         "seller_tier",
-        "customer_state"
+        "fulfilment_leg",
+        "seller_state",
+        "customer_state",
+        "lane_top"
       ],
       "by_dimension": {
         "customer_state": {
@@ -1486,6 +3302,320 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.942149
+        },
+        "seller_state": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": -0.001391,
+          "rate_effect": -0.219425,
+          "interaction": -0.003478,
+          "surprise_js": 0.008836,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.055211,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "share_from": 0.71153,
+              "share_to": 0.711141,
+              "rate_from": 4.142724,
+              "rate_to": 3.888613,
+              "n_from": 3209.0,
+              "n_to": 5234.0,
+              "mix": 1.2e-05,
+              "rate": -0.180807,
+              "interaction": 9.9e-05,
+              "contribution": -0.180697,
+              "share_of_abs_movement": 0.760215
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.065854,
+              "share_to": 0.07269,
+              "rate_from": 4.225589,
+              "rate_to": 3.91215,
+              "n_from": 297.0,
+              "n_to": 535.0,
+              "mix": 0.000355,
+              "rate": -0.020641,
+              "interaction": -0.002143,
+              "contribution": -0.022429,
+              "share_of_abs_movement": 0.09436
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.086918,
+              "share_to": 0.079755,
+              "rate_from": 4.252551,
+              "rate_to": 4.126065,
+              "n_from": 392.0,
+              "n_to": 587.0,
+              "mix": -0.000565,
+              "rate": -0.010994,
+              "interaction": 0.000906,
+              "contribution": -0.010653,
+              "share_of_abs_movement": 0.04482
+            },
+            {
+              "segment": "RJ",
+              "share_from": 0.037029,
+              "share_to": 0.051902,
+              "rate_from": 4.365269,
+              "rate_to": 4.180628,
+              "n_from": 167.0,
+              "n_to": 382.0,
+              "mix": 0.002851,
+              "rate": -0.006837,
+              "interaction": -0.002746,
+              "contribution": -0.006733,
+              "share_of_abs_movement": 0.028325
+            },
+            {
+              "segment": "BA",
+              "share_from": 0.015743,
+              "share_to": 0.00788,
+              "rate_from": 4.366197,
+              "rate_to": 4.189655,
+              "n_from": 71.0,
+              "n_to": 58.0,
+              "mix": -0.001514,
+              "rate": -0.002779,
+              "interaction": 0.001388,
+              "contribution": -0.002905,
+              "share_of_abs_movement": 0.012223
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.031042,
+              "share_to": 0.035462,
+              "rate_from": 4.028571,
+              "rate_to": 4.126437,
+              "n_from": 140.0,
+              "n_to": 261.0,
+              "mix": -0.000641,
+              "rate": 0.003038,
+              "interaction": 0.000433,
+              "contribution": 0.002829,
+              "share_of_abs_movement": 0.011904
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.022616,
+              "share_to": 0.018207,
+              "rate_from": 4.460784,
+              "rate_to": 4.38806,
+              "n_from": 102.0,
+              "n_to": 134.0,
+              "mix": -0.001266,
+              "rate": -0.001645,
+              "interaction": 0.000321,
+              "contribution": -0.00259,
+              "share_of_abs_movement": 0.010898
+            },
+            {
+              "segment": "DF",
+              "share_from": 0.013304,
+              "share_to": 0.009783,
+              "rate_from": 3.983333,
+              "rate_to": 4.138889,
+              "n_from": 60.0,
+              "n_to": 72.0,
+              "mix": 0.00067,
+              "rate": 0.002069,
+              "interaction": -0.000548,
+              "contribution": 0.002192,
+              "share_of_abs_movement": 0.009221
+            }
+          ],
+          "n_segments": 20,
+          "top3_share_of_abs_movement": 0.899396
+        },
+        "lane_top": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": -0.00136,
+          "rate_effect": -0.22388,
+          "interaction": 0.000946,
+          "surprise_js": 0.003316,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.064745,
+          "top_segments": [
+            {
+              "segment": "SP>RJ",
+              "share_from": 0.096009,
+              "share_to": 0.09769,
+              "rate_from": 4.13164,
+              "rate_to": 3.471488,
+              "n_from": 433.0,
+              "n_to": 719.0,
+              "mix": -7.1e-05,
+              "rate": -0.06338,
+              "interaction": -0.00111,
+              "contribution": -0.064561,
+              "share_of_abs_movement": 0.270924
+            },
+            {
+              "segment": "other lanes",
+              "share_from": 0.272284,
+              "share_to": 0.256386,
+              "rate_from": 4.185668,
+              "rate_to": 3.959194,
+              "n_from": 1228.0,
+              "n_to": 1887.0,
+              "mix": -0.000192,
+              "rate": -0.061665,
+              "interaction": 0.0036,
+              "contribution": -0.058256,
+              "share_of_abs_movement": 0.244466
+            },
+            {
+              "segment": "SP>SP",
+              "share_from": 0.292905,
+              "share_to": 0.297826,
+              "rate_from": 4.168812,
+              "rate_to": 4.08531,
+              "n_from": 1321.0,
+              "n_to": 2192.0,
+              "mix": -2.4e-05,
+              "rate": -0.024458,
+              "interaction": -0.000411,
+              "contribution": -0.024892,
+              "share_of_abs_movement": 0.104459
+            },
+            {
+              "segment": "SP>RS",
+              "share_from": 0.037694,
+              "share_to": 0.038723,
+              "rate_from": 4.217647,
+              "rate_to": 3.733333,
+              "n_from": 170.0,
+              "n_to": 285.0,
+              "mix": 4.5e-05,
+              "rate": -0.018256,
+              "interaction": -0.000498,
+              "contribution": -0.018709,
+              "share_of_abs_movement": 0.078509
+            },
+            {
+              "segment": "SP>SC",
+              "share_from": 0.023947,
+              "share_to": 0.027853,
+              "rate_from": 4.194444,
+              "rate_to": 3.702439,
+              "n_from": 108.0,
+              "n_to": 205.0,
+              "mix": 8.1e-05,
+              "rate": -0.011782,
+              "interaction": -0.001922,
+              "contribution": -0.013623,
+              "share_of_abs_movement": 0.057166
+            },
+            {
+              "segment": "SP>MG",
+              "share_from": 0.082262,
+              "share_to": 0.080571,
+              "rate_from": 4.277628,
+              "rate_to": 4.116358,
+              "n_from": 371.0,
+              "n_to": 593.0,
+              "mix": -0.000176,
+              "rate": -0.013266,
+              "interaction": 0.000273,
+              "contribution": -0.01317,
+              "share_of_abs_movement": 0.055265
+            },
+            {
+              "segment": "SP>ES",
+              "share_from": 0.015965,
+              "share_to": 0.016712,
+              "rate_from": 4.236111,
+              "rate_to": 3.560976,
+              "n_from": 72.0,
+              "n_to": 123.0,
+              "mix": 4.7e-05,
+              "rate": -0.010778,
+              "interaction": -0.000505,
+              "contribution": -0.011236,
+              "share_of_abs_movement": 0.047151
+            },
+            {
+              "segment": "SP>GO",
+              "share_from": 0.017517,
+              "share_to": 0.014946,
+              "rate_from": 4.35443,
+              "rate_to": 3.836364,
+              "n_from": 79.0,
+              "n_to": 110.0,
+              "mix": -0.000465,
+              "rate": -0.009075,
+              "interaction": 0.001332,
+              "contribution": -0.008208,
+              "share_of_abs_movement": 0.034443
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.619849
+        },
+        "fulfilment_leg": {
+          "kpi_from": 4.173614,
+          "kpi_to": 3.949321,
+          "delta": -0.224294,
+          "mix_effect": -0.02933,
+          "rate_effect": -0.192808,
+          "interaction": -0.002156,
+          "surprise_js": 0.00932,
+          "residual": 0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.0,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "share_from": 0.915743,
+              "share_to": 0.864674,
+              "rate_from": 4.233898,
+              "rate_to": 4.045883,
+              "n_from": 4130.0,
+              "n_to": 6364.0,
+              "mix": -0.003079,
+              "rate": -0.172174,
+              "interaction": 0.009602,
+              "contribution": -0.16565,
+              "share_of_abs_movement": 0.738543
+            },
+            {
+              "segment": "seller_late_handover",
+              "share_from": 0.07694,
+              "share_to": 0.127446,
+              "rate_from": 3.680115,
+              "rate_to": 3.452026,
+              "n_from": 347.0,
+              "n_to": 938.0,
+              "mix": -0.024924,
+              "rate": -0.017549,
+              "interaction": -0.01152,
+              "contribution": -0.053993,
+              "share_of_abs_movement": 0.240727
+            },
+            {
+              "segment": "not_handed_over",
+              "share_from": 0.007317,
+              "share_to": 0.00788,
+              "rate_from": 1.818182,
+              "rate_to": 1.396552,
+              "n_from": 33.0,
+              "n_to": 58.0,
+              "mix": -0.001327,
+              "rate": -0.003085,
+              "interaction": -0.000238,
+              "contribution": -0.00465,
+              "share_of_abs_movement": 0.02073
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     },
@@ -1495,9 +3625,18 @@
       "to_month": "2018-04-01",
       "robust_z_of_change": 4.743494,
       "headline": "avg_review_score 2018-03 -> 2018-04: 3.764 -> 4.17. Most surprising dimension: seller_tier (top-3 segments = 94% of movement); #1 = A_top10pct (+0.1966); rate effect +0.4040, mix effect +0.0047, segments (by volume) improving 100%",
+      "verdict": {
+        "type": "network_wide",
+        "share_of_volume_moving_with_kpi_min_over_dims": 0.965804,
+        "text": "network-wide: no single segment driver (the move happened inside segments holding >= 97% of volume in every dimension)"
+      },
+      "stages": null,
       "dimension_ranking_by_surprise": [
         "seller_tier",
         "category",
+        "fulfilment_leg",
+        "lane_top",
+        "seller_state",
         "customer_state"
       ],
       "by_dimension": {
@@ -1828,6 +3967,320 @@
           ],
           "n_segments": 4,
           "top3_share_of_abs_movement": 0.938936
+        },
+        "seller_state": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": -0.001158,
+          "rate_effect": 0.407829,
+          "interaction": -0.000355,
+          "surprise_js": 0.002645,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.995494,
+          "top_segments": [
+            {
+              "segment": "SP",
+              "share_from": 0.735716,
+              "share_to": 0.736267,
+              "rate_from": 3.703902,
+              "rate_to": 4.156145,
+              "n_from": 5228.0,
+              "n_to": 5053.0,
+              "mix": -3.3e-05,
+              "rate": 0.332722,
+              "interaction": 0.000249,
+              "contribution": 0.332939,
+              "share_of_abs_movement": 0.809206
+            },
+            {
+              "segment": "RJ",
+              "share_from": 0.041373,
+              "share_to": 0.044587,
+              "rate_from": 3.561224,
+              "rate_to": 4.133987,
+              "n_from": 294.0,
+              "n_to": 306.0,
+              "mix": -0.00065,
+              "rate": 0.023697,
+              "interaction": 0.001841,
+              "contribution": 0.024887,
+              "share_of_abs_movement": 0.060489
+            },
+            {
+              "segment": "MG",
+              "share_from": 0.059386,
+              "share_to": 0.066735,
+              "rate_from": 3.92654,
+              "rate_to": 4.220524,
+              "n_from": 422.0,
+              "n_to": 458.0,
+              "mix": 0.001197,
+              "rate": 0.017459,
+              "interaction": 0.00216,
+              "contribution": 0.020816,
+              "share_of_abs_movement": 0.050594
+            },
+            {
+              "segment": "SC",
+              "share_from": 0.03293,
+              "share_to": 0.027539,
+              "rate_from": 3.952991,
+              "rate_to": 4.359788,
+              "n_from": 234.0,
+              "n_to": 189.0,
+              "mix": -0.001021,
+              "rate": 0.013396,
+              "interaction": -0.002193,
+              "contribution": 0.010182,
+              "share_of_abs_movement": 0.024746
+            },
+            {
+              "segment": "PR",
+              "share_from": 0.083028,
+              "share_to": 0.076789,
+              "rate_from": 4.047458,
+              "rate_to": 4.178368,
+              "n_from": 590.0,
+              "n_to": 527.0,
+              "mix": -0.001771,
+              "rate": 0.010869,
+              "interaction": -0.000817,
+              "contribution": 0.008281,
+              "share_of_abs_movement": 0.020127
+            },
+            {
+              "segment": "RS",
+              "share_from": 0.015058,
+              "share_to": 0.018796,
+              "rate_from": 4.074766,
+              "rate_to": 4.186047,
+              "n_from": 107.0,
+              "n_to": 129.0,
+              "mix": 0.001163,
+              "rate": 0.001676,
+              "interaction": 0.000416,
+              "contribution": 0.003255,
+              "share_of_abs_movement": 0.007912
+            },
+            {
+              "segment": "MA",
+              "share_from": 0.005629,
+              "share_to": 0.005246,
+              "rate_from": 3.525,
+              "rate_to": 4.0,
+              "n_from": 40.0,
+              "n_to": 36.0,
+              "mix": 9.2e-05,
+              "rate": 0.002674,
+              "interaction": -0.000182,
+              "contribution": 0.002583,
+              "share_of_abs_movement": 0.006278
+            },
+            {
+              "segment": "MT",
+              "share_from": 0.001689,
+              "share_to": 0.00102,
+              "rate_from": 3.25,
+              "rate_to": 4.428571,
+              "n_from": 12.0,
+              "n_to": 7.0,
+              "mix": 0.000343,
+              "rate": 0.00199,
+              "interaction": -0.000788,
+              "contribution": 0.001546,
+              "share_of_abs_movement": 0.003756
+            }
+          ],
+          "n_segments": 20,
+          "top3_share_of_abs_movement": 0.920288
+        },
+        "lane_top": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": 0.008399,
+          "rate_effect": 0.400948,
+          "interaction": -0.00303,
+          "surprise_js": 0.002908,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 0.965804,
+          "top_segments": [
+            {
+              "segment": "SP>RJ",
+              "share_from": 0.085561,
+              "share_to": 0.083345,
+              "rate_from": 2.893092,
+              "rate_to": 3.973776,
+              "n_from": 608.0,
+              "n_to": 572.0,
+              "mix": 0.001929,
+              "rate": 0.092465,
+              "interaction": -0.002395,
+              "contribution": 0.091999,
+              "share_of_abs_movement": 0.223894
+            },
+            {
+              "segment": "other lanes",
+              "share_from": 0.241064,
+              "share_to": 0.23328,
+              "rate_from": 3.699942,
+              "rate_to": 4.046221,
+              "n_from": 1713.0,
+              "n_to": 1601.0,
+              "mix": 0.000495,
+              "rate": 0.083475,
+              "interaction": -0.002695,
+              "contribution": 0.081275,
+              "share_of_abs_movement": 0.197796
+            },
+            {
+              "segment": "SP>SP",
+              "share_from": 0.329158,
+              "share_to": 0.346496,
+              "rate_from": 4.099188,
+              "rate_to": 4.288898,
+              "n_from": 2339.0,
+              "n_to": 2378.0,
+              "mix": 0.005819,
+              "rate": 0.062445,
+              "interaction": 0.003289,
+              "contribution": 0.071552,
+              "share_of_abs_movement": 0.174134
+            },
+            {
+              "segment": "SP>MG",
+              "share_from": 0.083591,
+              "share_to": 0.074749,
+              "rate_from": 3.572391,
+              "rate_to": 4.105263,
+              "n_from": 594.0,
+              "n_to": 513.0,
+              "mix": 0.001691,
+              "rate": 0.044544,
+              "interaction": -0.004712,
+              "contribution": 0.041522,
+              "share_of_abs_movement": 0.101051
+            },
+            {
+              "segment": "SP>SC",
+              "share_from": 0.024064,
+              "share_to": 0.025208,
+              "rate_from": 3.578947,
+              "rate_to": 4.410405,
+              "n_from": 171.0,
+              "n_to": 173.0,
+              "mix": -0.000211,
+              "rate": 0.020008,
+              "interaction": 0.000951,
+              "contribution": 0.020748,
+              "share_of_abs_movement": 0.050493
+            },
+            {
+              "segment": "SP>RS",
+              "share_from": 0.0387,
+              "share_to": 0.035262,
+              "rate_from": 3.709091,
+              "rate_to": 4.227273,
+              "n_from": 275.0,
+              "n_to": 242.0,
+              "mix": 0.000187,
+              "rate": 0.020053,
+              "interaction": -0.001782,
+              "contribution": 0.018459,
+              "share_of_abs_movement": 0.044923
+            },
+            {
+              "segment": "SP>PR",
+              "share_from": 0.035322,
+              "share_to": 0.034679,
+              "rate_from": 3.768924,
+              "rate_to": 4.298319,
+              "n_from": 251.0,
+              "n_to": 238.0,
+              "mix": -3e-06,
+              "rate": 0.018699,
+              "interaction": -0.000341,
+              "contribution": 0.018355,
+              "share_of_abs_movement": 0.04467
+            },
+            {
+              "segment": "RJ>SP",
+              "share_from": 0.01154,
+              "share_to": 0.015299,
+              "rate_from": 3.097561,
+              "rate_to": 4.180952,
+              "n_from": 82.0,
+              "n_to": 105.0,
+              "mix": -0.002504,
+              "rate": 0.012502,
+              "interaction": 0.004073,
+              "contribution": 0.014071,
+              "share_of_abs_movement": 0.034244
+            }
+          ],
+          "n_segments": 16,
+          "top3_share_of_abs_movement": 0.595825
+        },
+        "fulfilment_leg": {
+          "kpi_from": 3.76358,
+          "kpi_to": 4.169897,
+          "delta": 0.406316,
+          "mix_effect": 0.016545,
+          "rate_effect": 0.39176,
+          "interaction": -0.001989,
+          "surprise_js": 0.002935,
+          "residual": -0.0,
+          "simpson_paradox": false,
+          "share_of_segments_improving": 1.0,
+          "top_segments": [
+            {
+              "segment": "seller_on_time_handover",
+              "share_from": 0.911343,
+              "share_to": 0.937199,
+              "rate_from": 3.820414,
+              "rate_to": 4.205379,
+              "n_from": 6476.0,
+              "n_to": 6432.0,
+              "mix": 0.00147,
+              "rate": 0.350835,
+              "interaction": 0.009954,
+              "contribution": 0.362259,
+              "share_of_abs_movement": 0.891569
+            },
+            {
+              "segment": "seller_late_handover",
+              "share_from": 0.084154,
+              "share_to": 0.059595,
+              "rate_from": 3.279264,
+              "rate_to": 3.762836,
+              "n_from": 598.0,
+              "n_to": 409.0,
+              "mix": 0.011894,
+              "rate": 0.040695,
+              "interaction": -0.011876,
+              "contribution": 0.040713,
+              "share_of_abs_movement": 0.1002
+            },
+            {
+              "segment": "not_handed_over",
+              "share_from": 0.004503,
+              "share_to": 0.003206,
+              "rate_from": 1.3125,
+              "rate_to": 1.363636,
+              "n_from": 32.0,
+              "n_to": 22.0,
+              "mix": 0.003181,
+              "rate": 0.00023,
+              "interaction": -6.6e-05,
+              "contribution": 0.003345,
+              "share_of_abs_movement": 0.008231
+            }
+          ],
+          "n_segments": 3,
+          "top3_share_of_abs_movement": 1.0
         }
       }
     }

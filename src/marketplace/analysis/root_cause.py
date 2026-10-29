@@ -30,7 +30,8 @@ from marketplace.analysis.common import WINDOW_END, df, write_report
 from marketplace.metrics import MetricsLayer
 
 KPIS = ["gmv", "on_time_delivery_rate", "avg_review_score"]
-DIMENSIONS = ["customer_state", "category", "seller_tier"]
+DIMENSIONS = ["customer_state", "category", "seller_tier", "seller_state", "lane_top", "fulfilment_leg"]
+NETWORK_WIDE_VOLUME_SHARE = 0.8
 TOP_MOVES = 2
 
 
@@ -67,8 +68,28 @@ def _js(p: pd.Series, q: pd.Series) -> float:
     return 0.5 * kl(p, m) + 0.5 * kl(q, m)
 
 
+def mix_rate_split(n0: pd.Series, d0: pd.Series, n1: pd.Series, d1: pd.Series) -> dict:
+    """Pure maths of the ratio decomposition R = sum(w_i r_i): centred mix, rate, interaction."""
+    w0, w1 = d0 / d0.sum(), d1 / d1.sum()
+    r0 = n0 / d0.replace(0, np.nan)
+    r1 = n1 / d1.replace(0, np.nan)
+    # Segments absent in one period: use the other period's rate (contributes via mix only)
+    r0f, r1f = r0.fillna(r1).fillna(0), r1.fillna(r0).fillna(0)
+    total0, total1 = n0.sum() / d0.sum(), n1.sum() / d1.sum()
+    # Centred mix term: moving share INTO a segment helps only if that segment beats the
+    # average. Same total as dw * r0 because sum(dw) = 0, but per-segment values are readable.
+    mix = (w1 - w0) * (r0f - total0)
+    rate = w0 * (r1f - r0f)
+    inter = (w1 - w0) * (r1f - r0f)
+    return {"w0": w0, "w1": w1, "r0": r0, "r1": r1, "mix": mix, "rate": rate, "inter": inter,
+            "total0": total0, "total1": total1}
+
+
+TOP_LANES = 15
+
+
 def decompose(ml: MetricsLayer, kpi: str, dim: str, m0: str, m1: str) -> dict:
-    by = "primary_seller_id" if dim == "seller_tier" else dim
+    by = {"seller_tier": "primary_seller_id", "lane_top": "lane"}.get(dim, dim)
     comp = ml.components(
         kpi, by=by, grain="month", start=m0, end=pd.Timestamp(m1) + pd.offsets.MonthEnd(0)
     )
@@ -77,6 +98,11 @@ def decompose(ml: MetricsLayer, kpi: str, dim: str, m0: str, m1: str) -> dict:
     if dim == "seller_tier":
         tiers = seller_tiers(m0)
         comp["segment"] = comp["segment"].map(tiers).fillna("new_seller")
+        comp = comp.groupby(["period", "segment"], as_index=False)[["num", "den"]].sum(min_count=1)
+    if dim == "lane_top":
+        vol = comp.groupby("segment")["num" if ml.metrics[kpi]["type"] == "simple" else "den"].sum()
+        top = set(vol.sort_values(ascending=False).head(TOP_LANES).index)
+        comp["segment"] = comp["segment"].where(comp["segment"].isin(top), "other lanes")
         comp = comp.groupby(["period", "segment"], as_index=False)[["num", "den"]].sum(min_count=1)
     comp["segment"] = comp["segment"].fillna("unknown")
     wide = comp.pivot_table(
@@ -99,18 +125,10 @@ def decompose(ml: MetricsLayer, kpi: str, dim: str, m0: str, m1: str) -> dict:
         }
     else:
         d0, d1 = wide[("den", m0)], wide[("den", m1)]
-        w0, w1 = d0 / d0.sum(), d1 / d1.sum()
-        r0 = n0 / d0.replace(0, np.nan)
-        r1 = n1 / d1.replace(0, np.nan)
-        # Segments absent in one period: use the other period's rate (contributes via mix only)
-        r0f, r1f = r0.fillna(r1).fillna(0), r1.fillna(r0).fillna(0)
-        total0, total1 = n0.sum() / d0.sum(), n1.sum() / d1.sum()
-        # Centred mix term: moving share INTO a segment helps only if that segment is better
-        # than the overall average. Sums to the same total as dw * r0 because sum(dw) = 0,
-        # but the per-segment numbers are interpretable.
-        mix = (w1 - w0) * (r0f - total0)
-        rate = w0 * (r1f - r0f)
-        inter = (w1 - w0) * (r1f - r0f)
+        mr = mix_rate_split(n0, d0, n1, d1)
+        w0, w1, r0, r1 = mr["w0"], mr["w1"], mr["r0"], mr["r1"]
+        mix, rate, inter = mr["mix"], mr["rate"], mr["inter"]
+        total0, total1 = mr["total0"], mr["total1"]
         seg = pd.DataFrame(
             {
                 "share_from": w0,
@@ -177,6 +195,80 @@ def find_moves(ml: MetricsLayer, kpi: str) -> list[tuple[str, str, float]]:
     return out
 
 
+def verdict(kpi: str, dims: dict) -> dict:
+    """Ops answer: name a driver only when one exists; otherwise say network-wide."""
+    best = max(dims, key=lambda d: dims[d]["surprise_js"])
+    d = dims[best]
+    if d.get("rate_effect") is None:
+        top = d["top_segments"].iloc[0]
+        return {"type": "segment", "dimension": best, "segment": str(top["segment"]),
+                "text": f"largest contributor: {best} = {top['segment']}"}
+    same_dir = []
+    for v in dims.values():
+        if v.get("share_of_segments_improving") is None:
+            continue
+        share = v["share_of_segments_improving"] if v["delta"] > 0 else 1 - v["share_of_segments_improving"]
+        same_dir.append(share)
+    broad = min(same_dir) if same_dir else 0
+    rate_dominant = abs(d["rate_effect"]) >= 0.8 * abs(d["delta"])
+    if rate_dominant and broad >= NETWORK_WIDE_VOLUME_SHARE:
+        return {"type": "network_wide", "share_of_volume_moving_with_kpi_min_over_dims": broad,
+                "text": "network-wide: no single segment driver (the move happened inside "
+                f"segments holding >= {broad:.0%} of volume in every dimension)"}
+    top = d["top_segments"].iloc[0]
+    return {"type": "segment", "dimension": best, "segment": str(top["segment"]),
+            "text": f"concentrated: {best} = {top['segment']}"}
+
+
+def stage_shapley(m0: str, m1: str) -> dict:
+    """On-time move split by process stage: promise length, seller stage (purchase -> carrier),
+    carrier transit. Each stage of month m1 is shifted to its m0 median level; Shapley values
+    over the 2^3 combinations add up to the explained part of the late-rate change."""
+    from itertools import combinations
+    from math import factorial
+
+    q = df(
+        f"""
+        select purchase_month m, promised_days::double promise,
+               date_diff('day', purchase_date, cast(delivered_to_customer_at as date))::double y,
+               (epoch(delivered_to_carrier_at) - epoch(purchased_at)) / 86400.0 seller_days,
+               carrier_transit_days transit
+        from marts.fct_orders
+        where is_delivered and is_revenue_order and purchase_month in ('{m0}', '{m1}')
+          and delivered_to_carrier_at is not null
+        """
+    )
+    q["m"] = pd.to_datetime(q["m"]).dt.strftime("%Y-%m-%d")
+    a, b = q[q.m == m0], q[q.m == m1]
+    med = {k: (float(a[k].median()), float(b[k].median())) for k in ("promise", "seller_days", "transit")}
+    shift = {"promise": med["promise"][0] - med["promise"][1],
+             "seller_days": med["seller_days"][0] - med["seller_days"][1],
+             "transit": med["transit"][0] - med["transit"][1]}
+
+    def late(S):
+        y = b["y"] + sum(shift[k] for k in S if k != "promise")
+        p = b["promise"] + (shift["promise"] if "promise" in S else 0)
+        return float(np.mean(y > p))
+
+    factors = list(shift)
+    n = len(factors)
+    phi = {}
+    for f in factors:
+        others = [x for x in factors if x != f]
+        v = 0.0
+        for k in range(n):
+            for S in combinations(others, k):
+                w = factorial(len(S)) * factorial(n - len(S) - 1) / factorial(n)
+                v += w * (late(set(S)) - late(set(S) | {f}))
+        phi[f] = v  # contribution of factor f to (late_m1 - late_counterfactual_all_shifted)
+    late0, late1 = float(np.mean(a.y > a.promise)), late(set())
+    explained = late1 - late(set(factors))
+    return {"medians_from_to": med, "late_rate_from": late0, "late_rate_to": late1,
+            "shapley_pp": {k: 100 * v for k, v in phi.items()}, "explained_pp": 100 * explained,
+            "unexplained_pp_distribution_shape": 100 * ((late1 - late0) - explained),
+            "reading": "Positive = this stage's change raised the late rate."}
+
+
 def headline(kpi: str, m0: str, m1: str, dims: dict) -> str:
     # Rank dimensions by surprise (how differently the segments moved), not by top-3 share,
     # which mechanically favours dimensions with few segments.
@@ -202,9 +294,13 @@ def main() -> int:
     ml = MetricsLayer.load()
     results = []
     for kpi in KPIS:
-        for m0, m1, z in find_moves(ml, kpi):
+        moves = find_moves(ml, kpi)
+        if kpi == "on_time_delivery_rate":  # the Feb-Mar 2018 slowdown, end to end
+            moves.append(("2018-01-01", "2018-03-01", float("nan")))
+        for m0, m1, z in moves:
             dims = {dim: decompose(ml, kpi, dim, m0, m1) for dim in DIMENSIONS}
             h = headline(kpi, m0, m1, dims)
+            v = verdict(kpi, dims)
             ranked = sorted(dims, key=lambda d: dims[d]["surprise_js"], reverse=True)
             results.append(
                 {
@@ -213,6 +309,8 @@ def main() -> int:
                     "to_month": m1,
                     "robust_z_of_change": z,
                     "headline": h,
+                    "verdict": v,
+                    "stages": stage_shapley(m0, m1) if kpi == "on_time_delivery_rate" else None,
                     "dimension_ranking_by_surprise": ranked,
                     "by_dimension": dims,
                 }

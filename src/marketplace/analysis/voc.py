@@ -5,7 +5,7 @@ Steps
   label   : zero-shot labelling with local Ollama qwen2.5:7b (temperature 0, JSON output).
             Labels are cached in artifacts/voc_llm_labels.csv (review_key -> label) so
             `make all` does not need the LLM; `make voc-relabel` re-runs it.
-  report  : accuracy / macro-F1 vs the hand-checked gold sample (artifacts/voc_gold_labels.csv),
+  report  : agreement / macro-F1 vs the labelled sets (artifacts/voc_gold_*.csv),
             an external sanity check (late_delivery/not_received labels vs the order's real
             delivery status), population-weighted reason shares, and reasons by seller / lane.
 
@@ -190,6 +190,46 @@ def _score(gold: pd.DataFrame, pred_col: str) -> dict:
     }
 
 
+def corrected_shares(gold: pd.DataFrame, pred: pd.Series, n_boot: int = 500) -> dict:
+    """Misclassification-corrected class shares: observed predicted shares q = M^T p, where
+    M[i, j] = P(pred=j | silver=i) is estimated on the silver set; solve for p >= 0 (NNLS),
+    renormalise, bootstrap the silver rows for a 95% CI."""
+    from scipy.optimize import nnls
+
+    labels = sorted(set(LABELS))
+    q = pred.value_counts(normalize=True).reindex(labels, fill_value=0).to_numpy()
+
+    def solve(g):
+        m = pd.crosstab(g.gold_label, g.rule_label).reindex(index=labels, columns=labels, fill_value=0)
+        rows = m.sum(axis=1).replace(0, np.nan)
+        mm = (m.T / rows).T.fillna(0)
+        for i in range(len(labels)):  # unseen true class: assume perfect classification
+            if rows.isna().iloc[i]:
+                mm.iloc[i, i] = 1.0
+        p, _ = nnls(mm.to_numpy().T, q)
+        return p / p.sum() if p.sum() else p
+
+    point = solve(gold)
+    rng = np.random.default_rng(3)
+    boots = np.array([solve(gold.iloc[rng.integers(0, len(gold), len(gold))]) for _ in range(n_boot)])
+    return {lab: {"observed": float(q[i]), "corrected": float(point[i]),
+                  "ci95": [float(np.quantile(boots[:, i], 0.025)), float(np.quantile(boots[:, i], 0.975))]}
+            for i, lab in enumerate(labels)}
+
+
+def cmd_rescore(path: str) -> None:
+    """Score rules and silver labels against a blind second-pass labelling once the template is filled."""
+    from marketplace.analysis.voc_rules import classify
+
+    t = pd.read_csv(path)
+    t = t[t["author_label"].notna() & (t["author_label"].astype(str).str.strip() != "")]
+    t["rule_label"] = [classify(None, m, int(sc)) for m, sc in zip(t.review_text_pt, t.stars, strict=True)]
+    silver = pd.concat([pd.read_csv(GOLD_FILE), pd.read_csv(ART / "voc_gold_holdout_labels.csv")])
+    t = t.merge(silver, on="review_key", how="left")
+    print(f"n={len(t)}  rules vs author: {(t.rule_label == t.author_label).mean():.3f}  "
+          f"silver vs author: {(t.gold_label == t.author_label).mean():.3f}")
+
+
 def cmd_report() -> None:
     from marketplace.analysis.voc_rules import classify
 
@@ -210,10 +250,9 @@ def cmd_report() -> None:
     gold_b = pd.read_csv(ART / "voc_gold_holdout_labels.csv").merge(pop, on="review_key")
     gold_ab = pd.concat([gold_a, gold_b])
     evaluation = {
-        "rules_gold_A_240_seen_before_rules": _score(gold_a, "rule_label"),
-        "rules_gold_B_160_fresh_holdout": _score(gold_b, "rule_label"),
-        "rules_gold_A_plus_B": _score(gold_ab, "rule_label"),
-        "llm_on_gold_items_it_labelled": _score(gold_ab, "llm_label"),
+        "rules_vs_silver_A_240_seen_before_rules": _score(gold_a, "rule_label"),
+        "rules_vs_silver_B_160_fresh_holdout": _score(gold_b, "rule_label"),
+        "rules_vs_silver_A_plus_B": _score(gold_ab, "rule_label"),
     }
     both = pop.dropna(subset=["llm_label"])
     agreement = {
@@ -282,17 +321,25 @@ def cmd_report() -> None:
                 "negative_1_2_star_with_text": int(len(neg)),
                 "by_stratum": pop.stratum.value_counts(),
             },
-            "gold": {
-                **evaluation["rules_gold_A_plus_B"],
-                "labeller": "hand-labelled blind by the project author (not a "
-                "native Portuguese speaker). Gold A (240) was read before the rules were written; "
-                "gold B (160) was drawn and labelled before any rule existed; rules were developed "
-                "on a disjoint dev sample. Spot-check recommended.",
+            "silver_labels": {
+                **evaluation["rules_vs_silver_A_plus_B"],
+                "status": "Single-annotator labels. Set A (240) was "
+                "read before the rules were written; set B (160) was drawn and labelled before any rule "
+                "existed; rules were developed on a disjoint dev sample. No inter-annotator agreement measured yet.",
+                "verification": "artifacts/voc_author_verification_template.csv (50 reviews) -> "
+                "`python -m marketplace.analysis.voc rescore <filled.csv>`",
             },
             "evaluation": evaluation,
             "rule_vs_llm": agreement,
             "external_validity": ext,
             "negative_review_reason_share_weighted": share,
+            "negative_share_corrected_for_misclassification": corrected_shares(
+                gold_ab[gold_ab.review_score <= 2], neg.rule_label),
+            "negative_on_time_share_corrected_for_misclassification": corrected_shares(
+                gold_ab[gold_ab.review_score <= 2], ontime_neg.rule_label),
+            "accuracy_by_star_stratum_silver_B": {
+                str(k): float((g.gold_label == g.rule_label).mean())
+                for k, g in gold_b.groupby("stratum")},
             "negative_on_time_review_reason_share": ontime_share,
             "incomplete_order_reviews_on_multi_item_orders": float((inc.n_items > 1).mean()),
         "incomplete_order_1_2_star_reviews": int((inc.review_score <= 2).sum()),
@@ -322,10 +369,9 @@ def cmd_report() -> None:
     pop[["review_key", "rule_label"]].to_csv(ART / "voc_rule_labels.csv", index=False)
     e = evaluation
     print(
-        f"rules gold A acc {e['rules_gold_A_240_seen_before_rules']['accuracy']:.3f}, "
-        f"gold B acc {e['rules_gold_B_160_fresh_holdout']['accuracy']:.3f} "
-        f"(macro-F1 {e['rules_gold_B_160_fresh_holdout']['macro_f1']:.3f}), "
-        f"LLM n={e['llm_on_gold_items_it_labelled']['n']} acc {e['llm_on_gold_items_it_labelled'].get('accuracy')}"
+        f"rules vs silver A {e['rules_vs_silver_A_240_seen_before_rules']['accuracy']:.3f}, "
+        f"silver B {e['rules_vs_silver_B_160_fresh_holdout']['accuracy']:.3f} "
+        f"(macro-F1 {e['rules_vs_silver_B_160_fresh_holdout']['macro_f1']:.3f})"
     )
     print(share.round(3).to_string())
     print(ext, agreement)
@@ -340,6 +386,7 @@ def main(argv=None) -> int:
         "holdout-export": cmd_holdout_export,
         "dev-export": cmd_dev_export,
         "report": cmd_report,
+        "rescore": lambda: cmd_rescore(sys.argv[2]),
     }[cmd]()
     return 0
 

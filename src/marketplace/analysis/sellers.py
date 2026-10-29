@@ -37,8 +37,6 @@ def scorecard() -> pd.DataFrame:
                    is_delivered, is_late, review_score, items_price_brl, freight_brl,
                    handling_days, delivered_to_carrier_at, shipping_limit_at
             from marts.fct_orders o
-            join (select order_id, max(shipping_limit_at) shipping_limit_at
-                  from marts.fct_order_items group by 1) i using (order_id)
             where purchase_date between '{START}' and '{WINDOW_END}'
         )
         select seller_id,
@@ -119,14 +117,11 @@ def pareto(s: pd.DataFrame) -> dict:
 
 def lanes() -> pd.DataFrame:
     rep = read_report("delivery_impact")
-    low_eff = rep["review"]["B_fe_controls_low_review"]["estimate"]
     lanes = df(
         f"""
         with o as (
-            select o.*, i.shipping_limit_at
+            select o.*
             from marts.fct_orders o
-            join (select order_id, max(shipping_limit_at) shipping_limit_at
-                  from marts.fct_order_items group by 1) i using (order_id)
             where is_revenue_order and is_delivered
               and purchase_date between '{START}' and '{WINDOW_END}')
         select lane, primary_seller_state as seller_state, customer_state,
@@ -151,11 +146,39 @@ def lanes() -> pd.DataFrame:
         f"where is_revenue_order and is_delivered and purchase_date between '{START}' and "
         f"'{WINDOW_END}'"
     )["r"].iloc[0]
+    # Lane-adjusted baseline: expected late rate of each order from distance, destination
+    # state, origin region and purchase month (no lane identity), i.e. what a lane "should"
+    # run at given where it goes and how far. Excess = actual - expected, floored at 0.
+    o = df(
+        f"""
+        select lane, is_late::int late, coalesce(seller_customer_km, 0) km,
+               seller_customer_km is null km_missing, customer_state, primary_seller_region,
+               cast(purchase_month as varchar) m
+        from marts.fct_orders where is_revenue_order and is_delivered
+          and purchase_date between '{START}' and '{WINDOW_END}'
+        """
+    )
+    X = pd.get_dummies(o[["customer_state", "primary_seller_region", "m"]].astype(str), drop_first=True)
+    X["log_km"] = np.log1p(o["km"])
+    X["log_km2"] = X["log_km"] ** 2
+    X["km_missing"] = o["km_missing"].astype(float)
+    X.insert(0, "const", 1.0)
+    beta, *_ = np.linalg.lstsq(X.to_numpy(float), o["late"].to_numpy(float), rcond=None)
+    o["expected"] = X.to_numpy(float) @ beta
+    exp_lane = o.groupby("lane")["expected"].mean()
     lanes["network_late_rate"] = net
-    lanes["excess_late_orders"] = (lanes["late_rate"] - net).clip(lower=0) * lanes[
-        "delivered_orders"
-    ]
-    lanes["low_reviews_avoidable"] = lanes["excess_late_orders"] * low_eff
+    lanes["expected_late_rate_lane_adjusted"] = lanes["lane"].map(exp_lane)
+    lanes["excess_late_orders_vs_network"] = (lanes["late_rate"] - net).clip(lower=0) * lanes["delivered_orders"]
+    lanes["excess_late_orders"] = (
+        (lanes["late_rate"] - lanes["expected_late_rate_lane_adjusted"]).clip(lower=0) * lanes["delivered_orders"])
+    # Value saves at the MARGIN: a fixed lane mostly turns 1-3-day-late orders into on-time ones,
+    # so use the 1-3-days-late dose-response, recorded (today's survey) and post-delivery.
+    def bin_eff(block):
+        return next(b["effect"] for b in block if b["bin"] == "1-3 late")
+    low_rec = bin_eff(rep["review"]["G_dose_response"]["low_review_fe"])
+    low_post = bin_eff(rep["review_post_delivery"]["G_dose_response"]["low_review_fe"])
+    lanes["low_reviews_avoidable"] = lanes["excess_late_orders"] * low_rec
+    lanes["low_reviews_avoidable_post_delivery"] = lanes["excess_late_orders"] * low_post
     lanes["gmv_on_excess_late_orders_brl"] = (
         lanes["excess_late_orders"] * lanes["gmv_brl"] / lanes["delivered_orders"]
     )
@@ -194,6 +217,12 @@ def main() -> int:
         "top10_excess_late_orders": float(ln.head(10).excess_late_orders.sum()),
         "low_reviews_avoidable_total": float(ln.low_reviews_avoidable.sum()),
         "low_reviews_avoidable_top10": float(ln.head(10).low_reviews_avoidable.sum()),
+        "low_reviews_avoidable_top10_post_delivery": float(ln.head(10).low_reviews_avoidable_post_delivery.sum()),
+        "excess_vs_network_top10_old_method": float(ln.sort_values("excess_late_orders_vs_network", ascending=False)
+                                                    .head(10).excess_late_orders_vs_network.sum()),
+        "attribution_note": "late_share_seller_handover_missed = share of a lane's late orders where the seller "
+        "handed over after the shipping limit; the remainder mixes carrier transit AND promise-setting error. "
+        "Olist data has no carrier identifier, so no carrier-level counterfactual is possible.",
         "gmv_on_excess_late_orders_top10_brl": float(
             ln.head(10).gmv_on_excess_late_orders_brl.sum()
         ),

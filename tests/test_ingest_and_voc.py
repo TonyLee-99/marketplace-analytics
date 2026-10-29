@@ -43,3 +43,17 @@ def test_macro_f1_toy():
 
     f1, per = macro_f1(pd.Series(["a", "a", "b"]), pd.Series(["a", "b", "b"]))
     assert abs(per["a"]["f1"] - 2 / 3) < 1e-12 and abs(f1 - 2 / 3) < 1e-12
+
+
+def test_rescore_with_silver_labels_gives_full_agreement(tmp_path, capsys):
+    import pandas as pd
+
+    from marketplace.analysis.voc import cmd_rescore
+
+    t = pd.read_csv(ROOT / "artifacts" / "voc_author_verification_template.csv")
+    silver = pd.read_csv(ROOT / "artifacts" / "voc_gold_holdout_labels.csv").set_index("review_key")
+    t["author_label"] = t.review_key.map(silver.gold_label)
+    f = tmp_path / "filled.csv"
+    t.to_csv(f, index=False)
+    cmd_rescore(str(f))
+    assert "silver vs author: 1.000" in capsys.readouterr().out

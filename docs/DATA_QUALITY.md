@@ -37,3 +37,7 @@ _Every count below is recomputed on each build; the handling column says where i
 | DQ30 | People (customer_unique_id) with more than one delivery zip over time | 250 | Modelled as SCD2 history in dim_customer_location_history. |
 | DQ31 | Orders with items from more than one seller | 1,278 | Order-level seller = primary seller (largest price share); item-level facts keep every seller. |
 | DQ32 | Estimated delivery date stored as midnight timestamp (it is a date) | 0 | 0 non-midnight values: cast to DATE; on-time compares dates (timestamp compare would mis-count same-day deliveries as late). |
+| DQ20b | Orders handed to the carrier before they were APPROVED (negative handling time) | 1,359 | Kept; handling_days is negative for these. Stage analyses use medians; flagged as a source timestamp issue. |
+| DQ33 | Reviews of LATE delivered orders answered before the parcel arrived | 4,473 | Survey fires ~2 days after the promised date. Review effects are reported for all reviews AND post-delivery reviews only (delivery_impact.json). |
+| DQ34 | Delivered revenue orders with no seller-customer distance (zip not geocoded) | 477 | Models use a missing-distance indicator plus 0 km fill (no silent imputation). |
+| DQ35 | Revenue orders never delivered (shipped/processing/invoiced/approved/created) | 1,729 | Counted as LATE in promise-policy evaluation; excluded from review regressions (no delivery date). |

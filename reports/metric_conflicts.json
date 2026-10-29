@@ -28,9 +28,10 @@
       "overcount_pct": 0.0339
     },
     "repeat_rate": {
-      "governed_lifetime_share_of_people_with_2plus_orders": 0.0304,
+      "governed_lifetime_share_bought_on_2plus_days": 0.0217,
+      "rejected_counting_same_day_orders": 0.0304,
       "rejected_customer_id_based": 0.0,
-      "governed_returning_customer_share_all_time": 0.0304
+      "governed_returning_customer_share_all_time": 0.0217
     },
     "resolution": "metrics.yml pins every customer metric to customer_unique_id; dim_customers is built at that grain."
   },

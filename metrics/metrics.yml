@@ -91,19 +91,20 @@ metrics:
     label: Returning-customer share
     type: ratio
     model: orders
-    numerator: {agg: count_distinct, expr: customer_unique_id, filter: "is_revenue_order and customer_order_number >= 2"}
+    numerator: {agg: count_distinct, expr: customer_unique_id, filter: "is_revenue_order and customer_purchase_day_number >= 2"}
     denominator: {agg: count_distinct, expr: customer_unique_id, filter: is_revenue_order}
     unit: ratio
     owner: Growth
     grain: person; bucketed by purchase_date
     definition: >
-      Share of the period's active customers whose order in the period was their 2nd or later
-      revenue order ever (lifetime order number computed on customer_unique_id).
+      Share of the period's active customers who bought on a later calendar DAY than their
+      first purchase (customer_purchase_day_number >= 2, computed on customer_unique_id).
+      Same-day split baskets are not repeat purchases.
     caveats:
       - Early months are mechanically low (nobody has history yet).
-      - For the cohort view (share of new customers who ever return) see reports/cohorts.json.
+      - Counting every 2nd+ order (incl. same-day baskets) gives 3.04% lifetime instead of 2.17%.
     target: {basis: "illustrative: 5% returning share", kind: fixed, value: 0.05}
-    rejected_alternatives: [repeat_rate_by_customer_id]
+    rejected_alternatives: [repeat_rate_counting_same_day_orders, repeat_rate_by_customer_id]
 
   - name: on_time_delivery_rate
     label: On-time delivery rate
@@ -289,6 +290,10 @@ rejected_alternatives:
     sql: "count(distinct customer_id) filter (where is_revenue_order)"
     model: orders
     why_rejected: customer_id is generated per order, so one person can appear as many customers.
+  repeat_rate_counting_same_day_orders:
+    sql: "count(distinct customer_unique_id) filter (where is_revenue_order and customer_order_number >= 2) * 1.0 / count(distinct customer_unique_id) filter (where is_revenue_order)"
+    model: orders
+    why_rejected: 30% of "next orders" are placed the same day as the first (split baskets); they say nothing about loyalty and inflate the repeat rate by 40%.
   repeat_rate_by_customer_id:
     sql: "count(distinct customer_id) filter (where is_revenue_order and n_orders_for_customer_id >= 2) * 1.0 / count(distinct customer_id) filter (where is_revenue_order)"
     model: orders

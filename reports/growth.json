@@ -1224,5 +1224,205 @@
       "share_of_gmv_to": 0.022648,
       "growth_pct": 1.624833
     }
-  ]
+  ],
+  "supply_side": {
+    "monthly": [
+      {
+        "m": "2017-01",
+        "active_sellers": 226,
+        "gmv": 120098.27,
+        "gmv_new_sellers": 62735.23,
+        "new_sellers": 153,
+        "gmv_per_seller": 531.408274
+      },
+      {
+        "m": "2017-02",
+        "active_sellers": 425,
+        "gmv": 244959.35,
+        "gmv_new_sellers": 87586.03,
+        "new_sellers": 230,
+        "gmv_per_seller": 576.374941
+      },
+      {
+        "m": "2017-03",
+        "active_sellers": 490,
+        "gmv": 368341.32,
+        "gmv_new_sellers": 72804.63,
+        "new_sellers": 168,
+        "gmv_per_seller": 751.71698
+      },
+      {
+        "m": "2017-04",
+        "active_sellers": 503,
+        "gmv": 353842.98,
+        "gmv_new_sellers": 35057.7,
+        "new_sellers": 116,
+        "gmv_per_seller": 703.465169
+      },
+      {
+        "m": "2017-05",
+        "active_sellers": 577,
+        "gmv": 503159.19,
+        "gmv_new_sellers": 54661.54,
+        "new_sellers": 121,
+        "gmv_per_seller": 872.026326
+      },
+      {
+        "m": "2017-06",
+        "active_sellers": 534,
+        "gmv": 429916.61,
+        "gmv_new_sellers": 31303.89,
+        "new_sellers": 75,
+        "gmv_per_seller": 805.087285
+      },
+      {
+        "m": "2017-07",
+        "active_sellers": 602,
+        "gmv": 492287.3,
+        "gmv_new_sellers": 31549.06,
+        "new_sellers": 115,
+        "gmv_per_seller": 817.75299
+      },
+      {
+        "m": "2017-08",
+        "active_sellers": 700,
+        "gmv": 568245.79,
+        "gmv_new_sellers": 77698.3,
+        "new_sellers": 126,
+        "gmv_per_seller": 811.7797
+      },
+      {
+        "m": "2017-09",
+        "active_sellers": 726,
+        "gmv": 621415.91,
+        "gmv_new_sellers": 31378.07,
+        "new_sellers": 125,
+        "gmv_per_seller": 855.94478
+      },
+      {
+        "m": "2017-10",
+        "active_sellers": 773,
+        "gmv": 660179.62,
+        "gmv_new_sellers": 73937.06,
+        "new_sellers": 147,
+        "gmv_per_seller": 854.048668
+      },
+      {
+        "m": "2017-11",
+        "active_sellers": 960,
+        "gmv": 1003862.14,
+        "gmv_new_sellers": 108107.88,
+        "new_sellers": 192,
+        "gmv_per_seller": 1045.689729
+      },
+      {
+        "m": "2017-12",
+        "active_sellers": 859,
+        "gmv": 742183.79,
+        "gmv_new_sellers": 31634.49,
+        "new_sellers": 88,
+        "gmv_per_seller": 864.009069
+      },
+      {
+        "m": "2018-01",
+        "active_sellers": 968,
+        "gmv": 945456.29,
+        "gmv_new_sellers": 64573.58,
+        "new_sellers": 141,
+        "gmv_per_seller": 976.711043
+      },
+      {
+        "m": "2018-02",
+        "active_sellers": 933,
+        "gmv": 837895.43,
+        "gmv_new_sellers": 40141.13,
+        "new_sellers": 116,
+        "gmv_per_seller": 898.065841
+      },
+      {
+        "m": "2018-03",
+        "active_sellers": 993,
+        "gmv": 981051.06,
+        "gmv_new_sellers": 48866.32,
+        "new_sellers": 111,
+        "gmv_per_seller": 987.966828
+      },
+      {
+        "m": "2018-04",
+        "active_sellers": 1116,
+        "gmv": 993592.98,
+        "gmv_new_sellers": 95757.54,
+        "new_sellers": 199,
+        "gmv_per_seller": 890.31629
+      },
+      {
+        "m": "2018-05",
+        "active_sellers": 1107,
+        "gmv": 992871.75,
+        "gmv_new_sellers": 60110.2,
+        "new_sellers": 169,
+        "gmv_per_seller": 896.903117
+      },
+      {
+        "m": "2018-06",
+        "active_sellers": 1168,
+        "gmv": 863265.53,
+        "gmv_new_sellers": 55843.29,
+        "new_sellers": 190,
+        "gmv_per_seller": 739.0972
+      },
+      {
+        "m": "2018-07",
+        "active_sellers": 1245,
+        "gmv": 878044.27,
+        "gmv_new_sellers": 82295.63,
+        "new_sellers": 186,
+        "gmv_per_seller": 705.256442
+      },
+      {
+        "m": "2018-08",
+        "active_sellers": 1266,
+        "gmv": 848860.1,
+        "gmv_new_sellers": 66517.79,
+        "new_sellers": 151,
+        "gmv_per_seller": 670.505608
+      }
+    ],
+    "plateau": {
+      "avg_monthly_gmv_nov17_feb18": 882349.4125,
+      "avg_monthly_gmv_mar_may_2018": 989171.93,
+      "avg_monthly_gmv_jun_aug_2018": 863389.966667,
+      "jun_aug_vs_mar_may": -0.127159
+    },
+    "jun_aug_vs_mar_may_seller_tree": {
+      "gmv_from": 989171.93,
+      "gmv_to": 863389.966667,
+      "pct_change": -0.127159,
+      "drivers": {
+        "active_sellers": {
+          "log_change": 0.134503,
+          "contribution_brl": 124395.538168
+        },
+        "gmv_per_seller": {
+          "log_change": -0.270504,
+          "contribution_brl": -250177.501501
+        }
+      },
+      "sellers_from": 1072.0,
+      "sellers_to": 1226.333333,
+      "gmv_per_seller_from": 922.735009,
+      "gmv_per_seller_to": 704.041832
+    },
+    "new_seller_gmv_share_2018": 0.070032,
+    "funnel": {
+      "mqls": 8000.0,
+      "won": 842.0,
+      "sold": 379.0,
+      "gmv_from_funnel_sellers": 674005.39,
+      "win_rate": 0.10525,
+      "sold_rate_of_won": 0.450119,
+      "funnel_seller_share_of_2018_gmv": 0.091813
+    },
+    "sample_note": "Olist describes the public file as '100k orders from 2016 to 2018'; it does not say whether it is complete. Internal signs of an extract: Nov-2016 has no orders and capture stops on 2018-08-29. Read levels as sample-level and month-to-month trends with caution."
+  }
 }

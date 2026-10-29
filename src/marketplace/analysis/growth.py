@@ -77,6 +77,67 @@ def segment_contribution(dim: str, a: tuple, b: tuple, top: int = 8) -> list[dic
     return seg.sort_values("delta", ascending=False).head(top).to_dict(orient="records")
 
 
+def supply_side(ml: MetricsLayer) -> dict:
+    """Seller-side view: GMV = active sellers x GMV per active seller; new vs existing sellers;
+    the MQL -> won -> first-sale funnel; and the plateau since Nov-2017."""
+    m = df(
+        """
+        with first_sale as (select seller_id, min(purchase_month) first_m from marts.fct_order_items
+                            where is_revenue_order group by 1)
+        select i.purchase_month m, count(distinct i.seller_id) active_sellers, sum(i.price_brl)::double gmv,
+               sum(i.price_brl) filter (where f.first_m = i.purchase_month)::double gmv_new_sellers,
+               count(distinct i.seller_id) filter (where f.first_m = i.purchase_month) new_sellers
+        from marts.fct_order_items i join first_sale f using (seller_id)
+        where i.is_revenue_order and i.purchase_month between '2017-01-01' and '2018-08-01'
+        group by 1 order by 1
+        """
+    )
+    m["gmv_per_seller"] = m["gmv"] / m["active_sellers"]
+    m["m"] = pd.to_datetime(m["m"]).dt.strftime("%Y-%m")
+    g = m.set_index("m")
+
+    def lmdi(a, b):
+        A = g.loc[a].sum() if isinstance(a, list) else g.loc[a]
+        B = g.loc[b].sum() if isinstance(b, list) else g.loc[b]
+        na, nb = (len(a) if isinstance(a, list) else 1), (len(b) if isinstance(b, list) else 1)
+        ga, gb = A["gmv"] / na, B["gmv"] / nb
+        sa, sb = A["active_sellers"] / na, B["active_sellers"] / nb
+        ln = np.log(gb / ga)
+        parts = {"active_sellers": np.log(sb / sa), "gmv_per_seller": np.log((gb / sb) / (ga / sa))}
+        return {"gmv_from": ga, "gmv_to": gb, "pct_change": gb / ga - 1,
+                "drivers": {k: {"log_change": v, "contribution_brl": (gb - ga) * v / ln} for k, v in parts.items()},
+                "sellers_from": sa, "sellers_to": sb, "gmv_per_seller_from": ga / sa, "gmv_per_seller_to": gb / sb}
+
+    mam, jja = ["2018-03", "2018-04", "2018-05"], ["2018-06", "2018-07", "2018-08"]
+    funnel = df(
+        """
+        select count(*) mqls, count(*) filter (where is_won) won, count(*) filter (where has_sold) sold,
+               sum(seller_gmv_brl) filter (where has_sold)::double gmv_from_funnel_sellers
+        from marts.fct_seller_funnel
+        """
+    ).iloc[0].to_dict()
+    gmv_2018 = ml.value("gmv", start="2018-01-01", end="2018-08-31")
+    return {
+        "monthly": m,
+        "plateau": {
+            "avg_monthly_gmv_nov17_feb18": float(g.loc["2017-11":"2018-02", "gmv"].mean()),
+            "avg_monthly_gmv_mar_may_2018": float(g.loc[mam, "gmv"].mean()),
+            "avg_monthly_gmv_jun_aug_2018": float(g.loc[jja, "gmv"].mean()),
+            "jun_aug_vs_mar_may": float(g.loc[jja, "gmv"].mean() / g.loc[mam, "gmv"].mean() - 1),
+        },
+        "jun_aug_vs_mar_may_seller_tree": lmdi(mam, jja),
+        "new_seller_gmv_share_2018": float(g.loc["2018-01":"2018-08", "gmv_new_sellers"].sum()
+                                           / g.loc["2018-01":"2018-08", "gmv"].sum()),
+        "funnel": {**{k: float(v) for k, v in funnel.items()},
+                   "win_rate": float(funnel["won"] / funnel["mqls"]),
+                   "sold_rate_of_won": float(funnel["sold"] / funnel["won"]),
+                   "funnel_seller_share_of_2018_gmv": float(funnel["gmv_from_funnel_sellers"] / gmv_2018)},
+        "sample_note": "Olist describes the public file as '100k orders from 2016 to 2018'; it does not say "
+        "whether it is complete. Internal signs of an extract: Nov-2016 has no orders and capture stops on "
+        "2018-08-29. Read levels as sample-level and month-to-month trends with caution.",
+    }
+
+
 def main() -> int:
     ml = MetricsLayer.load()
     m = tree(
@@ -116,6 +177,7 @@ def main() -> int:
             "ytd_jan_aug_2018_vs_2017": ytd,
             "ytd_category_contribution": segment_contribution("category", w17, w18),
             "ytd_state_contribution": segment_contribution("customer_state", w17, w18),
+            "supply_side": supply_side(ml),
         },
     )
     d = ytd["drivers"]

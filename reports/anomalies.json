@@ -1,4 +1,3409 @@
 {
+  "inflight_late_monitor": {
+    "definition": "share of open (undelivered, purchased <= 60 days ago) revenue orders already past the promised date, computed each day from data available that day",
+    "rule": "z >= 3 vs trailing 56-day median (1.4826*MAD scale), two consecutive days",
+    "sensitivity_28d_window_first_feb_mar_alert": "2018-03-22",
+    "volume_monitor_alerts_feb_mar_2018": 0,
+    "n_alert_days": 19,
+    "first_alert_by_incident": {
+      "feb_mar_2018_slowdown": "2018-03-30",
+      "truckers_strike_may_2018": null,
+      "black_friday_backlog_2017": "2017-12-22"
+    },
+    "series": [
+      {
+        "day": "2017-03-01",
+        "open_orders": 893,
+        "past_promise": 17,
+        "share_past_promise": 0.019037
+      },
+      {
+        "day": "2017-03-02",
+        "open_orders": 876,
+        "past_promise": 19,
+        "share_past_promise": 0.021689
+      },
+      {
+        "day": "2017-03-03",
+        "open_orders": 865,
+        "past_promise": 25,
+        "share_past_promise": 0.028902
+      },
+      {
+        "day": "2017-03-04",
+        "open_orders": 924,
+        "past_promise": 27,
+        "share_past_promise": 0.029221
+      },
+      {
+        "day": "2017-03-05",
+        "open_orders": 990,
+        "past_promise": 27,
+        "share_past_promise": 0.027273
+      },
+      {
+        "day": "2017-03-06",
+        "open_orders": 1013,
+        "past_promise": 26,
+        "share_past_promise": 0.025666
+      },
+      {
+        "day": "2017-03-07",
+        "open_orders": 1012,
+        "past_promise": 32,
+        "share_past_promise": 0.031621
+      },
+      {
+        "day": "2017-03-08",
+        "open_orders": 1004,
+        "past_promise": 35,
+        "share_past_promise": 0.034861
+      },
+      {
+        "day": "2017-03-09",
+        "open_orders": 1027,
+        "past_promise": 40,
+        "share_past_promise": 0.038948
+      },
+      {
+        "day": "2017-03-10",
+        "open_orders": 1014,
+        "past_promise": 44,
+        "share_past_promise": 0.043393
+      },
+      {
+        "day": "2017-03-11",
+        "open_orders": 1063,
+        "past_promise": 51,
+        "share_past_promise": 0.047977
+      },
+      {
+        "day": "2017-03-12",
+        "open_orders": 1125,
+        "past_promise": 51,
+        "share_past_promise": 0.045333
+      },
+      {
+        "day": "2017-03-13",
+        "open_orders": 1098,
+        "past_promise": 48,
+        "share_past_promise": 0.043716
+      },
+      {
+        "day": "2017-03-14",
+        "open_orders": 1073,
+        "past_promise": 48,
+        "share_past_promise": 0.044734
+      },
+      {
+        "day": "2017-03-15",
+        "open_orders": 1114,
+        "past_promise": 58,
+        "share_past_promise": 0.052065
+      },
+      {
+        "day": "2017-03-16",
+        "open_orders": 1114,
+        "past_promise": 63,
+        "share_past_promise": 0.056553
+      },
+      {
+        "day": "2017-03-17",
+        "open_orders": 1084,
+        "past_promise": 68,
+        "share_past_promise": 0.062731
+      },
+      {
+        "day": "2017-03-18",
+        "open_orders": 1142,
+        "past_promise": 78,
+        "share_past_promise": 0.068301
+      },
+      {
+        "day": "2017-03-19",
+        "open_orders": 1192,
+        "past_promise": 78,
+        "share_past_promise": 0.065436
+      },
+      {
+        "day": "2017-03-20",
+        "open_orders": 1178,
+        "past_promise": 74,
+        "share_past_promise": 0.062818
+      },
+      {
+        "day": "2017-03-21",
+        "open_orders": 1134,
+        "past_promise": 80,
+        "share_past_promise": 0.070547
+      },
+      {
+        "day": "2017-03-22",
+        "open_orders": 1140,
+        "past_promise": 88,
+        "share_past_promise": 0.077193
+      },
+      {
+        "day": "2017-03-23",
+        "open_orders": 1151,
+        "past_promise": 96,
+        "share_past_promise": 0.083406
+      },
+      {
+        "day": "2017-03-24",
+        "open_orders": 1122,
+        "past_promise": 100,
+        "share_past_promise": 0.089127
+      },
+      {
+        "day": "2017-03-25",
+        "open_orders": 1178,
+        "past_promise": 101,
+        "share_past_promise": 0.085739
+      },
+      {
+        "day": "2017-03-26",
+        "open_orders": 1239,
+        "past_promise": 99,
+        "share_past_promise": 0.079903
+      },
+      {
+        "day": "2017-03-27",
+        "open_orders": 1204,
+        "past_promise": 91,
+        "share_past_promise": 0.075581
+      },
+      {
+        "day": "2017-03-28",
+        "open_orders": 1183,
+        "past_promise": 99,
+        "share_past_promise": 0.083686
+      },
+      {
+        "day": "2017-03-29",
+        "open_orders": 1140,
+        "past_promise": 95,
+        "share_past_promise": 0.083333
+      },
+      {
+        "day": "2017-03-30",
+        "open_orders": 1101,
+        "past_promise": 100,
+        "share_past_promise": 0.090827
+      },
+      {
+        "day": "2017-03-31",
+        "open_orders": 1070,
+        "past_promise": 102,
+        "share_past_promise": 0.095327
+      },
+      {
+        "day": "2017-04-01",
+        "open_orders": 1118,
+        "past_promise": 104,
+        "share_past_promise": 0.093023
+      },
+      {
+        "day": "2017-04-02",
+        "open_orders": 1178,
+        "past_promise": 101,
+        "share_past_promise": 0.085739
+      },
+      {
+        "day": "2017-04-03",
+        "open_orders": 1116,
+        "past_promise": 93,
+        "share_past_promise": 0.083333
+      },
+      {
+        "day": "2017-04-04",
+        "open_orders": 1093,
+        "past_promise": 100,
+        "share_past_promise": 0.091491
+      },
+      {
+        "day": "2017-04-05",
+        "open_orders": 1075,
+        "past_promise": 99,
+        "share_past_promise": 0.092093
+      },
+      {
+        "day": "2017-04-06",
+        "open_orders": 1083,
+        "past_promise": 99,
+        "share_past_promise": 0.091413
+      },
+      {
+        "day": "2017-04-07",
+        "open_orders": 1073,
+        "past_promise": 108,
+        "share_past_promise": 0.100652
+      },
+      {
+        "day": "2017-04-08",
+        "open_orders": 1121,
+        "past_promise": 108,
+        "share_past_promise": 0.096343
+      },
+      {
+        "day": "2017-04-09",
+        "open_orders": 1180,
+        "past_promise": 104,
+        "share_past_promise": 0.088136
+      },
+      {
+        "day": "2017-04-10",
+        "open_orders": 1138,
+        "past_promise": 92,
+        "share_past_promise": 0.080844
+      },
+      {
+        "day": "2017-04-11",
+        "open_orders": 1098,
+        "past_promise": 95,
+        "share_past_promise": 0.086521
+      },
+      {
+        "day": "2017-04-12",
+        "open_orders": 1043,
+        "past_promise": 100,
+        "share_past_promise": 0.095877
+      },
+      {
+        "day": "2017-04-13",
+        "open_orders": 992,
+        "past_promise": 101,
+        "share_past_promise": 0.101815
+      },
+      {
+        "day": "2017-04-14",
+        "open_orders": 1039,
+        "past_promise": 111,
+        "share_past_promise": 0.106833
+      },
+      {
+        "day": "2017-04-15",
+        "open_orders": 1074,
+        "past_promise": 109,
+        "share_past_promise": 0.10149
+      },
+      {
+        "day": "2017-04-16",
+        "open_orders": 1118,
+        "past_promise": 104,
+        "share_past_promise": 0.093023
+      },
+      {
+        "day": "2017-04-17",
+        "open_orders": 1051,
+        "past_promise": 95,
+        "share_past_promise": 0.09039
+      },
+      {
+        "day": "2017-04-18",
+        "open_orders": 972,
+        "past_promise": 100,
+        "share_past_promise": 0.102881
+      },
+      {
+        "day": "2017-04-19",
+        "open_orders": 944,
+        "past_promise": 104,
+        "share_past_promise": 0.110169
+      },
+      {
+        "day": "2017-04-20",
+        "open_orders": 908,
+        "past_promise": 114,
+        "share_past_promise": 0.125551
+      },
+      {
+        "day": "2017-04-21",
+        "open_orders": 964,
+        "past_promise": 115,
+        "share_past_promise": 0.119295
+      },
+      {
+        "day": "2017-04-22",
+        "open_orders": 1029,
+        "past_promise": 109,
+        "share_past_promise": 0.105928
+      },
+      {
+        "day": "2017-04-23",
+        "open_orders": 1108,
+        "past_promise": 106,
+        "share_past_promise": 0.095668
+      },
+      {
+        "day": "2017-04-24",
+        "open_orders": 1203,
+        "past_promise": 97,
+        "share_past_promise": 0.080632
+      },
+      {
+        "day": "2017-04-25",
+        "open_orders": 1298,
+        "past_promise": 96,
+        "share_past_promise": 0.07396
+      },
+      {
+        "day": "2017-04-26",
+        "open_orders": 1383,
+        "past_promise": 97,
+        "share_past_promise": 0.070137
+      },
+      {
+        "day": "2017-04-27",
+        "open_orders": 1368,
+        "past_promise": 99,
+        "share_past_promise": 0.072368
+      },
+      {
+        "day": "2017-04-28",
+        "open_orders": 1412,
+        "past_promise": 105,
+        "share_past_promise": 0.074363
+      },
+      {
+        "day": "2017-04-29",
+        "open_orders": 1470,
+        "past_promise": 114,
+        "share_past_promise": 0.077551
+      },
+      {
+        "day": "2017-04-30",
+        "open_orders": 1526,
+        "past_promise": 111,
+        "share_past_promise": 0.072739
+      },
+      {
+        "day": "2017-05-01",
+        "open_orders": 1630,
+        "past_promise": 108,
+        "share_past_promise": 0.066258
+      },
+      {
+        "day": "2017-05-02",
+        "open_orders": 1612,
+        "past_promise": 102,
+        "share_past_promise": 0.063275
+      },
+      {
+        "day": "2017-05-03",
+        "open_orders": 1599,
+        "past_promise": 109,
+        "share_past_promise": 0.068168
+      },
+      {
+        "day": "2017-05-04",
+        "open_orders": 1610,
+        "past_promise": 108,
+        "share_past_promise": 0.067081
+      },
+      {
+        "day": "2017-05-05",
+        "open_orders": 1600,
+        "past_promise": 111,
+        "share_past_promise": 0.069375
+      },
+      {
+        "day": "2017-05-06",
+        "open_orders": 1676,
+        "past_promise": 109,
+        "share_past_promise": 0.065036
+      },
+      {
+        "day": "2017-05-07",
+        "open_orders": 1760,
+        "past_promise": 105,
+        "share_past_promise": 0.059659
+      },
+      {
+        "day": "2017-05-08",
+        "open_orders": 1751,
+        "past_promise": 98,
+        "share_past_promise": 0.055968
+      },
+      {
+        "day": "2017-05-09",
+        "open_orders": 1705,
+        "past_promise": 103,
+        "share_past_promise": 0.060411
+      },
+      {
+        "day": "2017-05-10",
+        "open_orders": 1675,
+        "past_promise": 106,
+        "share_past_promise": 0.063284
+      },
+      {
+        "day": "2017-05-11",
+        "open_orders": 1669,
+        "past_promise": 119,
+        "share_past_promise": 0.0713
+      },
+      {
+        "day": "2017-05-12",
+        "open_orders": 1635,
+        "past_promise": 133,
+        "share_past_promise": 0.081346
+      },
+      {
+        "day": "2017-05-13",
+        "open_orders": 1660,
+        "past_promise": 144,
+        "share_past_promise": 0.086747
+      },
+      {
+        "day": "2017-05-14",
+        "open_orders": 1765,
+        "past_promise": 142,
+        "share_past_promise": 0.080453
+      },
+      {
+        "day": "2017-05-15",
+        "open_orders": 1716,
+        "past_promise": 122,
+        "share_past_promise": 0.071096
+      },
+      {
+        "day": "2017-05-16",
+        "open_orders": 1667,
+        "past_promise": 120,
+        "share_past_promise": 0.071986
+      },
+      {
+        "day": "2017-05-17",
+        "open_orders": 1641,
+        "past_promise": 115,
+        "share_past_promise": 0.070079
+      },
+      {
+        "day": "2017-05-18",
+        "open_orders": 1593,
+        "past_promise": 110,
+        "share_past_promise": 0.069052
+      },
+      {
+        "day": "2017-05-19",
+        "open_orders": 1577,
+        "past_promise": 112,
+        "share_past_promise": 0.071021
+      },
+      {
+        "day": "2017-05-20",
+        "open_orders": 1606,
+        "past_promise": 122,
+        "share_past_promise": 0.075965
+      },
+      {
+        "day": "2017-05-21",
+        "open_orders": 1741,
+        "past_promise": 121,
+        "share_past_promise": 0.0695
+      },
+      {
+        "day": "2017-05-22",
+        "open_orders": 1663,
+        "past_promise": 106,
+        "share_past_promise": 0.06374
+      },
+      {
+        "day": "2017-05-23",
+        "open_orders": 1558,
+        "past_promise": 105,
+        "share_past_promise": 0.067394
+      },
+      {
+        "day": "2017-05-24",
+        "open_orders": 1506,
+        "past_promise": 103,
+        "share_past_promise": 0.068393
+      },
+      {
+        "day": "2017-05-25",
+        "open_orders": 1438,
+        "past_promise": 101,
+        "share_past_promise": 0.070236
+      },
+      {
+        "day": "2017-05-26",
+        "open_orders": 1350,
+        "past_promise": 106,
+        "share_past_promise": 0.078519
+      },
+      {
+        "day": "2017-05-27",
+        "open_orders": 1390,
+        "past_promise": 116,
+        "share_past_promise": 0.083453
+      },
+      {
+        "day": "2017-05-28",
+        "open_orders": 1471,
+        "past_promise": 109,
+        "share_past_promise": 0.074099
+      },
+      {
+        "day": "2017-05-29",
+        "open_orders": 1432,
+        "past_promise": 99,
+        "share_past_promise": 0.069134
+      },
+      {
+        "day": "2017-05-30",
+        "open_orders": 1377,
+        "past_promise": 106,
+        "share_past_promise": 0.076979
+      },
+      {
+        "day": "2017-05-31",
+        "open_orders": 1333,
+        "past_promise": 112,
+        "share_past_promise": 0.084021
+      },
+      {
+        "day": "2017-06-01",
+        "open_orders": 1300,
+        "past_promise": 123,
+        "share_past_promise": 0.094615
+      },
+      {
+        "day": "2017-06-02",
+        "open_orders": 1287,
+        "past_promise": 125,
+        "share_past_promise": 0.097125
+      },
+      {
+        "day": "2017-06-03",
+        "open_orders": 1345,
+        "past_promise": 130,
+        "share_past_promise": 0.096654
+      },
+      {
+        "day": "2017-06-04",
+        "open_orders": 1442,
+        "past_promise": 127,
+        "share_past_promise": 0.088072
+      },
+      {
+        "day": "2017-06-05",
+        "open_orders": 1420,
+        "past_promise": 120,
+        "share_past_promise": 0.084507
+      },
+      {
+        "day": "2017-06-06",
+        "open_orders": 1403,
+        "past_promise": 115,
+        "share_past_promise": 0.081967
+      },
+      {
+        "day": "2017-06-07",
+        "open_orders": 1388,
+        "past_promise": 127,
+        "share_past_promise": 0.091499
+      },
+      {
+        "day": "2017-06-08",
+        "open_orders": 1388,
+        "past_promise": 132,
+        "share_past_promise": 0.095101
+      },
+      {
+        "day": "2017-06-09",
+        "open_orders": 1387,
+        "past_promise": 132,
+        "share_past_promise": 0.095169
+      },
+      {
+        "day": "2017-06-10",
+        "open_orders": 1434,
+        "past_promise": 137,
+        "share_past_promise": 0.095537
+      },
+      {
+        "day": "2017-06-11",
+        "open_orders": 1535,
+        "past_promise": 133,
+        "share_past_promise": 0.086645
+      },
+      {
+        "day": "2017-06-12",
+        "open_orders": 1515,
+        "past_promise": 125,
+        "share_past_promise": 0.082508
+      },
+      {
+        "day": "2017-06-13",
+        "open_orders": 1495,
+        "past_promise": 132,
+        "share_past_promise": 0.088294
+      },
+      {
+        "day": "2017-06-14",
+        "open_orders": 1466,
+        "past_promise": 133,
+        "share_past_promise": 0.090723
+      },
+      {
+        "day": "2017-06-15",
+        "open_orders": 1559,
+        "past_promise": 139,
+        "share_past_promise": 0.08916
+      },
+      {
+        "day": "2017-06-16",
+        "open_orders": 1501,
+        "past_promise": 132,
+        "share_past_promise": 0.087941
+      },
+      {
+        "day": "2017-06-17",
+        "open_orders": 1549,
+        "past_promise": 130,
+        "share_past_promise": 0.083925
+      },
+      {
+        "day": "2017-06-18",
+        "open_orders": 1633,
+        "past_promise": 130,
+        "share_past_promise": 0.079608
+      },
+      {
+        "day": "2017-06-19",
+        "open_orders": 1379,
+        "past_promise": 118,
+        "share_past_promise": 0.085569
+      },
+      {
+        "day": "2017-06-20",
+        "open_orders": 1465,
+        "past_promise": 124,
+        "share_past_promise": 0.084642
+      },
+      {
+        "day": "2017-06-21",
+        "open_orders": 1410,
+        "past_promise": 125,
+        "share_past_promise": 0.088652
+      },
+      {
+        "day": "2017-06-22",
+        "open_orders": 1337,
+        "past_promise": 126,
+        "share_past_promise": 0.094241
+      },
+      {
+        "day": "2017-06-23",
+        "open_orders": 1288,
+        "past_promise": 125,
+        "share_past_promise": 0.09705
+      },
+      {
+        "day": "2017-06-24",
+        "open_orders": 1338,
+        "past_promise": 130,
+        "share_past_promise": 0.09716
+      },
+      {
+        "day": "2017-06-25",
+        "open_orders": 1430,
+        "past_promise": 125,
+        "share_past_promise": 0.087413
+      },
+      {
+        "day": "2017-06-26",
+        "open_orders": 1321,
+        "past_promise": 121,
+        "share_past_promise": 0.091597
+      },
+      {
+        "day": "2017-06-27",
+        "open_orders": 1312,
+        "past_promise": 129,
+        "share_past_promise": 0.098323
+      },
+      {
+        "day": "2017-06-28",
+        "open_orders": 1272,
+        "past_promise": 125,
+        "share_past_promise": 0.09827
+      },
+      {
+        "day": "2017-06-29",
+        "open_orders": 1257,
+        "past_promise": 127,
+        "share_past_promise": 0.101034
+      },
+      {
+        "day": "2017-06-30",
+        "open_orders": 1237,
+        "past_promise": 127,
+        "share_past_promise": 0.102668
+      },
+      {
+        "day": "2017-07-01",
+        "open_orders": 1289,
+        "past_promise": 123,
+        "share_past_promise": 0.095423
+      },
+      {
+        "day": "2017-07-02",
+        "open_orders": 1378,
+        "past_promise": 120,
+        "share_past_promise": 0.087083
+      },
+      {
+        "day": "2017-07-03",
+        "open_orders": 1340,
+        "past_promise": 114,
+        "share_past_promise": 0.085075
+      },
+      {
+        "day": "2017-07-04",
+        "open_orders": 1328,
+        "past_promise": 120,
+        "share_past_promise": 0.090361
+      },
+      {
+        "day": "2017-07-05",
+        "open_orders": 1334,
+        "past_promise": 116,
+        "share_past_promise": 0.086957
+      },
+      {
+        "day": "2017-07-06",
+        "open_orders": 1352,
+        "past_promise": 122,
+        "share_past_promise": 0.090237
+      },
+      {
+        "day": "2017-07-07",
+        "open_orders": 1338,
+        "past_promise": 120,
+        "share_past_promise": 0.089686
+      },
+      {
+        "day": "2017-07-08",
+        "open_orders": 1395,
+        "past_promise": 126,
+        "share_past_promise": 0.090323
+      },
+      {
+        "day": "2017-07-09",
+        "open_orders": 1474,
+        "past_promise": 122,
+        "share_past_promise": 0.082768
+      },
+      {
+        "day": "2017-07-10",
+        "open_orders": 1452,
+        "past_promise": 113,
+        "share_past_promise": 0.077824
+      },
+      {
+        "day": "2017-07-11",
+        "open_orders": 1470,
+        "past_promise": 114,
+        "share_past_promise": 0.077551
+      },
+      {
+        "day": "2017-07-12",
+        "open_orders": 1460,
+        "past_promise": 114,
+        "share_past_promise": 0.078082
+      },
+      {
+        "day": "2017-07-13",
+        "open_orders": 1467,
+        "past_promise": 111,
+        "share_past_promise": 0.075665
+      },
+      {
+        "day": "2017-07-14",
+        "open_orders": 1477,
+        "past_promise": 114,
+        "share_past_promise": 0.077183
+      },
+      {
+        "day": "2017-07-15",
+        "open_orders": 1547,
+        "past_promise": 116,
+        "share_past_promise": 0.074984
+      },
+      {
+        "day": "2017-07-16",
+        "open_orders": 1655,
+        "past_promise": 115,
+        "share_past_promise": 0.069486
+      },
+      {
+        "day": "2017-07-17",
+        "open_orders": 1643,
+        "past_promise": 108,
+        "share_past_promise": 0.065733
+      },
+      {
+        "day": "2017-07-18",
+        "open_orders": 1673,
+        "past_promise": 112,
+        "share_past_promise": 0.066946
+      },
+      {
+        "day": "2017-07-19",
+        "open_orders": 1685,
+        "past_promise": 112,
+        "share_past_promise": 0.066469
+      },
+      {
+        "day": "2017-07-20",
+        "open_orders": 1692,
+        "past_promise": 115,
+        "share_past_promise": 0.067967
+      },
+      {
+        "day": "2017-07-21",
+        "open_orders": 1624,
+        "past_promise": 115,
+        "share_past_promise": 0.070813
+      },
+      {
+        "day": "2017-07-22",
+        "open_orders": 1669,
+        "past_promise": 117,
+        "share_past_promise": 0.070102
+      },
+      {
+        "day": "2017-07-23",
+        "open_orders": 1765,
+        "past_promise": 113,
+        "share_past_promise": 0.064023
+      },
+      {
+        "day": "2017-07-24",
+        "open_orders": 1727,
+        "past_promise": 108,
+        "share_past_promise": 0.062536
+      },
+      {
+        "day": "2017-07-25",
+        "open_orders": 1756,
+        "past_promise": 111,
+        "share_past_promise": 0.063212
+      },
+      {
+        "day": "2017-07-26",
+        "open_orders": 1597,
+        "past_promise": 116,
+        "share_past_promise": 0.072636
+      },
+      {
+        "day": "2017-07-27",
+        "open_orders": 1556,
+        "past_promise": 114,
+        "share_past_promise": 0.073265
+      },
+      {
+        "day": "2017-07-28",
+        "open_orders": 1506,
+        "past_promise": 113,
+        "share_past_promise": 0.075033
+      },
+      {
+        "day": "2017-07-29",
+        "open_orders": 1582,
+        "past_promise": 118,
+        "share_past_promise": 0.074589
+      },
+      {
+        "day": "2017-07-30",
+        "open_orders": 1688,
+        "past_promise": 116,
+        "share_past_promise": 0.06872
+      },
+      {
+        "day": "2017-07-31",
+        "open_orders": 1629,
+        "past_promise": 105,
+        "share_past_promise": 0.064457
+      },
+      {
+        "day": "2017-08-01",
+        "open_orders": 1581,
+        "past_promise": 106,
+        "share_past_promise": 0.067046
+      },
+      {
+        "day": "2017-08-02",
+        "open_orders": 1586,
+        "past_promise": 109,
+        "share_past_promise": 0.068726
+      },
+      {
+        "day": "2017-08-03",
+        "open_orders": 1552,
+        "past_promise": 107,
+        "share_past_promise": 0.068943
+      },
+      {
+        "day": "2017-08-04",
+        "open_orders": 1518,
+        "past_promise": 107,
+        "share_past_promise": 0.070487
+      },
+      {
+        "day": "2017-08-05",
+        "open_orders": 1592,
+        "past_promise": 111,
+        "share_past_promise": 0.069724
+      },
+      {
+        "day": "2017-08-06",
+        "open_orders": 1694,
+        "past_promise": 105,
+        "share_past_promise": 0.061983
+      },
+      {
+        "day": "2017-08-07",
+        "open_orders": 1659,
+        "past_promise": 101,
+        "share_past_promise": 0.06088
+      },
+      {
+        "day": "2017-08-08",
+        "open_orders": 1629,
+        "past_promise": 109,
+        "share_past_promise": 0.066912
+      },
+      {
+        "day": "2017-08-09",
+        "open_orders": 1594,
+        "past_promise": 113,
+        "share_past_promise": 0.070891
+      },
+      {
+        "day": "2017-08-10",
+        "open_orders": 1580,
+        "past_promise": 113,
+        "share_past_promise": 0.071519
+      },
+      {
+        "day": "2017-08-11",
+        "open_orders": 1524,
+        "past_promise": 111,
+        "share_past_promise": 0.072835
+      },
+      {
+        "day": "2017-08-12",
+        "open_orders": 1572,
+        "past_promise": 117,
+        "share_past_promise": 0.074427
+      },
+      {
+        "day": "2017-08-13",
+        "open_orders": 1656,
+        "past_promise": 113,
+        "share_past_promise": 0.068237
+      },
+      {
+        "day": "2017-08-14",
+        "open_orders": 1624,
+        "past_promise": 109,
+        "share_past_promise": 0.067118
+      },
+      {
+        "day": "2017-08-15",
+        "open_orders": 1645,
+        "past_promise": 114,
+        "share_past_promise": 0.069301
+      },
+      {
+        "day": "2017-08-16",
+        "open_orders": 1638,
+        "past_promise": 112,
+        "share_past_promise": 0.068376
+      },
+      {
+        "day": "2017-08-17",
+        "open_orders": 1623,
+        "past_promise": 116,
+        "share_past_promise": 0.071473
+      },
+      {
+        "day": "2017-08-18",
+        "open_orders": 1619,
+        "past_promise": 119,
+        "share_past_promise": 0.073502
+      },
+      {
+        "day": "2017-08-19",
+        "open_orders": 1691,
+        "past_promise": 124,
+        "share_past_promise": 0.073329
+      },
+      {
+        "day": "2017-08-20",
+        "open_orders": 1791,
+        "past_promise": 122,
+        "share_past_promise": 0.068118
+      },
+      {
+        "day": "2017-08-21",
+        "open_orders": 1758,
+        "past_promise": 117,
+        "share_past_promise": 0.066553
+      },
+      {
+        "day": "2017-08-22",
+        "open_orders": 1720,
+        "past_promise": 116,
+        "share_past_promise": 0.067442
+      },
+      {
+        "day": "2017-08-23",
+        "open_orders": 1646,
+        "past_promise": 114,
+        "share_past_promise": 0.069259
+      },
+      {
+        "day": "2017-08-24",
+        "open_orders": 1556,
+        "past_promise": 109,
+        "share_past_promise": 0.070051
+      },
+      {
+        "day": "2017-08-25",
+        "open_orders": 1460,
+        "past_promise": 105,
+        "share_past_promise": 0.071918
+      },
+      {
+        "day": "2017-08-26",
+        "open_orders": 1513,
+        "past_promise": 107,
+        "share_past_promise": 0.07072
+      },
+      {
+        "day": "2017-08-27",
+        "open_orders": 1628,
+        "past_promise": 106,
+        "share_past_promise": 0.065111
+      },
+      {
+        "day": "2017-08-28",
+        "open_orders": 1532,
+        "past_promise": 96,
+        "share_past_promise": 0.062663
+      },
+      {
+        "day": "2017-08-29",
+        "open_orders": 1514,
+        "past_promise": 100,
+        "share_past_promise": 0.06605
+      },
+      {
+        "day": "2017-08-30",
+        "open_orders": 1534,
+        "past_promise": 102,
+        "share_past_promise": 0.066493
+      },
+      {
+        "day": "2017-08-31",
+        "open_orders": 1520,
+        "past_promise": 109,
+        "share_past_promise": 0.071711
+      },
+      {
+        "day": "2017-09-01",
+        "open_orders": 1520,
+        "past_promise": 114,
+        "share_past_promise": 0.075
+      },
+      {
+        "day": "2017-09-02",
+        "open_orders": 1584,
+        "past_promise": 121,
+        "share_past_promise": 0.076389
+      },
+      {
+        "day": "2017-09-03",
+        "open_orders": 1705,
+        "past_promise": 118,
+        "share_past_promise": 0.069208
+      },
+      {
+        "day": "2017-09-04",
+        "open_orders": 1668,
+        "past_promise": 114,
+        "share_past_promise": 0.068345
+      },
+      {
+        "day": "2017-09-05",
+        "open_orders": 1651,
+        "past_promise": 109,
+        "share_past_promise": 0.066021
+      },
+      {
+        "day": "2017-09-06",
+        "open_orders": 1621,
+        "past_promise": 109,
+        "share_past_promise": 0.067242
+      },
+      {
+        "day": "2017-09-07",
+        "open_orders": 1712,
+        "past_promise": 120,
+        "share_past_promise": 0.070093
+      },
+      {
+        "day": "2017-09-08",
+        "open_orders": 1642,
+        "past_promise": 114,
+        "share_past_promise": 0.069428
+      },
+      {
+        "day": "2017-09-09",
+        "open_orders": 1707,
+        "past_promise": 126,
+        "share_past_promise": 0.073814
+      },
+      {
+        "day": "2017-09-10",
+        "open_orders": 1835,
+        "past_promise": 123,
+        "share_past_promise": 0.06703
+      },
+      {
+        "day": "2017-09-11",
+        "open_orders": 1776,
+        "past_promise": 117,
+        "share_past_promise": 0.065878
+      },
+      {
+        "day": "2017-09-12",
+        "open_orders": 1779,
+        "past_promise": 113,
+        "share_past_promise": 0.063519
+      },
+      {
+        "day": "2017-09-13",
+        "open_orders": 1773,
+        "past_promise": 115,
+        "share_past_promise": 0.064862
+      },
+      {
+        "day": "2017-09-14",
+        "open_orders": 1761,
+        "past_promise": 124,
+        "share_past_promise": 0.070415
+      },
+      {
+        "day": "2017-09-15",
+        "open_orders": 1734,
+        "past_promise": 126,
+        "share_past_promise": 0.072664
+      },
+      {
+        "day": "2017-09-16",
+        "open_orders": 1813,
+        "past_promise": 137,
+        "share_past_promise": 0.075565
+      },
+      {
+        "day": "2017-09-17",
+        "open_orders": 1917,
+        "past_promise": 133,
+        "share_past_promise": 0.069379
+      },
+      {
+        "day": "2017-09-18",
+        "open_orders": 1866,
+        "past_promise": 123,
+        "share_past_promise": 0.065916
+      },
+      {
+        "day": "2017-09-19",
+        "open_orders": 1763,
+        "past_promise": 104,
+        "share_past_promise": 0.05899
+      },
+      {
+        "day": "2017-09-20",
+        "open_orders": 1762,
+        "past_promise": 109,
+        "share_past_promise": 0.061862
+      },
+      {
+        "day": "2017-09-21",
+        "open_orders": 1752,
+        "past_promise": 109,
+        "share_past_promise": 0.062215
+      },
+      {
+        "day": "2017-09-22",
+        "open_orders": 1727,
+        "past_promise": 121,
+        "share_past_promise": 0.070064
+      },
+      {
+        "day": "2017-09-23",
+        "open_orders": 1764,
+        "past_promise": 128,
+        "share_past_promise": 0.072562
+      },
+      {
+        "day": "2017-09-24",
+        "open_orders": 1859,
+        "past_promise": 124,
+        "share_past_promise": 0.066703
+      },
+      {
+        "day": "2017-09-25",
+        "open_orders": 1757,
+        "past_promise": 116,
+        "share_past_promise": 0.066022
+      },
+      {
+        "day": "2017-09-26",
+        "open_orders": 1731,
+        "past_promise": 119,
+        "share_past_promise": 0.068746
+      },
+      {
+        "day": "2017-09-27",
+        "open_orders": 1725,
+        "past_promise": 126,
+        "share_past_promise": 0.073043
+      },
+      {
+        "day": "2017-09-28",
+        "open_orders": 1726,
+        "past_promise": 129,
+        "share_past_promise": 0.074739
+      },
+      {
+        "day": "2017-09-29",
+        "open_orders": 1676,
+        "past_promise": 139,
+        "share_past_promise": 0.082936
+      },
+      {
+        "day": "2017-09-30",
+        "open_orders": 1737,
+        "past_promise": 146,
+        "share_past_promise": 0.084053
+      },
+      {
+        "day": "2017-10-01",
+        "open_orders": 1819,
+        "past_promise": 136,
+        "share_past_promise": 0.074766
+      },
+      {
+        "day": "2017-10-02",
+        "open_orders": 1790,
+        "past_promise": 126,
+        "share_past_promise": 0.070391
+      },
+      {
+        "day": "2017-10-03",
+        "open_orders": 1791,
+        "past_promise": 132,
+        "share_past_promise": 0.073702
+      },
+      {
+        "day": "2017-10-04",
+        "open_orders": 1800,
+        "past_promise": 131,
+        "share_past_promise": 0.072778
+      },
+      {
+        "day": "2017-10-05",
+        "open_orders": 1789,
+        "past_promise": 135,
+        "share_past_promise": 0.075461
+      },
+      {
+        "day": "2017-10-06",
+        "open_orders": 1730,
+        "past_promise": 143,
+        "share_past_promise": 0.082659
+      },
+      {
+        "day": "2017-10-07",
+        "open_orders": 1781,
+        "past_promise": 158,
+        "share_past_promise": 0.088714
+      },
+      {
+        "day": "2017-10-08",
+        "open_orders": 1870,
+        "past_promise": 156,
+        "share_past_promise": 0.083422
+      },
+      {
+        "day": "2017-10-09",
+        "open_orders": 1824,
+        "past_promise": 146,
+        "share_past_promise": 0.080044
+      },
+      {
+        "day": "2017-10-10",
+        "open_orders": 1805,
+        "past_promise": 152,
+        "share_past_promise": 0.084211
+      },
+      {
+        "day": "2017-10-11",
+        "open_orders": 1765,
+        "past_promise": 144,
+        "share_past_promise": 0.081586
+      },
+      {
+        "day": "2017-10-12",
+        "open_orders": 1875,
+        "past_promise": 155,
+        "share_past_promise": 0.082667
+      },
+      {
+        "day": "2017-10-13",
+        "open_orders": 1850,
+        "past_promise": 140,
+        "share_past_promise": 0.075676
+      },
+      {
+        "day": "2017-10-14",
+        "open_orders": 1884,
+        "past_promise": 141,
+        "share_past_promise": 0.074841
+      },
+      {
+        "day": "2017-10-15",
+        "open_orders": 1992,
+        "past_promise": 133,
+        "share_past_promise": 0.066767
+      },
+      {
+        "day": "2017-10-16",
+        "open_orders": 1966,
+        "past_promise": 121,
+        "share_past_promise": 0.061546
+      },
+      {
+        "day": "2017-10-17",
+        "open_orders": 1939,
+        "past_promise": 123,
+        "share_past_promise": 0.063435
+      },
+      {
+        "day": "2017-10-18",
+        "open_orders": 1912,
+        "past_promise": 121,
+        "share_past_promise": 0.063285
+      },
+      {
+        "day": "2017-10-19",
+        "open_orders": 1885,
+        "past_promise": 113,
+        "share_past_promise": 0.059947
+      },
+      {
+        "day": "2017-10-20",
+        "open_orders": 1817,
+        "past_promise": 112,
+        "share_past_promise": 0.06164
+      },
+      {
+        "day": "2017-10-21",
+        "open_orders": 1859,
+        "past_promise": 107,
+        "share_past_promise": 0.057558
+      },
+      {
+        "day": "2017-10-22",
+        "open_orders": 2007,
+        "past_promise": 105,
+        "share_past_promise": 0.052317
+      },
+      {
+        "day": "2017-10-23",
+        "open_orders": 1940,
+        "past_promise": 101,
+        "share_past_promise": 0.052062
+      },
+      {
+        "day": "2017-10-24",
+        "open_orders": 1856,
+        "past_promise": 104,
+        "share_past_promise": 0.056034
+      },
+      {
+        "day": "2017-10-25",
+        "open_orders": 1795,
+        "past_promise": 122,
+        "share_past_promise": 0.067967
+      },
+      {
+        "day": "2017-10-26",
+        "open_orders": 1737,
+        "past_promise": 124,
+        "share_past_promise": 0.071387
+      },
+      {
+        "day": "2017-10-27",
+        "open_orders": 1657,
+        "past_promise": 128,
+        "share_past_promise": 0.077248
+      },
+      {
+        "day": "2017-10-28",
+        "open_orders": 1688,
+        "past_promise": 136,
+        "share_past_promise": 0.080569
+      },
+      {
+        "day": "2017-10-29",
+        "open_orders": 1814,
+        "past_promise": 134,
+        "share_past_promise": 0.07387
+      },
+      {
+        "day": "2017-10-30",
+        "open_orders": 1788,
+        "past_promise": 124,
+        "share_past_promise": 0.069351
+      },
+      {
+        "day": "2017-10-31",
+        "open_orders": 1712,
+        "past_promise": 119,
+        "share_past_promise": 0.069509
+      },
+      {
+        "day": "2017-11-01",
+        "open_orders": 1629,
+        "past_promise": 126,
+        "share_past_promise": 0.077348
+      },
+      {
+        "day": "2017-11-02",
+        "open_orders": 1734,
+        "past_promise": 132,
+        "share_past_promise": 0.076125
+      },
+      {
+        "day": "2017-11-03",
+        "open_orders": 1641,
+        "past_promise": 122,
+        "share_past_promise": 0.074345
+      },
+      {
+        "day": "2017-11-04",
+        "open_orders": 1709,
+        "past_promise": 134,
+        "share_past_promise": 0.078408
+      },
+      {
+        "day": "2017-11-05",
+        "open_orders": 1846,
+        "past_promise": 131,
+        "share_past_promise": 0.070964
+      },
+      {
+        "day": "2017-11-06",
+        "open_orders": 1819,
+        "past_promise": 125,
+        "share_past_promise": 0.068719
+      },
+      {
+        "day": "2017-11-07",
+        "open_orders": 1767,
+        "past_promise": 128,
+        "share_past_promise": 0.072439
+      },
+      {
+        "day": "2017-11-08",
+        "open_orders": 1757,
+        "past_promise": 131,
+        "share_past_promise": 0.074559
+      },
+      {
+        "day": "2017-11-09",
+        "open_orders": 1798,
+        "past_promise": 133,
+        "share_past_promise": 0.073971
+      },
+      {
+        "day": "2017-11-10",
+        "open_orders": 1785,
+        "past_promise": 145,
+        "share_past_promise": 0.081232
+      },
+      {
+        "day": "2017-11-11",
+        "open_orders": 1899,
+        "past_promise": 162,
+        "share_past_promise": 0.085308
+      },
+      {
+        "day": "2017-11-12",
+        "open_orders": 2066,
+        "past_promise": 158,
+        "share_past_promise": 0.076476
+      },
+      {
+        "day": "2017-11-13",
+        "open_orders": 2047,
+        "past_promise": 147,
+        "share_past_promise": 0.071812
+      },
+      {
+        "day": "2017-11-14",
+        "open_orders": 2038,
+        "past_promise": 147,
+        "share_past_promise": 0.07213
+      },
+      {
+        "day": "2017-11-15",
+        "open_orders": 2184,
+        "past_promise": 159,
+        "share_past_promise": 0.072802
+      },
+      {
+        "day": "2017-11-16",
+        "open_orders": 2219,
+        "past_promise": 147,
+        "share_past_promise": 0.066246
+      },
+      {
+        "day": "2017-11-17",
+        "open_orders": 2227,
+        "past_promise": 157,
+        "share_past_promise": 0.070498
+      },
+      {
+        "day": "2017-11-18",
+        "open_orders": 2309,
+        "past_promise": 157,
+        "share_past_promise": 0.067995
+      },
+      {
+        "day": "2017-11-19",
+        "open_orders": 2459,
+        "past_promise": 153,
+        "share_past_promise": 0.06222
+      },
+      {
+        "day": "2017-11-20",
+        "open_orders": 2531,
+        "past_promise": 140,
+        "share_past_promise": 0.055314
+      },
+      {
+        "day": "2017-11-21",
+        "open_orders": 2499,
+        "past_promise": 127,
+        "share_past_promise": 0.05082
+      },
+      {
+        "day": "2017-11-22",
+        "open_orders": 2449,
+        "past_promise": 126,
+        "share_past_promise": 0.05145
+      },
+      {
+        "day": "2017-11-23",
+        "open_orders": 2457,
+        "past_promise": 130,
+        "share_past_promise": 0.05291
+      },
+      {
+        "day": "2017-11-24",
+        "open_orders": 3394,
+        "past_promise": 137,
+        "share_past_promise": 0.040365
+      },
+      {
+        "day": "2017-11-25",
+        "open_orders": 3774,
+        "past_promise": 146,
+        "share_past_promise": 0.038686
+      },
+      {
+        "day": "2017-11-26",
+        "open_orders": 4109,
+        "past_promise": 138,
+        "share_past_promise": 0.033585
+      },
+      {
+        "day": "2017-11-27",
+        "open_orders": 4243,
+        "past_promise": 126,
+        "share_past_promise": 0.029696
+      },
+      {
+        "day": "2017-11-28",
+        "open_orders": 4361,
+        "past_promise": 132,
+        "share_past_promise": 0.030268
+      },
+      {
+        "day": "2017-11-29",
+        "open_orders": 4424,
+        "past_promise": 123,
+        "share_past_promise": 0.027803
+      },
+      {
+        "day": "2017-11-30",
+        "open_orders": 4385,
+        "past_promise": 131,
+        "share_past_promise": 0.029875
+      },
+      {
+        "day": "2017-12-01",
+        "open_orders": 4378,
+        "past_promise": 129,
+        "share_past_promise": 0.029466
+      },
+      {
+        "day": "2017-12-02",
+        "open_orders": 4466,
+        "past_promise": 146,
+        "share_past_promise": 0.032691
+      },
+      {
+        "day": "2017-12-03",
+        "open_orders": 4631,
+        "past_promise": 139,
+        "share_past_promise": 0.030015
+      },
+      {
+        "day": "2017-12-04",
+        "open_orders": 4642,
+        "past_promise": 128,
+        "share_past_promise": 0.027574
+      },
+      {
+        "day": "2017-12-05",
+        "open_orders": 4556,
+        "past_promise": 127,
+        "share_past_promise": 0.027875
+      },
+      {
+        "day": "2017-12-06",
+        "open_orders": 4529,
+        "past_promise": 137,
+        "share_past_promise": 0.03025
+      },
+      {
+        "day": "2017-12-07",
+        "open_orders": 4433,
+        "past_promise": 142,
+        "share_past_promise": 0.032032
+      },
+      {
+        "day": "2017-12-08",
+        "open_orders": 4393,
+        "past_promise": 159,
+        "share_past_promise": 0.036194
+      },
+      {
+        "day": "2017-12-09",
+        "open_orders": 4427,
+        "past_promise": 192,
+        "share_past_promise": 0.04337
+      },
+      {
+        "day": "2017-12-10",
+        "open_orders": 4543,
+        "past_promise": 186,
+        "share_past_promise": 0.040942
+      },
+      {
+        "day": "2017-12-11",
+        "open_orders": 4392,
+        "past_promise": 168,
+        "share_past_promise": 0.038251
+      },
+      {
+        "day": "2017-12-12",
+        "open_orders": 4286,
+        "past_promise": 194,
+        "share_past_promise": 0.045264
+      },
+      {
+        "day": "2017-12-13",
+        "open_orders": 4195,
+        "past_promise": 231,
+        "share_past_promise": 0.055066
+      },
+      {
+        "day": "2017-12-14",
+        "open_orders": 4104,
+        "past_promise": 248,
+        "share_past_promise": 0.060429
+      },
+      {
+        "day": "2017-12-15",
+        "open_orders": 4029,
+        "past_promise": 283,
+        "share_past_promise": 0.070241
+      },
+      {
+        "day": "2017-12-16",
+        "open_orders": 4029,
+        "past_promise": 354,
+        "share_past_promise": 0.087863
+      },
+      {
+        "day": "2017-12-17",
+        "open_orders": 4065,
+        "past_promise": 345,
+        "share_past_promise": 0.084871
+      },
+      {
+        "day": "2017-12-18",
+        "open_orders": 3891,
+        "past_promise": 306,
+        "share_past_promise": 0.078643
+      },
+      {
+        "day": "2017-12-19",
+        "open_orders": 3661,
+        "past_promise": 354,
+        "share_past_promise": 0.096695
+      },
+      {
+        "day": "2017-12-20",
+        "open_orders": 3511,
+        "past_promise": 408,
+        "share_past_promise": 0.116206
+      },
+      {
+        "day": "2017-12-21",
+        "open_orders": 3355,
+        "past_promise": 454,
+        "share_past_promise": 0.13532
+      },
+      {
+        "day": "2017-12-22",
+        "open_orders": 3190,
+        "past_promise": 474,
+        "share_past_promise": 0.148589
+      },
+      {
+        "day": "2017-12-23",
+        "open_orders": 3158,
+        "past_promise": 508,
+        "share_past_promise": 0.160861
+      },
+      {
+        "day": "2017-12-24",
+        "open_orders": 3204,
+        "past_promise": 505,
+        "share_past_promise": 0.157615
+      },
+      {
+        "day": "2017-12-25",
+        "open_orders": 3292,
+        "past_promise": 503,
+        "share_past_promise": 0.152795
+      },
+      {
+        "day": "2017-12-26",
+        "open_orders": 3144,
+        "past_promise": 460,
+        "share_past_promise": 0.14631
+      },
+      {
+        "day": "2017-12-27",
+        "open_orders": 2960,
+        "past_promise": 447,
+        "share_past_promise": 0.151014
+      },
+      {
+        "day": "2017-12-28",
+        "open_orders": 2784,
+        "past_promise": 446,
+        "share_past_promise": 0.160201
+      },
+      {
+        "day": "2017-12-29",
+        "open_orders": 2654,
+        "past_promise": 451,
+        "share_past_promise": 0.169932
+      },
+      {
+        "day": "2017-12-30",
+        "open_orders": 2663,
+        "past_promise": 484,
+        "share_past_promise": 0.18175
+      },
+      {
+        "day": "2017-12-31",
+        "open_orders": 2730,
+        "past_promise": 483,
+        "share_past_promise": 0.176923
+      },
+      {
+        "day": "2018-01-01",
+        "open_orders": 2801,
+        "past_promise": 482,
+        "share_past_promise": 0.172081
+      },
+      {
+        "day": "2018-01-02",
+        "open_orders": 2958,
+        "past_promise": 472,
+        "share_past_promise": 0.159567
+      },
+      {
+        "day": "2018-01-03",
+        "open_orders": 2861,
+        "past_promise": 474,
+        "share_past_promise": 0.165676
+      },
+      {
+        "day": "2018-01-04",
+        "open_orders": 2817,
+        "past_promise": 438,
+        "share_past_promise": 0.155485
+      },
+      {
+        "day": "2018-01-05",
+        "open_orders": 2758,
+        "past_promise": 444,
+        "share_past_promise": 0.160986
+      },
+      {
+        "day": "2018-01-06",
+        "open_orders": 2873,
+        "past_promise": 470,
+        "share_past_promise": 0.163592
+      },
+      {
+        "day": "2018-01-07",
+        "open_orders": 3039,
+        "past_promise": 458,
+        "share_past_promise": 0.150707
+      },
+      {
+        "day": "2018-01-08",
+        "open_orders": 3022,
+        "past_promise": 407,
+        "share_past_promise": 0.134679
+      },
+      {
+        "day": "2018-01-09",
+        "open_orders": 2943,
+        "past_promise": 380,
+        "share_past_promise": 0.12912
+      },
+      {
+        "day": "2018-01-10",
+        "open_orders": 2936,
+        "past_promise": 365,
+        "share_past_promise": 0.124319
+      },
+      {
+        "day": "2018-01-11",
+        "open_orders": 2939,
+        "past_promise": 361,
+        "share_past_promise": 0.122831
+      },
+      {
+        "day": "2018-01-12",
+        "open_orders": 3006,
+        "past_promise": 357,
+        "share_past_promise": 0.118762
+      },
+      {
+        "day": "2018-01-13",
+        "open_orders": 3077,
+        "past_promise": 352,
+        "share_past_promise": 0.114397
+      },
+      {
+        "day": "2018-01-14",
+        "open_orders": 3294,
+        "past_promise": 346,
+        "share_past_promise": 0.105039
+      },
+      {
+        "day": "2018-01-15",
+        "open_orders": 3365,
+        "past_promise": 314,
+        "share_past_promise": 0.093314
+      },
+      {
+        "day": "2018-01-16",
+        "open_orders": 3381,
+        "past_promise": 297,
+        "share_past_promise": 0.087844
+      },
+      {
+        "day": "2018-01-17",
+        "open_orders": 3401,
+        "past_promise": 278,
+        "share_past_promise": 0.081741
+      },
+      {
+        "day": "2018-01-18",
+        "open_orders": 3433,
+        "past_promise": 275,
+        "share_past_promise": 0.080105
+      },
+      {
+        "day": "2018-01-19",
+        "open_orders": 3374,
+        "past_promise": 267,
+        "share_past_promise": 0.079135
+      },
+      {
+        "day": "2018-01-20",
+        "open_orders": 3459,
+        "past_promise": 263,
+        "share_past_promise": 0.076034
+      },
+      {
+        "day": "2018-01-21",
+        "open_orders": 3625,
+        "past_promise": 257,
+        "share_past_promise": 0.070897
+      },
+      {
+        "day": "2018-01-22",
+        "open_orders": 3585,
+        "past_promise": 233,
+        "share_past_promise": 0.064993
+      },
+      {
+        "day": "2018-01-23",
+        "open_orders": 3511,
+        "past_promise": 221,
+        "share_past_promise": 0.062945
+      },
+      {
+        "day": "2018-01-24",
+        "open_orders": 3425,
+        "past_promise": 192,
+        "share_past_promise": 0.056058
+      },
+      {
+        "day": "2018-01-25",
+        "open_orders": 3375,
+        "past_promise": 190,
+        "share_past_promise": 0.056296
+      },
+      {
+        "day": "2018-01-26",
+        "open_orders": 3256,
+        "past_promise": 172,
+        "share_past_promise": 0.052826
+      },
+      {
+        "day": "2018-01-27",
+        "open_orders": 3301,
+        "past_promise": 176,
+        "share_past_promise": 0.053317
+      },
+      {
+        "day": "2018-01-28",
+        "open_orders": 3419,
+        "past_promise": 170,
+        "share_past_promise": 0.049722
+      },
+      {
+        "day": "2018-01-29",
+        "open_orders": 3307,
+        "past_promise": 155,
+        "share_past_promise": 0.04687
+      },
+      {
+        "day": "2018-01-30",
+        "open_orders": 3235,
+        "past_promise": 157,
+        "share_past_promise": 0.048532
+      },
+      {
+        "day": "2018-01-31",
+        "open_orders": 3168,
+        "past_promise": 158,
+        "share_past_promise": 0.049874
+      },
+      {
+        "day": "2018-02-01",
+        "open_orders": 3131,
+        "past_promise": 163,
+        "share_past_promise": 0.05206
+      },
+      {
+        "day": "2018-02-02",
+        "open_orders": 3055,
+        "past_promise": 175,
+        "share_past_promise": 0.057283
+      },
+      {
+        "day": "2018-02-03",
+        "open_orders": 3124,
+        "past_promise": 184,
+        "share_past_promise": 0.058899
+      },
+      {
+        "day": "2018-02-04",
+        "open_orders": 3288,
+        "past_promise": 176,
+        "share_past_promise": 0.053528
+      },
+      {
+        "day": "2018-02-05",
+        "open_orders": 3261,
+        "past_promise": 162,
+        "share_past_promise": 0.049678
+      },
+      {
+        "day": "2018-02-06",
+        "open_orders": 3219,
+        "past_promise": 178,
+        "share_past_promise": 0.055297
+      },
+      {
+        "day": "2018-02-07",
+        "open_orders": 3217,
+        "past_promise": 195,
+        "share_past_promise": 0.060615
+      },
+      {
+        "day": "2018-02-08",
+        "open_orders": 3211,
+        "past_promise": 198,
+        "share_past_promise": 0.061663
+      },
+      {
+        "day": "2018-02-09",
+        "open_orders": 3186,
+        "past_promise": 207,
+        "share_past_promise": 0.064972
+      },
+      {
+        "day": "2018-02-10",
+        "open_orders": 3279,
+        "past_promise": 225,
+        "share_past_promise": 0.068618
+      },
+      {
+        "day": "2018-02-11",
+        "open_orders": 3423,
+        "past_promise": 217,
+        "share_past_promise": 0.063395
+      },
+      {
+        "day": "2018-02-12",
+        "open_orders": 3633,
+        "past_promise": 214,
+        "share_past_promise": 0.058904
+      },
+      {
+        "day": "2018-02-13",
+        "open_orders": 3848,
+        "past_promise": 209,
+        "share_past_promise": 0.054314
+      },
+      {
+        "day": "2018-02-14",
+        "open_orders": 3792,
+        "past_promise": 197,
+        "share_past_promise": 0.051951
+      },
+      {
+        "day": "2018-02-15",
+        "open_orders": 3752,
+        "past_promise": 220,
+        "share_past_promise": 0.058635
+      },
+      {
+        "day": "2018-02-16",
+        "open_orders": 3629,
+        "past_promise": 235,
+        "share_past_promise": 0.064756
+      },
+      {
+        "day": "2018-02-17",
+        "open_orders": 3693,
+        "past_promise": 245,
+        "share_past_promise": 0.066342
+      },
+      {
+        "day": "2018-02-18",
+        "open_orders": 3853,
+        "past_promise": 240,
+        "share_past_promise": 0.062289
+      },
+      {
+        "day": "2018-02-19",
+        "open_orders": 3792,
+        "past_promise": 223,
+        "share_past_promise": 0.058808
+      },
+      {
+        "day": "2018-02-20",
+        "open_orders": 3753,
+        "past_promise": 242,
+        "share_past_promise": 0.064482
+      },
+      {
+        "day": "2018-02-21",
+        "open_orders": 3714,
+        "past_promise": 248,
+        "share_past_promise": 0.066774
+      },
+      {
+        "day": "2018-02-22",
+        "open_orders": 3664,
+        "past_promise": 257,
+        "share_past_promise": 0.070142
+      },
+      {
+        "day": "2018-02-23",
+        "open_orders": 3617,
+        "past_promise": 280,
+        "share_past_promise": 0.077412
+      },
+      {
+        "day": "2018-02-24",
+        "open_orders": 3689,
+        "past_promise": 289,
+        "share_past_promise": 0.078341
+      },
+      {
+        "day": "2018-02-25",
+        "open_orders": 3871,
+        "past_promise": 278,
+        "share_past_promise": 0.071816
+      },
+      {
+        "day": "2018-02-26",
+        "open_orders": 3850,
+        "past_promise": 258,
+        "share_past_promise": 0.067013
+      },
+      {
+        "day": "2018-02-27",
+        "open_orders": 3831,
+        "past_promise": 250,
+        "share_past_promise": 0.065257
+      },
+      {
+        "day": "2018-02-28",
+        "open_orders": 3845,
+        "past_promise": 229,
+        "share_past_promise": 0.059558
+      },
+      {
+        "day": "2018-03-01",
+        "open_orders": 3867,
+        "past_promise": 214,
+        "share_past_promise": 0.05534
+      },
+      {
+        "day": "2018-03-02",
+        "open_orders": 3852,
+        "past_promise": 216,
+        "share_past_promise": 0.056075
+      },
+      {
+        "day": "2018-03-03",
+        "open_orders": 3973,
+        "past_promise": 235,
+        "share_past_promise": 0.059149
+      },
+      {
+        "day": "2018-03-04",
+        "open_orders": 4187,
+        "past_promise": 232,
+        "share_past_promise": 0.05541
+      },
+      {
+        "day": "2018-03-05",
+        "open_orders": 4117,
+        "past_promise": 216,
+        "share_past_promise": 0.052465
+      },
+      {
+        "day": "2018-03-06",
+        "open_orders": 4104,
+        "past_promise": 228,
+        "share_past_promise": 0.055556
+      },
+      {
+        "day": "2018-03-07",
+        "open_orders": 4069,
+        "past_promise": 232,
+        "share_past_promise": 0.057016
+      },
+      {
+        "day": "2018-03-08",
+        "open_orders": 4036,
+        "past_promise": 258,
+        "share_past_promise": 0.063925
+      },
+      {
+        "day": "2018-03-09",
+        "open_orders": 3964,
+        "past_promise": 267,
+        "share_past_promise": 0.067356
+      },
+      {
+        "day": "2018-03-10",
+        "open_orders": 4053,
+        "past_promise": 301,
+        "share_past_promise": 0.074266
+      },
+      {
+        "day": "2018-03-11",
+        "open_orders": 4214,
+        "past_promise": 284,
+        "share_past_promise": 0.067394
+      },
+      {
+        "day": "2018-03-12",
+        "open_orders": 4239,
+        "past_promise": 262,
+        "share_past_promise": 0.061807
+      },
+      {
+        "day": "2018-03-13",
+        "open_orders": 4222,
+        "past_promise": 298,
+        "share_past_promise": 0.070583
+      },
+      {
+        "day": "2018-03-14",
+        "open_orders": 4132,
+        "past_promise": 311,
+        "share_past_promise": 0.075266
+      },
+      {
+        "day": "2018-03-15",
+        "open_orders": 4136,
+        "past_promise": 339,
+        "share_past_promise": 0.081963
+      },
+      {
+        "day": "2018-03-16",
+        "open_orders": 4099,
+        "past_promise": 359,
+        "share_past_promise": 0.087582
+      },
+      {
+        "day": "2018-03-17",
+        "open_orders": 4140,
+        "past_promise": 421,
+        "share_past_promise": 0.101691
+      },
+      {
+        "day": "2018-03-18",
+        "open_orders": 4287,
+        "past_promise": 405,
+        "share_past_promise": 0.094472
+      },
+      {
+        "day": "2018-03-19",
+        "open_orders": 4308,
+        "past_promise": 350,
+        "share_past_promise": 0.081244
+      },
+      {
+        "day": "2018-03-20",
+        "open_orders": 4283,
+        "past_promise": 418,
+        "share_past_promise": 0.097595
+      },
+      {
+        "day": "2018-03-21",
+        "open_orders": 4238,
+        "past_promise": 446,
+        "share_past_promise": 0.105238
+      },
+      {
+        "day": "2018-03-22",
+        "open_orders": 4237,
+        "past_promise": 530,
+        "share_past_promise": 0.125089
+      },
+      {
+        "day": "2018-03-23",
+        "open_orders": 4114,
+        "past_promise": 561,
+        "share_past_promise": 0.136364
+      },
+      {
+        "day": "2018-03-24",
+        "open_orders": 4153,
+        "past_promise": 641,
+        "share_past_promise": 0.154346
+      },
+      {
+        "day": "2018-03-25",
+        "open_orders": 4321,
+        "past_promise": 633,
+        "share_past_promise": 0.146494
+      },
+      {
+        "day": "2018-03-26",
+        "open_orders": 4310,
+        "past_promise": 573,
+        "share_past_promise": 0.132947
+      },
+      {
+        "day": "2018-03-27",
+        "open_orders": 4179,
+        "past_promise": 602,
+        "share_past_promise": 0.144054
+      },
+      {
+        "day": "2018-03-28",
+        "open_orders": 4017,
+        "past_promise": 616,
+        "share_past_promise": 0.153348
+      },
+      {
+        "day": "2018-03-29",
+        "open_orders": 3830,
+        "past_promise": 650,
+        "share_past_promise": 0.169713
+      },
+      {
+        "day": "2018-03-30",
+        "open_orders": 3959,
+        "past_promise": 734,
+        "share_past_promise": 0.1854
+      },
+      {
+        "day": "2018-03-31",
+        "open_orders": 4062,
+        "past_promise": 720,
+        "share_past_promise": 0.177253
+      },
+      {
+        "day": "2018-04-01",
+        "open_orders": 4262,
+        "past_promise": 715,
+        "share_past_promise": 0.167762
+      },
+      {
+        "day": "2018-04-02",
+        "open_orders": 4174,
+        "past_promise": 647,
+        "share_past_promise": 0.155007
+      },
+      {
+        "day": "2018-04-03",
+        "open_orders": 4045,
+        "past_promise": 650,
+        "share_past_promise": 0.160692
+      },
+      {
+        "day": "2018-04-04",
+        "open_orders": 3939,
+        "past_promise": 655,
+        "share_past_promise": 0.166286
+      },
+      {
+        "day": "2018-04-05",
+        "open_orders": 3836,
+        "past_promise": 657,
+        "share_past_promise": 0.171272
+      },
+      {
+        "day": "2018-04-06",
+        "open_orders": 3710,
+        "past_promise": 669,
+        "share_past_promise": 0.180323
+      },
+      {
+        "day": "2018-04-07",
+        "open_orders": 3696,
+        "past_promise": 700,
+        "share_past_promise": 0.189394
+      },
+      {
+        "day": "2018-04-08",
+        "open_orders": 3841,
+        "past_promise": 687,
+        "share_past_promise": 0.17886
+      },
+      {
+        "day": "2018-04-09",
+        "open_orders": 3741,
+        "past_promise": 620,
+        "share_past_promise": 0.165731
+      },
+      {
+        "day": "2018-04-10",
+        "open_orders": 3575,
+        "past_promise": 602,
+        "share_past_promise": 0.168392
+      },
+      {
+        "day": "2018-04-11",
+        "open_orders": 3435,
+        "past_promise": 591,
+        "share_past_promise": 0.172052
+      },
+      {
+        "day": "2018-04-12",
+        "open_orders": 3350,
+        "past_promise": 590,
+        "share_past_promise": 0.176119
+      },
+      {
+        "day": "2018-04-13",
+        "open_orders": 3196,
+        "past_promise": 598,
+        "share_past_promise": 0.187109
+      },
+      {
+        "day": "2018-04-14",
+        "open_orders": 3226,
+        "past_promise": 626,
+        "share_past_promise": 0.194048
+      },
+      {
+        "day": "2018-04-15",
+        "open_orders": 3417,
+        "past_promise": 613,
+        "share_past_promise": 0.179397
+      },
+      {
+        "day": "2018-04-16",
+        "open_orders": 3358,
+        "past_promise": 545,
+        "share_past_promise": 0.162299
+      },
+      {
+        "day": "2018-04-17",
+        "open_orders": 3294,
+        "past_promise": 515,
+        "share_past_promise": 0.156345
+      },
+      {
+        "day": "2018-04-18",
+        "open_orders": 3221,
+        "past_promise": 501,
+        "share_past_promise": 0.155542
+      },
+      {
+        "day": "2018-04-19",
+        "open_orders": 3250,
+        "past_promise": 492,
+        "share_past_promise": 0.151385
+      },
+      {
+        "day": "2018-04-20",
+        "open_orders": 3121,
+        "past_promise": 497,
+        "share_past_promise": 0.159244
+      },
+      {
+        "day": "2018-04-21",
+        "open_orders": 3175,
+        "past_promise": 514,
+        "share_past_promise": 0.16189
+      },
+      {
+        "day": "2018-04-22",
+        "open_orders": 3361,
+        "past_promise": 507,
+        "share_past_promise": 0.150848
+      },
+      {
+        "day": "2018-04-23",
+        "open_orders": 3307,
+        "past_promise": 467,
+        "share_past_promise": 0.141216
+      },
+      {
+        "day": "2018-04-24",
+        "open_orders": 3192,
+        "past_promise": 452,
+        "share_past_promise": 0.141604
+      },
+      {
+        "day": "2018-04-25",
+        "open_orders": 3139,
+        "past_promise": 446,
+        "share_past_promise": 0.142083
+      },
+      {
+        "day": "2018-04-26",
+        "open_orders": 3060,
+        "past_promise": 422,
+        "share_past_promise": 0.137908
+      },
+      {
+        "day": "2018-04-27",
+        "open_orders": 2982,
+        "past_promise": 417,
+        "share_past_promise": 0.139839
+      },
+      {
+        "day": "2018-04-28",
+        "open_orders": 3043,
+        "past_promise": 428,
+        "share_past_promise": 0.140651
+      },
+      {
+        "day": "2018-04-29",
+        "open_orders": 3200,
+        "past_promise": 417,
+        "share_past_promise": 0.130312
+      },
+      {
+        "day": "2018-04-30",
+        "open_orders": 3047,
+        "past_promise": 377,
+        "share_past_promise": 0.123728
+      },
+      {
+        "day": "2018-05-01",
+        "open_orders": 3242,
+        "past_promise": 388,
+        "share_past_promise": 0.119679
+      },
+      {
+        "day": "2018-05-02",
+        "open_orders": 3188,
+        "past_promise": 350,
+        "share_past_promise": 0.109787
+      },
+      {
+        "day": "2018-05-03",
+        "open_orders": 3082,
+        "past_promise": 342,
+        "share_past_promise": 0.110967
+      },
+      {
+        "day": "2018-05-04",
+        "open_orders": 2967,
+        "past_promise": 326,
+        "share_past_promise": 0.109875
+      },
+      {
+        "day": "2018-05-05",
+        "open_orders": 3028,
+        "past_promise": 329,
+        "share_past_promise": 0.108653
+      },
+      {
+        "day": "2018-05-06",
+        "open_orders": 3214,
+        "past_promise": 320,
+        "share_past_promise": 0.099564
+      },
+      {
+        "day": "2018-05-07",
+        "open_orders": 3216,
+        "past_promise": 296,
+        "share_past_promise": 0.09204
+      },
+      {
+        "day": "2018-05-08",
+        "open_orders": 3168,
+        "past_promise": 281,
+        "share_past_promise": 0.088699
+      },
+      {
+        "day": "2018-05-09",
+        "open_orders": 3165,
+        "past_promise": 273,
+        "share_past_promise": 0.086256
+      },
+      {
+        "day": "2018-05-10",
+        "open_orders": 3079,
+        "past_promise": 265,
+        "share_past_promise": 0.086067
+      },
+      {
+        "day": "2018-05-11",
+        "open_orders": 2954,
+        "past_promise": 260,
+        "share_past_promise": 0.088016
+      },
+      {
+        "day": "2018-05-12",
+        "open_orders": 3044,
+        "past_promise": 261,
+        "share_past_promise": 0.085742
+      },
+      {
+        "day": "2018-05-13",
+        "open_orders": 3237,
+        "past_promise": 251,
+        "share_past_promise": 0.077541
+      },
+      {
+        "day": "2018-05-14",
+        "open_orders": 3169,
+        "past_promise": 237,
+        "share_past_promise": 0.074787
+      },
+      {
+        "day": "2018-05-15",
+        "open_orders": 3131,
+        "past_promise": 225,
+        "share_past_promise": 0.071862
+      },
+      {
+        "day": "2018-05-16",
+        "open_orders": 3126,
+        "past_promise": 229,
+        "share_past_promise": 0.073257
+      },
+      {
+        "day": "2018-05-17",
+        "open_orders": 2992,
+        "past_promise": 229,
+        "share_past_promise": 0.076537
+      },
+      {
+        "day": "2018-05-18",
+        "open_orders": 2801,
+        "past_promise": 230,
+        "share_past_promise": 0.082114
+      },
+      {
+        "day": "2018-05-19",
+        "open_orders": 2818,
+        "past_promise": 237,
+        "share_past_promise": 0.084102
+      },
+      {
+        "day": "2018-05-20",
+        "open_orders": 2955,
+        "past_promise": 231,
+        "share_past_promise": 0.078173
+      },
+      {
+        "day": "2018-05-21",
+        "open_orders": 2720,
+        "past_promise": 211,
+        "share_past_promise": 0.077574
+      },
+      {
+        "day": "2018-05-22",
+        "open_orders": 2559,
+        "past_promise": 212,
+        "share_past_promise": 0.082845
+      },
+      {
+        "day": "2018-05-23",
+        "open_orders": 2398,
+        "past_promise": 211,
+        "share_past_promise": 0.08799
+      },
+      {
+        "day": "2018-05-24",
+        "open_orders": 2281,
+        "past_promise": 220,
+        "share_past_promise": 0.096449
+      },
+      {
+        "day": "2018-05-25",
+        "open_orders": 2223,
+        "past_promise": 230,
+        "share_past_promise": 0.103464
+      },
+      {
+        "day": "2018-05-26",
+        "open_orders": 2286,
+        "past_promise": 246,
+        "share_past_promise": 0.107612
+      },
+      {
+        "day": "2018-05-27",
+        "open_orders": 2379,
+        "past_promise": 240,
+        "share_past_promise": 0.100883
+      },
+      {
+        "day": "2018-05-28",
+        "open_orders": 2398,
+        "past_promise": 225,
+        "share_past_promise": 0.093828
+      },
+      {
+        "day": "2018-05-29",
+        "open_orders": 2445,
+        "past_promise": 244,
+        "share_past_promise": 0.099796
+      },
+      {
+        "day": "2018-05-30",
+        "open_orders": 2509,
+        "past_promise": 275,
+        "share_past_promise": 0.109605
+      },
+      {
+        "day": "2018-05-31",
+        "open_orders": 2631,
+        "past_promise": 317,
+        "share_past_promise": 0.120487
+      },
+      {
+        "day": "2018-06-01",
+        "open_orders": 2612,
+        "past_promise": 284,
+        "share_past_promise": 0.108729
+      },
+      {
+        "day": "2018-06-02",
+        "open_orders": 2644,
+        "past_promise": 322,
+        "share_past_promise": 0.121785
+      },
+      {
+        "day": "2018-06-03",
+        "open_orders": 2794,
+        "past_promise": 314,
+        "share_past_promise": 0.112384
+      },
+      {
+        "day": "2018-06-04",
+        "open_orders": 2676,
+        "past_promise": 278,
+        "share_past_promise": 0.103886
+      },
+      {
+        "day": "2018-06-05",
+        "open_orders": 2542,
+        "past_promise": 288,
+        "share_past_promise": 0.113297
+      },
+      {
+        "day": "2018-06-06",
+        "open_orders": 2431,
+        "past_promise": 315,
+        "share_past_promise": 0.129576
+      },
+      {
+        "day": "2018-06-07",
+        "open_orders": 2328,
+        "past_promise": 335,
+        "share_past_promise": 0.1439
+      },
+      {
+        "day": "2018-06-08",
+        "open_orders": 2193,
+        "past_promise": 337,
+        "share_past_promise": 0.153671
+      },
+      {
+        "day": "2018-06-09",
+        "open_orders": 2260,
+        "past_promise": 345,
+        "share_past_promise": 0.152655
+      },
+      {
+        "day": "2018-06-10",
+        "open_orders": 2424,
+        "past_promise": 335,
+        "share_past_promise": 0.138201
+      },
+      {
+        "day": "2018-06-11",
+        "open_orders": 2417,
+        "past_promise": 294,
+        "share_past_promise": 0.121638
+      },
+      {
+        "day": "2018-06-12",
+        "open_orders": 2382,
+        "past_promise": 254,
+        "share_past_promise": 0.106633
+      },
+      {
+        "day": "2018-06-13",
+        "open_orders": 2376,
+        "past_promise": 230,
+        "share_past_promise": 0.096801
+      },
+      {
+        "day": "2018-06-14",
+        "open_orders": 2309,
+        "past_promise": 213,
+        "share_past_promise": 0.092248
+      },
+      {
+        "day": "2018-06-15",
+        "open_orders": 2184,
+        "past_promise": 193,
+        "share_past_promise": 0.08837
+      },
+      {
+        "day": "2018-06-16",
+        "open_orders": 2253,
+        "past_promise": 184,
+        "share_past_promise": 0.081669
+      },
+      {
+        "day": "2018-06-17",
+        "open_orders": 2389,
+        "past_promise": 176,
+        "share_past_promise": 0.073671
+      },
+      {
+        "day": "2018-06-18",
+        "open_orders": 2279,
+        "past_promise": 154,
+        "share_past_promise": 0.067573
+      },
+      {
+        "day": "2018-06-19",
+        "open_orders": 2194,
+        "past_promise": 149,
+        "share_past_promise": 0.067912
+      },
+      {
+        "day": "2018-06-20",
+        "open_orders": 2077,
+        "past_promise": 136,
+        "share_past_promise": 0.065479
+      },
+      {
+        "day": "2018-06-21",
+        "open_orders": 1988,
+        "past_promise": 133,
+        "share_past_promise": 0.066901
+      },
+      {
+        "day": "2018-06-22",
+        "open_orders": 1898,
+        "past_promise": 133,
+        "share_past_promise": 0.070074
+      },
+      {
+        "day": "2018-06-23",
+        "open_orders": 1965,
+        "past_promise": 131,
+        "share_past_promise": 0.066667
+      },
+      {
+        "day": "2018-06-24",
+        "open_orders": 2142,
+        "past_promise": 125,
+        "share_past_promise": 0.058357
+      },
+      {
+        "day": "2018-06-25",
+        "open_orders": 2070,
+        "past_promise": 118,
+        "share_past_promise": 0.057005
+      },
+      {
+        "day": "2018-06-26",
+        "open_orders": 2020,
+        "past_promise": 115,
+        "share_past_promise": 0.056931
+      },
+      {
+        "day": "2018-06-27",
+        "open_orders": 2012,
+        "past_promise": 115,
+        "share_past_promise": 0.057157
+      },
+      {
+        "day": "2018-06-28",
+        "open_orders": 1941,
+        "past_promise": 112,
+        "share_past_promise": 0.057702
+      },
+      {
+        "day": "2018-06-29",
+        "open_orders": 1812,
+        "past_promise": 113,
+        "share_past_promise": 0.062362
+      },
+      {
+        "day": "2018-06-30",
+        "open_orders": 1829,
+        "past_promise": 112,
+        "share_past_promise": 0.061236
+      },
+      {
+        "day": "2018-07-01",
+        "open_orders": 1979,
+        "past_promise": 110,
+        "share_past_promise": 0.055584
+      },
+      {
+        "day": "2018-07-02",
+        "open_orders": 2013,
+        "past_promise": 99,
+        "share_past_promise": 0.04918
+      },
+      {
+        "day": "2018-07-03",
+        "open_orders": 1814,
+        "past_promise": 94,
+        "share_past_promise": 0.051819
+      },
+      {
+        "day": "2018-07-04",
+        "open_orders": 1792,
+        "past_promise": 99,
+        "share_past_promise": 0.055246
+      },
+      {
+        "day": "2018-07-05",
+        "open_orders": 1746,
+        "past_promise": 99,
+        "share_past_promise": 0.056701
+      },
+      {
+        "day": "2018-07-06",
+        "open_orders": 1606,
+        "past_promise": 102,
+        "share_past_promise": 0.063512
+      },
+      {
+        "day": "2018-07-07",
+        "open_orders": 1613,
+        "past_promise": 93,
+        "share_past_promise": 0.057657
+      },
+      {
+        "day": "2018-07-08",
+        "open_orders": 1721,
+        "past_promise": 89,
+        "share_past_promise": 0.051714
+      },
+      {
+        "day": "2018-07-09",
+        "open_orders": 1660,
+        "past_promise": 81,
+        "share_past_promise": 0.048795
+      },
+      {
+        "day": "2018-07-10",
+        "open_orders": 1482,
+        "past_promise": 72,
+        "share_past_promise": 0.048583
+      },
+      {
+        "day": "2018-07-11",
+        "open_orders": 1274,
+        "past_promise": 67,
+        "share_past_promise": 0.05259
+      },
+      {
+        "day": "2018-07-12",
+        "open_orders": 1129,
+        "past_promise": 67,
+        "share_past_promise": 0.059345
+      },
+      {
+        "day": "2018-07-13",
+        "open_orders": 1004,
+        "past_promise": 69,
+        "share_past_promise": 0.068725
+      },
+      {
+        "day": "2018-07-14",
+        "open_orders": 1058,
+        "past_promise": 67,
+        "share_past_promise": 0.063327
+      },
+      {
+        "day": "2018-07-15",
+        "open_orders": 1199,
+        "past_promise": 63,
+        "share_past_promise": 0.052544
+      },
+      {
+        "day": "2018-07-16",
+        "open_orders": 1379,
+        "past_promise": 56,
+        "share_past_promise": 0.040609
+      },
+      {
+        "day": "2018-07-17",
+        "open_orders": 1582,
+        "past_promise": 57,
+        "share_past_promise": 0.03603
+      },
+      {
+        "day": "2018-07-18",
+        "open_orders": 1878,
+        "past_promise": 59,
+        "share_past_promise": 0.031416
+      },
+      {
+        "day": "2018-07-19",
+        "open_orders": 2120,
+        "past_promise": 58,
+        "share_past_promise": 0.027358
+      },
+      {
+        "day": "2018-07-20",
+        "open_orders": 2165,
+        "past_promise": 66,
+        "share_past_promise": 0.030485
+      },
+      {
+        "day": "2018-07-21",
+        "open_orders": 2270,
+        "past_promise": 72,
+        "share_past_promise": 0.031718
+      },
+      {
+        "day": "2018-07-22",
+        "open_orders": 2481,
+        "past_promise": 70,
+        "share_past_promise": 0.028214
+      },
+      {
+        "day": "2018-07-23",
+        "open_orders": 2438,
+        "past_promise": 67,
+        "share_past_promise": 0.027482
+      },
+      {
+        "day": "2018-07-24",
+        "open_orders": 2334,
+        "past_promise": 75,
+        "share_past_promise": 0.032134
+      },
+      {
+        "day": "2018-07-25",
+        "open_orders": 2281,
+        "past_promise": 93,
+        "share_past_promise": 0.040772
+      },
+      {
+        "day": "2018-07-26",
+        "open_orders": 2170,
+        "past_promise": 99,
+        "share_past_promise": 0.045622
+      },
+      {
+        "day": "2018-07-27",
+        "open_orders": 2028,
+        "past_promise": 107,
+        "share_past_promise": 0.052761
+      },
+      {
+        "day": "2018-07-28",
+        "open_orders": 2098,
+        "past_promise": 112,
+        "share_past_promise": 0.053384
+      },
+      {
+        "day": "2018-07-29",
+        "open_orders": 2278,
+        "past_promise": 110,
+        "share_past_promise": 0.048288
+      },
+      {
+        "day": "2018-07-30",
+        "open_orders": 2151,
+        "past_promise": 103,
+        "share_past_promise": 0.047885
+      },
+      {
+        "day": "2018-07-31",
+        "open_orders": 2144,
+        "past_promise": 105,
+        "share_past_promise": 0.048974
+      },
+      {
+        "day": "2018-08-01",
+        "open_orders": 2194,
+        "past_promise": 114,
+        "share_past_promise": 0.05196
+      },
+      {
+        "day": "2018-08-02",
+        "open_orders": 2181,
+        "past_promise": 115,
+        "share_past_promise": 0.052728
+      },
+      {
+        "day": "2018-08-03",
+        "open_orders": 2186,
+        "past_promise": 128,
+        "share_past_promise": 0.058554
+      },
+      {
+        "day": "2018-08-04",
+        "open_orders": 2336,
+        "past_promise": 140,
+        "share_past_promise": 0.059932
+      },
+      {
+        "day": "2018-08-05",
+        "open_orders": 2600,
+        "past_promise": 138,
+        "share_past_promise": 0.053077
+      },
+      {
+        "day": "2018-08-06",
+        "open_orders": 2623,
+        "past_promise": 128,
+        "share_past_promise": 0.048799
+      },
+      {
+        "day": "2018-08-07",
+        "open_orders": 2647,
+        "past_promise": 143,
+        "share_past_promise": 0.054023
+      },
+      {
+        "day": "2018-08-08",
+        "open_orders": 2638,
+        "past_promise": 146,
+        "share_past_promise": 0.055345
+      },
+      {
+        "day": "2018-08-09",
+        "open_orders": 2586,
+        "past_promise": 151,
+        "share_past_promise": 0.058391
+      },
+      {
+        "day": "2018-08-10",
+        "open_orders": 2487,
+        "past_promise": 175,
+        "share_past_promise": 0.070366
+      },
+      {
+        "day": "2018-08-11",
+        "open_orders": 2581,
+        "past_promise": 237,
+        "share_past_promise": 0.091825
+      },
+      {
+        "day": "2018-08-12",
+        "open_orders": 2773,
+        "past_promise": 233,
+        "share_past_promise": 0.084025
+      },
+      {
+        "day": "2018-08-13",
+        "open_orders": 2613,
+        "past_promise": 186,
+        "share_past_promise": 0.071183
+      },
+      {
+        "day": "2018-08-14",
+        "open_orders": 2552,
+        "past_promise": 192,
+        "share_past_promise": 0.075235
+      },
+      {
+        "day": "2018-08-15",
+        "open_orders": 2467,
+        "past_promise": 200,
+        "share_past_promise": 0.08107
+      },
+      {
+        "day": "2018-08-16",
+        "open_orders": 2427,
+        "past_promise": 195,
+        "share_past_promise": 0.080346
+      },
+      {
+        "day": "2018-08-17",
+        "open_orders": 2297,
+        "past_promise": 204,
+        "share_past_promise": 0.088811
+      },
+      {
+        "day": "2018-08-18",
+        "open_orders": 2388,
+        "past_promise": 214,
+        "share_past_promise": 0.089615
+      },
+      {
+        "day": "2018-08-19",
+        "open_orders": 2589,
+        "past_promise": 212,
+        "share_past_promise": 0.081885
+      },
+      {
+        "day": "2018-08-20",
+        "open_orders": 2448,
+        "past_promise": 189,
+        "share_past_promise": 0.077206
+      },
+      {
+        "day": "2018-08-21",
+        "open_orders": 2304,
+        "past_promise": 184,
+        "share_past_promise": 0.079861
+      },
+      {
+        "day": "2018-08-22",
+        "open_orders": 2180,
+        "past_promise": 197,
+        "share_past_promise": 0.090367
+      },
+      {
+        "day": "2018-08-23",
+        "open_orders": 1925,
+        "past_promise": 208,
+        "share_past_promise": 0.108052
+      },
+      {
+        "day": "2018-08-24",
+        "open_orders": 1666,
+        "past_promise": 221,
+        "share_past_promise": 0.132653
+      },
+      {
+        "day": "2018-08-25",
+        "open_orders": 1629,
+        "past_promise": 235,
+        "share_past_promise": 0.14426
+      },
+      {
+        "day": "2018-08-26",
+        "open_orders": 1693,
+        "past_promise": 233,
+        "share_past_promise": 0.137626
+      },
+      {
+        "day": "2018-08-27",
+        "open_orders": 1311,
+        "past_promise": 205,
+        "share_past_promise": 0.156369
+      },
+      {
+        "day": "2018-08-28",
+        "open_orders": 953,
+        "past_promise": 203,
+        "share_past_promise": 0.213012
+      },
+      {
+        "day": "2018-08-29",
+        "open_orders": 594,
+        "past_promise": 201,
+        "share_past_promise": 0.338384
+      },
+      {
+        "day": "2018-08-30",
+        "open_orders": 228,
+        "past_promise": 204,
+        "share_past_promise": 0.894737
+      },
+      {
+        "day": "2018-08-31",
+        "open_orders": 196,
+        "past_promise": 193,
+        "share_past_promise": 0.984694
+      }
+    ],
+    "alert_days": [
+      {
+        "day": "2017-12-22",
+        "share_past_promise": 0.148589,
+        "z": 3.842396
+      },
+      {
+        "day": "2017-12-23",
+        "share_past_promise": 0.160861,
+        "z": 3.7656
+      },
+      {
+        "day": "2017-12-24",
+        "share_past_promise": 0.157615,
+        "z": 3.255068
+      },
+      {
+        "day": "2017-12-30",
+        "share_past_promise": 0.18175,
+        "z": 3.341206
+      },
+      {
+        "day": "2018-03-30",
+        "share_past_promise": 0.1854,
+        "z": 3.941941
+      },
+      {
+        "day": "2018-03-31",
+        "share_past_promise": 0.177253,
+        "z": 3.648394
+      },
+      {
+        "day": "2018-04-01",
+        "share_past_promise": 0.167762,
+        "z": 3.324518
+      },
+      {
+        "day": "2018-04-04",
+        "share_past_promise": 0.166286,
+        "z": 3.239203
+      },
+      {
+        "day": "2018-04-05",
+        "share_past_promise": 0.171272,
+        "z": 3.358269
+      },
+      {
+        "day": "2018-04-06",
+        "share_past_promise": 0.180323,
+        "z": 3.624223
+      },
+      {
+        "day": "2018-04-07",
+        "share_past_promise": 0.189394,
+        "z": 3.895589
+      },
+      {
+        "day": "2018-04-08",
+        "share_past_promise": 0.17886,
+        "z": 3.487689
+      },
+      {
+        "day": "2018-04-11",
+        "share_past_promise": 0.172052,
+        "z": 3.103951
+      },
+      {
+        "day": "2018-04-12",
+        "share_past_promise": 0.176119,
+        "z": 3.174846
+      },
+      {
+        "day": "2018-04-13",
+        "share_past_promise": 0.187109,
+        "z": 3.477357
+      },
+      {
+        "day": "2018-04-14",
+        "share_past_promise": 0.194048,
+        "z": 3.118677
+      },
+      {
+        "day": "2018-08-29",
+        "share_past_promise": 0.338384,
+        "z": 7.397574
+      },
+      {
+        "day": "2018-08-30",
+        "share_past_promise": 0.894737,
+        "z": 21.943191
+      },
+      {
+        "day": "2018-08-31",
+        "share_past_promise": 0.984694,
+        "z": 23.971735
+      }
+    ]
+  },
   "rule": "|z|>=4.0 on orders or gmv, or |z|>=3.0 on both; known events +-1 day -> expected_event",
   "daily_series_days": 608,
   "zero_order_days": 6,

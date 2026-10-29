@@ -16,6 +16,7 @@ select
     o.is_delivered,
     o.is_late,
     o.days_late,
-    o.purchase_month
+    o.purchase_month,
+    o.is_review_before_delivery
 from {{ ref('int_reviews_latest_per_order') }} as r
 join {{ ref('fct_orders') }} as o using (order_id)

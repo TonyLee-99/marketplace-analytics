@@ -8,7 +8,7 @@ _Generated from `metrics/metrics.yml` by `python -m marketplace.metrics`. Do not
 | **Orders** (`orders`) | Count of revenue orders (same filter as GMV). | Marketplace Finance | order; bucketed by purchase_date | trailing 3-month average x 1.03 |
 | **Average order value (BRL)** (`aov`) | GMV divided by revenue orders (item price only, excl. freight). | Marketplace Finance | order; bucketed by purchase_date | - |
 | **Active customers** (`active_customers`) | Distinct people (customer_unique_id) with >=1 revenue order in the period. | Growth | person (customer_unique_id); bucketed by purchase_date | - |
-| **Returning-customer share** (`repeat_purchase_rate`) | Share of the period's active customers whose order in the period was their 2nd or later revenue order ever (lifetime order number computed on customer_unique_id). | Growth | person; bucketed by purchase_date | illustrative: 5% returning share |
+| **Returning-customer share** (`repeat_purchase_rate`) | Share of the period's active customers who bought on a later calendar DAY than their first purchase (customer_purchase_day_number >= 2, computed on customer_unique_id). Same-day split baskets are not repeat purchases. | Growth | person; bucketed by purchase_date | illustrative: 5% returning share |
 | **On-time delivery rate** (`on_time_delivery_rate`) | Delivered orders whose delivery DATE is on or before the promised (estimated) date, over all delivered orders, attributed to the month the order was placed. | Logistics Ops | delivered order; bucketed by PURCHASE date (promise cohort) | illustrative: 93% |
 | **Avg delivery days (purchase -> customer)** (`avg_delivery_days`) | Mean fractional days from purchase timestamp to delivery timestamp. | Logistics Ops | delivered order; bucketed by purchase date | - |
 | **Avg promised days** (`avg_promised_days`) | Mean whole days from purchase date to the estimated delivery date shown to the customer. | Logistics Ops | delivered order; bucketed by purchase date | - |
@@ -68,10 +68,11 @@ _Generated from `metrics/metrics.yml` by `python -m marketplace.metrics`. Do not
 - Compiled SQL (monthly):
 
   ```sql
-  select cast(date_trunc('month', purchase_date) as date) as period, (count(distinct customer_unique_id) filter (where is_revenue_order and customer_order_number >= 2))::double / nullif(count(distinct customer_unique_id) filter (where is_revenue_order), 0) as value from marts.fct_orders where true group by 1
+  select cast(date_trunc('month', purchase_date) as date) as period, (count(distinct customer_unique_id) filter (where is_revenue_order and customer_purchase_day_number >= 2))::double / nullif(count(distinct customer_unique_id) filter (where is_revenue_order), 0) as value from marts.fct_orders where true group by 1
   ```
 - Early months are mechanically low (nobody has history yet).
-- For the cohort view (share of new customers who ever return) see reports/cohorts.json.
+- Counting every 2nd+ order (incl. same-day baskets) gives 3.04% lifetime instead of 2.17%.
+- Rejected alternative `repeat_rate_counting_same_day_orders`: 30% of "next orders" are placed the same day as the first (split baskets); they say nothing about loyalty and inflate the repeat rate by 40%.
 - Rejected alternative `repeat_rate_by_customer_id`: Every customer_id has exactly one order, so the repeat rate is mechanically 0%.
 
 ### On-time delivery rate (`on_time_delivery_rate`)

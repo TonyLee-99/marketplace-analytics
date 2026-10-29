@@ -1,0 +1,26 @@
+{
+  "panel": {
+    "seller_weeks": 58206,
+    "sellers": 2808,
+    "weeks": "2017-03..2018-07 (active seller-weeks)"
+  },
+  "brl_next4w_gmv_per_extra_bad_review": {
+    "estimate": -13.213939,
+    "se": 24.890646,
+    "ci95": [
+      -62.020213,
+      35.592335
+    ],
+    "p": 0.595545
+  },
+  "log_gmv_on_bad_share": {
+    "estimate": -0.093028,
+    "ci95": [
+      -0.245851,
+      0.059794
+    ],
+    "p": 0.232715
+  },
+  "significant_negative": false,
+  "reading": "Seller and week FE, volume controls; association, likely an upper bound on the causal cost (troubled sellers both get bad reviews and sell less). Used to price 1-2 star reviews in the promise and lane trade-offs, with its CI."
+}

@@ -210,6 +210,30 @@ CHECKS = [
         "select count(*) from raw.orders where strftime(order_estimated_delivery_date::timestamp, '%H:%M:%S') <> '00:00:00'",
         "0 non-midnight values: cast to DATE; on-time compares dates (timestamp compare would mis-count same-day deliveries as late).",
     ),
+    (
+        "DQ20b",
+        "Orders handed to the carrier before they were APPROVED (negative handling time)",
+        "select count(*) from raw.orders where order_delivered_carrier_date::timestamp < order_approved_at::timestamp",
+        "Kept; handling_days is negative for these. Stage analyses use medians; flagged as a source timestamp issue.",
+    ),
+    (
+        "DQ33",
+        "Reviews of LATE delivered orders answered before the parcel arrived",
+        "select count(*) from marts.fct_orders where is_delivered and is_late and is_review_before_delivery",
+        "Survey fires ~2 days after the promised date. Review effects are reported for all reviews AND post-delivery reviews only (delivery_impact.json).",
+    ),
+    (
+        "DQ34",
+        "Delivered revenue orders with no seller-customer distance (zip not geocoded)",
+        "select count(*) from marts.fct_orders where is_revenue_order and is_delivered and seller_customer_km is null",
+        "Models use a missing-distance indicator plus 0 km fill (no silent imputation).",
+    ),
+    (
+        "DQ35",
+        "Revenue orders never delivered (shipped/processing/invoiced/approved/created)",
+        "select count(*) from marts.fct_orders where is_revenue_order and not is_delivered",
+        "Counted as LATE in promise-policy evaluation; excluded from review regressions (no delivery date).",
+    ),
 ]
 
 

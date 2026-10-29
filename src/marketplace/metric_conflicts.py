@@ -70,6 +70,11 @@ def customer_id_conflicts(con, ml: MetricsLayer) -> dict:
     )
     lifetime_repeat_people = _scalar(
         con,
+        "select avg(case when n_purchase_days >= 2 then 1.0 else 0 end) "
+        "from marts.dim_customers where n_revenue_orders >= 1",
+    )
+    lifetime_repeat_any_order = _scalar(
+        con,
         "select avg(case when n_revenue_orders >= 2 then 1.0 else 0 end) "
         "from marts.dim_customers where n_revenue_orders >= 1",
     )
@@ -80,7 +85,8 @@ def customer_id_conflicts(con, ml: MetricsLayer) -> dict:
             "overcount_pct": round(by_customer_id / ml.value("active_customers") - 1, 4),
         },
         "repeat_rate": {
-            "governed_lifetime_share_of_people_with_2plus_orders": round(lifetime_repeat_people, 4),
+            "governed_lifetime_share_bought_on_2plus_days": round(lifetime_repeat_people, 4),
+            "rejected_counting_same_day_orders": round(lifetime_repeat_any_order, 4),
             "rejected_customer_id_based": round(repeat_by_customer_id, 4),
             "governed_returning_customer_share_all_time": round(
                 ml.value("repeat_purchase_rate"), 4

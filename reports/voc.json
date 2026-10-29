@@ -23,7 +23,7 @@
       "2": 2124
     }
   },
-  "gold": {
+  "silver_labels": {
     "n": 400,
     "accuracy": 0.7125,
     "accuracy_ci95": [
@@ -226,10 +226,11 @@
         "wrong_item": 12
       }
     ],
-    "labeller": "hand-labelled blind by the project author. Gold A (240) was read before the rules were written; gold B (160) was drawn and labelled before any rule existed; rules were developed on a disjoint dev sample. Spot-check recommended."
+    "status": "Single-annotator labels. Set A (240) was read before the rules were written; set B (160) was drawn and labelled before any rule existed; rules were developed on a disjoint dev sample. No inter-annotator agreement measured yet.",
+    "verification": "artifacts/voc_author_verification_template.csv (50 reviews) -> `python -m marketplace.analysis.voc rescore <filled.csv>`"
   },
   "evaluation": {
-    "rules_gold_A_240_seen_before_rules": {
+    "rules_vs_silver_A_240_seen_before_rules": {
       "n": 240,
       "accuracy": 0.716667,
       "accuracy_ci95": [
@@ -433,7 +434,7 @@
         }
       ]
     },
-    "rules_gold_B_160_fresh_holdout": {
+    "rules_vs_silver_B_160_fresh_holdout": {
       "n": 160,
       "accuracy": 0.70625,
       "accuracy_ci95": [
@@ -637,7 +638,7 @@
         }
       ]
     },
-    "rules_gold_A_plus_B": {
+    "rules_vs_silver_A_plus_B": {
       "n": 400,
       "accuracy": 0.7125,
       "accuracy_ci95": [
@@ -840,210 +841,6 @@
           "wrong_item": 12
         }
       ]
-    },
-    "llm_on_gold_items_it_labelled": {
-      "n": 31,
-      "accuracy": 0.774194,
-      "accuracy_ci95": [
-        0.612903,
-        0.903226
-      ],
-      "macro_f1": 0.687557,
-      "per_class": {
-        "damaged_defective": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 3
-        },
-        "incomplete_order": {
-          "precision": 0.5,
-          "recall": 1.0,
-          "f1": 0.666667,
-          "support": 1
-        },
-        "late_delivery": {
-          "precision": 0.333333,
-          "recall": 1.0,
-          "f1": 0.5,
-          "support": 1
-        },
-        "not_received": {
-          "precision": 0.8,
-          "recall": 0.8,
-          "f1": 0.8,
-          "support": 5
-        },
-        "other": {
-          "precision": 1.0,
-          "recall": 0.166667,
-          "f1": 0.285714,
-          "support": 6
-        },
-        "poor_quality": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 1
-        },
-        "positive": {
-          "precision": 0.916667,
-          "recall": 1.0,
-          "f1": 0.956522,
-          "support": 11
-        },
-        "refund_cancellation": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "support": 1
-        },
-        "seller_communication": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 1
-        },
-        "wrong_item": {
-          "precision": 0.5,
-          "recall": 1.0,
-          "f1": 0.666667,
-          "support": 1
-        }
-      },
-      "majority_class_baseline_accuracy": 0.354839,
-      "confusion": [
-        {
-          "gold_label": "damaged_defective",
-          "damaged_defective": 3,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "incomplete_order",
-          "damaged_defective": 0,
-          "incomplete_order": 1,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "late_delivery",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 1,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "not_received",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 1,
-          "not_received": 4,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "other",
-          "damaged_defective": 0,
-          "incomplete_order": 1,
-          "late_delivery": 1,
-          "not_received": 0,
-          "other": 1,
-          "poor_quality": 0,
-          "positive": 1,
-          "refund_cancellation": 1,
-          "seller_communication": 0,
-          "wrong_item": 1
-        },
-        {
-          "gold_label": "poor_quality",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 1,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "positive",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 11,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "refund_cancellation",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 1,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "seller_communication",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 1,
-          "wrong_item": 0
-        },
-        {
-          "gold_label": "wrong_item",
-          "damaged_defective": 0,
-          "incomplete_order": 0,
-          "late_delivery": 0,
-          "not_received": 0,
-          "other": 0,
-          "poor_quality": 0,
-          "positive": 0,
-          "refund_cancellation": 0,
-          "seller_communication": 0,
-          "wrong_item": 1
-        }
-      ]
     }
   },
   "rule_vs_llm": {
@@ -1067,6 +864,176 @@
     "late_delivery": 0.042284,
     "positive": 0.032784,
     "seller_communication": 0.011363
+  },
+  "negative_share_corrected_for_misclassification": {
+    "damaged_defective": {
+      "observed": 0.066778,
+      "corrected": 0.089038,
+      "ci95": [
+        0.07364,
+        0.119679
+      ]
+    },
+    "incomplete_order": {
+      "observed": 0.151066,
+      "corrected": 0.15043,
+      "ci95": [
+        0.115413,
+        0.180319
+      ]
+    },
+    "late_delivery": {
+      "observed": 0.042284,
+      "corrected": 0.024004,
+      "ci95": [
+        0.0,
+        0.109229
+      ]
+    },
+    "not_received": {
+      "observed": 0.262364,
+      "corrected": 0.380077,
+      "ci95": [
+        0.29039,
+        0.479248
+      ]
+    },
+    "other": {
+      "observed": 0.211605,
+      "corrected": 0.017607,
+      "ci95": [
+        0.0,
+        0.119385
+      ]
+    },
+    "poor_quality": {
+      "observed": 0.092577,
+      "corrected": 0.140405,
+      "ci95": [
+        0.089817,
+        0.20019
+      ]
+    },
+    "positive": {
+      "observed": 0.032784,
+      "corrected": 0.00336,
+      "ci95": [
+        0.0,
+        0.033188
+      ]
+    },
+    "refund_cancellation": {
+      "observed": 0.078048,
+      "corrected": 0.074771,
+      "ci95": [
+        0.008124,
+        0.144384
+      ]
+    },
+    "seller_communication": {
+      "observed": 0.011363,
+      "corrected": 0.034088,
+      "ci95": [
+        0.0,
+        0.088717
+      ]
+    },
+    "wrong_item": {
+      "observed": 0.051132,
+      "corrected": 0.086221,
+      "ci95": [
+        0.052279,
+        0.134272
+      ]
+    }
+  },
+  "negative_on_time_share_corrected_for_misclassification": {
+    "damaged_defective": {
+      "observed": 0.105288,
+      "corrected": 0.140384,
+      "ci95": [
+        0.116171,
+        0.18807
+      ]
+    },
+    "incomplete_order": {
+      "observed": 0.224221,
+      "corrected": 0.233957,
+      "ci95": [
+        0.194254,
+        0.270588
+      ]
+    },
+    "late_delivery": {
+      "observed": 0.026361,
+      "corrected": 0.023565,
+      "ci95": [
+        0.0,
+        0.087091
+      ]
+    },
+    "not_received": {
+      "observed": 0.101876,
+      "corrected": 0.136876,
+      "ci95": [
+        0.085668,
+        0.182196
+      ]
+    },
+    "other": {
+      "observed": 0.205768,
+      "corrected": 0.037859,
+      "ci95": [
+        0.0,
+        0.124843
+      ]
+    },
+    "poor_quality": {
+      "observed": 0.13661,
+      "corrected": 0.203991,
+      "ci95": [
+        0.132953,
+        0.286949
+      ]
+    },
+    "positive": {
+      "observed": 0.043418,
+      "corrected": 0.005912,
+      "ci95": [
+        0.0,
+        0.047579
+      ]
+    },
+    "refund_cancellation": {
+      "observed": 0.070554,
+      "corrected": 0.063654,
+      "ci95": [
+        0.0,
+        0.135886
+      ]
+    },
+    "seller_communication": {
+      "observed": 0.006978,
+      "corrected": 0.020933,
+      "ci95": [
+        0.0,
+        0.082231
+      ]
+    },
+    "wrong_item": {
+      "observed": 0.078927,
+      "corrected": 0.132868,
+      "ci95": [
+        0.083337,
+        0.199069
+      ]
+    }
+  },
+  "accuracy_by_star_stratum_silver_B": {
+    "1": 0.575,
+    "2": 0.75,
+    "3": 0.6,
+    "4-5": 0.9
   },
   "negative_on_time_review_reason_share": {
     "incomplete_order": 0.224221,

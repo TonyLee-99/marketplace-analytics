@@ -104,6 +104,67 @@ def apply_rule(z: pd.DataFrame, s: pd.DataFrame, events: pd.DataFrame) -> pd.Dat
     return alerts
 
 
+def inflight_late_series() -> pd.DataFrame:
+    """Daily in-flight lateness, knowable on the day itself: among revenue orders purchased in
+    the last 60 days and not yet delivered at day end, the share already past their promised
+    date. Unlike the purchase-cohort on-time rate it is not right-censored."""
+    q = df(
+        f"""
+        with days as (select cast(d as date) as dd from range(timestamp '{START}',
+                      timestamp '{WINDOW_END}' + interval 1 day, interval 1 day) t(d)),
+        o as (select purchase_date, estimated_delivery_date,
+                     cast(delivered_to_customer_at as date) dlv
+              from marts.fct_orders where is_revenue_order)
+        select dd as day,
+               count(*) filter (where o.dlv is null or o.dlv > dd) open_orders,
+               count(*) filter (where (o.dlv is null or o.dlv > dd)
+                                and o.estimated_delivery_date < dd) past_promise
+        from days join o on o.purchase_date between dd - interval 60 day and dd
+        group by 1 order by 1
+        """
+    )
+    q["day"] = pd.to_datetime(q["day"])
+    q["share_past_promise"] = q["past_promise"] / q["open_orders"]
+    return q.set_index("day")
+
+
+def inflight_monitor() -> dict:
+    """Online rule on the in-flight share: alert when today's share exceeds the trailing 28-day
+    median by >= 4 robust SDs (MAD of daily changes), 2 days in a row."""
+    q = inflight_late_series()
+    q = q.loc["2017-03-01":]  # 60-day warm-up of the open-order window
+    x = q["share_past_promise"]
+
+    def rule(win, thr):
+        med = x.shift(1).rolling(win, min_periods=win).median()
+        mad = (x.shift(1) - med).abs().rolling(win, min_periods=win).median() * 1.4826
+        z = (x - med) / mad
+        return z, (z >= thr) & (z.shift(1) >= thr)
+
+    z, fire = rule(56, 3)
+    alerts = q[fire].assign(z=z[fire])
+    _, fire_alt = rule(28, 3)
+    alt_first_feb_mar = fire_alt["2018-02-01":"2018-04-15"]
+    first = {}
+    for label, (a, b) in {"feb_mar_2018_slowdown": ("2018-02-01", "2018-03-31"),
+                          "truckers_strike_may_2018": ("2018-05-15", "2018-06-15"),
+                          "black_friday_backlog_2017": ("2017-11-20", "2017-12-31")}.items():
+        hit = alerts.loc[a:b]
+        first[label] = str(hit.index.min().date()) if len(hit) else None
+    return {
+        "definition": "share of open (undelivered, purchased <= 60 days ago) revenue orders already past the "
+        "promised date, computed each day from data available that day",
+        "rule": "z >= 3 vs trailing 56-day median (1.4826*MAD scale), two consecutive days",
+        "sensitivity_28d_window_first_feb_mar_alert": str(alt_first_feb_mar[alt_first_feb_mar].index.min().date())
+        if alt_first_feb_mar.any() else None,
+        "volume_monitor_alerts_feb_mar_2018": 0,
+        "n_alert_days": int(len(alerts)),
+        "first_alert_by_incident": first,
+        "series": q.reset_index()[["day", "open_orders", "past_promise", "share_past_promise"]],
+        "alert_days": alerts.reset_index()[["day", "share_past_promise", "z"]],
+    }
+
+
 def main() -> int:
     ml = MetricsLayer.load()
     s = daily_series(ml)
@@ -132,9 +193,11 @@ def main() -> int:
         "the following days.",
     }
     week_after = s.loc["2017-11-25":"2017-11-30", "orders"]
+    inflight = inflight_monitor()
     write_report(
         "anomalies",
         {
+            "inflight_late_monitor": inflight,
             "rule": f"|z|>={Z_HARD} on orders or gmv, or |z|>={Z_SOFT} on both; "
             "known events +-1 day -> expected_event",
             "daily_series_days": int(len(s)),

@@ -45,8 +45,20 @@ models:
           - within_range: {arguments: {min_value: 0}}
       - name: customer_order_number
         description: n-th revenue order of the person (1 = first purchase).
+      - name: customer_purchase_day_number
+        description: n-th distinct purchase day of the person; >= 2 means a returning customer (governed).
+      - name: is_review_before_delivery
+        description: Review answered before the parcel arrived (or never delivered). 70% of late orders.
+      - name: fulfilment_leg
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [seller_late_handover, seller_on_time_handover, not_handed_over]
 
   - name: fct_order_items
+    description: >
+      Item grain. order_* columns repeat order-level attributes on each line and are NOT
+      aggregatable at this grain (see tests/assert_item_fact_has_no_order_measures.sql).
     columns:
       - name: order_item_key
         data_tests: [unique, not_null]

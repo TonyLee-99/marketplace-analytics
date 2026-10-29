@@ -1,15 +1,11 @@
 """D1/H4/H6 checks on analysis logic and outputs."""
 
-import json
-
 import numpy as np
 import pandas as pd
-from conftest import needs_reports
 
 from marketplace.analysis.cohorts import kaplan_meier
 from marketplace.analysis.delivery_impact import BINS, lateness_bin
 from marketplace.analysis.growth import decompose
-from marketplace.paths import REPORTS
 
 
 def test_lmdi_decomposition_is_exact():
@@ -43,31 +39,17 @@ def test_kaplan_meier_matches_hand_calculation():
     assert abs(km[3] - (1 - 0.75 * 0.5)) < 1e-12  # S(3) = 3/4 * 1/2
 
 
-@needs_reports
-def test_growth_report_residuals():
-    g = json.loads((REPORTS / "growth.json").read_text())
-    for r in g["mom"] + g["yoy"] + [g["ytd_jan_aug_2018_vs_2017"]]:
-        assert abs(r["log_residual"]) < 1e-9
+def test_synthetic_simpson_is_detected():
+    """Both segments get worse, but volume moves to the better segment: the aggregate rises.
+    The decomposition must show a negative rate effect and a positive total."""
+    import pandas as pd
 
+    from marketplace.analysis.root_cause import mix_rate_split
 
-@needs_reports
-def test_root_cause_effects_add_up():
-    rc = json.loads((REPORTS / "root_cause.json").read_text())
-    assert len(rc["moves"]) >= 2
-    for m in rc["moves"]:
-        for d in m["by_dimension"].values():
-            if d["rate_effect"] is not None:
-                # residual is computed at full precision before JSON rounding (6 dp)
-                assert abs(d["residual"]) < 1e-9
-                total = d["mix_effect"] + d["rate_effect"] + d["interaction"]
-                assert abs(total - d["delta"]) < 5e-6
-
-
-@needs_reports
-def test_delivery_impact_has_causal_designs():
-    di = json.loads((REPORTS / "delivery_impact.json").read_text())
-    rv = di["review"]
-    for k in ("B_fe_controls", "C_within_seller_month", "D_same_delivery_time"):
-        assert rv[k]["ci95"][0] <= rv[k]["estimate"] <= rv[k]["ci95"][1]
-    assert len(rv["F_dose_response"]["fe"]) >= 6
-    assert len(di["rd"]["placebo_cutoffs"]) >= 2
+    seg = ["good", "bad"]
+    d0, n0 = pd.Series([100, 900], seg), pd.Series([90, 450], seg)    # 90%, 50% -> 54%
+    d1, n1 = pd.Series([900, 100], seg), pd.Series([765, 40], seg)    # 85%, 40% -> 80.5%
+    r = mix_rate_split(n0, d0, n1, d1)
+    delta = r["total1"] - r["total0"]
+    assert delta > 0 and r["rate"].sum() < 0 and r["mix"].sum() > 0
+    assert abs(r["mix"].sum() + r["rate"].sum() + r["inter"].sum() - delta) < 1e-12

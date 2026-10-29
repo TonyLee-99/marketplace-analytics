@@ -10,6 +10,7 @@ agg as (
         customer_unique_id,
         count(*)                                              as n_orders_all_status,
         count(*) filter (where is_revenue_order)              as n_revenue_orders,
+        count(distinct purchase_date) filter (where is_revenue_order) as n_purchase_days,
         min(purchased_at) filter (where is_revenue_order)     as first_purchase_at,
         max(purchased_at) filter (where is_revenue_order)     as last_purchase_at,
         coalesce(sum(items_price_brl) filter (where is_revenue_order), 0) as lifetime_gmv_brl
@@ -35,11 +36,13 @@ select
     v.n_address_versions,
     a.n_orders_all_status,
     a.n_revenue_orders,
+    a.n_purchase_days,
     a.first_purchase_at,
     a.last_purchase_at,
     cast(date_trunc('month', a.first_purchase_at) as date) as cohort_month,
     a.lifetime_gmv_brl,
-    a.n_revenue_orders >= 2 as is_repeat_customer
+    -- Governed: repeat = bought on at least 2 distinct days (same-day split baskets excluded)
+    a.n_purchase_days >= 2  as is_repeat_customer
 from agg as a
 left join current_location as l using (customer_unique_id)
 left join loc_versions as v using (customer_unique_id)

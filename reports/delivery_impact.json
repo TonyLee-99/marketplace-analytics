@@ -2,78 +2,203 @@
   "sample": {
     "delivered_revenue_orders": 96203,
     "with_review": 95560,
+    "with_post_delivery_review": 90912,
     "late_share": 0.067888,
-    "window": "2017-01-01..2018-08-31"
+    "window": "2017-01-01..2018-08-31",
+    "excluded": "revenue orders never delivered (no delivery date; see DQ35)"
+  },
+  "survey_timing": {
+    "by_late": [
+      {
+        "is_late": false,
+        "n": 89182,
+        "sent_before_delivery": 0.031284,
+        "answered_before_delivery": 0.001985,
+        "mean_score": 4.291157
+      },
+      {
+        "is_late": true,
+        "n": 6378,
+        "sent_before_delivery": 0.835685,
+        "answered_before_delivery": 0.701003,
+        "mean_score": 2.270618
+      }
+    ],
+    "late_answered_before_delivery_share": 0.701003,
+    "survey_sent_days_after_promise_for_late_orders": {
+      "-28": 1,
+      "-21": 1,
+      "-20": 3,
+      "-19": 1,
+      "-17": 3,
+      "-16": 2,
+      "-13": 1,
+      "-12": 4,
+      "-11": 2,
+      "-9": 2,
+      "-8": 4,
+      "-7": 3
+    },
+    "modal_send_day_after_promise": 2,
+    "near_cutoff": [
+      {
+        "days_late": -2,
+        "n": 1540,
+        "score": 4.123377,
+        "sent_before": 0.044156,
+        "answered_before": 0.002597
+      },
+      {
+        "days_late": -1,
+        "n": 1449,
+        "score": 4.15804,
+        "sent_before": 0.048309,
+        "answered_before": 0.005521
+      },
+      {
+        "days_late": 0,
+        "n": 1280,
+        "score": 4.033594,
+        "sent_before": 0.050781,
+        "answered_before": 0.00625
+      },
+      {
+        "days_late": 1,
+        "n": 819,
+        "score": 3.73138,
+        "sent_before": 0.123321,
+        "answered_before": 0.025641
+      },
+      {
+        "days_late": 2,
+        "n": 536,
+        "score": 3.179104,
+        "sent_before": 0.731343,
+        "answered_before": 0.285448
+      },
+      {
+        "days_late": 3,
+        "n": 496,
+        "score": 2.683468,
+        "sent_before": 0.818548,
+        "answered_before": 0.487903
+      },
+      {
+        "days_late": 4,
+        "n": 436,
+        "score": 2.497706,
+        "sent_before": 0.87844,
+        "answered_before": 0.607798
+      },
+      {
+        "days_late": 5,
+        "n": 434,
+        "score": 2.18894,
+        "sent_before": 0.917051,
+        "answered_before": 0.732719
+      },
+      {
+        "days_late": 6,
+        "n": 407,
+        "score": 1.810811,
+        "sent_before": 0.987715,
+        "answered_before": 0.85258
+      }
+    ],
+    "score_by_late_and_timing": [
+      {
+        "is_late": false,
+        "is_review_before_delivery": false,
+        "size": 89005,
+        "mean": 4.291793
+      },
+      {
+        "is_late": false,
+        "is_review_before_delivery": true,
+        "size": 177,
+        "mean": 3.971751
+      },
+      {
+        "is_late": true,
+        "is_review_before_delivery": false,
+        "size": 1907,
+        "mean": 3.719455
+      },
+      {
+        "is_late": true,
+        "is_review_before_delivery": true,
+        "size": 4471,
+        "mean": 1.65265
+      }
+    ]
   },
   "review": {
     "naive": {
       "late_mean": 2.270618,
       "on_time_mean": 4.291157,
-      "low_review_late": 0.624177,
-      "low_review_on_time": 0.092474,
       "n_late": 6378,
       "n_on_time": 89182,
       "diff": -2.02054
     },
     "B_fe_controls": {
-      "estimate": -1.923147,
-      "se": 0.025827,
+      "estimate": -1.923248,
+      "se": 0.025812,
       "ci95": [
-        -1.973793,
-        -1.872501
+        -1.973865,
+        -1.872631
       ],
       "p": 0.0,
       "n_obs": 95037
     },
     "B_fe_controls_low_review": {
-      "estimate": 0.512665,
-      "se": 0.007101,
+      "estimate": 0.512687,
+      "se": 0.007099,
       "ci95": [
-        0.498741,
-        0.526589
+        0.498766,
+        0.526607
       ],
       "p": 0.0,
       "n_obs": 95037
     },
     "C_within_seller_month": {
-      "estimate": -1.894366,
-      "se": 0.028256,
+      "estimate": -1.894424,
+      "se": 0.028235,
       "ci95": [
-        -1.94978,
-        -1.838952
+        -1.949797,
+        -1.839051
       ],
       "p": 0.0,
       "n_obs": 90202
     },
     "D_same_delivery_time": {
-      "estimate": -1.255503,
-      "se": 0.032351,
+      "estimate": -1.252763,
+      "se": 0.032381,
       "ci95": [
-        -1.318943,
-        -1.192064
+        -1.316261,
+        -1.189265
       ],
       "p": 0.0,
       "n_obs": 95037
     },
-    "F_dose_response": {
+    "G_dose_response": {
       "reference_bin": "1-7 early",
       "fe": [
         {
           "bin": "15+ days early",
-          "effect": 0.188976,
+          "effect": 0.188754,
           "ci95": [
-            0.163629,
-            0.214323
+            0.163442,
+            0.214066
           ],
           "n": 34526,
           "raw_mean": 4.324972
         },
         {
           "bin": "8-14 early",
-          "effect": 0.129576,
+          "effect": 0.129501,
           "ci95": [
-            0.105415,
-            0.153737
+            0.105341,
+            0.153661
           ],
           "n": 36147,
           "raw_mean": 4.310897
@@ -90,50 +215,50 @@
         },
         {
           "bin": "on promised day",
-          "effect": -0.154672,
+          "effect": -0.154704,
           "ci95": [
-            -0.227931,
-            -0.081412
+            -0.227958,
+            -0.08145
           ],
           "n": 1280,
           "raw_mean": 4.033594
         },
         {
           "bin": "1-3 late",
-          "effect": -0.838695,
+          "effect": -0.838773,
           "ci95": [
-            -0.914939,
-            -0.762451
+            -0.914998,
+            -0.762547
           ],
           "n": 1851,
           "raw_mean": 3.290654
         },
         {
           "bin": "4-7 late",
-          "effect": -2.004654,
+          "effect": -2.004836,
           "ci95": [
-            -2.083552,
-            -1.925757
+            -2.083657,
+            -1.926016
           ],
           "n": 1748,
           "raw_mean": 2.102975
         },
         {
           "bin": "8-14 late",
-          "effect": -2.397132,
+          "effect": -2.397274,
           "ci95": [
-            -2.470998,
-            -2.323266
+            -2.471162,
+            -2.323386
           ],
           "n": 1446,
           "raw_mean": 1.670816
         },
         {
           "bin": "15+ late",
-          "effect": -2.342639,
+          "effect": -2.342972,
           "ci95": [
-            -2.419334,
-            -2.265944
+            -2.419519,
+            -2.266425
           ],
           "n": 1333,
           "raw_mean": 1.724681
@@ -142,20 +267,20 @@
       "fe_plus_delivery_days": [
         {
           "bin": "15+ days early",
-          "effect": 0.026386,
+          "effect": 0.021423,
           "ci95": [
-            -0.003245,
-            0.056016
+            -0.00804,
+            0.050887
           ],
           "n": 34526,
           "raw_mean": 4.324972
         },
         {
           "bin": "8-14 early",
-          "effect": 0.033112,
+          "effect": 0.030552,
           "ci95": [
-            0.007892,
-            0.058332
+            0.005356,
+            0.055748
           ],
           "n": 36147,
           "raw_mean": 4.310897
@@ -172,72 +297,72 @@
         },
         {
           "bin": "on promised day",
-          "effect": -0.037681,
+          "effect": -0.035858,
           "ci95": [
-            -0.110229,
-            0.034867
+            -0.108524,
+            0.036807
           ],
           "n": 1280,
           "raw_mean": 4.033594
         },
         {
           "bin": "1-3 late",
-          "effect": -0.653312,
+          "effect": -0.650961,
           "ci95": [
-            -0.731022,
-            -0.575602
+            -0.728652,
+            -0.573271
           ],
           "n": 1851,
           "raw_mean": 3.290654
         },
         {
           "bin": "4-7 late",
-          "effect": -1.720456,
+          "effect": -1.717903,
           "ci95": [
-            -1.805148,
-            -1.635765
+            -1.802577,
+            -1.63323
           ],
           "n": 1748,
           "raw_mean": 2.102975
         },
         {
           "bin": "8-14 late",
-          "effect": -2.004727,
+          "effect": -2.000806,
           "ci95": [
-            -2.097544,
-            -1.911909
+            -2.093625,
+            -1.907986
           ],
           "n": 1446,
           "raw_mean": 1.670816
         },
         {
           "bin": "15+ late",
-          "effect": -1.910221,
+          "effect": -1.905695,
           "ci95": [
-            -2.052385,
-            -1.768056
+            -2.047811,
+            -1.763579
           ],
           "n": 1333,
           "raw_mean": 1.724681
         }
       ],
-      "low_review_fe_plus_delivery_days": [
+      "low_review_fe": [
         {
           "bin": "15+ days early",
-          "effect": 0.000901,
+          "effect": -0.024314,
           "ci95": [
-            -0.006679,
-            0.008481
+            -0.030721,
+            -0.017908
           ],
           "n": 34526,
           "raw_mean": 0.090048
         },
         {
           "bin": "8-14 early",
-          "effect": -0.000989,
+          "effect": -0.016092,
           "ci95": [
-            -0.00757,
-            0.005593
+            -0.022328,
+            -0.009857
           ],
           "n": 36147,
           "raw_mean": 0.088998
@@ -254,50 +379,132 @@
         },
         {
           "bin": "on promised day",
-          "effect": -0.001901,
+          "effect": 0.018498,
           "ci95": [
-            -0.021348,
-            0.017546
+            -0.000957,
+            0.037952
           ],
           "n": 1280,
           "raw_mean": 0.124219
         },
         {
           "bin": "1-3 late",
-          "effect": 0.171207,
+          "effect": 0.205559,
           "ci95": [
-            0.147502,
-            0.194911
+            0.182451,
+            0.228668
           ],
           "n": 1851,
           "raw_mean": 0.321448
         },
         {
           "bin": "4-7 late",
-          "effect": 0.50013,
+          "effect": 0.557518,
           "ci95": [
-            0.476235,
-            0.524025
+            0.534991,
+            0.580046
           ],
           "n": 1748,
           "raw_mean": 0.676773
         },
         {
           "bin": "8-14 late",
-          "effect": 0.588062,
+          "effect": 0.674416,
           "ci95": [
-            0.559576,
-            0.616548
+            0.652326,
+            0.696506
           ],
           "n": 1446,
           "raw_mean": 0.801521
         },
         {
           "bin": "15+ late",
-          "effect": 0.560751,
+          "effect": 0.656464,
           "ci95": [
-            0.51808,
-            0.603422
+            0.63291,
+            0.680018
+          ],
+          "n": 1333,
+          "raw_mean": 0.783196
+        }
+      ],
+      "low_review_fe_plus_delivery_days": [
+        {
+          "bin": "15+ days early",
+          "effect": 0.001712,
+          "ci95": [
+            -0.005849,
+            0.009272
+          ],
+          "n": 34526,
+          "raw_mean": 0.090048
+        },
+        {
+          "bin": "8-14 early",
+          "effect": -0.00057,
+          "ci95": [
+            -0.007141,
+            0.006
+          ],
+          "n": 36147,
+          "raw_mean": 0.088998
+        },
+        {
+          "bin": "1-7 early",
+          "effect": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 17229,
+          "raw_mean": 0.102269
+        },
+        {
+          "bin": "on promised day",
+          "effect": -0.002199,
+          "ci95": [
+            -0.021676,
+            0.017279
+          ],
+          "n": 1280,
+          "raw_mean": 0.124219
+        },
+        {
+          "bin": "1-3 late",
+          "effect": 0.170823,
+          "ci95": [
+            0.147101,
+            0.194544
+          ],
+          "n": 1851,
+          "raw_mean": 0.321448
+        },
+        {
+          "bin": "4-7 late",
+          "effect": 0.499713,
+          "ci95": [
+            0.475806,
+            0.523619
+          ],
+          "n": 1748,
+          "raw_mean": 0.676773
+        },
+        {
+          "bin": "8-14 late",
+          "effect": 0.587421,
+          "ci95": [
+            0.55891,
+            0.615932
+          ],
+          "n": 1446,
+          "raw_mean": 0.801521
+        },
+        {
+          "bin": "15+ late",
+          "effect": 0.560012,
+          "ci95": [
+            0.51731,
+            0.602714
           ],
           "n": 1333,
           "raw_mean": 0.783196
@@ -305,9 +512,518 @@
       ]
     }
   },
-  "rd": {
-    "running_variable": "delivered date - promised date (days); treated = >= 1 day late",
-    "local_linear": [
+  "review_post_delivery": {
+    "naive": {
+      "late_mean": 3.719455,
+      "on_time_mean": 4.291793,
+      "n_late": 1907,
+      "n_on_time": 89005,
+      "diff": -0.572338
+    },
+    "B_fe_controls": {
+      "estimate": -0.517741,
+      "se": 0.030435,
+      "ci95": [
+        -0.577423,
+        -0.458059
+      ],
+      "p": 0.0,
+      "n_obs": 90401
+    },
+    "B_fe_controls_low_review": {
+      "estimate": 0.093508,
+      "se": 0.008384,
+      "ci95": [
+        0.077067,
+        0.109949
+      ],
+      "p": 0.0,
+      "n_obs": 90401
+    },
+    "C_within_seller_month": {
+      "estimate": -0.508922,
+      "se": 0.031593,
+      "ci95": [
+        -0.570881,
+        -0.446963
+      ],
+      "p": 0.0,
+      "n_obs": 85568
+    },
+    "D_same_delivery_time": {
+      "estimate": -0.21411,
+      "se": 0.032967,
+      "ci95": [
+        -0.278758,
+        -0.149463
+      ],
+      "p": 0.0,
+      "n_obs": 90398
+    },
+    "G_dose_response": {
+      "reference_bin": "1-7 early",
+      "fe": [
+        {
+          "bin": "15+ days early",
+          "effect": 0.18953,
+          "ci95": [
+            0.164274,
+            0.214787
+          ],
+          "n": 34468,
+          "raw_mean": 4.3252
+        },
+        {
+          "bin": "8-14 early",
+          "effect": 0.12967,
+          "ci95": [
+            0.105548,
+            0.153792
+          ],
+          "n": 36077,
+          "raw_mean": 4.311528
+        },
+        {
+          "bin": "1-7 early",
+          "effect": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 17188,
+          "raw_mean": 4.202118
+        },
+        {
+          "bin": "on promised day",
+          "effect": -0.154182,
+          "ci95": [
+            -0.227928,
+            -0.080435
+          ],
+          "n": 1272,
+          "raw_mean": 4.038522
+        },
+        {
+          "bin": "1-3 late",
+          "effect": -0.397504,
+          "ci95": [
+            -0.465652,
+            -0.329357
+          ],
+          "n": 1435,
+          "raw_mean": 3.745645
+        },
+        {
+          "bin": "4-7 late",
+          "effect": -0.424377,
+          "ci95": [
+            -0.570006,
+            -0.278749
+          ],
+          "n": 396,
+          "raw_mean": 3.691919
+        },
+        {
+          "bin": "8-14 late",
+          "effect": -0.445622,
+          "ci95": [
+            -0.834294,
+            -0.05695
+          ],
+          "n": 57,
+          "raw_mean": 3.526316
+        },
+        {
+          "bin": "15+ late",
+          "effect": -1.222482,
+          "ci95": [
+            -1.930771,
+            -0.514192
+          ],
+          "n": 19,
+          "raw_mean": 2.894737
+        }
+      ],
+      "fe_plus_delivery_days": [
+        {
+          "bin": "15+ days early",
+          "effect": 0.024862,
+          "ci95": [
+            -0.004205,
+            0.053928
+          ],
+          "n": 34468,
+          "raw_mean": 4.3252
+        },
+        {
+          "bin": "8-14 early",
+          "effect": 0.033099,
+          "ci95": [
+            0.008261,
+            0.057936
+          ],
+          "n": 36077,
+          "raw_mean": 4.311528
+        },
+        {
+          "bin": "1-7 early",
+          "effect": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 17188,
+          "raw_mean": 4.202118
+        },
+        {
+          "bin": "on promised day",
+          "effect": -0.041909,
+          "ci95": [
+            -0.115402,
+            0.031583
+          ],
+          "n": 1272,
+          "raw_mean": 4.038522
+        },
+        {
+          "bin": "1-3 late",
+          "effect": -0.222302,
+          "ci95": [
+            -0.293114,
+            -0.15149
+          ],
+          "n": 1435,
+          "raw_mean": 3.745645
+        },
+        {
+          "bin": "4-7 late",
+          "effect": -0.168603,
+          "ci95": [
+            -0.322682,
+            -0.014525
+          ],
+          "n": 396,
+          "raw_mean": 3.691919
+        },
+        {
+          "bin": "8-14 late",
+          "effect": -0.052346,
+          "ci95": [
+            -0.445997,
+            0.341305
+          ],
+          "n": 57,
+          "raw_mean": 3.526316
+        },
+        {
+          "bin": "15+ late",
+          "effect": -0.533123,
+          "ci95": [
+            -1.441448,
+            0.375203
+          ],
+          "n": 19,
+          "raw_mean": 2.894737
+        }
+      ],
+      "low_review_fe": [
+        {
+          "bin": "15+ days early",
+          "effect": -0.024251,
+          "ci95": [
+            -0.030596,
+            -0.017906
+          ],
+          "n": 34468,
+          "raw_mean": 0.089968
+        },
+        {
+          "bin": "8-14 early",
+          "effect": -0.015933,
+          "ci95": [
+            -0.02213,
+            -0.009736
+          ],
+          "n": 36077,
+          "raw_mean": 0.088893
+        },
+        {
+          "bin": "1-7 early",
+          "effect": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 17188,
+          "raw_mean": 0.10199
+        },
+        {
+          "bin": "on promised day",
+          "effect": 0.018214,
+          "ci95": [
+            -0.001311,
+            0.03774
+          ],
+          "n": 1272,
+          "raw_mean": 0.122642
+        },
+        {
+          "bin": "1-3 late",
+          "effect": 0.073822,
+          "ci95": [
+            0.054998,
+            0.092645
+          ],
+          "n": 1435,
+          "raw_mean": 0.186063
+        },
+        {
+          "bin": "4-7 late",
+          "effect": 0.088966,
+          "ci95": [
+            0.047988,
+            0.129943
+          ],
+          "n": 396,
+          "raw_mean": 0.204545
+        },
+        {
+          "bin": "8-14 late",
+          "effect": 0.102146,
+          "ci95": [
+            -0.005662,
+            0.209953
+          ],
+          "n": 57,
+          "raw_mean": 0.263158
+        },
+        {
+          "bin": "15+ late",
+          "effect": 0.33016,
+          "ci95": [
+            0.108977,
+            0.551344
+          ],
+          "n": 19,
+          "raw_mean": 0.421053
+        }
+      ],
+      "low_review_fe_plus_delivery_days": [
+        {
+          "bin": "15+ days early",
+          "effect": 2.7e-05,
+          "ci95": [
+            -0.007475,
+            0.007529
+          ],
+          "n": 34468,
+          "raw_mean": 0.089968
+        },
+        {
+          "bin": "8-14 early",
+          "effect": -0.001583,
+          "ci95": [
+            -0.008033,
+            0.004866
+          ],
+          "n": 36077,
+          "raw_mean": 0.088893
+        },
+        {
+          "bin": "1-7 early",
+          "effect": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 17188,
+          "raw_mean": 0.10199
+        },
+        {
+          "bin": "on promised day",
+          "effect": -0.000172,
+          "ci95": [
+            -0.019857,
+            0.019512
+          ],
+          "n": 1272,
+          "raw_mean": 0.122642
+        },
+        {
+          "bin": "1-3 late",
+          "effect": 0.04364,
+          "ci95": [
+            0.024068,
+            0.063211
+          ],
+          "n": 1435,
+          "raw_mean": 0.186063
+        },
+        {
+          "bin": "4-7 late",
+          "effect": 0.04258,
+          "ci95": [
+            5.9e-05,
+            0.085102
+          ],
+          "n": 396,
+          "raw_mean": 0.204545
+        },
+        {
+          "bin": "8-14 late",
+          "effect": 0.016798,
+          "ci95": [
+            -0.090931,
+            0.124528
+          ],
+          "n": 57,
+          "raw_mean": 0.263158
+        },
+        {
+          "bin": "15+ late",
+          "effect": 0.144561,
+          "ci95": [
+            -0.122333,
+            0.411456
+          ],
+          "n": 19,
+          "raw_mean": 0.421053
+        }
+      ]
+    }
+  },
+  "bounds": {
+    "B_fe_controls": {
+      "recorded_all_reviews": -1.923248,
+      "post_delivery_reviews": -0.517741
+    },
+    "C_within_seller_month": {
+      "recorded_all_reviews": -1.894424,
+      "post_delivery_reviews": -0.508922
+    },
+    "D_same_delivery_time": {
+      "recorded_all_reviews": -1.252763,
+      "post_delivery_reviews": -0.21411
+    },
+    "naive": {
+      "recorded_all_reviews": -2.02054,
+      "post_delivery_reviews": -0.572338
+    }
+  },
+  "design_caveats": {
+    "D_same_delivery_time": "Conditions on delivery time, which the promise partly causes (bunching before the promise): a mediator. Within a delivery-day cell a late order is one abnormally slow for its lane (lost parcel, re-shipment). Descriptive only.",
+    "C_within_seller_month": "Removes seller quality and drift; order-level shocks (stockouts, wrong/missing items) can still drive both lateness and low scores."
+  },
+  "E_carrier_leg_only": {
+    "estimate": -0.535017,
+    "se": 0.037306,
+    "ci95": [
+      -0.608181,
+      -0.461852
+    ],
+    "p": 0.0,
+    "n_obs": 78504,
+    "sample": "post-delivery reviews of orders the seller handed to the carrier on time; lateness comes from the carrier leg",
+    "late_share_in_sample": 0.016019
+  },
+  "F_strike_iv": {
+    "strike_window_purchases": [
+      "2018-05-14",
+      "2018-05-27"
+    ],
+    "control_windows": [
+      [
+        "2018-04-16",
+        "2018-05-06"
+      ],
+      [
+        "2018-06-11",
+        "2018-07-01"
+      ]
+    ],
+    "assumption": "Exclusion: the strike moved delivery times but did not change what customers think of the product or seller except through lateness. Same-lane comparison (lane FE) with category FE. Threats: strike-related stockouts and general mood; the post-delivery subsample is selected on answer timing.",
+    "recorded_all_reviews": {
+      "n": 12023,
+      "late_rate_strike_window": 0.092505,
+      "late_rate_control_windows": 0.025086,
+      "first_stage": {
+        "estimate": 0.073171,
+        "se": 0.015502,
+        "ci95": [
+          0.042579,
+          0.103763
+        ],
+        "p": 5e-06,
+        "n_obs": 11944
+      },
+      "first_stage_F": 22.280274,
+      "reduced_form": {
+        "estimate": -0.109363,
+        "se": 0.027947,
+        "ci95": [
+          -0.164515,
+          -0.054211
+        ],
+        "p": 0.00013,
+        "n_obs": 11944
+      },
+      "iv_late_effect": {
+        "estimate": -1.494622,
+        "se": 0.305625,
+        "ci95": [
+          -2.09776,
+          -0.891484
+        ],
+        "p": 2e-06,
+        "n_obs": 11944
+      }
+    },
+    "post_delivery_reviews": {
+      "n": 11725,
+      "late_rate_strike_window": 0.044667,
+      "late_rate_control_windows": 0.008436,
+      "first_stage": {
+        "estimate": 0.038187,
+        "se": 0.006578,
+        "ci95": [
+          0.025203,
+          0.051172
+        ],
+        "p": 0.0,
+        "n_obs": 11642
+      },
+      "first_stage_F": 33.701311,
+      "reduced_form": {
+        "estimate": -0.018714,
+        "se": 0.022144,
+        "ci95": [
+          -0.062422,
+          0.024995
+        ],
+        "p": 0.399231,
+        "n_obs": 11642
+      },
+      "iv_late_effect": {
+        "estimate": -0.490048,
+        "se": 0.611563,
+        "ci95": [
+          -1.697183,
+          0.717086
+        ],
+        "p": 0.424061,
+        "n_obs": 11642
+      }
+    }
+  },
+  "rd_appendix": {
+    "status": "NOT USED AS AN ESTIMATE",
+    "why_it_fails": [
+      "Compound treatment: at +1/+2 days the promise is broken AND the survey starts to be sent before delivery (see survey_timing.near_cutoff).",
+      "Manipulation: deliveries bunch just before the promise (density ratios below).",
+      "Bandwidth-sensitive estimates and a discrete running variable (whole days).",
+      "A placebo cutoff at -4.5 days is significant."
+    ],
+    "local_linear_by_bandwidth": [
       {
         "estimate": -0.054112,
         "se": 0.077037,
@@ -353,16 +1069,6 @@
         "bandwidth_days": 10
       }
     ],
-    "with_seller_fe_h5": {
-      "estimate": -0.229432,
-      "se": 0.061629,
-      "ci95": [
-        -0.350363,
-        -0.1085
-      ],
-      "p": 0.000208,
-      "n_obs": 10038
-    },
     "placebo_cutoffs": [
       {
         "cutoff": -4.5,
@@ -501,12 +1207,7 @@
         "mean": 1.57971,
         "n": 207
       }
-    },
-    "assumptions": [
-      "Potential review scores vary smoothly with delivery timing relative to the promise; only the 'promise broken' status jumps at the cutoff.",
-      "No precise manipulation of the delivery date around the promise. CHECK FAILS PARTLY: counts drop much faster from 0 to +1 days than from -1 to 0 (see density ratios), consistent with carriers/sellers rushing to hit the promise. Treat the RD as suggestive; the within-seller-month and same-delivery-time designs carry the main conclusion.",
-      "Running variable is discrete (whole days) so the estimate extrapolates the local linear fits half a day each side; standard errors clustered by seller."
-    ]
+    }
   },
   "repurchase": {
     "definition": "first orders delivered by 2018-08-31 minus 180 days; outcome = another revenue order placed after delivery and within 180 days",
@@ -520,73 +1221,40 @@
       "diff": -0.005167
     },
     "fe_lpm": {
-      "estimate": -0.002907,
+      "estimate": -0.002892,
       "se": 0.002356,
       "ci95": [
-        -0.007528,
-        0.001714
+        -0.007512,
+        0.001729
       ],
-      "p": 0.217455,
+      "p": 0.219816,
       "n_obs": 51952
     },
-    "fe_lpm_controlling_review": {
-      "estimate": -0.001061,
-      "se": 0.002685,
-      "ci95": [
-        -0.006329,
-        0.004206
-      ],
-      "p": 0.692746,
-      "n_obs": 51568
-    },
-    "repurchase_by_review_score": [
-      {
-        "review_score": 1,
-        "repurchase_rate": 0.015375,
-        "n": 4618
-      },
-      {
-        "review_score": 2,
-        "repurchase_rate": 0.012995,
-        "n": 1616
-      },
-      {
-        "review_score": 3,
-        "repurchase_rate": 0.018312,
-        "n": 4478
-      },
-      {
-        "review_score": 4,
-        "repurchase_rate": 0.017422,
-        "n": 10504
-      },
-      {
-        "review_score": 5,
-        "repurchase_rate": 0.019548,
-        "n": 30693
-      }
-    ]
+    "mde_80pct_power": 0.006596,
+    "mde_relative_to_base": 0.358528,
+    "ci_lower_relative_to_base": -0.40834,
+    "reading": "UNDERPOWERED: effects smaller than the MDE cannot be detected; the CI includes zero and also a large relative loss. Do not read as 'no effect'."
   },
   "impact": {
     "window": "2017-09-01..2018-08-31",
     "late_orders": 5762,
     "late_first_orders": 5597,
     "aov_brl": 137.619671,
-    "lost_repeat_orders_point": 16.269329,
-    "lost_repeat_orders_ci95": [
-      -9.595188,
-      42.133846
-    ],
-    "lost_repeat_gmv_brl_point": 2238.979715,
+    "lost_repeat_orders_point": 16.183749,
+    "lost_repeat_gmv_brl_point": 2227.202147,
     "lost_repeat_gmv_brl_ci95": [
-      -1320.486608,
-      5798.446039
+      -1331.745379,
+      5786.149672
     ],
-    "extra_1_2_star_reviews_point": 2953.977873,
-    "extra_1_2_star_reviews_ci95": [
-      2873.747735,
-      3034.208012
-    ],
-    "note": "Direct repeat-GMV loss only (one next order per lost repurchaser, valued at AOV). Excludes word-of-mouth, refunds and support cost, which Olist does not publish."
+    "extra_1_2_star_reviews_recorded": 2954.099971,
+    "extra_1_2_star_reviews_post_delivery": 538.793648,
+    "survey_on_delivery_lever": {
+      "late_reviews_answered_before_delivery": 3958,
+      "one_two_star_reviews_avoided_upper_bound": 2214.600521,
+      "avg_star_gain_on_those_reviews": 1.908292,
+      "network_avg_review_gain": 0.10245,
+      "reviews_in_window": 73724,
+      "note": "Upper bound: assumes pre-delivery reviewers would score like same-bin post-delivery reviewers once the parcel arrives (post-delivery reviewers are a selected, calmer group). Orders that never arrive are not in this sample."
+    }
   }
 }
