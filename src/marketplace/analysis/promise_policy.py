@@ -37,7 +37,8 @@ LANE_Q_GRID = (0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.95, 0.99)
 WINDOW_CANDIDATES = (3, 6)
 LATE_TARGET = 0.07
 MIN_LANE_N = 30
-NEVER = 10_000.0  # delivered-day number for never-delivered orders (late under any promise)
+NEVER = 10_000.0
+FAST = bool(__import__("os").environ.get("PROMISE_FAST"))  # delivered-day number for never-delivered orders (late under any promise)
 
 CATEGORICAL = ["seller_state", "customer_state", "category_top", "purchase_dow"]
 NUMERIC = ["log_km", "km_missing", "items_price_brl", "freight_brl", "n_items", "n_sellers",
@@ -78,7 +79,8 @@ def load() -> pd.DataFrame:
     d["purchase_dow"] = d["purchased_at"].dt.dayofweek.astype(str)
     d["purchase_hour"] = d["purchased_at"].dt.hour
     d["y"] = d["delivered_day_number"].astype(float)
-    d["pm"] = pd.to_datetime(d["purchase_date"]).dt.to_period("M")
+    d["purchase_date"] = pd.to_datetime(d["purchase_date"])
+    d["pm"] = d["purchase_date"].dt.to_period("M")
     return add_prior_history(d)
 
 
@@ -156,7 +158,7 @@ def rolling(d: pd.DataFrame, window: int, with_model: bool = True) -> pd.DataFra
                     break
         te["recal_q"] = chosen
         te["lane_recalibrated"] = lane_quantile(tr, te, chosen)
-        if with_model:
+        if with_model and not FAST:
             xtr, xte = _encode([tr, te])
             mask = [c in CATEGORICAL for c in FEATURES]
             for q in QUANTILES:
@@ -165,6 +167,9 @@ def rolling(d: pd.DataFrame, window: int, with_model: bool = True) -> pd.DataFra
                                                   categorical_features=mask, random_state=7)
                 m.fit(xtr, tr["y"])
                 te[f"model_p{int(q * 100)}"] = m.predict(xte)
+        if not with_model or FAST:  # smoke mode: lane quantiles stand in for the GBM
+            for q in QUANTILES:
+                te[f"model_p{int(q * 100)}"] = te[f"lane_q{int(q * 100)}"]
         te["train_n"] = len(tr)
         out.append(te)
     r = pd.concat(out)
@@ -180,7 +185,7 @@ def pinball(y, p, q) -> float:
 def coverage_report(r: pd.DataFrame) -> dict:
     out = {}
     for name, (a, b) in {"selection": SELECT, "test": TEST}.items():
-        s = r[(r.purchase_date >= pd.Timestamp(a).date()) & (r.purchase_date <= pd.Timestamp(b).date())]
+        s = r[(r.purchase_date >= pd.Timestamp(a)) & (r.purchase_date <= pd.Timestamp(b))]
         dlv = s[s.is_delivered]
         row = {"n": int(len(s)), "n_never_delivered": int((~s.is_delivered).sum())}
         for q in QUANTILES:
@@ -235,14 +240,14 @@ def simulate(s: pd.DataFrame, promise: np.ndarray, effects: dict, brl_per_bad: f
             "expected_delta_avg_review": float(np.nanmean(d_rev)),
             "extra_1_2_star_reviews_per_year": extra_bad,
             "cost_brl_per_year": cost,
-            "breakeven_conversion_lift_per_promise_day": (cost / (gmv_annual * days_saved)) if days_saved > 0 else None,
+            "breakeven_conversion_lift_per_promise_day": (max(cost, 0.0) / (gmv_annual * days_saved)) if days_saved > 0 else None,
         }
     out["upside_brl_per_year_at_fisher_bound"] = gmv_annual * FISHER_PER_CAL_DAY * max(days_saved, 0)
     return out
 
 
 def padding_report(d: pd.DataFrame) -> dict:
-    d = d[d.is_delivered & (d.purchase_date >= pd.Timestamp("2017-01-01").date())].copy()
+    d = d[d.is_delivered & (d.purchase_date >= pd.Timestamp("2017-01-01"))].copy()
     d["padding"] = d["olist_promised_days"] - d["y"]
 
     def grp(col, min_n):
@@ -281,8 +286,8 @@ def main() -> int:
     brl_per_bad = rv["estimate"]
 
     # choose GBM window on the SELECTION period only
-    runs = {w: rolling(d, w) for w in WINDOW_CANDIDATES}
-    sel_mask = lambda r: (r.purchase_date >= pd.Timestamp(SELECT[0]).date()) & (r.purchase_date <= pd.Timestamp(SELECT[1]).date())  # noqa: E731
+    runs = {w: rolling(d, w) for w in (WINDOW_CANDIDATES[:1] if FAST else WINDOW_CANDIDATES)}
+    sel_mask = lambda r: (r.purchase_date >= pd.Timestamp(SELECT[0])) & (r.purchase_date <= pd.Timestamp(SELECT[1]))  # noqa: E731
     win_score = {w: float(np.mean([pinball(r[sel_mask(r) & r.is_delivered].y, r[sel_mask(r) & r.is_delivered][f"model_p{int(q*100)}"], q)
                                    for q in QUANTILES])) for w, r in runs.items()}
     window = min(win_score, key=win_score.get)
@@ -291,14 +296,20 @@ def main() -> int:
     policies = {"current_olist_estimate": "olist_promised_days", "uniform_minus_5_days": None,
                 **{f"lane_q{int(q * 100)}": f"lane_q{int(q * 100)}" for q in LANE_Q_GRID},
                 "lane_recalibrated_to_7pct_late": "lane_recalibrated",
+                "lane_q80_capped_5d": "CAPPED",
                 "model_p80": "model_p80", "model_p90": "model_p90"}
     sims = {}
     for pname, (a, b) in periods.items():
-        s = r[(r.purchase_date >= pd.Timestamp(a).date()) & (r.purchase_date <= pd.Timestamp(b).date())]
+        s = r[(r.purchase_date >= pd.Timestamp(a)) & (r.purchase_date <= pd.Timestamp(b))]
         months = s.pm.nunique()
         sims[pname] = {}
         for k, col in policies.items():
-            prom = s["olist_promised_days"].to_numpy() - 5 if col is None else s[col].to_numpy()
+            if col is None:
+                prom = s["olist_promised_days"].to_numpy() - 5
+            elif col == "CAPPED":  # the A/B variant: never more than 5 days shorter than today
+                prom = np.maximum(np.ceil(s["lane_q80"].to_numpy()), s["olist_promised_days"].to_numpy() - 5)
+            else:
+                prom = s[col].to_numpy()
             sims[pname][k] = simulate(s, prom, effects, brl_per_bad, rep, months)
     # Recommendation rule (fixed before results): on the SELECTION period, the shortest mean
     # promise with late rate <= 7% (never-delivered counted late) and expected recorded review
@@ -315,7 +326,7 @@ def main() -> int:
         "model_p90_coverage": float(np.mean(g.y_eval <= np.ceil(g.model_p90))),
         "median_actual": float(g.y.median()), "mean_olist_promise": float(g.olist_promised_days.mean())}),
         include_groups=False).reset_index().rename(columns={"pm": "month"}))
-    lanes_tbl = (r[r.purchase_date >= pd.Timestamp(TEST[0]).date()]
+    lanes_tbl = (r[r.purchase_date >= pd.Timestamp(TEST[0])]
                  .assign(late_cur=lambda x: x.y_eval > x.olist_promised_days)
                  .groupby("lane").agg(n=("y_eval", "size"), current=("olist_promised_days", "mean"),
                                       lane_p80=("lane_q80", lambda s: float(np.ceil(s).mean())),

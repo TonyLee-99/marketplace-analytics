@@ -41,7 +41,7 @@ exposures:
     type: application
     maturity: low
     description: >
-      Downstream text-to-SQL agent (a read-only SQL consumer) that attaches
+      Downstream text-to-SQL agent that attaches
       data/warehouse.duckdb read-only and reads metrics/metrics.yml.
     depends_on:
       - ref('fct_orders')

@@ -151,12 +151,16 @@ def main() -> int:
                 "root_cause",
                 "voc",
                 "metric_conflicts",
+                "recommendations",
+                "review_value",
             ]
         },
     }
     # Trim heavy series not needed client-side.
     payload["reports"]["lanes"].pop("all_lanes", None)
     payload["reports"]["sellers"].pop("scorecard_top25_by_gmv", None)
+    payload["reports"]["anomalies"].pop("retrospective_alerts", None)
+    payload["reports"]["root_cause"].pop("simpson_scan_cases", None)
     data_json = json.dumps(_clean(payload), separators=(",", ":"), default=str)
     plotly_js = (Path(plotly.__file__).parent / "package_data" / "plotly.min.js").read_text()
     html = (HERE / "template.html").read_text()

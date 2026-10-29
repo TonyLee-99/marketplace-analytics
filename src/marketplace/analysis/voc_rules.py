@@ -6,8 +6,8 @@ review. A rule set is cheap, deterministic, explainable to a VP ("we count revie
 say 'só veio um'") and labels ALL ~40k reviews with text instead of a sample.
 
 Rules were written from a development sample (`voc dev-export`) that is disjoint from both
-gold sets, then frozen and scored once against gold A (240) and gold B (160, drawn and
-hand-labelled before the rules were written).
+silver-label sets, then frozen and scored once against set A (240) and set B (160, drawn and
+labelled before the rules were written).
 
 Order = priority: the first matching rule is the primary reason.
 """

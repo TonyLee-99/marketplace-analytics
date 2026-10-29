@@ -1,0 +1,167 @@
+{
+  "window": [
+    "2017-01-01",
+    "2018-08-31"
+  ],
+  "state": {
+    "gmv_window": 13449529.68,
+    "orders_window": 97905.0,
+    "on_time_window": 0.932112304190098,
+    "review_window": 4.117320792772027,
+    "plateau": {
+      "avg_monthly_gmv_nov17_feb18": 882349.4125,
+      "avg_monthly_gmv_mar_may_2018": 989171.93,
+      "avg_monthly_gmv_jun_aug_2018": 863389.966667,
+      "jun_aug_vs_mar_may": -0.127159
+    },
+    "seller_tree": {
+      "gmv_from": 989171.93,
+      "gmv_to": 863389.966667,
+      "pct_change": -0.127159,
+      "drivers": {
+        "active_sellers": {
+          "log_change": 0.134503,
+          "contribution_brl": 124395.538168
+        },
+        "gmv_per_seller": {
+          "log_change": -0.270504,
+          "contribution_brl": -250177.501501
+        }
+      },
+      "sellers_from": 1072.0,
+      "sellers_to": 1226.333333,
+      "gmv_per_seller_from": 922.735009,
+      "gmv_per_seller_to": 704.041832
+    },
+    "new_seller_gmv_share_2018": 0.070032,
+    "funnel": {
+      "mqls": 8000.0,
+      "won": 842.0,
+      "sold": 379.0,
+      "gmv_from_funnel_sellers": 674005.39,
+      "win_rate": 0.10525,
+      "sold_rate_of_won": 0.450119,
+      "funnel_seller_share_of_2018_gmv": 0.091813
+    },
+    "yoy_ytd": 1.382795,
+    "repeat_rate_distinct_days": 0.021730204352357792,
+    "late_effect_bounds_within_seller_month": {
+      "recorded_all_reviews": -1.894424,
+      "post_delivery_reviews": -0.508922
+    },
+    "carrier_leg_post_delivery": -0.535017,
+    "strike_iv_post_delivery": {
+      "estimate": -0.490048,
+      "se": 0.611563,
+      "ci95": [
+        -1.697183,
+        0.717086
+      ],
+      "p": 0.424061,
+      "n_obs": 11642
+    },
+    "strike_iv_recorded": {
+      "estimate": -1.494622,
+      "se": 0.305625,
+      "ci95": [
+        -2.09776,
+        -0.891484
+      ],
+      "p": 2e-06,
+      "n_obs": 11944
+    },
+    "repurchase": {
+      "effect_pp": -0.2892,
+      "mde_pp": 0.6596000000000001,
+      "mde_rel": 0.358528,
+      "base": 0.018396
+    },
+    "stages_jan_mar_2018": {
+      "medians_from_to": {
+        "promise": [
+          26.0,
+          22.0
+        ],
+        "seller_days": [
+          2.449896,
+          2.365312
+        ],
+        "transit": [
+          8.035972,
+          9.880127
+        ]
+      },
+      "late_rate_from": 0.057009,
+      "late_rate_to": 0.189633,
+      "shapley_pp": {
+        "promise": 5.62854,
+        "seller_days": -0.997192,
+        "transit": 2.522728
+      },
+      "explained_pp": 7.154077,
+      "unexplained_pp_distribution_shape": 6.108277,
+      "reading": "Positive = this stage's change raised the late rate."
+    }
+  },
+  "recommendations": [
+    {
+      "id": 1,
+      "title": "Send the review survey on confirmed delivery, not at promise + 2 days",
+      "why": "70% of late orders are rated before they arrive.",
+      "impact": "\u2264 2,215 fewer 1\u20132\u2605/yr; +0.10\u2605 network average (upper bounds)",
+      "cost": "1 sprint (change the survey trigger event)",
+      "confidence": "High on direction, medium on size",
+      "owner": "CX product manager",
+      "date": "ship by 2018-09-30"
+    },
+    {
+      "id": 2,
+      "title": "Don't roll out shorter promises. A/B-test a capped cut (lane-P80, at most 5 days shorter) outside peak season",
+      "why": "Full year: lane-P80 saves 6.4 days but late rises 9.3% \u2192 20.6%. Oct\u2013Mar, today's promise was already 12.5% late; the pre-set rule picks 'lane recalibrated to 7pct late', which lengthens peak promises.",
+      "impact": "Rollout cost +3,428 1\u20132\u2605/yr today, +463 after #1. Break-even: +0.071% conversion per day saved. A/B variant (capped): \u22126.4 d, late 20.6%",
+      "cost": "A/B test: 1 sprint + 4 weeks",
+      "confidence": "Low: upside unmeasured",
+      "owner": "Delivery-promise PM + analytics",
+      "date": "start 2018-09-17, read out 2018-10-15 (before the Black Friday freeze)",
+      "ab_design": {
+        "unit": "customer (cookie), 50/50, all lanes; treatment promise = max(lane-P80, current - 5 days)",
+        "primary_metric": "checkout conversion of sessions that saw a promise",
+        "guardrails": "lane late rate <= 7% (never-delivered = late); 1\u20132\u2605 share",
+        "duration": "4 weeks",
+        "guardrail_mde_late_rate_pp": 1.660569528373474,
+        "orders_per_arm": 3004.707692307692,
+        "kill_rule": "stop if treatment late rate exceeds control by 3 pp for 7 consecutive days, or 1\u20132\u2605 share is +1 pp",
+        "conversion_mde_note": "needs session counts (not in the Olist extract): MDE \u2248 2.8\u00b7sqrt(2c(1\u2212c)/S) for conversion c and S sessions per arm"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Fix partial shipments: mark 'delivered' only when every item has arrived, and announce split shipments",
+      "why": "'Incomplete order' is a top-two complaint on ON-TIME orders (23%, CI 19%\u201327%); 65% are multi-item orders (12% of reviews).",
+      "impact": "\u2264 973 1\u20132\u2605/yr on R$220k/yr of orders (upper bound); raises the measured late rate",
+      "cost": "product + seller ops; also put the 82 'fix-first' sellers (22% of GMV, 87% on-time) on a quality plan",
+      "confidence": "Medium (text classifier, silver labels)",
+      "owner": "Marketplace ops + order-management engineering",
+      "date": "scope by 2018-10-01"
+    }
+  ],
+  "demoted": [
+    "Lane/carrier programme: against a lane-adjusted baseline (distance, destination, origin, month) the 10 worst lanes have only 277 excess late orders/yr (\u224857 1\u20132\u2605 recorded, 20 post-delivery). That is down from 1,143 against the network average. There is no carrier ID, so 'switch carrier' cannot be analysed.",
+    "Money on reviews: in a seller-week panel, one extra 1\u20132\u2605 review is associated with \u2212R$13 of the seller's next-4-week GMV (95% CI \u2212R$62 to R$36, p=0.60): not detectable, so no BRL is attached to review gains."
+  ],
+  "net": {
+    "late_orders_per_year": {
+      "rec1": 0,
+      "rec2_ab_only": "small (A/B on 10 lanes)",
+      "rec2_if_rolled_out_lane_p80": 8722.909091,
+      "rec3": "raises measured late rate (not quantified: no item-level delivery timestamps)"
+    },
+    "one_two_star_per_year": {
+      "rec1_upper_bound": -2214.600521,
+      "rec2_rollout_survey_today": 3428.024269,
+      "rec2_rollout_after_rec1": 462.919423,
+      "rec3_upper_bound": -973.1999999999999
+    },
+    "interactions": "Rec 1 cuts the review cost of Rec 2 by about 86%. Rec 3 delays the recorded delivery, which delays the survey under Rec 1 and raises the measured late rate. The effects are not additive; the lever sizes are upper bounds."
+  }
+}

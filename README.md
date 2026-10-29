@@ -1,155 +1,102 @@
-# Marketplace analytics: raw OLTP tables → governed metrics → executive BI → decisions
+# Marketplace analytics on real Olist data: what a late delivery really costs
 
-An end-to-end analytics-engineering and BA project on the **real Olist Brazilian marketplace data**
-(99,441 orders, 2016–2018). It is built the way a large-company analytics team would build it:
-a dbt + DuckDB Kimball star schema with tests, a single governed metrics layer, a set of senior-BA
-analyses with causal designs, a self-contained executive dashboard, and a one-page VP memo.
+**The strongest finding: most of the star penalty for a late delivery is a survey-timing artefact.**
+Olist sends its satisfaction survey about 2 days after the *promised* date, delivered or not, so
+70% of late orders are rated before the parcel arrives. Comparing the same seller in the same month,
+a late order records **−1.89★**. On reviews written *after* the parcel arrived it is **−0.51★**.
+Lateness that comes only from the carrier leg gives −0.54★, and the May-2018 truckers' strike, used
+as a natural experiment, gives −0.49★ (wide CI). The cheapest fix is product, not logistics:
+**send the survey on confirmed delivery**, which is worth up to 2,215 fewer 1–2★ reviews a year
+(upper bound).
 
-**The business question:** *GMV is growing fast. Is that growth healthy, what is
-hurting customers, and which three things should the marketplace do next?*
+![Executive page](docs/img/dashboard_exec.png)
 
-It goes past the usual Olist EDA in five ways:
-1. **Delivery-promise calibration.** Olist pads its promised dates by a median of 12 days. Quantile
-   models are retrained monthly with no look-ahead, and five promise policies are simulated on
-   held-out months, valued with a causal estimate of what a broken promise costs.
-2. **Automated KPI root cause** in the style of ThirdEye/Adtributor: a mix-vs-rate decomposition across
-   state, category and seller tier, ranked by surprise, with a Simpson's-paradox scan.
-3. **Voice of customer** from 40,514 real Portuguese reviews, validated against 400 hand-labelled ones.
-   It shows the #1 complaint on *on-time* orders is partial shipment.
-4. **Causal rigor** on lateness → reviews/repurchase: fixed effects within seller × month, a
-   same-delivery-time design, and a regression discontinuity with placebo and density checks.
-5. **Metric governance:** real cases where two reasonable definitions of the "same" KPI
-   disagree (April-2018 on-time: 95.5% vs 82.9%), and how the governed definition settles it.
-
-## Architecture
+## What this repo is
+An end-to-end analytics-engineering and business-analysis project on the public Olist Brazilian
+marketplace data (99,441 orders, 2016–2018):
 
 ```mermaid
 flowchart LR
-  subgraph Sources["Public sources (CC BY-NC-SA 4.0)"]
-    HF["HF mirror: 9 Olist CSVs"]
-    GH["GitHub mirror: marketing funnel CSVs"]
-  end
-  HF & GH --> ING["marketplace.ingest<br/>sha256 + row-count + header checks<br/>(data_manifest.json)"]
-  ING --> RAW[("DuckDB raw.*<br/>all VARCHAR + _loaded_at")]
-  RAW --> STG["dbt staging (views)<br/>typing, renames, normalisation"]
-  STG --> INT["dbt intermediate<br/>geo dedup, latest review,<br/>order rollups, SCD2 address"]
-  INT --> MARTS[("dbt marts: fct_orders, fct_order_items,<br/>fct_payments, fct_reviews, dim_customers,<br/>dim_sellers, dim_products, dim_date,<br/>dim_customer_location_history, fct_seller_funnel")]
-  SNAP["dbt snapshot snap_sellers (SCD2)"] --- MARTS
-  MARTS --> ML["Governed metrics layer<br/>metrics/metrics.yml → compiler<br/>metrics.metric_values"]
-  ML --> AN["Analyses (Python)<br/>growth · cohorts · delivery causal ·<br/>promise policy · sellers/lanes ·<br/>anomalies · root cause · VoC"]
-  MARTS --> AN
-  ML --> DASH["Static HTML dashboard<br/>(plotly.js inlined, filters)"]
-  AN --> DASH
-  AN --> MEMO["docs/exec_memo.md"]
-  DASH --> SHOT["Headless Chrome checks<br/>+ docs/img screenshots"]
-  ML -. read-only .-> AGENT["Read-only SQL consumer"]
+  SRC["Public mirrors (CC BY-NC-SA 4.0)"] --> ING["ingest: sha256 + row-count + header checks"]
+  ING --> RAW[("DuckDB raw.*")] --> STG["dbt staging"] --> INT["dbt intermediate"] --> MARTS[("dbt marts: star schema")]
+  MARTS --> ML["governed metrics layer<br/>metrics/metrics.yml"]
+  ML --> AN["analyses (Python)"] --> REC["reports/recommendations.json"]
+  ML --> DASH["static HTML dashboard"]
+  REC --> DASH
+  REC --> MEMO["docs/exec_memo.md (generated)"]
 ```
 
-## Data sources and license
-| Dataset | Original | Mirror used | License |
-|---|---|---|---|
-| Olist Brazilian E-Commerce (9 tables) | [Kaggle: olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) | [HF: aviahYadler/Olist_Ecommerce_Dataset](https://huggingface.co/datasets/aviahYadler/Olist_Ecommerce_Dataset), byte-checked against 2 other mirrors | CC BY-NC-SA 4.0 |
-| Olist Marketing Funnel (2 tables) | [Kaggle: olistbr/marketing-funnel-olist](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist) | [GitHub: mara/mara-olist-ecommerce-data](https://github.com/mara/mara-olist-ecommerce-data), byte-checked against patterns-app/public_data | CC BY-NC-SA 4.0 |
+- **dbt + DuckDB star schema.** Facts at order, item and payment grain; a person-level customer
+  dimension; an SCD2 address history. Five business-rule tests carry the trust:
+  - payments reconcile to items + freight (instalment interest is the allowed exception);
+  - delivery is never before purchase;
+  - GMV is conserved from staging to marts;
+  - SCD2 validity windows never overlap;
+  - the item fact carries no un-prefixed order-level measures (fan-out guard).
+- **Governed metrics layer.** One YAML file holds each KPI's definition, owner, grain and caveats,
+  plus the rejected alternatives. Example: April-2018 on-time is 95.5% counted by purchase month
+  but 82.9% counted by delivery month.
+- **Analyses.**
+  - Growth from the seller side.
+  - Survey-timing-aware delivery effects with carrier-leg and strike designs.
+  - A promise-policy backtest over a full year, including the peak.
+  - Process-stage root cause.
+  - An in-flight lateness monitor.
+  - Complaint reasons from Portuguese review text, corrected for misclassification.
+- **Deliverables.**
+  - A 6-page offline dashboard (`dashboard/index.html`).
+  - A generated one-page VP memo, [docs/exec_memo.md](docs/exec_memo.md).
 
-All row counts match the published originals (orders 99,441; items 112,650; payments 103,886;
-reviews 99,224; customers 99,441; sellers 3,095; products 32,951). See
-[docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md). Raw data is not committed.
+## Three results (all numbers: [docs/RESULTS.md](docs/RESULTS.md), each with its source field)
+| Question | Answer (window stated) |
+|---|---|
+| Is growth healthy? | No. GMV has been flat since Nov-2017, and Jun–Aug 2018 is 12.7% below Mar–May. Active sellers rose 1,072 → 1,226 while GMV per seller fell R$923 → R$704/month, so demand is the constraint. "+138% YoY" (Jan–Aug) is a ramp-up base effect. |
+| Should promises be shorter? | Not network-wide. Olist pads by a median of 12 days, but over Oct-2017–Aug-2018 (never-delivered orders counted as late) a lane-P80 promise saves 6.4 days and raises the late rate from 9.3% to 20.6%. The pre-set rule, applied on the Oct–Mar selection period, picks a drift-aware recalibration that lengthens peak promises. The recommendation is a capped A/B test. |
+| What hurts customers on orders that arrive on time? | Incomplete orders (23.4%, CI 19.4–27.1) and poor quality (20.4%, CI 13.3–28.7) lead the 1–2★ reviews of on-time orders after misclassification correction. 65% of incomplete-order complaints are on multi-item orders, which are 12% of reviews. |
 
 ## How to run
 ```bash
 uv venv --python 3.12 && uv pip install -r requirements.lock   # or: make setup
-make all          # download+verify → dbt build → freshness → docs → metrics → analyses
-                  # → VoC → results → dashboard → screenshots → pytest → ruff
+make all        # verify raw data → dbt build → metrics → analyses → memo → dashboard → checks → tests
 open dashboard/index.html
 ```
-Targets you can run on their own: `make ingest dbt metrics analyses dashboard screenshots test lint`.
-`make voc-relabel` re-runs the optional LLM labelling with local Ollama `qwen2.5:7b` (about 1 h;
-it needs about 5 GB of free memory). Docker: `docker build -t marketplace-analytics . && docker run --rm marketplace-analytics`.
-CI: `.github/workflows/ci.yml` (written; not run remotely).
+`make voc-relabel` re-runs the optional local LLM labelling (Ollama `qwen2.5:7b`). The Dockerfile
+and `.github/workflows/ci.yml` are written but have not been run remotely.
 
-## Results (real numbers; every row is regenerated in [docs/RESULTS.md](docs/RESULTS.md) with its source field)
-| Area | Result |
-|---|---|
-| dbt | `dbt build`: **0 errors**, 144 pass + 1 intentional WARN (payment-reconciliation exceptions: 20 orders, below the 0.5% error threshold); all 11 sources pass freshness |
-| Scale | GMV R$13.49M; 98,199 revenue orders; AOV R$137; on-time 93.2%; review 4.12; NPS-style 44.5 |
-| Growth | GMV Jan–Aug 2018 **+138% YoY**. Customers +139%, orders/customer −0.6%, AOV +0.4% (exact LMDI, residual 1e-16) |
-| Retention | 3.0% of people ever order twice; 1.9% on a later day within 180 d (Kaplan–Meier); repeat orders = 2.9% of GMV; 30% of "next orders" are same-day split baskets |
-| Lateness → review | naive −2.02; FE −1.92; **same seller × month −1.89** [−1.95, −1.84]; same delivery time, broken promise −1.26; RD at the promise −0.24 (±5 d; density check fails → supporting only) |
-| Lateness → repurchase | base 1.84% (180 d after delivery); effect −0.29 pp [−0.75, +0.17], so not significant; ≈ R$2.2k/yr of repeat GMV |
-| Promise | median padding **12 days**, 74% of orders > 7 days early. Rolling quantile GBM beats lane quantiles on pinball loss (P90 1.38 vs 1.57; Olist 1.61). Coverage is P80 91% / P90 95% (target 80/90: **over-covers**; ±0.4 pp run-to-run from multithreaded GBM). Recommended lane-P80: **−4.2 days** promise, late 4.4% → 7.0%, review −0.03 |
-| Sellers | top-10% sellers = 66% of GMV; 19% of sellers = 80% of GMV; HHI 38 (unconcentrated); 82 "fix-first" sellers hold 22% of GMV at 87% on-time |
-| Lanes | SP→RJ: 6,175 orders, 17.6% late vs 7.8% network, 608 excess late orders; 10 worst lanes = 1,143 excess late orders ≈ 586 avoidable 1–2★ reviews |
-| Monitoring | online STL monitor: 16 alerts in 20 months, 10 needing a human. Black Friday 2017 = 1,166 orders (4.8× expected), classified as an expected event. Catches the Aug-2018 data-feed cut-off |
-| Root cause | Feb-2018 on-time drop 94.3% → 85.9%: rate −8.5 pp vs mix +0.05 pp, with 95% of volume in segments that got worse. Simpson reversals: 7 of 114 cases, 0 material |
-| VoC | rules on 40,514 reviews: **70.6%** accuracy on a fresh 160-review holdout (macro-F1 0.61; majority baseline 27.5%). Late/not-received label rate is 52% on late orders vs 3.8% on on-time orders. Incomplete order is the #1 complaint on on-time orders (22%) |
-| Governance | repeat rate 3.04% (customer_unique_id) vs 0.00% (customer_id); April-2018 on-time 95.5% (purchase cohort) vs 82.9% (delivery month); GMV with freight +R$2.24M |
+## Data and license
+- [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and
+  [Olist Marketing Funnel](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist), CC BY-NC-SA 4.0.
+- Downloaded from public mirrors and checked byte-for-byte against independent copies. Row counts
+  match the published originals. See [docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md).
+- Raw data is not committed. 32+ data-quality checks are generated in
+  [docs/DATA_QUALITY.md](docs/DATA_QUALITY.md).
 
-Headline recommendations with sized impact: [docs/exec_memo.md](docs/exec_memo.md).
-Screenshots: `docs/img/dashboard_*.png`.
+## Reading the warehouse
+`data/warehouse.duckdb` (stable path, open read-only). Schemas: `marts`, `metrics.metric_values`,
+`reference`, `snapshots`. Use `MetricsLayer.load().compile(name, grain, where=...)` to get governed SQL.
+Columns prefixed `order_` on `marts.fct_order_items` are order-level and must not be aggregated at
+item grain.
 
-![Executive page](docs/img/dashboard_exec.png)
+## Known limitations
+- **Review effects are bounds, not one number.** Post-delivery reviews are a selected group, and the
+  same-delivery-time design conditions on a mediator. The regression discontinuity at the promise
+  date fails: deliveries bunch just before the promise, and the survey timing switches at the same
+  cutoff. It is kept only as a falsification exhibit.
+- **Repurchase is underpowered.** The effect is −0.29 pp, but the MDE is 0.66 pp (36% of the base),
+  so this is not evidence of "no effect".
+- **No BRL attaches to reviews.** A seller-week panel finds no detectable link from bad reviews to
+  the seller's next-4-week GMV (−R$13 per review, CI −62 to +36).
+- **Promise coverage is miscalibrated in both directions.** Model P90 covers 79.8% in the
+  Oct–Mar peak and 94.5% in Apr–Aug.
+- **The conversion benefit of shorter promises is not measurable here.** There are no sessions in
+  the data, so only break-even elasticities are given.
+- **No carrier identifier.** Carrier-level counterfactuals are impossible.
+- **Text labels.** The keyword classifier is scored against a single-annotator labelled set; a
+  blind second pass on 50 reviews (`artifacts/voc_author_verification_template.csv`, scored with
+  `python -m marketplace.analysis.voc rescore <file>`) measures label noise.
+- **The SCD2 address history is a demonstration.** No fact table joins to it point-in-time yet.
+- **The extract may be a sample** ("100k orders" per Olist). Nov-2016 is missing and capture ends on
+  2018-08-29.
 
-## Repository map
-| Path | What |
-|---|---|
-| `src/marketplace/ingest.py` | EL step: download, sha256/row/header verification, land `raw.*` |
-| `dbt/` | staging → intermediate → marts, snapshot, seeds, 115 data tests, exposures, source freshness |
-| `metrics/metrics.yml` + `src/marketplace/metrics.py` | governed metrics layer (17 metrics) and compiler; `docs/metrics_catalog.md` is generated |
-| `src/marketplace/metric_conflicts.py` | the "same KPI, two definitions" report |
-| `src/marketplace/analysis/` | growth, cohorts, delivery_impact, promise_policy, sellers (+lanes), anomalies, root_cause, voc |
-| `src/marketplace/dashboard/` | dashboard builder, template, JS app, headless-Chrome checker |
-| `docs/` | ACCEPTANCE (criteria + PASS/FAIL), DATA_QUALITY (generated, 32 checks), DATA_PROVENANCE, RESULTS (generated), metrics_catalog (generated), exec_memo |
-| `artifacts/` | VoC sample keys, gold labels (A: 240, B: 160), cached LLM labels, rule labels |
-
-## For downstream consumers (e.g. a read-only SQL consumer)
-- Warehouse: **`./data/warehouse.duckdb`** (stable path). Open it
-  read-only: `duckdb.connect(path, read_only=True)`. Schemas: `marts` (facts and dims), `metrics`
-  (`metric_values`: metric × grain[day|month|all] × period; `metric_definitions`), `reference`
-  (seeds), `snapshots`, `staging`, `intermediate`, `raw`.
-- Metric definitions: **`./metrics/metrics.yml`**. Use
-  `MetricsLayer.load().compile(name, grain, where=...)` to get the governed SQL instead of
-  writing formulas. Rejected alternatives are listed in the same file.
-- Do not open the file for writing while `make` is running (DuckDB allows a single writer).
-
-## How this maps to production at a large company
-- **Kimball dimensional modelling.** Conformed dims and transaction-grain facts, with an SCD2 address
-  history (R. Kimball & M. Ross, *The Data Warehouse Toolkit*, 3rd ed., Wiley 2013).
-- **dbt Labs best practices.** The staging/intermediate/marts layering and naming follow
-  ["How we structure our dbt projects"](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview).
-  The project also uses tests, source freshness, exposures and snapshots.
-- **Governed metrics.** One definition, consumed everywhere, as in Airbnb's Minerva
-  (["How Airbnb achieved metric consistency at scale"](https://medium.com/airbnb-engineering/how-airbnb-achieved-metric-consistency-at-scale-f23cc53dea70))
-  and the [dbt Semantic Layer / MetricFlow](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl).
-  Here a small YAML compiler plays that role.
-- **Data team handbooks.** GitLab's public [data team handbook](https://handbook.gitlab.com/handbook/enterprise-data/)
-  (dbt guide, trusted data framework, KPI definitions with owners). Shopify's data engineering
-  posts on dbt and modelling standards ([shopify.engineering](https://shopify.engineering/)).
-- **Root cause.** LinkedIn ThirdEye (open-sourced anomaly detection and root-cause analysis) and
-  Bhagwan et al., *Adtributor: Revenue Debugging in Advertising Systems* (NSDI 2014), the source
-  of the explanatory-power and surprise (JS divergence) ranking used here.
-- **Promise calibration.** Retailers' delivery-date promises are quantile forecasts. The conversion
-  upside assumption comes from Fisher, Gallino & Xu, *The Value of Rapid Delivery in Omnichannel
-  Retailing*, J. Marketing Research 56(5), 2019: +1.45% sales per business day faster. Conformalised
-  quantiles follow Romano, Patterson & Candès, *Conformalized Quantile Regression*, NeurIPS 2019.
-- **Monitoring.** STL decomposition (Cleveland et al., 1990) with robust z-scores on one-step-ahead
-  errors and an event calendar, the usual "expected vs actual with known-event suppression" pattern
-  in BI alerting.
-
-## Known limitations / what differs from production
-- **Static extract.** One 2016–2018 snapshot. The dbt snapshot and freshness checks are wired, but
-  real SCD2 history needs repeated loads, and freshness is measured on the landing timestamp.
-- **No cost, margin, refund, traffic or conversion data.** BRL sizing covers GMV and repeat GMV only.
-  The promise upside rests on an external elasticity and needs an A/B test.
-- **Promise model coverage over-shoots** (P80 91%, P90 95%) because delivery kept speeding up in
-  2018. A production model would add drift-aware recalibration on a shorter feedback window.
-- **RD design is supporting evidence only:** orders bunch just before the promised date (density
-  ratio 0.64 vs 0.88), which violates the no-manipulation assumption, and one of three placebo
-  cutoffs (−4.5 d) is significant at p = 0.04 (−0.08 stars).
-- **VoC gold labels** were made by the author, with gold A seen
-  before the rules were written. The fresh holdout B (70.6%) is the honest number. The LLM run was
-  cut short by memory pressure on a shared laptop (400 of 3,000 sampled reviews).
-- **Targets are illustrative**, set by the analyst (Olist's are not public).
-- **Streamlit was skipped** on purpose: the static HTML dashboard is the reproducible artifact and
-  avoids a server dependency.
-- dbt-duckdb runs on one machine. In production the same project would target Snowflake or
-  BigQuery, with orchestration (Airflow/Dagster) and a proper BI tool.
+Production mapping and citations (Kimball, dbt Labs, Airbnb Minerva, ThirdEye/Adtributor, Fisher et
+al. 2019): [docs/PRODUCTION_MAPPING.md](docs/PRODUCTION_MAPPING.md).

@@ -1,7 +1,7 @@
 {
   "pages": {
     "exec": {
-      "charts": 2,
+      "charts": 3,
       "empty": [],
       "screenshot": "dashboard_exec.png"
     },
@@ -11,7 +11,7 @@
       "screenshot": "dashboard_growth.png"
     },
     "customers": {
-      "charts": 2,
+      "charts": 1,
       "empty": [],
       "screenshot": "dashboard_customers.png"
     },
@@ -21,7 +21,7 @@
       "screenshot": "dashboard_delivery.png"
     },
     "sellers": {
-      "charts": 2,
+      "charts": 1,
       "empty": [],
       "screenshot": "dashboard_sellers.png"
     },
@@ -34,8 +34,8 @@
   "filter_test": {
     "kpis_changed_with_state_filter": true,
     "kpis_changed_with_category_and_date_filter": true,
-    "gmv_card_all": "R$13.45M",
-    "gmv_card_RJ": "R$1.80M"
+    "gmv_card_all": "R$7.34M",
+    "gmv_card_RJ": "R$901.3k"
   },
   "errors": []
 }

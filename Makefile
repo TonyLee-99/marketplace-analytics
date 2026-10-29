@@ -38,6 +38,7 @@ metrics:          ## governed metrics -> metrics.metric_values, docs/metrics_cat
 
 analyses: dq
 	$(PY) -m marketplace.analysis.delivery_impact
+	$(PY) -m marketplace.analysis.review_value
 	$(PY) -m marketplace.analysis.growth
 	$(PY) -m marketplace.analysis.cohorts
 	$(PY) -m marketplace.analysis.sellers
@@ -45,7 +46,8 @@ analyses: dq
 	$(PY) -m marketplace.analysis.root_cause
 	$(PY) -m marketplace.analysis.promise_policy
 
-results:          ## docs/RESULTS.md: every headline number with its source
+results:          ## memo + recommendations.json + docs/RESULTS.md (every headline number with its source)
+	$(PY) -m marketplace.memo
 	$(PY) -m marketplace.results
 
 voc:              ## report from cached LLM labels (artifacts/), no LLM needed
