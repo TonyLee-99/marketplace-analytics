@@ -1,0 +1,54 @@
+version: 2
+
+exposures:
+  - name: executive_dashboard
+    label: Marketplace Executive Dashboard
+    type: dashboard
+    maturity: high
+    url: dashboard/index.html
+    description: >
+      Static 5-page executive dashboard (KPI overview, Growth, Customers, Delivery/Ops,
+      Sellers) + promise-policy simulator, root-cause and complaint-driver views.
+      Built by `make dashboard`.
+    depends_on:
+      - ref('fct_orders')
+      - ref('fct_order_items')
+      - ref('dim_customers')
+      - ref('dim_sellers')
+      - ref('fct_reviews')
+      - ref('dim_date')
+    owner:
+      name: Marketplace Analytics (portfolio owner)
+      email: analytics@example.com
+
+  - name: executive_memo
+    label: State of the business memo
+    type: analysis
+    maturity: medium
+    url: docs/exec_memo.md
+    description: One-page VP memo with three sized recommendations.
+    depends_on:
+      - ref('fct_orders')
+      - ref('fct_order_items')
+      - ref('dim_customers')
+      - ref('fct_reviews')
+    owner:
+      name: Marketplace Analytics (portfolio owner)
+      email: analytics@example.com
+
+  - name: analytics_agent_readonly
+    label: Analytics agent (read-only consumer)
+    type: application
+    maturity: low
+    description: >
+      Downstream text-to-SQL agent (a read-only SQL consumer) that attaches
+      data/warehouse.duckdb read-only and reads metrics/metrics.yml.
+    depends_on:
+      - ref('fct_orders')
+      - ref('fct_order_items')
+      - ref('dim_customers')
+      - ref('dim_sellers')
+      - ref('dim_products')
+    owner:
+      name: Marketplace Analytics (portfolio owner)
+      email: analytics@example.com

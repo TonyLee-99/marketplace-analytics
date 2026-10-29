@@ -1,0 +1,11 @@
+snapshots:
+  - name: snap_sellers
+    relation: ref('stg_olist__sellers')
+    description: >
+      SCD2 snapshot of seller location. Olist publishes a single static extract, so today
+      every seller has exactly one version; re-running after a new landing would close old
+      rows (dbt_valid_to) and open new ones when zip/city/state change.
+    config:
+      unique_key: seller_id
+      strategy: check
+      check_cols: ["seller_zip_prefix", "seller_city", "seller_state"]

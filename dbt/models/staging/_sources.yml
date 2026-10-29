@@ -1,0 +1,46 @@
+version: 2
+
+sources:
+  - name: olist
+    description: >
+      Olist Brazilian E-Commerce Public Dataset (CC BY-NC-SA 4.0), landed untouched (all
+      VARCHAR) by `python -m marketplace.ingest` after SHA-256 / row-count / header checks.
+    schema: raw
+    loaded_at_field: _loaded_at
+    config:
+      freshness:
+        # The landing job runs daily in production; warn after a day, error after 3.
+        warn_after: {count: 24, period: hour}
+        error_after: {count: 72, period: hour}
+    tables:
+      - name: orders
+        description: One row per order (customer_id is order-scoped, NOT a person id).
+        columns:
+          - name: order_id
+            data_tests: [unique, not_null]
+      - name: order_items
+        description: One row per item line in an order.
+      - name: order_payments
+        description: One row per payment instrument used on an order.
+      - name: order_reviews
+        description: Post-delivery satisfaction survey answers (Portuguese free text).
+      - name: customers
+        description: One row per order-scoped customer_id; customer_unique_id identifies the person.
+        columns:
+          - name: customer_id
+            data_tests: [unique, not_null]
+      - name: sellers
+        columns:
+          - name: seller_id
+            data_tests: [unique, not_null]
+      - name: products
+        columns:
+          - name: product_id
+            data_tests: [unique, not_null]
+      - name: geolocation
+        description: Zip-prefix to lat/lng lookup with many duplicate rows per prefix.
+      - name: category_translation
+      - name: closed_deals
+        description: Olist Marketing Funnel - sellers that signed after being a qualified lead.
+      - name: marketing_qualified_leads
+        description: Olist Marketing Funnel - MQLs (8,000) from Jun-2017 to Jun-2018.

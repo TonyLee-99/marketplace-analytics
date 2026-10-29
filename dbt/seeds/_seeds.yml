@@ -1,0 +1,25 @@
+version: 2
+seeds:
+  - name: br_states
+    description: Brazilian federative units (27) with IBGE macro-region. Public reference data.
+    columns:
+      - name: state_code
+        data_tests: [unique, not_null]
+      - name: region
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["North", "Northeast", "Center-West", "Southeast", "South"]
+  - name: retail_events
+    description: >
+      Known calendar events used to annotate anomalies (Black Friday dates are the US-style
+      Friday after Thanksgiving that Brazilian retail adopted; truckers strike = the nationwide
+      greve dos caminhoneiros of 21-31 May 2018 that disrupted logistics).
+    columns:
+      - name: event_date
+        data_tests: [unique, not_null]
+  - name: category_translation_patch
+    description: Manual English names for 2 categories absent from the original translation file.
+    columns:
+      - name: product_category_name
+        data_tests: [unique, not_null]

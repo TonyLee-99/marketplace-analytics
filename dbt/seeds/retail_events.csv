@@ -1,0 +1,13 @@
+event_date,event_name,event_type
+2016-11-25,Black Friday 2016,promo
+2017-11-24,Black Friday 2017,promo
+2017-11-27,Cyber Monday 2017,promo
+2017-12-25,Christmas 2017,holiday
+2018-01-01,New Year 2018,holiday
+2017-02-28,Carnival 2017,holiday
+2018-02-13,Carnival 2018,holiday
+2017-05-14,Mothers Day BR 2017,promo
+2018-05-13,Mothers Day BR 2018,promo
+2018-06-14,FIFA World Cup 2018 start,other
+2018-05-21,Truckers strike start (greve dos caminhoneiros),disruption
+2018-05-31,Truckers strike end,disruption

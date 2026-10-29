@@ -1,0 +1,40 @@
+name: marketplace
+version: "1.0.0"
+config-version: 2
+profile: marketplace
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+snapshot-paths: ["snapshots"]
+macro-paths: ["macros"]
+analysis-paths: ["analyses"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Statuses that never became revenue. Used by GMV / order metrics (see metrics/metrics.yml).
+  non_revenue_statuses: ["canceled", "unavailable"]
+  # Payment reconciliation tolerance (BRL) for the custom business-rule test.
+  payment_tolerance_brl: 1.00
+
+models:
+  marketplace:
+    +persist_docs: {relation: true, columns: true}
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+
+seeds:
+  marketplace:
+    +schema: reference
+
+snapshots:
+  marketplace:
+    +target_schema: snapshots

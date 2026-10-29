@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: >
+      Order fact (grain: order_id). is_revenue_order excludes canceled/unavailable orders and
+      orders without items. Logistics fields are only populated/meaningful when is_delivered.
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_unique_id
+        description: Person key (FK to dim_customers).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dim_customers'), field: customer_unique_id}
+      - name: purchase_date
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_day}
+      - name: primary_seller_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_sellers'), field: seller_id}
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [delivered, shipped, canceled, unavailable, invoiced, processing, created, approved]
+      - name: delivered_to_customer_at
+        data_tests:
+          - value_at_least_column: {arguments: {other_column: purchased_at}}
+      - name: review_score
+        data_tests:
+          - accepted_values:
+              arguments: {values: [1, 2, 3, 4, 5], quote: false}
+      - name: items_price_brl
+        description: Sum of item prices (excl. freight). The governed GMV basis.
+        data_tests: [not_null]
+      - name: days_late
+        description: Delivered date minus promised date in whole days (>0 = late).
+      - name: promised_days
+        data_tests:
+          - within_range: {arguments: {min_value: 0}}
+      - name: customer_order_number
+        description: n-th revenue order of the person (1 = first purchase).
+
+  - name: fct_order_items
+    columns:
+      - name: order_item_key
+        data_tests: [unique, not_null]
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('fct_orders'), field: order_id}
+      - name: product_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_products'), field: product_id}
+      - name: seller_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dim_sellers'), field: seller_id}
+
+  - name: fct_payments
+    columns:
+      - name: payment_key
+        data_tests: [unique, not_null]
+      - name: order_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('fct_orders'), field: order_id}
+
+  - name: fct_reviews
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+
+  - name: dim_customers
+    description: One row per person (customer_unique_id), with current SCD2 address.
+    columns:
+      - name: customer_unique_id
+        data_tests: [unique, not_null]
+      - name: current_state
+        data_tests: [not_null]
+
+  - name: dim_customer_location_history
+    description: SCD Type 2 address history per person (valid_from / valid_to / is_current).
+    columns:
+      - name: customer_location_sk
+        data_tests: [unique, not_null]
+
+  - name: dim_sellers
+    columns:
+      - name: seller_id
+        data_tests: [unique, not_null]
+      - name: seller_region
+        data_tests: [not_null]
+
+  - name: dim_products
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+
+  - name: dim_date
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]

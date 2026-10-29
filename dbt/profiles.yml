@@ -1,0 +1,8 @@
+marketplace:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      # Stable path; downstream read-only consumers attach this same file.
+      path: "{{ env_var('MARKETPLACE_WAREHOUSE', '../data/warehouse.duckdb') }}"
+      threads: 4

@@ -67,5 +67,19 @@ filled in at the end of the build (see the bottom section) with PASS/FAIL and ev
 | G5 | Required docs: README (mermaid diagram, sources+licenses, results table, production mapping with citations, limitations) | files exist |
 | G6 | Project data + intermediates ≤ 3.5 GB | `du -sh data` |
 
+
+## H. Differentiators (addendum, added 2026-10-29 when the scope was raised, before any of H was built)
+| ID | Criterion | Verify with |
+|----|-----------|-------------|
+| H1 | Promise padding (estimated − actual days) measured as a distribution overall, by lane and by category | `reports/promise_policy.json` |
+| H2 | Quantile model (P50/P80/P90) of delivery days using only purchase-time features, time-based split (train ≤ 2018-03, test 2018-04..08), no leakage; test-set empirical coverage of P80 within ±5 pp of 80% and P90 within ±5 pp of 90% | `reports/promise_policy.json` coverage fields; `pytest tests/test_promise.py` (feature list contains no post-purchase field) |
+| H3 | ≥4 promise policies simulated on the held-out test set (current, lane-P80, lane-P90, model-P80, model-P90): promise days saved vs late-rate change, converted to net expected review/repurchase impact using the measured causal effect; one recommended policy with impact range and confidence | `reports/promise_policy.json`, memo |
+| H4 | Automated KPI root cause: dimension-contribution decomposition (mix vs rate) across state, category, seller tier that ranks drivers of a MoM change; explicit Simpson's-paradox check; run on ≥2 real KPI moves; mix+rate+interaction effects sum to the total change exactly (residual < 1e-9) | `reports/root_cause.json`; `pytest tests/test_root_cause.py` |
+| H5 | Voice of customer: complaint-reason taxonomy (≥7 classes) labelled on a stratified sample of ≥2,000 real Portuguese reviews; accuracy (and macro-F1) vs a ≥200-review hand-checked gold sample reported, whatever it is; reasons tied to sellers and lanes | `reports/voc.json` |
+| H6 | Causal design beyond regression controls: within-seller late-vs-on-time comparison (seller FE) and a regression-discontinuity-style comparison around the promised date (bandwidth + placebo cutoffs), with assumptions stated | `reports/delivery_impact.json` `rd` block |
+| H7 | Metric governance: ≥1 real example where two plausible definitions of the same KPI disagree (numbers shown) and the governed definition resolves it | `reports/metric_conflicts.json`, `docs/metrics_catalog.md` |
+| H8 | Dashboard surfaces the promise-policy simulator (interactive), root-cause view and complaint drivers | screenshots in `docs/img/` |
+| H9 | Warehouse at stable path `data/warehouse.duckdb` and metrics at `metrics/metrics.yml`, documented in README for read-only consumers | README "For downstream consumers" |
+
 ## Results
 (filled in at the end of the build)

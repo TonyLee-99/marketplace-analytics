@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: int_zip_geolocation
+    description: One row per zip prefix (deduplicated geolocation, median coordinate).
+    columns:
+      - name: zip_prefix
+        data_tests: [unique, not_null]
+  - name: int_reviews_latest_per_order
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+  - name: int_order_items_by_order
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: primary_seller_id
+        data_tests: [not_null]
+  - name: int_payments_by_order
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+  - name: int_orders_enriched
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+  - name: int_customer_location_history
+    columns:
+      - name: customer_location_sk
+        data_tests: [unique, not_null]
