@@ -81,6 +81,8 @@ open dashboard/index.html
 dbt build and tests, analyses, dashboard and screenshots.
 
 ## Data and license
+Code is MIT-licensed ([LICENSE](LICENSE)). Data, and files derived from it, keep the source licenses below.
+
 - [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and
   [Olist Marketing Funnel](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist), CC BY-NC-SA 4.0.
 - Downloaded from public mirrors and checked byte-for-byte against independent copies. Row counts
