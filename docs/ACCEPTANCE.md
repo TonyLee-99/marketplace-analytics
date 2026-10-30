@@ -63,7 +63,7 @@ filled in at the end of the build (see the bottom section) with PASS/FAIL and ev
 | G1 | `make all` rebuilds everything from raw CSV files with exit 0 | `make clean && make all` |
 | G2 | pytest passes (≥10 tests) | `make test` |
 | G3 | `ruff check` clean | `make lint` |
-| G4 | Dockerfile and `.github/workflows/ci.yml` present (CI written, not run remotely) | files exist |
+| G4 | Dockerfile and `.github/workflows/ci.yml` present (CI runs on GitHub Actions) | files exist |
 | G5 | Required docs: README (mermaid diagram, sources+licenses, results table, production mapping with citations, limitations), docs/DATA_QUALITY.md, docs/RESULTS.md | files exist |
 | G6 | Project data + intermediates ≤ 3.5 GB | `du -sh data` |
 
@@ -109,7 +109,7 @@ wrong reading of the data, so each row below is re-judged against what the evide
 | G1 | PASS | final `time make all` → `make all: OK`, `real 3m15s` (log: data/make_all_r3.log) |
 | G2 | PASS | `23 passed` (incl. `test_stage_shapley_explains_jan_mar_2018_slump`, residual < 1 pp); identity tests retired except the toy LMDI check; added temporal-leakage, raw-CSV golden, synthetic-Simpson and rescore tests |
 | G3 | PASS | `ruff check` → All checks passed |
-| G4 | PASS (not executed) | Dockerfile + CI yaml written; not run (no Docker daemon, no remote) |
+| G4 | PASS | CI runs the full pipeline on GitHub Actions; Dockerfile written, image not built (no local Docker daemon) |
 | G5 | PASS | README rewritten around the strongest true finding; production citations moved to docs/PRODUCTION_MAPPING.md |
 | G6 | PASS | `du -sh data` 266M |
 | H1 | PASS | median padding 12 days, 73.9% of orders > 7 days early |

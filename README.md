@@ -76,8 +76,9 @@ uv venv --python 3.12 && uv pip install -r requirements.lock   # or: make setup
 make all        # verify raw data → dbt build → metrics → analyses → memo → dashboard → checks → tests
 open dashboard/index.html
 ```
-`make voc-relabel` re-runs the optional local LLM labelling (Ollama `qwen2.5:7b`). The Dockerfile
-and `.github/workflows/ci.yml` are written but have not been run remotely.
+`make voc-relabel` re-runs the optional local LLM labelling (Ollama `qwen2.5:7b`). CI
+(`.github/workflows/ci.yml`) rebuilds everything from a fresh data download on every push: ingest,
+dbt build and tests, analyses, dashboard and screenshots.
 
 ## Data and license
 - [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) and
