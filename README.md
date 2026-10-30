@@ -109,3 +109,4 @@ item grain.
 
 Production mapping and citations (Kimball, dbt Labs, Airbnb Minerva, ThirdEye/Adtributor, Fisher et
 al. 2019): [docs/PRODUCTION_MAPPING.md](docs/PRODUCTION_MAPPING.md).
+
