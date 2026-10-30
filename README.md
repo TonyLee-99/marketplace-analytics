@@ -1,5 +1,17 @@
 # Marketplace analytics on real Olist data: what a late delivery really costs
 
+[![ci](https://github.com/TonyLee-99/marketplace-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/TonyLee-99/marketplace-analytics/actions/workflows/ci.yml)
+![dbt](https://img.shields.io/badge/dbt-duckdb-orange) ![license](https://img.shields.io/badge/license-MIT-green)
+
+**[▶ Open the live dashboard](https://tonylee-99.github.io/marketplace-analytics/dashboard/)** · [one-page exec memo](docs/exec_memo.md) · [all results](docs/RESULTS.md)
+
+| | |
+|---|---|
+| **Problem** | A marketplace's leadership sees late deliveries, falling review scores and slowing growth, and teams report different numbers for the same KPI. They need one trusted warehouse, one set of metric definitions, and answers to "why did it move and what do we do". |
+| **What I built** | A dbt + DuckDB star schema over 99,441 real orders (118 data tests, 5 of them business rules), a governed metrics layer of 17 KPIs, causal and root-cause analyses, a full-year delivery-promise backtest, a 6-page executive dashboard and a generated decision memo. |
+| **Key results** | Most of the "late delivery costs 1.9 stars" effect is survey timing: on reviews written after delivery it is −0.51★, so the first recommendation is a product fix, not a logistics one. A shorter delivery promise would save 6.4 days but double the late rate (9.3% → 20.6%) over a full year, so I proposed a capped A/B test with a kill switch instead. The spring-2018 lateness spike splits into carrier transit +8.1 pp and promise cuts +6.0 pp. |
+| **Stack** | SQL, dbt, DuckDB, Python (pandas, statsmodels, scikit-learn), Plotly, Playwright, GitHub Actions |
+
 **The strongest finding: most of the star penalty for a late delivery is a survey-timing artefact.**
 Olist sends its satisfaction survey about 2 days after the *promised* date, delivered or not, so
 70% of late orders are rated before the parcel arrives. Comparing the same seller in the same month,

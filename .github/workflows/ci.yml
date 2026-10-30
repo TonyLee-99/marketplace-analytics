@@ -1,4 +1,4 @@
-# Written for GitHub Actions; not run remotely (repo is local-only for now).
+# CI: lint, tests, then the full pipeline from a fresh data download.
 name: ci
 on:
   push:
